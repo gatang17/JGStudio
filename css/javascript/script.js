@@ -179,9 +179,9 @@ function calculatorPageInit() {
     const extraPhotos = Math.max(0, photoInput);
     const outfitChanges = Math.max(0, outfitInput);
   
-    total += extraPhotos * 20;
-    total += outfitChanges * 15;
-    if (rushDelivery) total += 25;
+    total += extraPhotos * 12;
+    total += outfitChanges * 25;
+    if (rushDelivery) total += 50;
   
     const totalWithTax = (total * 1.06).toFixed(2);
     document.getElementById("totalPrice").innerHTML = `${totalWithTax} <small>(Taxes included)</small>`;
