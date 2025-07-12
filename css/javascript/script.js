@@ -171,11 +171,13 @@ function calculatorPageInit() {
   
   function calculateTotal() {
     let total = pkg.price;
+  
     const photoInput = parseInt(document.getElementById("extraPhotos")?.value) || 0;
     const outfitInput = parseInt(document.getElementById("outfitChanges")?.value) || 0;
-    const extraPhotos = Math.max(0, photoInput - rules.minPhotos);
-    const outfitChanges = Math.max(0, outfitInput - rules.minOutfits);
     const rushDelivery = document.getElementById("rushDelivery")?.checked;
+  
+    const extraPhotos = Math.max(0, photoInput);
+    const outfitChanges = Math.max(0, outfitInput);
   
     total += extraPhotos * 20;
     total += outfitChanges * 15;
@@ -185,11 +187,12 @@ function calculatorPageInit() {
     document.getElementById("totalPrice").innerHTML = `${totalWithTax} <small>(Taxes included)</small>`;
   }
   
+  
   document.getElementById("getPackageBtn").addEventListener("click", () => {
     const photoInput = parseInt(document.getElementById("extraPhotos")?.value) || 0;
     const outfitInput = parseInt(document.getElementById("outfitChanges")?.value) || 0;
-    const extraPhotos = Math.max(0, photoInput - rules.minPhotos);
-    const outfitChanges = Math.max(0, outfitInput - rules.minOutfits);
+    const extraPhotos = Math.max(0, photoInput);
+    const outfitChanges = Math.max(0, outfitInput);
     const rushDelivery = document.getElementById("rushDelivery")?.checked;
     const total = document.getElementById("totalPrice").textContent;
   
@@ -205,6 +208,7 @@ function calculatorPageInit() {
     const contactUrl = `contact.html?service=${encodeURIComponent(service.name)}&package=${encodeURIComponent(pkg.name)}&extras=${encodeURIComponent(extrasText)}&total=${encodeURIComponent("$" + total)}&details=${encodeURIComponent(detailsText)}`;
     window.location.href = contactUrl;
   });
+  
   
   document.getElementById("extraPhotos").addEventListener("input", calculateTotal);
   document.getElementById("outfitChanges").addEventListener("input", calculateTotal);
