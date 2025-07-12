@@ -121,6 +121,26 @@ background-color: #053c56;
   }
  
 
+  .info-tooltip {
+    display: none;
+    color: gray;
+    font-size: 0.9rem;
+    margin-top: 5px;
+  }
+  
+  .info-wrapper:hover .info-tooltip {
+    display: block;
+  }
+  
+  .info-wrapper.active .info-tooltip {
+    display: block;
+  }
+  
+  .info-label {
+    cursor: pointer;
+  }
+  
+
   /* Estilos para pantallas menores a 768px (celulares) */
 @media (max-width: 767px) {
     body {
