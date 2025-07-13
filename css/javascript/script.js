@@ -207,7 +207,12 @@ function calculatorPageInit() {
   
   calculateTotal();
   
-}
+
+
+} // Fin de la función
+
+// Llamar la función cuando el DOM esté listo esto hace q se cargue la imagen
+document.addEventListener("DOMContentLoaded", calculatorPageInit);
 
 function contactPageInit() {
   if (!document.getElementById("message")) return;
@@ -339,6 +344,7 @@ document.addEventListener("DOMContentLoaded", () => {
       gallery.appendChild(img);
     });
   }
+  document.addEventListener("DOMContentLoaded", displayGallery);
 
   closeBtn.addEventListener('click', () => {
     overlay.style.display = 'none';
