@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="css/javascript/script.js" defer></script> 
+</head>
+<body>
+  <section id="section_1" class="sec_1 container-fluid row mt-4"><!-- aqui va el menu-->
+  </section>
+  <h1 mt-4>Gallery</h1>
+  <select id="categoryFilter">
+    <option value="all">All</option>
+    <option value="photography">Photography</option>
+    <option value="graphic">Graphic Design</option>
+    <option value="social">Social Media</option>
+  </select>
+  
+  <div class="gallery-grid" id="gallery-grid"></div>
+  
+  <div id="overlay" class="overlay" style="display:none;">
+    <div class="overlay-content" id="overlay-content">
+      <img id="overlay-image" src="" alt="">
+      <div id="overlay-description" class="description-box"></div>
+      <span class="close-button" onclick="closeOverlay()">×</span>
+    </div>
+  </div>
+  
+
+  <div id="footer-placeholder"></div>
+</body>
+</html>
+

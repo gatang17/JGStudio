@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Generador de arreglo de imágenes</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+    pre {
+      background: #f4f4f4;
+      padding: 15px;
+      border-radius: 6px;
+      overflow-x: auto;
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <h2>Generador de arreglo de imágenes para tu galería</h2>
+  <p>Selecciona la carpeta donde están las imágenes y te generamos el arreglo para pegar en tu código.</p>
+
+  <button id="select-folder">Seleccionar carpeta</button>
+  
+  <h3>Arreglo generado:</h3>
+  <pre id="output">Aquí aparecerá el arreglo...</pre>
+
+  <script>
+    const btn = document.getElementById('select-folder');
+    const output = document.getElementById('output');
+
+    btn.addEventListener('click', async () => {
+      try {
+        // Pedir seleccionar carpeta
+        const dirHandle = await window.showDirectoryPicker();
+        const files = [];
+        for await (const entry of dirHandle.values()) {
+          if (entry.kind === 'file') {
+            const name = entry.name.toLowerCase();
+            // Filtrar solo imágenes jpg, jpeg, png, gif
+            if (name.endsWith('.jpg') || name.endsWith('.jpeg') || name.endsWith('.png') || name.endsWith('.gif')) {
+              files.push(entry.name);
+            }
+          }
+        }
+        if(files.length === 0) {
+          output.textContent = "No se encontraron imágenes en esa carpeta.";
+          return;
+        }
+        // Crear el arreglo JS
+        const arregloJS = `const photographyImages = [\n  "${files.join('",\n  "')}"\n];`;
+        output.textContent = arregloJS;
+      } catch (e) {
+        output.textContent = "Error o acción cancelada.";
+        console.error(e);
+      }
+    });
+  </script>
+</body>
+</html>

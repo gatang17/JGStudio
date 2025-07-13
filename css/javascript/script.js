@@ -66,7 +66,7 @@ document.addEventListener('DOMContentLoaded', function () {
           <a href="#">Instagram</a>
         </div>
         <div class="col-4 cont_foot">
-          <a href="#">Gallery</a>
+          <a href="Gallery.html">Gallery</a>
           <a href="#">Packages</a>
         </div>
         <div class="col-4 cont_foot">
@@ -228,6 +228,171 @@ function contactPageInit() {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-  calculatorPageInit();
-  contactPageInit();
+  const imagesPerCategory = 5;
+
+  const photographyImages = [
+    {
+      name: "1.jpg", description: `
+      <h3>Fine Art Portraits</h3>
+      <p>More than a photograph — a piece of art. Fine Art sessions are designed to create timeless, intentional portraits with a painterly feel...</p>`
+    },
+    {
+      name: "2.jpg", description: `
+      <h3>Outdoor Sessions</h3>
+      <p>Natural light, open spaces, and real moments — outdoor sessions offer the perfect setting for genuine expressions and relaxed portraits...</p>`
+    },
+    {
+      name: "3.jpg", description: `
+      <h3>Family Portraits</h3>
+      <p>Take this special moment to capture the genuine energy and connection of your family...</p>`
+    },
+    {
+      name: "4.jpg", description: `
+      <h3>Maternity & Baby Sessions</h3>
+      <p>Celebrate the early days of your baby's life with a calm, detail-focused session...</p>`
+    },
+    {
+      name: "5.jpg", description: `
+      <h3>Studio Sessions</h3>
+      <p>Studio sessions offer a clean, controlled environment where lighting and background highlight your personality...</p>`
+    }
+  ];
+
+  const graphicImages = [
+    { name: "1.jpg", description: "Diseño gráfico: logo corporativo" },
+    { name: "2.jpg", description: "Flyer promocional" },
+    { name: "3.jpg", description: "Cartel publicitario" },
+    { name: "4.jpg", description: "Packaging creativo" },
+    { name: "5.jpg", description: "Diseño de iconos" }
+  ];
+
+  const socialImages = [
+    { name: "1.jpg", description: "Campaña en redes sociales" },
+    { name: "2.jpg", description: "Contenido para Instagram" },
+    { name: "3.jpg", description: "Promoción Facebook" },
+    { name: "4.jpg", description: "Marketing digital" },
+    { name: "5.jpg", description: "Publicidad viral" }
+  ];
+
+  function pickRandom(images, count) {
+    const shuffled = images.slice().sort(() => 0.5 - Math.random());
+    return shuffled.slice(0, count);
+  }
+
+  const galleryImages = [
+    ...pickRandom(photographyImages, imagesPerCategory).map(img => ({
+      src: `img/photos/photography/${img.name}`,
+      category: "photography",
+      description: img.description
+    })),
+    ...pickRandom(graphicImages, imagesPerCategory).map(img => ({
+      src: `img/photos/graphic/${img.name}`,
+      category: "graphic",
+      description: img.description
+    })),
+    ...pickRandom(socialImages, imagesPerCategory).map(img => ({
+      src: `img/photos/social/${img.name}`,
+      category: "social",
+      description: img.description
+    }))
+  ];
+
+  const shuffledGallery = shuffleArray(galleryImages);
+  let allImages = shuffledGallery;
+
+  const gallery = document.getElementById('gallery-grid');
+  const overlay = document.getElementById('overlay');
+  const overlayImage = document.getElementById('overlay-image');
+  const overlayDescription = document.getElementById('overlay-description');
+  const closeBtn = document.getElementById('close-overlay') || document.querySelector('.close-button');
+
+  function shuffleArray(array) {
+    const shuffled = array.slice();
+    for (let i = shuffled.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+    }
+    return shuffled;
+  }
+
+  function displayGallery(images) {
+    gallery.innerHTML = ''; // Vaciar la galería antes de agregar nuevas imágenes
+
+    images.forEach(photo => {
+      const img = document.createElement('img');
+      img.src = photo.src;
+      img.alt = photo.category;
+      img.style.width = '100%';
+      img.style.borderRadius = '6px';
+      img.style.cursor = 'pointer';
+      img.style.objectFit = 'cover';
+      img.style.height = '150px';
+
+      img.addEventListener('click', () => {
+        overlay.style.display = 'flex';
+        overlayImage.src = photo.src;
+        overlayImage.alt = photo.category;
+        overlayDescription.innerHTML = photo.description;
+        adjustOverlayLayout();
+      });
+
+      gallery.appendChild(img);
+    });
+  }
+
+  closeBtn.addEventListener('click', () => {
+    overlay.style.display = 'none';
+  });
+
+  overlay.addEventListener('click', (e) => {
+    if (e.target === overlay) {
+      overlay.style.display = 'none';
+    }
+  });
+
+  function adjustOverlayLayout() {
+    const overlayContent = document.getElementById('overlay-content');
+    if (window.innerWidth < 768) {
+      overlayContent.style.flexDirection = 'column';
+      overlayImage.style.width = '100%';
+      overlayDescription.style.width = '100%';
+      overlayDescription.style.padding = '15px 10px';
+    } else {
+      overlayContent.style.flexDirection = 'row';
+      overlayImage.style.width = '70%';
+      overlayDescription.style.width = '30%';
+      overlayDescription.style.padding = '20px';
+    }
+  }
+
+  window.addEventListener('resize', () => {
+    if (overlay.style.display === 'flex') {
+      adjustOverlayLayout();
+    }
+  });
+
+  document.getElementById('categoryFilter').addEventListener('change', function () {
+    const selected = this.value;
+
+    if (selected === 'all') {
+      displayGallery(allImages);
+    } else {
+      const fullSet = {
+        photography: photographyImages,
+        graphic: graphicImages,
+        social: socialImages
+      };
+
+      const filteredImages = fullSet[selected].map(img => ({
+        src: `img/photos/${selected}/${img.name}`,
+        category: selected,
+        description: img.description
+      }));
+
+      displayGallery(filteredImages);
+    }
+  });
+
+  // Mostrar todas las imágenes al cargar
+  displayGallery(allImages);
 });
