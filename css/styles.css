@@ -140,6 +140,27 @@ background-color: #053c56;
     cursor: pointer;
   }
   
+  #packageDetails {
+    margin-top: 0.5rem;
+    margin-bottom: 1rem;
+    line-height: 1.5;
+  }
+  #totalPrice small {
+    font-size: 0.8rem;
+  }
+
+  .btn-outline-custom {
+    color: #053c56;
+    border: 2px solid #053c56;
+    background-color: transparent;
+    transition: 0.3s ease;
+  }
+  
+  .btn-outline-custom:hover {
+    background-color: #053c56;
+    color: white;
+  }
+  
 
   /* Estilos para pantallas menores a 768px (celulares) */
 @media (max-width: 767px) {

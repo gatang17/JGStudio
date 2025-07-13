@@ -9,16 +9,7 @@ document.addEventListener('DOMContentLoaded', function () {
           integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
           crossorigin="anonymous">
     <link rel="stylesheet" href="css/styles.css">
-    <style>
-      #packageDetails {
-        margin-top: 0.5rem;
-        margin-bottom: 1rem;
-        line-height: 1.5;
-      }
-      #totalPrice small {
-        font-size: 0.8rem;
-      }
-    </style>
+   
   `;
   const tempDiv = document.createElement("div");
   tempDiv.innerHTML = headContent.trim();
