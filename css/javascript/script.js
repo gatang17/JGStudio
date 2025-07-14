@@ -15,9 +15,9 @@ document.addEventListener('DOMContentLoaded', function () {
   tempDiv.innerHTML = headContent.trim();
   Array.from(tempDiv.children).forEach(child => document.head.appendChild(child));
 
-  const script = document.createElement('script');
+  /*const script = document.createElement('script');
   script.src = 'css/javascript/script.js';
-  document.body.appendChild(script);
+  document.body.appendChild(script);*/
 
   const bootstrap = document.createElement('script');
   bootstrap.src = 'https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js';
