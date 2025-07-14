@@ -263,6 +263,7 @@ document.addEventListener("DOMContentLoaded", () => {
       <p>Studio sessions offer a clean, controlled environment where lighting and background highlight your personality...</p>`
     }
   ];
+  window.photographyImages = photographyImages;
 
   const graphicImages = [
     { name: "1.jpg", description: "Diseño gráfico: logo corporativo" },
