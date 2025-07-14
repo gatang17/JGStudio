@@ -309,6 +309,7 @@ document.addEventListener("DOMContentLoaded", () => {
   ];
   */
 
+  console.log(`Ruta ejemplo: img/photos/photography/${photographyImages[0].name}`);
   
   function pickRandom(images, count) {
     const shuffled = images.slice().sort(() => 0.5 - Math.random());
@@ -317,7 +318,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
   
-    console.log(`Ruta ejemplo: img/photos/photography/${photographyImages[0].name}`);
   
 
 
