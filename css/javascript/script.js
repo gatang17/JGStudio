@@ -284,6 +284,13 @@ document.addEventListener("DOMContentLoaded", () => {
     return shuffled.slice(0, count);
   }
 
+
+  
+    console.log(`Ruta ejemplo: img/photos/photography/${photographyImages[0].name}`);
+  
+
+
+  
   const galleryImages = [
     ...pickRandom(photographyImages, imagesPerCategory).map(img => ({
       src: `img/photos/photography/${img.name}`,
