@@ -211,8 +211,8 @@ function calculatorPageInit() {
 
 } // Fin de la función
 
-// Llamar la función cuando el DOM esté listo esto hace q se cargue la imagen
-document.addEventListener("DOMContentLoaded", calculatorPageInit);
+
+
 //aqui se genera el mensaje
 function contactPageInit() {
   if (!document.getElementById("message")) return;
@@ -231,6 +231,10 @@ function contactPageInit() {
     messageInput.value = "";
   }
 }
+
+// Llamar la función cuando el DOM esté listo esto hace q se cargue la imagen
+document.addEventListener("DOMContentLoaded", calculatorPageInit);
+
 //aqui comienza la galeria
 
 document.addEventListener("DOMContentLoaded", () => {
