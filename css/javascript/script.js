@@ -263,7 +263,6 @@ document.addEventListener("DOMContentLoaded", () => {
       <p>Studio sessions offer a clean, controlled environment where lighting and background highlight your personality...</p>`
     }
   ];
-  window.photographyImages = photographyImages;
 
   const graphicImages = [
     { name: "1.jpg", description: "Diseño gráfico: logo corporativo" },
@@ -282,7 +281,7 @@ document.addEventListener("DOMContentLoaded", () => {
   ];
   
 
-  console.log(`Ruta ejemplo: img/photos/photography/${photographyImages[0].name}`);
+
   
   function pickRandom(images, count) {
     const shuffled = images.slice().sort(() => 0.5 - Math.random());
