@@ -232,8 +232,37 @@ function contactPageInit() {
   }
 }
 //aqui comienza la galeria
+
 document.addEventListener("DOMContentLoaded", () => {
   const imagesPerCategory = 5;
+
+  window.photographyImages =[
+    {
+      name: "1.jpg", description: `
+      <h3>Fine Art Portraits</h3>
+      <p>More than a photograph — a piece of art. Fine Art sessions are designed to create timeless, intentional portraits with a painterly feel...</p>`
+    },
+    {
+      name: "2.jpg", description: `
+      <h3>Outdoor Sessions</h3>
+      <p>Natural light, open spaces, and real moments — outdoor sessions offer the perfect setting for genuine expressions and relaxed portraits...</p>`
+    },
+    {
+      name: "3.jpg", description: `
+      <h3>Family Portraits</h3>
+      <p>Take this special moment to capture the genuine energy and connection of your family...</p>`
+    },
+    {
+      name: "4.jpg", description: `
+      <h3>Maternity & Baby Sessions</h3>
+      <p>Celebrate the early days of your baby's life with a calm, detail-focused session...</p>`
+    },
+    {
+      name: "5.jpg", description: `
+      <h3>Studio Sessions</h3>
+      <p>Studio sessions offer a clean, controlled environment where lighting and background highlight your personality...</p>`
+    }
+  ];
 
   const photographyImages = [
     {
@@ -279,6 +308,7 @@ document.addEventListener("DOMContentLoaded", () => {
     { name: "5.jpg", description: "Publicidad viral" }
   ];
 
+  
   function pickRandom(images, count) {
     const shuffled = images.slice().sort(() => 0.5 - Math.random());
     return shuffled.slice(0, count);
