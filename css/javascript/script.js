@@ -263,7 +263,7 @@ document.addEventListener("DOMContentLoaded", () => {
       <p>Studio sessions offer a clean, controlled environment where lighting and background highlight your personality...</p>`
     }
   ];
-
+/*
   const photographyImages = [
     {
       name: "1.jpg", description: `
@@ -307,6 +307,7 @@ document.addEventListener("DOMContentLoaded", () => {
     { name: "4.jpg", description: "Marketing digital" },
     { name: "5.jpg", description: "Publicidad viral" }
   ];
+  */
 
   
   function pickRandom(images, count) {
