@@ -213,7 +213,7 @@ function calculatorPageInit() {
 
 // Llamar la función cuando el DOM esté listo esto hace q se cargue la imagen
 document.addEventListener("DOMContentLoaded", calculatorPageInit);
-
+//aqui se genera el mensaje
 function contactPageInit() {
   if (!document.getElementById("message")) return;
   const params = new URLSearchParams(window.location.search);
@@ -231,7 +231,7 @@ function contactPageInit() {
     messageInput.value = "";
   }
 }
-
+//aqui comienza la galeria
 document.addEventListener("DOMContentLoaded", () => {
   const imagesPerCategory = 5;
 
@@ -344,7 +344,6 @@ document.addEventListener("DOMContentLoaded", () => {
       gallery.appendChild(img);
     });
   }
-  document.addEventListener("DOMContentLoaded", displayGallery);
 
   closeBtn.addEventListener('click', () => {
     overlay.style.display = 'none';
