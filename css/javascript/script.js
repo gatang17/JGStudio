@@ -170,7 +170,7 @@ function calculatorPageInit() {
     const extraPhotos = Math.max(0, photoInput);
     const outfitChanges = Math.max(0, outfitInput);
   
-    total += extraPhotos * 12;
+    total += extraPhotos * 10;
     total += outfitChanges * 25;
     if (rushDelivery) total += 50;
   
@@ -214,6 +214,8 @@ function calculatorPageInit() {
 // Llamar la función cuando el DOM esté listo esto hace q se cargue la imagen
 document.addEventListener("DOMContentLoaded", calculatorPageInit);
 
+
+
 //aqui se genera el mensaje
 function contactPageInit() {
   if (!document.getElementById("message")) return;
@@ -234,7 +236,6 @@ function contactPageInit() {
 }
 
 // Aquí afuera, le dices que la ejecute cuando la página esté lista
-
 document.addEventListener("DOMContentLoaded", contactPageInit);
 
 
