@@ -275,15 +275,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const graphicImages = [
     { name: "1.jpg", description: "Diseño gráfico: logo corporativo" },
-    { name: "2.jpg", description: "Flyer promocional" },
-    { name: "3.jpg", description: "Cartel publicitario" },
+    { name: "2.jpg", description: "Flyer"},
+    { name: "3.jpg", description: "Product Label" },
     { name: "4.jpg", description: "Packaging creativo" },
     { name: "5.jpg", description: "Diseño de iconos" }
   ];
 
   const socialImages = [
-    { name: "1.jpg", description: "Campaña en redes sociales" },
-    { name: "2.jpg", description: "Contenido para Instagram" },
+    { name: "1.jpg", description: "Social Media" },
+    { name: "2.jpg", description: "Paginas Web" },
     { name: "3.jpg", description: "Promoción Facebook" },
     { name: "4.jpg", description: "Marketing digital" },
     { name: "5.jpg", description: "Publicidad viral" }
