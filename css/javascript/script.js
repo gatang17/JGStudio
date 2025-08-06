@@ -108,7 +108,7 @@ function calculatorPageInit() {
     portrait: {
       name: "Portrait Photography",
       packages: {
-        essential: { name: "Essential Portrait", price: 125, image: "img/services/retrato.jpg" },
+        essential: { name: "Essential Portrait", price: 150, image: "img/services/retrato.jpg" },
         creative: { name: "Creative Portrait", price: 215, image: "img/services/retrato2.jpg" },
         branding: { name: "Branding Mini Session", price: 190, image: "img/services/retrato3.jpg" }
       }
