@@ -109,8 +109,8 @@ function calculatorPageInit() {
       name: "Portrait Photography",
       packages: {
         essential: { name: "Essential Portrait", price: 125, image: "img/services/retrato.jpg" },
-        creative: { name: "Creative Portrait", price: 190, image: "img/services/retrato2.jpg" },
-        branding: { name: "Branding Mini Session", price: 180, image: "img/services/retrato3.jpg" }
+        creative: { name: "Creative Portrait", price: 215, image: "img/services/retrato2.jpg" },
+        branding: { name: "Branding Mini Session", price: 190, image: "img/services/retrato3.jpg" }
       }
     },
     flyer: {
@@ -170,8 +170,8 @@ function calculatorPageInit() {
     const extraPhotos = Math.max(0, photoInput);
     const outfitChanges = Math.max(0, outfitInput);
   
-    total += extraPhotos * 12;
-    total += outfitChanges * 25;
+    total += extraPhotos * 15;
+    total += outfitChanges * 5;
     if (rushDelivery) total += 50;
   
     const totalWithTax = (total * 1.06).toFixed(2);
