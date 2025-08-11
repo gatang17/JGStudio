@@ -170,7 +170,24 @@ function calculatorPageInit() {
     const extraPhotos = Math.max(0, photoInput);
     const outfitChanges = Math.max(0, outfitInput);
   
-    total += extraPhotos * 15;
+    //precio exponencial
+    const basePricePerPhoto = pkg.price / rules.minPhotos;
+let extrasTotal = 0;
+
+for (let i = 1; i <= extraPhotos; i++) {
+  if (i <= 5) {
+    extrasTotal += basePricePerPhoto * 0.05;
+  } else if (i <= 10) {
+    extrasTotal += basePricePerPhoto * 0.05;
+  } else {
+    extrasTotal += basePricePerPhoto * (0.05 * i);
+  }
+}
+
+total += extrasTotal;
+
+
+
     total += outfitChanges * 5;
     if (rushDelivery) total += 50;
   

@@ -9,7 +9,7 @@ body {
     font-family: Arial, Helvetica, sans-serif;
     height: 100%;
     padding: 10px;
-       
+    
   box-sizing: border-box;
     
 }
@@ -161,6 +161,7 @@ background-color: #053c56;
     color: white;
   }
   
+
 
   /*gallery style*/
 
@@ -456,7 +457,7 @@ background-color: #053c56;
     height: 200px;
     width: 200px;
     overflow: hidden;
-    border-radius: 50%;
+    border-radius: 0%;
     text-align: center;
   }
   
