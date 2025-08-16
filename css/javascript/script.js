@@ -85,6 +85,7 @@ document.addEventListener('DOMContentLoaded', function () {
 document.addEventListener('DOMContentLoaded', function () {
   const section_1HTML = `
     <div class="menu_2 col-md-6 col-sm-12">
+     <img src="img/logo.png" class="imgLogo2">
       <a href="index.html" class="nav-link">HOME</a>
       <div class="dropdown">
         <a href="services.html" class="nav-link">SERVICES ▾</a>
