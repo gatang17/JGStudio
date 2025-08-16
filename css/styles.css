@@ -6,35 +6,52 @@
 
 
 body {
-    font-family: Arial, Helvetica, sans-serif;
-    height: 100%;
-    padding: 10px;
-    
-  box-sizing: border-box;
-    
+  font-family: 'Roboto', sans-serif;
+  background-color:antiquewhite;
+  padding: 2rem;
 }
 
+.sec_1{
+  height: 90%;
+}
 
 h1{
-    font-size: 3rem;
+  font-family: 'Playfair Display', serif;
+    font-size: 2rem;
     color: #B18b12;
     text-transform: uppercase;
-    font-weight: bolder;
+    font-weight: 700;
+    line-height: 4rem;
+    display: flex;             /* Activa flexbox */
+  flex-flow: row;
+  justify-content: center;   /* Centra horizontalmente */
+  align-items: center;
 }
 h2{
     font-size: 2.5rem;
     color: #053c56; 
-    font-style: oblique;
-    
+    font-weight: bold;
+        
 }
 
 h3{
     font-size: 1.5rem;
     color: #B18b12;
 }
+
+h4{
+  font-size: 1.5rem;
+  color: #053c56; 
+}
+
 p{
     font-size: 1rem;
 }
+
+
+#footer-placeholder {
+  height: 10%;
+ }
 
 a{
   text-decoration: none;
@@ -46,44 +63,48 @@ a{
   
 }
 
-header{
-  
-   margin-top: 50%;
-}
 
 .imgLogo{
-    width: 100%;
+    width: 250px;
+    margin-bottom: 2rem;
 }
 
-.contMenu{
-    position: absolute;
-    z-index: 1;
-    top: 10%;
-    right: 2%;
-    display: flex;
-    flex-direction: column;
-    background: linear-gradient(to bottom right, rgba(201, 201, 199, 0.693),rgba(90, 90, 88, 0.693));
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    border-radius: 12px;
-    padding: 1.5rem;
-    color: #f0f0f0;
-}
 
+
+.contMenu {
+  display: flex;
+  flex-direction: column; 
+  padding-right: 2rem;  
+  }
 
 .contMenu a{
-  color: #f0f0f0 !important;
+  color: #053c56; 
   text-decoration: none;
     line-height: 5;
-    font-size: clamp(0.5rem, 2.5vw, 1rem);
+    font-size: clamp(0.5rem, 1vw, 1rem);
     white-space: nowrap;
 }
 
 .nav-link.active {
   text-decoration: underline;
 }
+.linea-vertical {
+  width: 1px;
+  height: 30vh;
+  background-color: #B18b12;
+  margin-left: auto; /* Esto la empuja a la derecha */
+}
 
+
+
+.linea-horizontal {
+  margin-bottom: 1rem;
+  height: 1px;
+  width: 100%;
+  background-color:  #B18b12;
+  justify-content: center;
+  align-items: center;
+}
 
 #carr_ind{
     z-index: 0 !important;
@@ -93,17 +114,23 @@ header{
     list-style: none;
 }
 
-.img_carr{
-    width: 90%;
+.carousel-inner{
+  width: auto;
+  height: 80%;
+  overflow: hidden;
 }
+.img_carr{
+  height: 500px;   /* nunca sobrepasará el alto del contenedor */
+  width: 100%;    /* nunca sobrepasará el ancho del contenedor */
+  object-fit: cover;  /* ajusta sin deformar */
+}
+
 
 
 .cont_foot{
 
 display: flex;
 flex-direction: column;
-background-color: #053c56;
-
 }
 .cont_foot a{
     font-size: 0.8rem;
@@ -111,7 +138,7 @@ background-color: #053c56;
     line-height: 2rem;
     text-align: center;
     
-    color: #f0f0f0 !important;
+    color:#053c56!important;
     
 }
 
@@ -266,20 +293,10 @@ background-color: #053c56;
 
   /* Estilos para pantallas menores a 768px (celulares) */
 @media (max-width: 767px) {
-    body {
-      padding: 20px;
-      margin: 0;
-    }
-    h1{
-      font-size: 2.5rem;
-      color: #B18b12;
-      text-transform: uppercase;
-      font-weight: bolder;
-  }
+  
   h2{
       font-size: 1.5rem;
       color: #053c56; 
-      font-style: oblique;
       
   }
   
@@ -294,7 +311,8 @@ background-color: #053c56;
     }
 
     .sec_1{
-      padding: 0rem;
+      padding-left: 2rem;
+      padding-right: 2rem;
      
     }
   
@@ -305,33 +323,31 @@ background-color: #053c56;
       margin: 1rem;
     }
   .contMenu a{
-    padding: 10px;
-    text-align: center;
+    padding: 8px;
     align-items: center;
-
-
+    justify-content: center;
+    color: antiquewhite!important;
+    font-size: 0.65rem;
   }
+  /*no borrar este, es para movil*/
     .contMenu {
     position: absolute;
     z-index: 1;
-    top: 12%;
-    right: 2vw;
-    background: none;
-    backdrop-filter:none;
-    border: none;
-    color: #ffffff;   
-    flex-direction: row;   
+    top: 10%;
+    right: 0%;
+    display: flex;
+    flex-direction: row; 
+    padding-right: 2rem;  
     }
-  
-    header.header_cont {
-     margin-top: 1rem;
+    
+    .linea-vertical {
+      height: 0px;
+      width: 50vh;
+      background-color: #053c56;
     }
 
-
+   
  
-    footer-placeholder {
-      padding: 10px;
-    }
   
     .cont_foot {
       padding: 5px;
@@ -340,6 +356,7 @@ background-color: #053c56;
     .carousel-inner {
       border-radius: 8px;
       overflow: hidden;
+     
     }
     .carousel-item img {
       object-fit: cover;
@@ -467,12 +484,6 @@ background-color: #053c56;
   }
   
   /*calculadora*/
-
-  body {
-    font-family: Arial, sans-serif;
-    padding: 2rem;
-    background: #f8f9fa;
-  }
 
   .calculator-box {
     max-width: 600px;

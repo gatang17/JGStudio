@@ -9,6 +9,8 @@ document.addEventListener('DOMContentLoaded', function () {
           integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
           crossorigin="anonymous">
     <link rel="stylesheet" href="css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+
    
   `;
   const tempDiv = document.createElement("div");
@@ -58,8 +60,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
 document.addEventListener('DOMContentLoaded', function () {
   const footerHTML = `
-    <footer>
-      <h3>Quick Links</h3>
+    <footer style="margin-top: 4rem;">
+    
+      <h4>Quick Links</h4>
+      <div class="linea-horizontal"></div>
       <div class="row">
         <div class="col-4 cont_foot">
           <a href="#">Facebook</a>

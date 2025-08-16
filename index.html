@@ -12,66 +12,100 @@
   
 </head>
 
-<body class="container">
-  <section class="container-fluid sec_1">
-    <div class="row">
-      <div class="col-md-4 col-sm-12 cont_l">
-        <div>
+<body class="container" style="height: 100%;">
+  <section class="sec_1">
+    <div class="row gx-5"  >
+      <!--
+      <div class="col-md-4 col-sm-12  cont_l">
+        <div class="row">
           <img src="img/logo.png" class="imgLogo">
-        </div>
+        </div> -->
 
-         <!-- Agregado para mover el carrusel aquí en móvil -->
+         <!-- Agregado para mover el carrusel aquí en móvil --><!--
         <div id="carousel-mobile-placeholder"></div>
 
-        <div>
+        <div class="row">
           <header class="header_cont" id="header">
-            <h1>Photography to tell stories</h1>
-            <h2>Because every moment deserves to be remembered.</h2>
-          </header>
+           
+           
+                      </header>
         </div>
-      </div>
+        
+      </div> -->
+  
+ 
 
-      <div class="col-md-8 col-sm-12 cont_carr">
-        <div class="contMenu">
-          <a href="index.html" class="nav-link active">HOME</a>
-          <a href="services.html" class="nav-link">SERVICES</a>
-          <a href="about_us.html" class="nav-link">ABOUT US</a>
-          <a href="contact.html" class="nav-link">CONTACT</a>
+      <div class="col-md-12 col-sm-12 cont_carr">
+        <img src="img/logo.png" class="imgLogo">
+        <div class="row gx-3" style="justify-content: center; align-items: center;">
+          <div class="col-md-9 col-sm-12 cont_carr"> <div id="carousel-container">
+            <div id="carr_ind" class="carousel slide" data-bs-ride="carousel">
+              <ol class="carousel-indicators">
+                <li data-bs-target="#carr_ind" data-bs-slide-to="0" class="active"></li>
+                <li data-bs-target="#carr_ind" data-bs-slide-to="1"></li>
+                <li data-bs-target="#carr_ind" data-bs-slide-to="2"></li>
+              </ol>
+  
+              <div class="carousel-inner">
+                <div class="carousel-item active">
+                  <img src="img/photos/DSC05449-2.jpg" class="d-block img_carr">
+                </div>
+                <div class="carousel-item">
+                  <img src="img/photos/DSC05467-2.jpg" class="d-block img_carr">
+                </div>
+                <div class="carousel-item">
+                  <img src="img/photos/DSC05492-2.jpg" class="d-block img_carr">
+                </div>
+              </div>
+  
+              <a class="carousel-control-prev" href="#carr_ind" role="button" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only"></span>
+              </a>
+  
+              <a class="carousel-control-next" href="#carr_ind" role="button" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only"></span>
+              </a>
+            </div>
+            
+          </div> </div>
+          <div class="col-md-1"  >
+           <div class="linea-vertical"></div>
+          </div>
+          <div class="col-md-2 col-sm-12" class="contMenu"> <div class="contMenu">
+            <a href="index.html" class="nav-link active">HOME</a>
+            <a href="services.html" class="nav-link">SERVICES</a>
+            <a href="about_us.html" class="nav-link">ABOUT US</a>
+            <a href="contact.html" class="nav-link">CONTACT</a>
+          </div></div>
         </div>
+        
 
         <!-- ENVOLTORIO para el carrusel en desktop -->
-        <div id="carousel-container">
-          <div id="carr_ind" class="carousel slide" data-bs-ride="carousel">
-            <ol class="carousel-indicators">
-              <li data-bs-target="#carr_ind" data-bs-slide-to="0" class="active"></li>
-              <li data-bs-target="#carr_ind" data-bs-slide-to="1"></li>
-              <li data-bs-target="#carr_ind" data-bs-slide-to="2"></li>
-            </ol>
-
-            <div class="carousel-inner">
-              <div class="carousel-item active">
-                <img src="img/photos/DSC05449-2.jpg" class="d-block img_carr">
-              </div>
-              <div class="carousel-item">
-                <img src="img/photos/DSC05467-2.jpg" class="d-block img_carr">
-              </div>
-              <div class="carousel-item">
-                <img src="img/photos/DSC05492-2.jpg" class="d-block img_carr">
-              </div>
-            </div>
-
-            <a class="carousel-control-prev" href="#carr_ind" role="button" data-bs-slide="prev">
-              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-              <span class="sr-only"></span>
-            </a>
-
-            <a class="carousel-control-next" href="#carr_ind" role="button" data-bs-slide="next">
-              <span class="carousel-control-next-icon" aria-hidden="true"></span>
-              <span class="sr-only"></span>
-            </a>
-          </div>
+       
+      
+      </div>
+     
+      
+      <div class="row justify-content-center gx-5" style="margin-top: 4rem;">
+        <h4 class="text-center" style="margin-bottom: 2rem;">Get a peek of our latest work</h4>
+        <div class="linea-horizontal"></div>
+        <div class="col-md-4 col-sm-12 text-center">
+          <img src="/img/photos/photography/2.jpg" class="img_mini" style="height: 150px;"/>
+          <p>texto aqui texto aqui...</p>
+        </div>
+        <div class="col-md-4 col-sm-12 text-center">
+          <img src="/img/photos/photography/5.jpg" class="img_mini" style="height: 150px;"/>
+          <p>texto aqui texto aqui...</p>
+        </div>
+        <div class="col-md-4 col-sm-12 text-center">
+          <img src="/img/photos/photography/1.jpg" class="img_mini" style="height: 150px;"/>
+          <p>texto aqui texto aqui...</p>
         </div>
       </div>
+      
+    
     </div>
   </section>
 
