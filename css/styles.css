@@ -8,7 +8,6 @@
 body {
   font-family: 'Roboto', sans-serif;
   background-color:antiquewhite;
-  padding: 2rem;
 }
 
 .sec_1{
@@ -65,8 +64,10 @@ a{
 
 
 .imgLogo{
-    width: 250px;
-    margin-bottom: 2rem;
+  position: absolute;
+  z-index: 1;
+  width: 225px;
+  margin: 2rem;
 }
 
 
@@ -83,6 +84,7 @@ a{
     line-height: 5;
     font-size: clamp(0.5rem, 1vw, 1rem);
     white-space: nowrap;
+    text-shadow: #053c56;
 }
 
 .nav-link.active {
@@ -116,7 +118,7 @@ a{
 
 .carousel-inner{
   width: auto;
-  height: 80%;
+  height: 100%;
   overflow: hidden;
 }
 .img_carr{
@@ -310,14 +312,8 @@ flex-direction: column;
       margin: 0;
     }
 
-    .sec_1{
-      padding-left: 2rem;
-      padding-right: 2rem;
-     
-    }
   
-    .imgLogo,
-    .img_carr {
+  .img_carr {
       width: 50%;
       height: auto;
       margin: 1rem;
@@ -328,6 +324,11 @@ flex-direction: column;
     justify-content: center;
     color: antiquewhite!important;
     font-size: 0.65rem;
+  
+  text-decoration: none;
+
+  white-space: nowrap;
+  text-shadow: 1px 1px 3px #000000; /* sombra negra para destacar sobre la foto */
   }
   /*no borrar este, es para movil*/
     .contMenu {
