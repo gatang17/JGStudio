@@ -84,20 +84,37 @@ document.addEventListener('DOMContentLoaded', function () {
 
 document.addEventListener('DOMContentLoaded', function () {
   const section_1HTML = `
-    <div class="menu_2 col-md-6 col-sm-12">
-     <img src="img/logo.png" class="imgLogo2">
-      <a href="index.html" class="nav-link">HOME</a>
-      <div class="dropdown">
-        <a href="services.html" class="nav-link">SERVICES ▾</a>
-        <div class="dropdown-content">
-          <a href="photography.html">Photography</a>
-          <a href="graphic_design.html">Graphic Design</a>
-          <a href="social_media.html">Social Media</a>
-        </div>
+
+  <div class="row align-items-center" style="display:flex; justify-content:space-between;">
+  <!-- Logo -->
+  <div class="col-auto">
+    <img src="img/logo.png" class="imgLogo2">
+  </div>
+
+  <!-- Botón hamburguesa (solo visible en móviles) -->
+  <div class="col-auto d-md-none">
+    <button class="hamburger" onclick="document.querySelector('.menu_2').classList.toggle('show')">
+      ☰
+    </button>
+  </div>
+
+  <!-- Menú -->
+  <div class="menu_2 col-md-6 col-sm-12">
+    <a href="index.html" class="nav-link">HOME</a>
+    <div class="dropdown">
+      <a href="services.html" class="nav-link">SERVICES ▾</a>
+      <div class="dropdown-content">
+        <a href="photography.html">Photography</a>
+        <a href="graphic_design.html">Graphic Design</a>
+        <a href="social_media.html">Social Media</a>
       </div>
-      <a href="about_us.html" class="nav-link">ABOUT US</a>
-      <a href="contact.html" class="nav-link">CONTACT</a>
     </div>
+    <a href="about_us.html" class="nav-link">ABOUT US</a>
+    <a href="contact.html" class="nav-link">CONTACT</a>
+  </div>
+</div>
+
+      
   `;
   document.getElementById('section_1').innerHTML = section_1HTML;
 });
