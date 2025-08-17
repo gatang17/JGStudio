@@ -349,8 +349,6 @@ flex-direction: column;
       background-color: #053c56;
     }
 
-   
- 
   
     .cont_foot {
       padding: 5px;
@@ -407,8 +405,9 @@ flex-direction: column;
 
   .menu_2{
     display: flex;
-     margin-bottom: 2rem;
-     justify-content: center;
+    justify-content: flex-end; /* manda el contenido a la derecha */
+    align-items: flex-end;   
+   
     }
   
     .menu_2 a{
@@ -421,13 +420,24 @@ flex-direction: column;
       box-shadow: none;
     
     }
-  
+   
   .imgLogo2{
-    width: 300px;
-    margin-bottom: 4rem;
-  
+    width: 100px;
+   
   }
 
+  .div_log{
+    align-items: center; 
+    display: flex;
+  }
+
+  #menuContainer {
+    display: flex;
+    justify-content: flex-end; /* manda el contenido a la derecha */
+    align-items: center;       /* lo centra verticalmente */
+    width: 100%;               /* ocupa todo el ancho disponible */
+  }
+  
 
 
  .content .content_2{ 
@@ -555,14 +565,15 @@ flex-direction: column;
 
 
   .menu_2 {
-    display: none;
-    flex-direction: column;
-    background: antiquewhite;
+    display: none;            /* inicialmente oculto */
+    position: absolute;       /* relativo al container */
+    top: 100%;                /* justo debajo del botón */
+    right: 0;                 /* alineado a la derecha */
+    background-color: rgba(250, 235, 215, 0.95);
     padding: 10px;
-    position: absolute;
-    top: 60px;
-    right: 10px;
-    width: 200px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.3);
+    flex-direction: column;
+    z-index: 1000;  
     
   }
 

@@ -85,37 +85,97 @@ document.addEventListener('DOMContentLoaded', function () {
 document.addEventListener('DOMContentLoaded', function () {
   const section_1HTML = `
 
-  <div class="row align-items-center" style="display:flex; justify-content:space-between;">
+  <div class="row row_2" >
   <!-- Logo -->
-  <div class="col-auto">
+  <div class="class="col-sm-12 col-md-6 div_log">
     <img src="img/logo.png" class="imgLogo2">
   </div>
 
-  <!-- Botón hamburguesa (solo visible en móviles) -->
-  <div class="col-auto d-md-none">
-    <button class="hamburger" onclick="document.querySelector('.menu_2').classList.toggle('show')">
-      ☰
-    </button>
-  </div>
-
-  <!-- Menú -->
-  <div class="menu_2 col-md-6 col-sm-12">
-    <a href="index.html" class="nav-link">HOME</a>
-    <div class="dropdown">
-      <a href="services.html" class="nav-link">SERVICES ▾</a>
-      <div class="dropdown-content">
-        <a href="photography.html">Photography</a>
-        <a href="graphic_design.html">Graphic Design</a>
-        <a href="social_media.html">Social Media</a>
-      </div>
-    </div>
-    <a href="about_us.html" class="nav-link">ABOUT US</a>
-    <a href="contact.html" class="nav-link">CONTACT</a>
-  </div>
+  <!-- Contenedor dinámico -->
+  <div class="col-sm-12 col-md-6" id="menuContainer"></div>
 </div>
 
       
   `;
+  function renderMenu() {
+    const container = document.getElementById("menuContainer");
+    container.style.position = "relative";
+    container.innerHTML = ""; // limpiar contenido
+    const isMobile = window.innerWidth <= 768;
+  
+    if (isMobile) {
+      // Crear botón
+      const btn = document.createElement("button");
+      btn.className = "hamburger";
+      btn.innerText = "☰";
+  
+      // Crear menú
+      const menu = document.createElement("div");
+      menu.className = "menu_2";
+      menu.innerHTML = `
+        <a href="index.html" class="nav-link">HOME</a>
+        <div class="dropdown">
+          <a href="services.html" class="nav-link">SERVICES ▾</a>
+          <div class="dropdown-content">
+            <a href="photography.html">Photography</a>
+            <a href="graphic_design.html">Graphic Design</a>
+            <a href="social_media.html">Social Media</a>
+          </div>
+        </div>
+        <a href="about_us.html" class="nav-link">ABOUT US</a>
+        <a href="contact.html" class="nav-link">CONTACT</a>
+      `;
+  
+      container.appendChild(btn);
+      container.appendChild(menu);
+  
+      // Abrir/cerrar menú
+      btn.addEventListener("click", (e) => {
+        e.stopPropagation();
+        menu.classList.toggle("show");
+        btn.classList.toggle("disabled");
+      });
+  
+      // Cerrar al click fuera
+      document.addEventListener("click", (e) => {
+        if (menu.classList.contains("show") && !menu.contains(e.target) && e.target !== btn) {
+          menu.classList.remove("show");
+          btn.classList.remove("disabled");
+        }
+      });
+  
+    } else {
+      // Menú desktop
+      const menu = document.createElement("div");
+      menu.className = "menu_2 d-flex";
+      menu.innerHTML = `
+        <a href="index.html" class="nav-link">HOME</a>
+        <div class="dropdown">
+          <a href="services.html" class="nav-link">SERVICES ▾</a>
+          <div class="dropdown-content">
+            <a href="photography.html">Photography</a>
+            <a href="graphic_design.html">Graphic Design</a>
+            <a href="social_media.html">Social Media</a>
+          </div>
+        </div>
+        <a href="about_us.html" class="nav-link">ABOUT US</a>
+        <a href="contact.html" class="nav-link">CONTACT</a>
+      `;
+      container.appendChild(menu);
+    }
+  }
+  
+  // Llamar al cargar y al redimensionar
+  window.addEventListener("load", renderMenu);
+  window.addEventListener("resize", renderMenu);
+  
+  
+  // Renderizar al cargar y al redimensionar pantalla
+  window.addEventListener("load", renderMenu);
+  window.addEventListener("resize", renderMenu);
+
+
+
   document.getElementById('section_1').innerHTML = section_1HTML;
 });
 
