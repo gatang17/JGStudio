@@ -40,8 +40,9 @@ h3{
 }
 
 h4{
-  font-size: 1.5rem;
+  font-size: clamp(3rem, 2vw, 6rem);
   color: #053c56; 
+  text-transform: uppercase;
 }
 
 p{
@@ -55,6 +56,10 @@ p{
 
 a{
   text-decoration: none;
+}
+
+.contMenu a:hover{
+  font-size: 3rem;
 }
 .cont_l{
   
@@ -80,9 +85,8 @@ a{
 
 .contMenu a{
   color: #053c56; 
-  text-decoration: none;
     line-height: 5;
-    font-size: clamp(0.5rem, 1vw, 1rem);
+    font-size: clamp(2rem, 2vw, 3rem);
     white-space: nowrap;
     text-shadow: #053c56;
 }
@@ -137,9 +141,9 @@ display: flex;
 flex-direction: column;
 }
 .cont_foot a{
-    font-size: 0.8rem;
-    margin-right: 1rem;
-    line-height: 2rem;
+    font-size: 1rem;
+    padding: 1rem;
+    line-height: 0.5rem;
     text-align: center;
     
     color:#053c56!important;

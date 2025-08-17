@@ -61,23 +61,23 @@ document.addEventListener("DOMContentLoaded", () => {
 document.addEventListener('DOMContentLoaded', function () {
   const footerHTML = `
     <footer style="margin-top: 4rem;">
-    
-      <h4>Quick Links</h4>
-      <div class="linea-horizontal"></div>
-      <div class="row">
-        <div class="col-4 cont_foot">
-          <a href="#">Facebook</a>
-          <a href="#">Instagram</a>
-        </div>
-        <div class="col-4 cont_foot">
-          <a href="Gallery.html">Gallery</a>
-          <a href="#">Packages</a>
-        </div>
-        <div class="col-4 cont_foot">
-          <a href="#">Post</a>
-        </div>
-      </div>
-    </footer>
+  <h4>Quick Links</h4>
+  <div class="linea-horizontal"></div>
+  <div class="row">
+    <div class="col-6 col-md-4 cont_foot">
+      <a href="#">Facebook</a>
+      <a href="#">Instagram</a>
+    </div>
+    <div class="col-6 col-md-4 cont_foot">
+      <a href="Gallery.html">Gallery</a>
+      <a href="#">Packages</a>
+    </div>
+    <div class="col-6 col-md-4 cont_foot">
+      <a href="#">Post</a>
+    </div>
+  </div>
+</footer>
+
   `;
   document.getElementById('footer-placeholder').innerHTML = footerHTML;
 });
