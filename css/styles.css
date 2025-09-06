@@ -79,11 +79,14 @@ a{
   flex-direction: column; 
   padding-right: 2rem;  
   }
+  .contMenu a:hover{
+    color: #B18b12; 
+  }
 
 .contMenu a{
   color: #053c56; 
     line-height: 5;
-    font-size: clamp(0.8rem, 2vw, 1.5rem);
+    font-size: clamp(0.8rem, 1.5vw, 1.5rem);
     white-space: nowrap;
     text-shadow: #053c56;
 }
@@ -333,12 +336,16 @@ flex-direction: column;
       padding-right: 8px;
       align-items: center;
       justify-content: center;
-      color: #B18b12;
+      color: #053c56
       text-decoration: none;
       white-space: nowrap;
     /* text-shadow: 1px 1px 3px #000000; /* sombra negra para destacar sobre la foto */
     }
     
+    .contMenu a:hover{
+      color: #B18b12
+    }
+
     .linea-vertical {
       height: 0px;
       width: 50vh;
