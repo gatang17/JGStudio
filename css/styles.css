@@ -17,7 +17,7 @@ body {
 
 h1{
   font-family: 'Playfair Display', serif;
-    font-size: 2rem;
+    font-size: clamp(2rem, 3vw, 4rem);
     color: #B18b12;
     text-transform: uppercase;
     font-weight: 700;
@@ -28,19 +28,19 @@ h1{
   align-items: center;
 }
 h2{
-    font-size: 2.5rem;
+  font-size: clamp(1.5rem, 2vw, 2.5rem);
     color: #053c56; 
     font-weight: bold;
         
 }
 
 h3{
-    font-size: 1.5rem;
+  font-size: clamp(1rem, 1.5vw, 2rem);
     color: #B18b12;
 }
 
 h4{
-  font-size: clamp(3rem, 2vw, 6rem);
+  font-size: clamp(2rem, 1vw, 3rem);
   color: #053c56; 
   text-transform: uppercase;
 }
@@ -58,9 +58,6 @@ a{
   text-decoration: none;
 }
 
-.contMenu a:hover{
-  font-size: 3rem;
-}
 .cont_l{
   
     padding-top: 1rem;
@@ -71,7 +68,7 @@ a{
 
 .imgLogo{
 
-  width: 100%;
+  width: 50%;
 
 }
 
@@ -86,7 +83,7 @@ a{
 .contMenu a{
   color: #053c56; 
     line-height: 5;
-    font-size: clamp(2rem, 2vw, 3rem);
+    font-size: clamp(0.8rem, 2vw, 1.5rem);
     white-space: nowrap;
     text-shadow: #053c56;
 }
@@ -320,27 +317,26 @@ flex-direction: column;
       height: auto;
    
     }
-  .contMenu a{
-    padding: 8px;
-    align-items: center;
-    justify-content: center;
-    color: #B18b12;
-    font-size: 0.65rem;
   
-  text-decoration: none;
-
-  white-space: nowrap;
-  /* text-shadow: 1px 1px 3px #000000; /* sombra negra para destacar sobre la foto */
-  }
   /*no borrar este, es para movil*/
     .contMenu {
     position: absolute;
     z-index: 1;
-    top: 1%;
+    top: 0%;
     right: 0%;
     display: flex;
     flex-direction: row; 
-    padding-right: 2rem;  
+     
+    }
+  
+    .contMenu a{
+      padding-right: 8px;
+      align-items: center;
+      justify-content: center;
+      color: #B18b12;
+      text-decoration: none;
+      white-space: nowrap;
+    /* text-shadow: 1px 1px 3px #000000; /* sombra negra para destacar sobre la foto */
     }
     
     .linea-vertical {
@@ -412,7 +408,7 @@ flex-direction: column;
   
     .menu_2 a{
       padding: 0.5rem;
-      font-size: clamp(0.5rem, 2.5vw, 1rem);
+      font-size: clamp(1rem, 2.5vw, 1rem);
     }
 
     .dropdown-content{
