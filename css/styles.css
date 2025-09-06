@@ -8,7 +8,7 @@
 body {
   padding: 2rem;
   font-family: 'Roboto', sans-serif;
-  background-color:antiquewhite;
+  background-color:#ffff;
 }
 
 .sec_1{
@@ -32,6 +32,9 @@ h2{
     color: #053c56; 
     font-weight: bold;
         
+}
+.h2_c{
+  text-align: left;
 }
 
 h3{
@@ -276,6 +279,10 @@ flex-direction: column;
     color: white;
     cursor: pointer;
   }
+
+  .color_ligth{
+    background-color: #f5f7fa;
+  }
   
   @media (max-width: 768px) {
     .overlay-content {
@@ -336,7 +343,7 @@ flex-direction: column;
       padding-right: 8px;
       align-items: center;
       justify-content: center;
-      color: #053c56
+      color: #053c56;
       text-decoration: none;
       white-space: nowrap;
     /* text-shadow: 1px 1px 3px #000000; /* sombra negra para destacar sobre la foto */
@@ -361,6 +368,7 @@ flex-direction: column;
       overflow: hidden;
      
     }
+
     .carousel-item img {
       object-fit: cover;
       width: 100%;
@@ -419,7 +427,7 @@ flex-direction: column;
     }
 
     .dropdown-content{
-      background-color: antiquewhite;
+      background-color: #f5f7fa;
       box-shadow: none;
     
     }
