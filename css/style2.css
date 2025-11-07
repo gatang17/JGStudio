@@ -1,0 +1,369 @@
+
+    
+      form{
+        margin-top: 20px;
+        color: #ffffff8f;
+        width: 100%;
+      }
+    .input-box {
+      position: relative;
+      display: inline-block;
+      width: 100%;
+    }
+  
+    textarea, input{
+    overflow: hidden;
+    resize: none;
+    margin-bottom: 2rem;
+    width: 100%;
+    padding: 12px 10px;
+    font-size: 2rem;
+    line-height: 20px;      /* mismo que el input */
+    border: none;           /* Quita todos los bordes */
+  border-bottom: 2px solid #ffffff8f;; /* Solo línea inferior */
+  outline: none;  
+    background: none;
+    vertical-align: top;  
+    resize: none;
+    color:#ffffff8f!important;
+    }
+  
+    
+    /* Label inicial */
+    label {
+      position: absolute;
+      left: 12px;
+      top: 12px;
+            padding: 0 4px;
+      font-size: 16px;
+      border-radius: 5px;
+      transition: 0.3s ease;
+      pointer-events: none;
+      
+      text-transform: uppercase;
+    }
+  
+    .input-box:hover{
+      transform: scale(1.05);
+      transition: 0.3s ease;
+    }
+    
+    /* Flotar cuando hay foco o cuando el contenedor tiene la clase .has-value */
+    .input-box input:focus + label,
+    .input-box textarea:focus + label,
+    .input-box.has-value label {
+      transform: translateY(-20px);
+    
+      font-size: 10px;
+    }
+
+    .popup {
+  display: none;
+  position: fixed;
+  top: 30%;
+  left: 4%;
+ z-index: 100 !important;
+  padding: 10px;
+ 
+ 
+}
+
+  body{
+    color:#ffffff8f!important;
+    
+  }
+
+
+     a {
+       text-decoration: none ;
+       color:#ffffff8f !important;/* cambia a blanco */
+       text-transform: uppercase;
+       margin-inline: 1rem;
+       font-family: "Nunito", sans-serif;
+       letter-spacing: 0.05em!important;
+       transition: color 0.3s, transform 0.3s; /* solo cambia color y movimiento */
+      }
+      
+      a:hover{
+        transform: scale(1.1); /* lo agranda un poquito */
+      }
+
+      p{
+      font-family: "Nunito", sans-serif;
+      font-optical-sizing: 1rem;
+      font-style: normal;
+      color: #ffffff8f!important;
+     }
+      
+      h1{
+        font-family: "Oswald", sans-serif;
+        font-weight: 400; 
+        font-size: clamp(2rem, 10vw, 4rem);
+        font-style: normal;
+        text-transform: uppercase;
+        
+      }
+       h2{
+        font-family: "Fira Sans Condensed", sans-serif;
+        font-weight: 100;
+        font-style: italic;
+       }
+
+      h3:hover{
+        letter-spacing: 0.2em;
+      }
+
+      h3{
+        font-family: "Fira Sans Condensed", sans-serif;
+        font-weight: 600;
+        font-style: normal;
+        color:#ffffff8f!important;
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        overflow: hidden;
+        font-size: 2rem;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;       
+        transition: letter-spacing 0.5s, color 0.5s, background 0.5s;
+      }
+
+      #container_top, #foot_bar {
+        transition: background-color 0.4s ease;
+      }
+      
+    
+      footer {
+        position: fixed;
+        bottom: 0;         /* lo fija al borde inferior de la pantalla */
+        left: 0;
+        width: 100%;       /* ocupa todo el ancho */
+        padding-top: 10px;
+        background-color: transparent; /* usa transparent, no "none" */
+        z-index: 1000;     /* asegura que quede por encima de otros elementos */
+        padding-bottom: 10px;
+      }
+
+      .container_top{
+        position: fixed;
+        top: 0;         /* lo fija al borde inferior de la pantalla */
+        left: 0;
+        width: 100%;       /* ocupa todo el ancho */
+        background-color: transparent; /* usa transparent, no "none" */
+        z-index: 1000; 
+        padding-bottom: 15px;    /* asegura que quede por encima de otros elementos */
+      }    
+
+      .imgLogo_v2 {
+        max-height: 50px;
+      }
+
+      .section_v2 {
+        position: relative; /* cualquier contenido encima */
+        z-index: 10;
+        min-height: 95vh; /* ocupa toda la pantalla visible */
+        padding: 2px;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-blend-mode: multiply;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between; /* separa el contenido: top vs bottom */
+        
+      }
+
+
+      #navbarMenu{      
+        padding-top: 20px;
+        height: 100vh;
+        width:100vw;
+        position: absolute;       
+        visibility: hidden;        
+      }
+
+      .bottom-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center; /* centra horizontalmente */
+        margin-bottom: 50px; /* margen desde abajo de la pantalla */
+      }
+      
+      .btn {
+        border: #ffffff8f  solid!important;
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 10px;
+        cursor: pointer;
+        overflow: hidden;
+        font-size: 1rem;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        color: #ffffff8f!important;           /* color de texto original */
+        background: transparent;  /* fondo original */
+        transition: letter-spacing 0.5s, color 0.5s, background 0.5s;
+      }
+      
+      .btn:hover {
+        letter-spacing: 0.2em;
+        color: #ffffff8f;
+      }
+
+     
+      /*CARRUSEL DE FONDO*/
+       #carr_ind {
+        position: fixed; /* carrusel como fondo */
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        z-index: 0; /* fondo */
+      }  
+      /* Ajuste de imágenes para que llenen todo */
+      .carousel-inner {
+        width: 100%;
+        height: 100%;
+      }      
+      .img_carr {
+        width: 100%;
+        height: 100vh;
+        object-fit: cover;
+        object-position: center center; /* ✅ centra la imagen */
+        filter: brightness(0.5); /* 1 = normal, <1 = más oscuro */
+      }
+ 
+
+        /***************************/
+        /*SERVICES*/
+      #seccionServices{
+        height: 100%;
+      }
+
+        .content{
+
+        margin-top: 5em;
+        
+        position: relative;
+        background-color: black;
+        height: 100%;
+        padding-top: 1rem;
+        padding-bottom: 2rem;
+      }
+
+            
+      .content2{         
+               
+        position: relative;
+        background-color: black;
+        height: 100%;
+        padding-top: 1rem;
+        padding-bottom: 2rem;
+      }
+      .img_serv{
+        margin-top: 5rem;
+        width: 100%;
+        height: auto;
+        padding: 1rem;
+      
+        }
+
+        :target {
+  scroll-margin-top: 100px; /* ajusta este valor según la altura de tu menú */
+}
+
+.thankyou-container{
+ 
+    border: 1px solid transparent; /* el borde no se ve */
+    box-shadow: 0 4px 10px rgba(74, 74, 74, 0.5); /* sombra visible */
+    border-radius: 15px;
+ margin: 2rem;
+ padding: 1rem;
+  
+}
+
+ 
+
+/*gallery style*/
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 15px;
+  padding: 20px;
+}
+
+.gallery-grid img {
+  width: 100%;
+  height: auto; /* para que mantenga proporción */
+  border-radius: 10px;
+  object-fit: cover;
+  aspect-ratio: 1 / 1;
+  transition: transform 0.3s ease;
+  cursor: pointer;
+}
+
+.gallery-grid img:hover {
+  transform: scale(1.05);
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  padding: 20px;
+}
+
+.overlay-content {
+  display: flex;
+  flex-direction: row; 
+  max-width: 100%;
+  max-height: auto;
+  gap: 20px;
+  padding: 20px;
+
+}
+
+.overlay-content img {
+  max-height: 80vh;
+  max-width: 70vw;
+  object-fit: contain;
+}
+
+.description-box {
+  max-width: 300px;
+  overflow-y: auto;
+}
+
+
+
+
+@media (max-width: 768px) {
+  .overlay-content {
+    flex-direction: column !important; /* ya lo tienes, aseguramos que funcione */
+    align-items: center; /* centra contenido horizontal */
+    gap: 1rem; /* espacio entre imagen y descripción */
+  }
+
+  .overlay-content img {
+    width: 100% !important;  /* ocupa todo el ancho del contenedor */
+    height: auto !important; /* mantiene proporción */
+ 
+  }
+
+  .description-box {
+    width: 100% !important;  /* ocupa todo el ancho */
+    text-align: center;      /* texto centrado */
+    padding: 1rem 0;         /* un poco de espacio arriba y abajo */
+  }
+
+}

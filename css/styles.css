@@ -70,8 +70,8 @@ a{
 
 
 .imgLogo{
-
-  width: 50%;
+  
+  height: 100px;
 
 }
 
@@ -83,7 +83,7 @@ a{
   padding-right: 2rem;  
   }
   .contMenu a:hover{
-    color: #B18b12; 
+    text-decoration: underline;
   }
 
 .contMenu a{
@@ -304,7 +304,14 @@ flex-direction: column;
     }
   }
   
-  
+  @media screen and (max-device-width: 480px) {
+    body {
+        -webkit-text-size-adjust:none
+    
+      }
+
+
+}
 
   /* Estilos para pantallas menores a 768px (celulares) */
 @media (max-width: 767px) {
@@ -329,14 +336,16 @@ flex-direction: column;
     }
   
   /*no borrar este, es para movil*/
-    .contMenu {
-    position: absolute;
-    z-index: 1;
-    top: 0%;
-    right: 0%;
+  .menu_place_holder {
+    position:fixed;
+    z-index: 99999;
+    bottom: 0%;
+    left: 0%;
     display: flex;
-    flex-direction: row; 
-     
+    padding: 1rem;
+    width: 100%;
+    height: fit-content;
+    background-color: #57587d;
     }
   
     .contMenu a{
@@ -344,19 +353,22 @@ flex-direction: column;
       align-items: center;
       justify-content: center;
       color: #053c56;
-      text-decoration: none;
+      transition:all 0.3s ease-in-out;
+   
       white-space: nowrap;
     /* text-shadow: 1px 1px 3px #000000; /* sombra negra para destacar sobre la foto */
     }
     
-    .contMenu a:hover{
-      color: #B18b12
+
+
+    .contMenu a:hover, a:focus, input:hover, input:focus, button:hover, button:focus {
+        text-decoration:underline;
+          
     }
 
     .linea-vertical {
-      height: 0px;
-      width: 50vh;
-      background-color: #053c56;
+    height: 0;
+    visibility: hidden;
     }
 
   
@@ -571,30 +583,3 @@ flex-direction: column;
   justify-content: center;
 }
 
-/* Modo móvil */
-@media (max-width: 768px) {
-
-
-  .menu_2 {
-    display: none;            /* inicialmente oculto */
-    position: absolute;       /* relativo al container */
-    top: 100%;                /* justo debajo del botón */
-    right: 0;                 /* alineado a la derecha */
-    background-color: rgba(250, 235, 215, 0.95);
-    padding: 10px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.3);
-    flex-direction: column;
-    z-index: 1000;  
-    
-  }
-
-  .menu_2.show {
-    display: flex;
-  }
-
-
-
-
-
-
-}
