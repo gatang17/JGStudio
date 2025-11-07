@@ -17,9 +17,11 @@ document.addEventListener('DOMContentLoaded', () => {
   divCarrusel.appendChild(inner);
 
   const images = [
+    "./img/photos/carousel/04.jpg",
     "./img/photos/carousel/02.jpg",
+    "./img/photos/carousel/03.jpg",
     "./img/photos/carousel/01.jpg",
-    "./img/photos/carousel/03.jpg"
+    "./img/photos/carousel/05.jpg"
   ];
   
 
