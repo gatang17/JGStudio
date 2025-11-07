@@ -1,25 +1,6 @@
 
 
-  //Carrusel container
-document.addEventListener('DOMContentLoaded', function (){
-  const div_carrusel=`  <!--CARRUSEL-->
-      <div id="carr_ind" class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="5000" data-bs-pause="hover ">
-  <div class="carousel-inner borroso">
-    <div class="carousel-item active">
-      <img src="/img/photos/DSC05449-2.jpg" class="d-block img_carr">
-    </div>
-    <div class="carousel-item">
-      <img src="/img/photos/DSC05467-2.jpg" class="d-block img_carr">
-    </div>
-    <div class="carousel-item">
-      <img src="/img/photos/DSC05492-2.jpg" class="d-block img_carr">
-    </div>
-  </div>
-</div>`  ;
-  document.getElementById('cont_background').innerHTML=div_carrusel;
-});
-
-/* //Carrusel container pero con el metodo crear elemento
+//Carrusel container pero con el metodo crear elemento
 
 document.addEventListener('DOMContentLoaded', () => {
   const cont = document.getElementById('cont_background');
@@ -36,9 +17,9 @@ document.addEventListener('DOMContentLoaded', () => {
   divCarrusel.appendChild(inner);
 
   const images = [
-    "img/photos/DSC05449-2.jpg",
-    "img/photos/DSC05467-2.jpg",
-    "img/photos/DSC05492-2.jpg"
+    "img/photos/carousel/02.jpg",
+    "img/photos/carousel/01.jpg",
+    "img/photos/carousel/03.jpg"
   ];
 
   images.forEach((src, i) => {
@@ -54,7 +35,7 @@ document.addEventListener('DOMContentLoaded', () => {
   cont.appendChild(divCarrusel);
 });
 
-*/
+
 //esto espara cargar los htmls menu
 
 // esto es para cerrar el menu hamburguersa
