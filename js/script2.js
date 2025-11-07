@@ -6,13 +6,13 @@ document.addEventListener('DOMContentLoaded', function (){
       <div id="carr_ind" class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="5000" data-bs-pause="hover ">
   <div class="carousel-inner borroso">
     <div class="carousel-item active">
-      <img src="img/photos/DSC05449-2.jpg" class="d-block img_carr">
+      <img src="/img/photos/DSC05449-2.jpg" class="d-block img_carr">
     </div>
     <div class="carousel-item">
-      <img src="img/photos/DSC05467-2.jpg" class="d-block img_carr">
+      <img src="/img/photos/DSC05467-2.jpg" class="d-block img_carr">
     </div>
     <div class="carousel-item">
-      <img src="img/photos/DSC05492-2.jpg" class="d-block img_carr">
+      <img src="/img/photos/DSC05492-2.jpg" class="d-block img_carr">
     </div>
   </div>
 </div>`  ;
