@@ -237,7 +237,7 @@
         display: flex;
         flex-direction: column;
         align-items: center; /* centra horizontalmente */
-        margin-bottom: 60px; /* margen desde abajo de la pantalla */
+        margin-bottom: 25%; /* margen desde abajo de la pantalla */
       }
       
       .btn {
