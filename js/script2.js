@@ -1,14 +1,27 @@
 
 //initial animation
-window.addEventListener('load', () => {
-  const preloader = document.getElementById('preloader');
-  preloader.style.opacity = '0';
-  preloader.style.transition = 'opacity 1.5s ease';
+const preloader = document.getElementById('preloader');
+
+let startTime = Date.now();
+
+function hidePreloader() {
+  const elapsed = Date.now() - startTime;
+
+  // Espera al menos 5 segundos antes de ocultar
+  const remaining = Math.max(5000 - elapsed, 0);
 
   setTimeout(() => {
-    preloader.style.display = 'none';
-  }, 20000);
-});
+    preloader.style.opacity = '0';
+    preloader.style.transition = 'opacity 0.5s ease';
+
+    setTimeout(() => {
+      preloader.style.display = 'none';
+    }, 500); // coincide con la transición
+  }, remaining);
+}
+
+// Cuando la página termina de cargar
+window.addEventListener('load', hidePreloader);
 
 
 
