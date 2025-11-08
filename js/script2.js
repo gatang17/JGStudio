@@ -1,20 +1,8 @@
 
 
 //Carrusel container pero con el metodo crear elemento
-
 document.addEventListener('DOMContentLoaded', () => {
   const cont = document.getElementById('cont_background');
-
-  const divCarrusel = document.createElement('div');
-  divCarrusel.id = 'carr_ind';
-  divCarrusel.className = 'carousel slide carousel-fade';
-  divCarrusel.setAttribute('data-bs-ride', 'carousel');
-  divCarrusel.setAttribute('data-bs-interval', '5000');
-  divCarrusel.setAttribute('data-bs-pause', 'hover');
-
-  const inner = document.createElement('div');
-  inner.className = 'carousel-inner borroso';
-  divCarrusel.appendChild(inner);
 
   const images = [
     "./img/photos/carousel/04.jpg",
@@ -23,21 +11,37 @@ document.addEventListener('DOMContentLoaded', () => {
     "./img/photos/carousel/01.jpg",
     "./img/photos/carousel/05.jpg"
   ];
-  
 
+  // Crear contenedor
+  const divCarrusel = document.createElement('div');
+  divCarrusel.id = 'carr_ind';
+  cont.appendChild(divCarrusel);
+
+  // aqui esta el efecto fade!!!!!!
   images.forEach((src, i) => {
-    const item = document.createElement('div');
-    item.className = `carousel-item ${i === 0 ? 'active' : ''}`;
     const img = document.createElement('img');
     img.src = src;
-    img.className = 'd-block img_carr';
-    item.appendChild(img);
-    inner.appendChild(item);
+    img.className = 'img_carr';
+    img.style.position = 'absolute';
+    img.style.top = '0';
+    img.style.left = '0';
+    img.style.width = '100%';
+    img.style.height = '100%';
+    img.style.objectFit = 'cover';
+    img.style.opacity = i === 0 ? '1' : '0';
+    img.style.transition = 'opacity 3s ease-in-out';
+    divCarrusel.appendChild(img);
   });
 
-  cont.appendChild(divCarrusel);
+  let current = 0;
+  setInterval(() => {
+    const imgs = divCarrusel.querySelectorAll('.img_carr');
+    const next = (current + 1) % imgs.length;
+    imgs[current].style.opacity = '0.5';
+    imgs[next].style.opacity = '1';
+    current = next;
+  }, 6000);
 });
-
 
 //esto espara cargar los htmls menu
 
