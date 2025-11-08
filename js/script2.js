@@ -4,29 +4,29 @@ window.addEventListener('load', () => {
   const preloader = document.getElementById('preloader');
   const mostrado = sessionStorage.getItem('preloaderShown');
 
+  // Solo mostrar la primera vez en index.html
   if (!mostrado && window.location.pathname.endsWith("index.html")) {
     sessionStorage.setItem('preloaderShown', 'true');
-    preloader.style.display = 'flex'; // mostrar preloader
+    preloader.style.display = 'flex';
+    preloader.style.opacity = '1';
 
-    const startTime = Date.now();
+    // Espera 5 segundos antes de hacer fade out
+    setTimeout(() => {
+      preloader.style.transition = 'opacity 0.5s ease';
+      preloader.style.opacity = '0';
 
-    const hidePreloader = () => {
-      const elapsed = Date.now() - startTime;
-      const remaining = Math.max(5000 - elapsed, 0);
-
+      // Después de 0.5s ocultamos completamente
       setTimeout(() => {
-        preloader.style.opacity = '0';
-        preloader.style.transition = 'opacity 0.5s ease';
+        preloader.style.display = 'none';
+      }, 500);
+    }, 5000); // Duración mínima de 5 segundos
 
-        setTimeout(() => {
-          preloader.style.display = 'none';
-        }, 500);
-      }, remaining);
-    };
-
-    hidePreloader();
+  } else {
+    // Si ya se mostró, ocultar inmediatamente
+    preloader.style.display = 'none';
   }
 });
+
 
 
 
