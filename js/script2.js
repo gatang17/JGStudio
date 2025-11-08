@@ -1,4 +1,16 @@
 
+//initial animation
+window.addEventListener('load', () => {
+  const preloader = document.getElementById('preloader');
+  preloader.style.opacity = '0';
+  preloader.style.transition = 'opacity 0.5s ease';
+
+  setTimeout(() => {
+    preloader.style.display = 'none';
+  }, 500);
+});
+
+
 
 //CARROUSEL container pero con el metodo crear elemento
 document.addEventListener('DOMContentLoaded', () => {
@@ -272,8 +284,8 @@ document.addEventListener("DOMContentLoaded", () => {
       overlay.style.display = 'flex';
       overlayImage.src = img.src;
       overlayDescription.innerHTML = photo.description;
-    });
-
+    });  
+    
     gallery.appendChild(img);
   });
 });
