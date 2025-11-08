@@ -19,7 +19,7 @@ window.addEventListener('load', () => {
       setTimeout(() => {
         preloader.style.display = 'none';
       }, 500);
-    }, 5000); // Duración mínima de 5 segundos
+    }, 3000); // Duración mínima de 5 segundos
 
   } else {
     // Si ya se mostró, ocultar inmediatamente
