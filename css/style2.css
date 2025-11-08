@@ -210,6 +210,8 @@
       .btn:hover {
         letter-spacing: 0.2em;
         color: #ffffff8f;
+        transition: all 0.3s ease-in-out;
+
       }
 
      

@@ -226,24 +226,24 @@ document.querySelectorAll('.input-box').forEach(box => {
 
 document.addEventListener("DOMContentLoaded", () => {
   const photographyImages = [
-    { name: "1.jpg", description: "<h3>Fine Art Portraits</h3><p>Descripción...</p>" },
-    { name: "2.jpg", description: "<h3>Outdoor Sessions</h3><p>Descripción...</p>" },
-    { name: "3.jpg", description: "<h3>Family Portraits</h3><p>Descripción...</p>" },
-    { name: "4.jpg", description: "<h3>Maternity & Baby Sessions</h3><p>Descripción...</p>" },
-    { name: "5.jpg", description: "<h3>Studio Sessions</h3><p>Descripción...</p>" },
-    { name: "6.jpg", description: "<h3>Fine Art Portraits</h3><p>Descripción...</p>" },
-    { name: "7.jpg", description: "<h3>Outdoor Sessions</h3><p>Descripción...</p>" },
-    { name: "8.jpg", description: "<h3>Family Portraits</h3><p>Descripción...</p>" },
-    { name: "9.jpg", description: "<h3>Maternity & Baby Sessions</h3><p>Descripción...</p>" },
-    { name: "10.jpg", description: "<h3>Studio Sessions</h3><p>Descripción...</p>" },
-    { name: "11.jpg", description: "<h3>Fine Art Portraits</h3><p>Descripción...</p>" },
-    { name: "12.jpg", description: "<h3>Outdoor Sessions</h3><p>Descripción...</p>" },
-    { name: "13.jpg", description: "<h3>Family Portraits</h3><p>Descripción...</p>" },
-    { name: "14.jpg", description: "<h3>Maternity & Baby Sessions</h3><p>Descripción...</p>" },
-    { name: "15.jpg", description: "<h3>Studio Sessions</h3><p>Descripción...</p>" },
-    { name: "16.jpg", description: "<h3>Fine Art Portraits</h3><p>Descripción...</p>" },
-    { name: "17.jpg", description: "<h3>Outdoor Sessions</h3><p>Descripción...</p>" },
-    { name: "18.jpg", description: "<h3>Family Portraits</h3><p>Descripción...</p>" }
+    { name: "1.jpg" },
+    { name: "2.jpg" },
+    { name: "3.jpg" },
+    { name: "4.jpg" },
+    { name: "5.jpg" },
+    { name: "6.jpg" },
+    { name: "7.jpg" },
+    { name: "8.jpg" },
+    { name: "9.jpg" },
+    { name: "10.jpg"},
+    { name: "11.jpg"},
+    { name: "12.jpg"},
+    { name: "13.jpg"},
+    { name: "14.jpg"},
+    { name: "15.jpg"},
+    { name: "16.jpg"},
+    { name: "17.jpg"},
+    { name: "18.jpg"}
   ];
 
   // Mezclar el arreglo
@@ -304,3 +304,15 @@ document.addEventListener("DOMContentLoaded", () => {
     e.stopPropagation(); // evita que el click burbujee hacia el overlay
   });
 });
+
+
+//this is for contact form, mesage can grow acording the mesage length
+const tex = document.getElementById('message');
+
+tex.addEventListener('input', function () {
+  // Reset height para calcular correctamente
+  this.style.height = 'auto';
+  // Ajusta la altura al scrollHeight (altura real del contenido)
+  this.style.height = this.scrollHeight + 'px';
+});
+

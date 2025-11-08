@@ -113,17 +113,7 @@ We’ll get back to you shortly!
         
         <textarea name="message" id="message" rows="1" required style="overflow:hidden;"></textarea>
         <label for="email" class="form-label">message</label>
-<script>
-  const textarea = document.getElementById('message');
 
-textarea.addEventListener('input', function () {
-  // Reset height para calcular correctamente
-  this.style.height = 'auto';
-  // Ajusta la altura al scrollHeight (altura real del contenido)
-  this.style.height = this.scrollHeight + 'px';
-});
-
-</script>
       </div>
   
       <!-- Botón de envío -->
