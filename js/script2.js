@@ -37,10 +37,10 @@ document.addEventListener('DOMContentLoaded', () => {
   setInterval(() => {
     const imgs = divCarrusel.querySelectorAll('.img_carr');
     const next = (current + 1) % imgs.length;
-    imgs[current].style.opacity = '0.5';
+    imgs[current].style.opacity = '0.0';
     imgs[next].style.opacity = '1';
     current = next;
-  }, 6000);
+  }, 5000);
 });
 
 //esto espara cargar los htmls menu
