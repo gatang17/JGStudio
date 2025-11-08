@@ -293,10 +293,11 @@
 
 .gallery-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 15px;
   padding: 20px;
 }
+
 
 .gallery-grid img {
   width: 100%;
@@ -369,4 +370,13 @@
     padding: 1rem 0;         /* un poco de espacio arriba y abajo */
   }
 
+
+/*gallery style*/
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 15px;
+  padding: 20px;
+}
 }

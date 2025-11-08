@@ -262,7 +262,7 @@ document.addEventListener("DOMContentLoaded", () => {
     img.style.borderRadius = '2px';
     img.style.cursor = 'pointer';
     img.style.objectFit = 'cover';
-    img.style.height = '150px';
+    img.style.height = '100%';
 
     img.addEventListener('click', () => {
       const overlay = document.getElementById('overlay');
