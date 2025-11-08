@@ -1,27 +1,32 @@
 
 //initial animation
-const preloader = document.getElementById('preloader');
+window.addEventListener('load', () => {
+  const preloader = document.getElementById('preloader');
+  const mostrado = sessionStorage.getItem('preloaderShown');
 
-let startTime = Date.now();
+  if (!mostrado && window.location.pathname.endsWith("index.html")) {
+    sessionStorage.setItem('preloaderShown', 'true');
+    preloader.style.display = 'flex'; // mostrar preloader
 
-function hidePreloader() {
-  const elapsed = Date.now() - startTime;
+    const startTime = Date.now();
 
-  // Espera al menos 5 segundos antes de ocultar
-  const remaining = Math.max(5000 - elapsed, 0);
+    const hidePreloader = () => {
+      const elapsed = Date.now() - startTime;
+      const remaining = Math.max(5000 - elapsed, 0);
 
-  setTimeout(() => {
-    preloader.style.opacity = '0';
-    preloader.style.transition = 'opacity 0.5s ease';
+      setTimeout(() => {
+        preloader.style.opacity = '0';
+        preloader.style.transition = 'opacity 0.5s ease';
 
-    setTimeout(() => {
-      preloader.style.display = 'none';
-    }, 500); // coincide con la transición
-  }, remaining);
-}
+        setTimeout(() => {
+          preloader.style.display = 'none';
+        }, 500);
+      }, remaining);
+    };
 
-// Cuando la página termina de cargar
-window.addEventListener('load', hidePreloader);
+    hidePreloader();
+  }
+});
 
 
 
@@ -38,6 +43,7 @@ document.addEventListener('DOMContentLoaded', () => {
   ];
 
   // Crear contenedor
+
   const divCarrusel = document.createElement('div');
   divCarrusel.id = 'carr_ind';
   cont.appendChild(divCarrusel);
@@ -95,7 +101,7 @@ const todosLosLinks = document.querySelectorAll("a");
 todosLosLinks.forEach(link => {
   link.addEventListener("click", () => {
     
-    document.body.style.overflow = 'hidden';
+    document.body.style.overflow = '';
     menuDrop.style.visibility = "hidden";
     for (let i = 0; i < elementosBorrosos.length; i++) {
       elementosBorrosos[i].style.filter = "none";
@@ -134,7 +140,7 @@ function actualizarUI() {
   }
 }
 
-// --- TOGGLE DEL MENU HAMBURGUESA ---
+/* *--- TOGGLE DEL MENU HAMBURGUESA v1---
 btnHamburguesa.addEventListener("click", () => {
   if (!menuAbierto) {   
 document.body.style.overflow = 'hidden';
@@ -149,15 +155,35 @@ document.body.style.overflow = 'hidden';
   } 
   
   else {
-    document.body.style.overflow = 'auto';  // <- aquí
-    menuDrop.style.visibility = "hidden";
+    document.body.style.overflow = 'auto';  
+        menuDrop.style.visibility = "hidden";
     for (let i = 0; i < elementosBorrosos.length; i++) {
       elementosBorrosos[i].style.filter = "none";
     }
     menuAbierto = false;
 }
 
+});*/
+//--- TOGGLE DEL MENU HAMBURGUESA v2---
+
+btnHamburguesa.addEventListener("click", () => {
+  menuAbierto = !menuAbierto; // alterna primero
+
+  if (menuAbierto) {   
+    document.body.style.overflow = 'hidden';
+    menuDrop.style.visibility = "visible";
+    for (let i = 0; i < elementosBorrosos.length; i++) {
+      elementosBorrosos[i].style.filter = "blur(5px) brightness(0.3)";
+    }
+  } else {
+    document.body.style.overflow = ''; // <- restaura al valor por defecto
+    menuDrop.style.visibility = "hidden";
+    for (let i = 0; i < elementosBorrosos.length; i++) {
+      elementosBorrosos[i].style.filter = "none";
+    }
+  }
 });
+
 
 // --- EFECTO DE SCROLL EN EL TOP ---
 window.addEventListener('scroll', () => {

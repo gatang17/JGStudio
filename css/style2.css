@@ -73,7 +73,10 @@
     
   }
   /* Preloader ocupa toda la pantalla */
-
+  #preloader {
+    display: none; /* por defecto oculto */
+  }
+  
 #preloader {
   position: fixed;
   top: 0;
