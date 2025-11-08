@@ -259,9 +259,9 @@ document.querySelectorAll('.input-box').forEach(box => {
     }
 
     // Cerrar si se hace click fuera del popup
-    if(popup.style.display === 'block' && !popup.contains(e.target) && !e.target.classList.contains('link_log')){
+    /*if(popup.style.display === 'block' && !popup.contains(e.target) && !e.target.classList.contains('link_log')){
       togglePopup();
-    }
+    }*/
   });
 
   // Cerrar popup al hacer clic en el botón
@@ -270,6 +270,22 @@ document.querySelectorAll('.input-box').forEach(box => {
     togglePopup();
   });
 });
+
+//galeria enGOOOOOOGLE
+const albums = {
+  "UgGQLB482cNuCAG37": "https://photos.app.goo.gl/UgGQLB482cNuCAG37"
+  // puedes agregar más códigos aquí
+};
+
+function checkCode() {
+  const code = document.getElementById('code').value.trim();
+  if(albums[code]){
+   // window.location.href = albums[code]; // abre en la misma página
+    window.open(albums[code], "_blank"); //nueva pesta;a
+  } else {
+    alert("Código incorrecto");
+  }
+}
 
 
 
