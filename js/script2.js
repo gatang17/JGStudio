@@ -1,6 +1,6 @@
 
 
-//Carrusel container pero con el metodo crear elemento
+//CARROUSEL container pero con el metodo crear elemento
 document.addEventListener('DOMContentLoaded', () => {
   const cont = document.getElementById('cont_background');
 
@@ -43,9 +43,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }, 5000);
 });
 
-//esto espara cargar los htmls menu
-
-// esto es para cerrar el menu hamburguersa
+//esto espara cargar los htmls MENU Y  para cerrar el menu hamburguersa
 
 
 // --- VARIABLES INICIALES ---
@@ -136,7 +134,7 @@ document.body.style.overflow = 'hidden';
 
 });
 
-// --- EFECTO DE SCROLL ---
+// --- EFECTO DE SCROLL EN EL TOP ---
 window.addEventListener('scroll', () => {
   const posicionActual = window.scrollY;
 
@@ -224,9 +222,7 @@ document.querySelectorAll('.input-box').forEach(box => {
 
 
 
-
-
-//  galeria
+//GALERIAAAAAAAA
 
 document.addEventListener("DOMContentLoaded", () => {
   const photographyImages = [
@@ -234,8 +230,27 @@ document.addEventListener("DOMContentLoaded", () => {
     { name: "2.jpg", description: "<h3>Outdoor Sessions</h3><p>Descripción...</p>" },
     { name: "3.jpg", description: "<h3>Family Portraits</h3><p>Descripción...</p>" },
     { name: "4.jpg", description: "<h3>Maternity & Baby Sessions</h3><p>Descripción...</p>" },
-    { name: "5.jpg", description: "<h3>Studio Sessions</h3><p>Descripción...</p>" }
+    { name: "5.jpg", description: "<h3>Studio Sessions</h3><p>Descripción...</p>" },
+    { name: "6.jpg", description: "<h3>Fine Art Portraits</h3><p>Descripción...</p>" },
+    { name: "7.jpg", description: "<h3>Outdoor Sessions</h3><p>Descripción...</p>" },
+    { name: "8.jpg", description: "<h3>Family Portraits</h3><p>Descripción...</p>" },
+    { name: "9.jpg", description: "<h3>Maternity & Baby Sessions</h3><p>Descripción...</p>" },
+    { name: "10.jpg", description: "<h3>Studio Sessions</h3><p>Descripción...</p>" },
+    { name: "11.jpg", description: "<h3>Fine Art Portraits</h3><p>Descripción...</p>" },
+    { name: "12.jpg", description: "<h3>Outdoor Sessions</h3><p>Descripción...</p>" },
+    { name: "13.jpg", description: "<h3>Family Portraits</h3><p>Descripción...</p>" },
+    { name: "14.jpg", description: "<h3>Maternity & Baby Sessions</h3><p>Descripción...</p>" },
+    { name: "15.jpg", description: "<h3>Studio Sessions</h3><p>Descripción...</p>" },
+    { name: "16.jpg", description: "<h3>Fine Art Portraits</h3><p>Descripción...</p>" },
+    { name: "17.jpg", description: "<h3>Outdoor Sessions</h3><p>Descripción...</p>" },
+    { name: "18.jpg", description: "<h3>Family Portraits</h3><p>Descripción...</p>" }
   ];
+
+  // Mezclar el arreglo
+  for (let i = photographyImages.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [photographyImages[i], photographyImages[j]] = [photographyImages[j], photographyImages[i]];
+  }
 
   const gallery = document.getElementById('gallery-grid');
 
@@ -244,7 +259,7 @@ document.addEventListener("DOMContentLoaded", () => {
     img.src = `img/photos/photography/${photo.name}`;
     img.alt = "Photography";
     img.style.width = '100%';
-    img.style.borderRadius = '6px';
+    img.style.borderRadius = '2px';
     img.style.cursor = 'pointer';
     img.style.objectFit = 'cover';
     img.style.height = '150px';
@@ -263,8 +278,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-
-
+//CLICK
 document.addEventListener("DOMContentLoaded", () => {
   const overlay = document.getElementById('overlay');
   const overlayImage = document.getElementById('overlay-image');

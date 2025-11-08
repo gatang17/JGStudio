@@ -92,14 +92,14 @@ We’ll get back to you shortly!
     </p>
    </div>
             
-  <form  action="https://formsubmit.co/gretelalvareztang@gmail.com" method="POST" class="mt-5">
+  <form  action="https://formsubmit.co/el/noforu" method="POST" class="mt-5">
   
    
       <!-- Name -->
     
       <div class="mb-3 input-box">
         <input type="text" name="name" id="name" required>
-        <label for="name" >Name</label>
+        <label for="name" class="form-label">Name</label>
       </div>
       
       <!-- Email -->
@@ -110,8 +110,20 @@ We’ll get back to you shortly!
       
       <!-- Message -->
       <div class="mb-3 input-box">
-        <label for="message" class="form-label"> Message</label>
-        <textarea name="message" id="message" rows="5" required></textarea>
+        
+        <textarea name="message" id="message" rows="1" required style="overflow:hidden;"></textarea>
+        <label for="email" class="form-label">message</label>
+<script>
+  const textarea = document.getElementById('message');
+
+textarea.addEventListener('input', function () {
+  // Reset height para calcular correctamente
+  this.style.height = 'auto';
+  // Ajusta la altura al scrollHeight (altura real del contenido)
+  this.style.height = this.scrollHeight + 'px';
+});
+
+</script>
       </div>
   
       <!-- Botón de envío -->
@@ -120,7 +132,7 @@ We’ll get back to you shortly!
       </div>
   
       <!-- Opcionales (evita spam y redirecciones) -->
-      <input type="hidden" name="_next" value="https://gatang17.github.io/jg-photography/thankyou.html">
+      <input type="hidden" name="_next" value="thankyou.html">
       <input type="hidden" name="_captcha" value="false">
   
     </form>
