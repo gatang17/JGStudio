@@ -111,7 +111,9 @@ h1 {
   font-size: clamp(3rem, 15vw, 12rem); /* mínimo 3rem, escala con 15% del viewport, máximo 12rem */
   font-style: normal;
   text-transform: uppercase;
-  margin: clamp(3rem, 10vw, 8rem);
+  margin: clamp(3rem, 10vw, 8rem)!important;
+ 
+
   justify-content: center;
 
 }
@@ -363,7 +365,7 @@ h1 {
       .section_v1 {
         position: relative; /* cualquier contenido encima */
         z-index: 10;
-        min-height: 95vh; /* ocupa toda la pantalla visible */
+        min-height: 100vh; /* ocupa toda la pantalla visible */
         background-repeat: no-repeat;
         background-size: cover;
         background-blend-mode: darken;

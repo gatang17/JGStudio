@@ -299,6 +299,79 @@ function checkCode() {
 //GALERIAAAAAAAA
 
 document.addEventListener("DOMContentLoaded", () => {
+  // Detecta el nombre del archivo actual (por ejemplo: "galeria.html" o "portrait.html")
+  const currentPage = window.location.pathname.split("/").pop();
+
+  // Definimos dos posibles galerías
+  const galleries = {
+    "Gallery.html": {
+      folder: "img/photos/photography/",
+      images: Array.from({ length: 18 }, (_, i) => ({ name: `${i + 1}.jpg` }))
+    },
+    "portraits.html": {
+      folder: "img/photos/portrait/",
+      images: Array.from({ length: 18 }, (_, i) => ({ name: `${i + 1}.jpg` }))
+    }
+  };
+
+  // Seleccionamos qué galería usar según la página
+  const selectedGallery = galleries[currentPage] || galleries["Gallery.html"];
+
+  // Mezclamos las imágenes (algoritmo Fisher–Yates)
+  for (let i = selectedGallery.images.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [selectedGallery.images[i], selectedGallery.images[j]] = [selectedGallery.images[j], selectedGallery.images[i]];
+  }
+
+  // Insertamos imágenes en el grid
+  const gallery = document.getElementById("gallery-grid");
+  selectedGallery.images.forEach(photo => {
+    const img = document.createElement("img");
+    img.src = `${selectedGallery.folder}${photo.name}`;
+    img.alt = "Photography";
+    img.style.width = "100%";
+    img.style.borderRadius = "2px";
+    img.style.cursor = "pointer";
+    img.style.objectFit = "cover";
+    img.style.height = "100%";
+
+    img.addEventListener("click", () => {
+      const overlay = document.getElementById("overlay");
+      const overlayImage = document.getElementById("overlay-image");
+      const overlayDescription = document.getElementById("overlay-description");
+
+      overlay.style.display = "flex";
+      overlayImage.src = img.src;
+      overlayDescription.innerHTML = photo.description || "";
+    });
+
+    gallery.appendChild(img);
+  });
+
+  // --- Overlay interacciones ---
+  const overlay = document.getElementById("overlay");
+  const overlayContent = document.getElementById("overlay-content");
+
+  overlay.addEventListener("click", () => {
+    overlay.style.display = "none";
+  });
+
+  overlayContent.addEventListener("click", (e) => {
+    e.stopPropagation();
+  });
+
+  // --- Textarea autoajustable (si existe) ---
+  const tex = document.getElementById("message");
+  if (tex) {
+    tex.addEventListener("input", function () {
+      this.style.height = "auto";
+      this.style.height = this.scrollHeight + "px";
+    });
+  }
+});
+
+/*
+document.addEventListener("DOMContentLoaded", () => {
   const photographyImages = [
     { name: "1.jpg" },
     { name: "2.jpg" },
@@ -389,4 +462,4 @@ tex.addEventListener('input', function () {
   // Ajusta la altura al scrollHeight (altura real del contenido)
   this.style.height = this.scrollHeight + 'px';
 });
-
+*/
