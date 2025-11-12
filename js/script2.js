@@ -54,6 +54,7 @@ document.addEventListener('DOMContentLoaded', () => {
     img.src = src;
     img.className = 'img_carr';
     img.style.position = 'absolute';
+    img.style.filter= 'brightnes(0.1)'
     img.style.top = '0';
     img.style.left = '0';
     img.style.width = '100%';
@@ -175,12 +176,18 @@ btnHamburguesa.addEventListener("click", () => {
     for (let i = 0; i < elementosBorrosos.length; i++) {
       elementosBorrosos[i].style.filter = "blur(5px) brightness(0.3)";
     }
+        // agrega clase overlay 
+    menuDrop.classList.add('menu-overlay');
+ 
+
   } else {
     document.body.style.overflow = ''; // <- restaura al valor por defecto
     menuDrop.style.visibility = "hidden";
     for (let i = 0; i < elementosBorrosos.length; i++) {
       elementosBorrosos[i].style.filter = "none";
     }
+    // Quitar clase overlay 
+    menuDrop.classList.remove('menu-overlay');
   }
 });
 

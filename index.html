@@ -24,7 +24,7 @@
 
 </head>
 
-<body  style="height: 100%;">
+<body class="" style="height: 100vh;">
   <!-- Preloader -->
 
   <div id="preloader">
@@ -37,29 +37,31 @@
 <!-- Preloader -->
 
   <div id="cont_background" class="container"></div>
-  <section class="section_v2 container">
+  <section class="section_v1 container" id="init">
     <!-- Fila superior -->
     <div class="container-fluid" id="menu_container">
       <div class="container_top" id="container_top">
-        <div class="row">
+        <div class="row logo-principal">
           <div class="col-12 text-center ">
             <img src="img/Asset 7.svg" class="imgLogo_v2 mt-3 ">
           </div>              
         </div>
         <!-- menu hamburguesa-->
-        <div id="menu_hamburguer" class="d-flex justify-content-center mt-3 ">
+        <div id="menu_hamburguer" class="d-flex justify-content-center mt-3 boton-principal">
           <button class="btn " type="button" >
             <i class="fas fa-bars "></i>
           </button>    
         </div>
         <div class="d-flex flex-column align-items-center justify-content-center gap-5" id="navbarMenu">
-          <a href="#menu_container" class="lnkMenu">HOME</a>
+          <a href="#init" class="lnkMenu">HOME</a>
           <a href="#seccionServices" class="lnkMenu">Services</a>
-          <a href="contact.html" >Contact</a>
-          <a href="#" target="" class="link_log" id="link_log">login</a>
+          <a href="contact.html" class="lnkMenu" >Contact</a>
+          <a href="#" target="" class="link_log lnkMenu" id="link_log">login</a>
         </div>
 
-        <div class="row justify-content-between align-items-center text-center borroso " id="div_menutop">
+
+<!-- menu web display-->
+        <div class="row justify-content-between align-items-center text-center borroso " id="div_menutop">          
           <!-- Columna izquierda icon Redes-->
           <div class="col-md-4 d-flex justify-content-center">
             <div class="d-flex gap-2" id="">
@@ -74,9 +76,9 @@
           <!-- Columna del medio menu-->
           <div class="col-md-4 d-flex justify-content-center" id="div_menu">
             <div class="d-flex gap-2 ">
-              <a href="#menu_container" class="">HOME</a>
-              <a href="#seccionServices">Services</a>
-              <a href="contact.html" >Contact</a>
+              <a href="#init" class="lnkMenu">HOME</a>
+              <a href="#seccionServices" class="lnkMenu">Services</a>
+              <a href="contact.html" class="lnkMenu">Contact</a>
               
             </div>
           </div>
@@ -84,7 +86,7 @@
           <!-- Columna derecha login-->
           <div class="col-md-4 d-flex justify-content-center " id="div_login">
             <div class="d-flex gap-2">
-              <a href="#" class="link_log" id="link_log2">see my gallery</a>
+              <a href="#" class="link_log lnkMenu" id="link_log2">Login</a>
                                  
             </div>
           </div>
@@ -117,7 +119,7 @@
       Whether you're looking to enhance your online presence or preserve meaningful moments through artistic portraiture, our current offerings are tailored to meet your needs:
     </p>
     
-    <section class="service-slider text-center justify-content-between mb-4 row" >                        
+    <section class="service-slider text-center justify-content-center mb-4 row align-items-start" >                        
       <a href="" class="  col-md-3 col-sm-12">
         <img src="img/services/01.jpg" class="img_serv" alt="portraits">
         <p >Portraits</p>

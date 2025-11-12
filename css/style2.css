@@ -1,5 +1,157 @@
+body{
+  color:#f9f9f9e1!important;
+  overflow: auto;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+  justify-content: center;
+  align-items: center;
+  padding: auto;
+  background-color: #000000; /* fondo negro */
+  
+}
+body::-webkit-scrollbar{
+  display: none;
+}
+/******
+/* Preloader ocupa toda la pantalla */
+#preloader {
+  display: none; /* por defecto oculto */
+}
 
-    
+#preloader {
+position: fixed;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+background-color: #ffffff; /* fondo blanco */
+display: flex;
+justify-content: center;
+align-items: center;
+z-index: 9999;
+}
+
+/* Contenedor interno para centrar y separar logo y texto */
+#preloader-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px; /* espacio entre logo y texto */
+}
+
+/* Logo animado */
+#preloader-logo {
+  width: 150px;
+  transform-origin: center bottom; /* crecer hacia arriba */
+  animation: growAndColor 2s ease-in-out infinite alternate;
+  filter: brightness(0); /* negro al inicio */
+}
+
+/* Animación del logo */
+@keyframes growAndColor {
+  0% {
+    transform: scale(1);
+    filter: brightness(0); /* negro */
+  }
+  100% {
+    transform: scale(1.5);
+    filter: brightness(0.2); /* gris oscuro sobre blanco */
+  }
+}
+/************************/
+
+/* ******** text effects*/
+a {
+  text-decoration: none ;
+  color:#ffffff8f !important;/* cambia a blanco */
+  text-transform: uppercase;
+  margin-inline: 1rem;
+  font-family: "Nunito", sans-serif;
+  letter-spacing: 0.05em!important;
+  transition: color 0.3s, transform 0.3s; /* solo cambia color y movimiento */
+ }
+
+ .lnkMenu {
+  position: relative; /* necesario para ::before */
+  text-decoration: none;
+  color: #f9f9f9e1 !important;
+  text-transform: uppercase;
+  margin-inline: 1rem;
+  font-family: "Nunito", sans-serif;
+  letter-spacing: 0.05em !important;
+  transition: color 0.3s, transform 0.3s;
+}
+
+.lnkMenu:hover {
+  transform: scale(1.1);
+  color: #fff; /* opcional: cambia color al hacer hover */
+}
+
+.lnkMenu::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  background: #fff;
+  border-radius: 5px;
+  transform: scaleX(0);
+  transition: transform 0.5s ease; /* mejor solo animar transform */
+  bottom: 0;
+  left: 0;
+  transform-origin: left; /* importante para que crezca desde la izquierda */
+}
+
+.lnkMenu:hover::before {
+  transform: scaleX(1);
+}
+ 
+h1 {
+  font-family: "Oswald", sans-serif;
+  font-weight: 400; 
+  font-size: clamp(3rem, 15vw, 12rem); /* mínimo 3rem, escala con 15% del viewport, máximo 12rem */
+  font-style: normal;
+  text-transform: uppercase;
+}
+
+  h2{
+   font-family: "Fira Sans Condensed", sans-serif;
+   font-weight: 100;
+   font-style: italic;
+   font-size: clamp(2rem, 6vw, 4rem);
+  }
+
+ h3:hover{
+   letter-spacing: 0.2em;
+ }
+
+ h3{
+   font-family: "Fira Sans Condensed", sans-serif;
+   font-weight: 600;
+   font-style: normal;
+   color:#ffffff8f!important;
+   position: relative;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   cursor: pointer;
+   overflow: hidden;
+   font-size: clamp(1.5rem, 4.5vw, 3rem);
+   text-transform: uppercase;
+   letter-spacing: 0.05em;       
+   transition: letter-spacing 0.5s, color 0.5s, background 0.5s;
+ }
+
+ h4 {
+  font-size: clamp(1.2rem, 3.5vw, 2.5rem);
+}
+
+ p{
+  font-family: "Nunito", sans-serif;
+  font-size: clamp(1rem, 2.5vw, 1.5rem); /* más legible en móviles */
+  font-style: normal;
+  color: #f9f9f9e1!important;
+ }
+    /*FORM STYLE*/
       form{
         margin-top: 20px;
         color: #ffffff8f;
@@ -26,9 +178,7 @@
     vertical-align: top;  
     resize: none;
     color:#ffffff8f!important;
-    }
-  
-    
+    }    
     /* Label inicial */
     label {
       position: absolute;
@@ -41,13 +191,11 @@
       pointer-events: none;
       
       text-transform: uppercase;
-    }
-  
+    }  
     .input-box:hover{
       transform: scale(1.05);
       transition: 0.3s ease;
     }
-    
     /* Flotar cuando hay foco o cuando el contenedor tiene la clase .has-value */
     .input-box input:focus + label,
     .input-box textarea:focus + label,
@@ -67,120 +215,8 @@
  
  
 }
-
-  body{
-    color:#ffffff8f!important;
-    
-  }
-  /* Preloader ocupa toda la pantalla */
-  #preloader {
-    display: none; /* por defecto oculto */
-  }
-  
-#preloader {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: #ffffff; /* fondo blanco */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 9999;
-}
-
-/* Contenedor interno para centrar y separar logo y texto */
-#preloader-content {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 20px; /* espacio entre logo y texto */
-}
-
-/* Logo animado */
-#preloader-logo {
-  width: 150px;
-  transform-origin: center bottom; /* crecer hacia arriba */
-  animation: growAndColor 2s ease-in-out infinite alternate;
-  filter: brightness(0); /* negro al inicio */
-}
-
-
-/* Animación del logo */
-@keyframes growAndColor {
-  0% {
-    transform: scale(1);
-    filter: brightness(0); /* negro */
-  }
-  100% {
-    transform: scale(1.5);
-    filter: brightness(0.2); /* gris oscuro sobre blanco */
-  }
-}
-
-
-
-
-
-
-     a {
-       text-decoration: none ;
-       color:#ffffff8f !important;/* cambia a blanco */
-       text-transform: uppercase;
-       margin-inline: 1rem;
-       font-family: "Nunito", sans-serif;
-       letter-spacing: 0.05em!important;
-       transition: color 0.3s, transform 0.3s; /* solo cambia color y movimiento */
-      }
-      
-      a:hover{
-        transform: scale(1.1); /* lo agranda un poquito */
-      }
-
-      p{
-      font-family: "Nunito", sans-serif;
-      font-optical-sizing: 1rem;
-      font-style: normal;
-      color: #ffffff8f!important;
-     }
-      
-      h1{
-        font-family: "Oswald", sans-serif;
-        font-weight: 400; 
-        font-size: clamp(2rem, 10vw, 4rem);
-        font-style: normal;
-        text-transform: uppercase;
-        
-      }
-       h2{
-        font-family: "Fira Sans Condensed", sans-serif;
-        font-weight: 100;
-        font-style: italic;
-       }
-
-      h3:hover{
-        letter-spacing: 0.2em;
-      }
-
-      h3{
-        font-family: "Fira Sans Condensed", sans-serif;
-        font-weight: 600;
-        font-style: normal;
-        color:#ffffff8f!important;
-        position: relative;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        cursor: pointer;
-        overflow: hidden;
-        font-size: 2rem;
-        text-transform: uppercase;
-        letter-spacing: 0.05em;       
-        transition: letter-spacing 0.5s, color 0.5s, background 0.5s;
-      }
-
-      #container_top, #foot_bar {
+/*FOOTER*/
+        #container_top, #foot_bar {
         transition: background-color 0.4s ease;
       }
       
@@ -209,37 +245,56 @@
       .imgLogo_v2 {
         max-height: 50px;
       }
-
-      .section_v2 {
-        position: relative; /* cualquier contenido encima */
-        z-index: 10;
-        min-height: 95vh; /* ocupa toda la pantalla visible */
-        padding: 2px;
-        background-repeat: no-repeat;
-        background-size: cover;
-        background-blend-mode: multiply;
+      .logo-principal {
+        text-align: center;
+        margin-top: 1rem;
+        z-index: 1100;  /* encima del menú si quieres */
+        position: relative;
+      }
+      
+      .boton-principal {
         display: flex;
-        flex-direction: column;
-        justify-content: space-between; /* separa el contenido: top vs bottom */
-        
+        justify-content: center;
+        margin-top: 1rem;
+        z-index: 1100;
+        position: relative;
       }
+      
+      
+/*MENU HAMBURGUER*/
+#navbarMenu {
+  position: fixed;          /* siempre visible en la ventana */
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;  /* centra vertical */
+  align-items: center;      /* centra horizontal */
+  background: rgba(0,0,0,0.5);
+  backdrop-filter: blur(8px);
+  z-index: 1000;            /* encima de logo y botón */
+  visibility: hidden;
+}
 
 
-      #navbarMenu{      
-        padding-top: 20px;
-        height: 100vh;
-        width:100vw;
-        position: absolute;       
-        visibility: hidden;        
+      .menu-overlay {
+        /* Gradiente de transparente arriba a negro abajo */
+        padding-top: 10px;
+        background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.7) 100%);
+        backdrop-filter: blur(8px);
       }
-
+      
+/*Este contenido es de index*/
       .bottom-content {
         display: flex;
         flex-direction: column;
         align-items: center; /* centra horizontalmente */
-        margin-bottom: 25%; /* margen desde abajo de la pantalla */
+        margin-top: 30%; /* margen desde abajo de la pantalla */
       }
       
+      /*BUTTON STYLE*/
       .btn {
         border: #ffffff8f  solid!important;
         position: relative;
@@ -252,14 +307,14 @@
         font-size: 1rem;
         text-transform: uppercase;
         letter-spacing: 0.05em;
-        color: #ffffff8f!important;           /* color de texto original */
+        color: #f9f9f9e1!important;           /* color de texto original */
         background: transparent;  /* fondo original */
         transition: letter-spacing 0.5s, color 0.5s, background 0.5s;
       }
       
       .btn:hover {
         letter-spacing: 0.2em;
-        color: #ffffff8f;
+        color: #f9f9f9e1;
         transition: all 0.3s ease-in-out;
 
       }
@@ -291,37 +346,65 @@
 
         /***************************/
         /*SERVICES*/
-      #seccionServices{
-        height: 100%;
-      }
-
-        .content{
-
-        margin-top: 5em;
+        #seccionServices {
+          background-color: #000000;
+          min-height: 100vh; /* siempre cubre la pantalla completa */
+          width: 100vw;
+          padding-left: 5rem;
+          padding-right: 5rem;
+        }
         
-        position: relative;
-        background-color: black;
-        height: 100%;
-        padding-top: 1rem;
-        padding-bottom: 2rem;
+        
+        
+
+      .section_v1 {
+        position: relative; /* cualquier contenido encima */
+        z-index: 10;
+        min-height: 95vh; /* ocupa toda la pantalla visible */
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-blend-mode: darken;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly; /* separa el contenido: evently */
+        
+        
       }
+
+
+  .content {
+    margin-top: 5em;
+    position: relative;
+    padding-top: 1rem;
+    padding-bottom: 2rem;
+  }
+  
 
             
       .content2{         
                
         position: relative;
-        background-color: black;
+       
         height: 100%;
         padding-top: 1rem;
         padding-bottom: 2rem;
       }
-      .img_serv{
-        margin-top: 5rem;
-        width: 100%;
-        height: auto;
-        padding: 1rem;
-      
+     
+
+        .img_serv {
+          width: 100%;
+          height: auto;
+          box-sizing: border-box; /* hace que el padding cuente dentro del ancho */
+          padding: 0 1rem; /* 1rem de espacio a los lados */
         }
+        
+        .img_serv img {
+          width: 100%;
+          height: auto;
+          display: block;
+          border-radius: 10px; /* opcional, mejora estética */
+        }
+        
 
         :target {
   scroll-margin-top: 100px; /* ajusta este valor según la altura de tu menú */
@@ -419,7 +502,8 @@
     text-align: center;      /* texto centrado */
     padding: 1rem 0;         /* un poco de espacio arriba y abajo */
   }
-
+  
+  
 
 /*gallery style*/
 
