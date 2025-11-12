@@ -355,8 +355,8 @@ h1 {
           background-color: #000000;
           min-height: 100vh; /* siempre cubre la pantalla completa */
           width: 100vw;
-          padding-left: 5rem;
-          padding-right: 5rem;
+          padding-left: 2rem;
+          padding-right: 2rem;
         }
         
         
