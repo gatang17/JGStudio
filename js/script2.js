@@ -23,6 +23,7 @@ window.addEventListener('load', () => {
 
   } else {
     // Si ya se mostró, ocultar inmediatamente
+    //sitax error
     preloader.style.display = 'none';
   }
 });
@@ -463,3 +464,152 @@ tex.addEventListener('input', function () {
   this.style.height = this.scrollHeight + 'px';
 });
 */
+
+//CALCULADORAAA
+
+function calculatorPageInit() {
+  if (!document.getElementById("extraPhotos")) return;
+
+  const urlParams = new URLSearchParams(window.location.search);
+  const serviceKey = urlParams.get("index.html#seccionServices");
+  const packageKey = urlParams.get("portraits");
+
+  const services = {
+    portrait: {
+      name: "Portrait Photography",
+      packages: {
+        essential: { name: "Portrait", price: 150, image: "img/photos/portrait/14.jpg" },
+        creative: { name: "Creative Portrait", price: 215, image: "img/services/retrato2.jpg" },
+        branding: { name: "Branding Mini Session", price: 190, image: "img/services/retrato3.jpg" }
+      }
+    },
+  };
+
+  const service = services[serviceKey] || services["portrait"];
+  const pkg = service.packages[packageKey] || Object.values(service.packages)[0];
+
+  
+  document.getElementById("packageName").textContent = pkg.name;
+  document.getElementById("basePrice").textContent = `$${pkg.price}`;
+  document.getElementById("previewImage").src = pkg.image;
+
+  const minRules = {
+    "Portrait": { minPhotos: 5, minOutfits: 1, session: "30-minute session" },
+    "Creative Portrait": { minPhotos: 10, minOutfits: 2, session: "1-hour session" },
+    "Branding Mini Session": { minPhotos: 3, minOutfits: 1, session: "45-minute session" }
+  };
+  
+  const rules = minRules[pkg.name] || { minPhotos: 0, minOutfits: 0, session: "" };
+  
+  const detailBox = document.createElement("div");
+  detailBox.id = "packageDetails";
+  detailBox.innerHTML = `
+    <strong>Includes:</strong><br>
+    ${rules.minPhotos} edited photos<br>
+    ${rules.minOutfits} outfit${rules.minOutfits > 1 ? "s" : ""}<br>
+    ${rules.session}
+  `;
+  document.getElementById("packageName").after(detailBox);
+  
+  document.getElementById("extraPhotos").min = 0;
+  document.getElementById("extraPhotos").value = 0;
+  document.getElementById("outfitChanges").min = 0;
+  document.getElementById("outfitChanges").value = 0;
+  
+  const detailsText = `${rules.minPhotos} edited photos\n${rules.minOutfits} outfit${rules.minOutfits > 1 ? "s" : ""}\n${rules.session}`;
+  
+  function calculateTotal() {
+    let total = pkg.price;
+  
+    const photoInput = parseInt(document.getElementById("extraPhotos")?.value) || 0;
+    const outfitInput = parseInt(document.getElementById("outfitChanges")?.value) || 0;
+    const rushDelivery = document.getElementById("rushDelivery")?.checked;
+  
+    const extraPhotos = Math.max(0, photoInput);
+    const outfitChanges = Math.max(0, outfitInput);
+  
+    //precio exponencial
+    const basePricePerPhoto = pkg.price / rules.minPhotos;
+let extrasTotal = 0;
+
+for (let i = 1; i <= extraPhotos; i++) {
+  if (i <= 5) {
+    extrasTotal += basePricePerPhoto * 0.05;
+  } else if (i <= 10) {
+    extrasTotal += basePricePerPhoto * 0.05;
+  } else {
+    extrasTotal += basePricePerPhoto * (0.05 * i);
+  }
+}
+
+total += extrasTotal;
+
+
+
+    total += outfitChanges * 5;
+    if (rushDelivery) total += 50;
+  
+    const totalWithTax = (total * 1.06).toFixed(2);
+    document.getElementById("totalPrice").innerHTML = `${totalWithTax} <small>(Taxes included)</small>`;
+  }
+  
+  
+  document.getElementById("getPackageBtn").addEventListener("click", () => {
+    const photoInput = parseInt(document.getElementById("extraPhotos")?.value) || 0;
+    const outfitInput = parseInt(document.getElementById("outfitChanges")?.value) || 0;
+    const extraPhotos = Math.max(0, photoInput);
+    const outfitChanges = Math.max(0, outfitInput);
+    const rushDelivery = document.getElementById("rushDelivery")?.checked;
+    const total = document.getElementById("totalPrice").textContent;
+  
+    const extrasArr = [];
+    if (extraPhotos > 0) extrasArr.push(`${extraPhotos} additional photos`);
+    if (outfitChanges > 0) extrasArr.push(`${outfitChanges} outfit changes`);
+    if (rushDelivery) extrasArr.push("rush delivery");
+  
+    const extrasText = extrasArr.length > 0 ? extrasArr.join(", ") : "None";
+  
+    const prefillMessage = `Hello, I would like to book the following package:\n\nService: ${service.name}\nPackage: ${pkg.name}\nIncludes:\n${detailsText}\nExtras: ${extrasText}\nTotal Price: ${total}\n\nPlease let me know the next steps.`;
+  
+    const contactUrl = `contact.html?service=${encodeURIComponent(service.name)}&package=${encodeURIComponent(pkg.name)}&extras=${encodeURIComponent(extrasText)}&total=${encodeURIComponent("$" + total)}&details=${encodeURIComponent(detailsText)}`;
+    window.location.href = contactUrl;
+  });
+  
+  
+  document.getElementById("extraPhotos").addEventListener("input", calculateTotal);
+  document.getElementById("outfitChanges").addEventListener("input", calculateTotal);
+  document.getElementById("rushDelivery").addEventListener("change", calculateTotal);
+  
+  calculateTotal();
+  
+
+
+} // Fin de la función
+
+// Llamar la función cuando el DOM esté listo esto hace q se cargue la imagen
+document.addEventListener("DOMContentLoaded", calculatorPageInit);
+
+
+
+//aqui se genera el mensaje
+function contactPageInit() {
+  if (!document.getElementById("message")) return;
+  const params = new URLSearchParams(window.location.search);
+  const service = params.get("service") || "";
+  const packageName = params.get("package") || "";
+  const extras = params.get("extras") || "";
+  const total = params.get("total") || "";
+  const details = params.get("details") || "";
+  const messageInput = document.getElementById("message");
+
+  if (service || packageName || extras || total || details) {
+    const prefillMessage = `Hello, I would like to book the following package:\n\nService: ${service}\nPackage: ${packageName}\nIncludes:\n${details}\n\nExtras: ${extras}\nTotal Price: ${total}\n\nPlease let me know the next steps.`;
+    messageInput.value = prefillMessage;
+  } else {
+    messageInput.value = "";
+  }
+}
+
+// Aquí afuera, le dices que la ejecute cuando la página esté lista
+document.addEventListener("DOMContentLoaded", contactPageInit);
+
