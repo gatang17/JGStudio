@@ -204,11 +204,14 @@ h1 {
     /* Flotar cuando hay foco o cuando el contenedor tiene la clase .has-value */
     .input-box input:focus + label,
     .input-box textarea:focus + label,
+    .input-box select:focus + label,
     .input-box.has-value label {
       transform: translateY(-20px);
     
       font-size: 10px;
     }
+
+    
 
     .popup {
   display: none;
@@ -487,17 +490,12 @@ h1 {
 
 /*calculatorrr*/
 .calc{
-  transform: translateY(-20px);    
-  font-size: 10px;  
+    transform: translateY(-20px);    
     position: absolute;
     left: 40px; /* antes era 12px */
-    top: 12px;
-    padding: 0 4px;
-    border-radius: 5px;
-    transition: 0.3s ease;
-    pointer-events: none;
-    text-transform: uppercase;
-    
+    top: -10px;
+    color: #ffffff4d; 
+
 }
 
 

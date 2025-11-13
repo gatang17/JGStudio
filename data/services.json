@@ -1,0 +1,36 @@
+{
+    "portrait": {
+
+      "name": "Portrait Packages", "packages": { 
+
+         "basic": { "name": "Classic",  "price": 120, "image": "img/photos/portrait/14.jpg", "description":"Studio session with neutral background, 1 outfit change, 3 edited photos." },
+         "medium": { "name": "Essence", "price": 215, "image": "img/photos/portrait/2.jpg", "description":"2 backgrounds, 2 outfit changes, guided posing, 6 edited photos."},
+         "premium": { "name": "Fine Art", "price": 400, "image": "img/photos/portrait/3.jpg", "description":"Artistic lighting, advanced retouching, 3 styles, 10 final photos."}
+
+      }
+    },
+
+    "family": {
+
+      "name": "Family & Kids", "packages": { 
+
+         "basic": { "name": "Moments Mini",  "price": 150, "image": "img/photos/portrait/18.jpg", "description":"Short session, up to 3 people, 4 edited photos" },
+         "medium": { "name": "Family Story", "price": 250, "image": "img/photos/portrait/5.jpg", "description":"Up to 5 people, candid and posed shots, 8 edited photos."},
+         "premium": { "name": "Legacy Session", "price": 350, "image": "img/photos/portrait/13.jpg", "description":"Extended session, multiple backgrounds, 12 edited photos + 8x10 print."}
+
+      }
+    },
+
+    "corporate": {
+
+        "name": "Corporate & Product Photography", "packages": { 
+  
+           "basic": { "name": "Brand Starter",  "price": 150, "image": "img/photos/portrait/11.jpg", "description":"Headshots or 3 product shots, neutral background, basic editing." },
+           "medium": { "name": "Business Focus", "price": 300, "image": "img/photos/portrait/5.jpg", "description":"Headshots + product or office photos, 10 edited photos."},
+           "premium": { "name": "Corporate Vision", "price": 500, "image": "img/photos/portrait/9.jpg", "description":"Full branding session: team portraits, products, details, 20 edited photos + web-ready versions."}
+  
+        }
+      }
+
+  }
+  

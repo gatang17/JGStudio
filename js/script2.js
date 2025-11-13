@@ -467,149 +467,120 @@ tex.addEventListener('input', function () {
 
 //CALCULADORAAA
 
-function calculatorPageInit() {
-  if (!document.getElementById("extraPhotos")) return;
+document.addEventListener("DOMContentLoaded", () => {
+  const packageSelect = document.getElementById("packageSelect");
+  const previewImage = document.getElementById("previewImage");
+  const packageNameEl = document.getElementById("packageName");
+  const basePriceEl = document.getElementById("basePrice");
 
+  // inputs extras
+  const extraPhotosInput = document.getElementById("extraPhotos");
+  const outfitChangesInput = document.getElementById("outfitChanges");
+  const rushDeliveryInput = document.getElementById("rushDelivery");
+  const totalPriceEl = document.getElementById("totalPrice");
+  const getPackageBtn = document.getElementById("getPackageBtn");
+
+  // obtener servicio desde URL o por defecto "portrait"
   const urlParams = new URLSearchParams(window.location.search);
-  const serviceKey = urlParams.get("index.html#seccionServices");
-  const packageKey = urlParams.get("portraits");
+  const serviceKey = urlParams.get("service") || "portrait";
 
-  const services = {
-    portrait: {
-      name: "Portrait Photography",
-      packages: {
-        essential: { name: "Portrait", price: 150, image: "img/photos/portrait/14.jpg" },
-        creative: { name: "Creative Portrait", price: 215, image: "img/services/retrato2.jpg" },
-        branding: { name: "Branding Mini Session", price: 190, image: "img/services/retrato3.jpg" }
+  fetch("data/services.json")
+    .then(res => res.json())
+    .then(services => {
+      const service = services[serviceKey];
+      if (!service) return;
+
+      // llenar select con paquetes
+      Object.keys(service.packages).forEach(key => {
+        const pkg = service.packages[key];
+        const option = document.createElement("option");
+        option.value = key;
+        option.textContent = pkg.name;
+        packageSelect.appendChild(option);
+      });
+
+      // función para actualizar datos del paquete
+      function updatePackageInfo() {
+        const selectedKey = packageSelect.value;
+        const pkg = service.packages[selectedKey];
+
+        packageNameEl.textContent = pkg.name;
+        basePriceEl.textContent = `$${pkg.price}`;
+        previewImage.src = pkg.image;
+
+        // detalles de fotos y outfits
+        let minPhotos = 0, minOutfits = 0;
+        if (pkg.name.toLowerCase().includes("portrait") || pkg.name.toLowerCase().includes("moments") || pkg.name.toLowerCase().includes("brand")) {
+          minPhotos = 3;
+          minOutfits = 1;
+        }
+
+        extraPhotosInput.min = 0;
+        extraPhotosInput.value = 0;
+        outfitChangesInput.min = 0;
+        outfitChangesInput.value = 0;
+
+        calculateTotal();
       }
-    },
-  };
 
-  const service = services[serviceKey] || services["portrait"];
-  const pkg = service.packages[packageKey] || Object.values(service.packages)[0];
+      // recalcular total
+      function calculateTotal() {
+        const pkg = service.packages[packageSelect.value];
+        let total = pkg.price;
 
-  
-  document.getElementById("packageName").textContent = pkg.name;
-  document.getElementById("basePrice").textContent = `$${pkg.price}`;
-  document.getElementById("previewImage").src = pkg.image;
+        const extraPhotos = parseInt(extraPhotosInput.value) || 0;
+        const outfitChanges = parseInt(outfitChangesInput.value) || 0;
+        const rush = rushDeliveryInput.checked;
 
-  const minRules = {
-    "Portrait": { minPhotos: 5, minOutfits: 1, session: "30-minute session" },
-    "Creative Portrait": { minPhotos: 10, minOutfits: 2, session: "1-hour session" },
-    "Branding Mini Session": { minPhotos: 3, minOutfits: 1, session: "45-minute session" }
-  };
-  
-  const rules = minRules[pkg.name] || { minPhotos: 0, minOutfits: 0, session: "" };
-  
-  const detailBox = document.createElement("div");
-  detailBox.id = "packageDetails";
-  detailBox.innerHTML = `
-    <strong>Includes:</strong><br>
-    ${rules.minPhotos} edited photos<br>
-    ${rules.minOutfits} outfit${rules.minOutfits > 1 ? "s" : ""}<br>
-    ${rules.session}
-  `;
-  document.getElementById("packageName").after(detailBox);
-  
-  document.getElementById("extraPhotos").min = 0;
-  document.getElementById("extraPhotos").value = 0;
-  document.getElementById("outfitChanges").min = 0;
-  document.getElementById("outfitChanges").value = 0;
-  
-  const detailsText = `${rules.minPhotos} edited photos\n${rules.minOutfits} outfit${rules.minOutfits > 1 ? "s" : ""}\n${rules.session}`;
-  
-  function calculateTotal() {
-    let total = pkg.price;
-  
-    const photoInput = parseInt(document.getElementById("extraPhotos")?.value) || 0;
-    const outfitInput = parseInt(document.getElementById("outfitChanges")?.value) || 0;
-    const rushDelivery = document.getElementById("rushDelivery")?.checked;
-  
-    const extraPhotos = Math.max(0, photoInput);
-    const outfitChanges = Math.max(0, outfitInput);
-  
-    //precio exponencial
-    const basePricePerPhoto = pkg.price / rules.minPhotos;
-let extrasTotal = 0;
+        // extra fotos: simple +5$ por cada
+        total += extraPhotos * 5;
+        total += outfitChanges * 5;
+        if (rush) total += 50;
 
-for (let i = 1; i <= extraPhotos; i++) {
-  if (i <= 5) {
-    extrasTotal += basePricePerPhoto * 0.05;
-  } else if (i <= 10) {
-    extrasTotal += basePricePerPhoto * 0.05;
-  } else {
-    extrasTotal += basePricePerPhoto * (0.05 * i);
-  }
-}
+        totalPriceEl.textContent = (total * 1.06).toFixed(2); // con 6% impuesto
+      }
 
-total += extrasTotal;
+      // eventos
+      packageSelect.addEventListener("change", updatePackageInfo);
+      extraPhotosInput.addEventListener("input", calculateTotal);
+      outfitChangesInput.addEventListener("input", calculateTotal);
+      rushDeliveryInput.addEventListener("change", calculateTotal);
 
+      getPackageBtn.addEventListener("click", () => {
+        const pkg = service.packages[packageSelect.value];
+        const extrasArr = [];
+        if ((parseInt(extraPhotosInput.value) || 0) > 0) extrasArr.push(`${extraPhotosInput.value} additional photos`);
+        if ((parseInt(outfitChangesInput.value) || 0) > 0) extrasArr.push(`${outfitChangesInput.value} outfit changes`);
+        if (rushDeliveryInput.checked) extrasArr.push("rush delivery");
 
+        const extrasText = extrasArr.length > 0 ? extrasArr.join(", ") : "None";
 
-    total += outfitChanges * 5;
-    if (rushDelivery) total += 50;
-  
-    const totalWithTax = (total * 1.06).toFixed(2);
-    document.getElementById("totalPrice").innerHTML = `${totalWithTax} <small>(Taxes included)</small>`;
-  }
-  
-  
-  document.getElementById("getPackageBtn").addEventListener("click", () => {
-    const photoInput = parseInt(document.getElementById("extraPhotos")?.value) || 0;
-    const outfitInput = parseInt(document.getElementById("outfitChanges")?.value) || 0;
-    const extraPhotos = Math.max(0, photoInput);
-    const outfitChanges = Math.max(0, outfitInput);
-    const rushDelivery = document.getElementById("rushDelivery")?.checked;
-    const total = document.getElementById("totalPrice").textContent;
-  
-    const extrasArr = [];
-    if (extraPhotos > 0) extrasArr.push(`${extraPhotos} additional photos`);
-    if (outfitChanges > 0) extrasArr.push(`${outfitChanges} outfit changes`);
-    if (rushDelivery) extrasArr.push("rush delivery");
-  
-    const extrasText = extrasArr.length > 0 ? extrasArr.join(", ") : "None";
-  
-    const prefillMessage = `Hello, I would like to book the following package:\n\nService: ${service.name}\nPackage: ${pkg.name}\nIncludes:\n${detailsText}\nExtras: ${extrasText}\nTotal Price: ${total}\n\nPlease let me know the next steps.`;
-  
-    const contactUrl = `contact.html?service=${encodeURIComponent(service.name)}&package=${encodeURIComponent(pkg.name)}&extras=${encodeURIComponent(extrasText)}&total=${encodeURIComponent("$" + total)}&details=${encodeURIComponent(detailsText)}`;
-    window.location.href = contactUrl;
-  });
-  
-  
-  document.getElementById("extraPhotos").addEventListener("input", calculateTotal);
-  document.getElementById("outfitChanges").addEventListener("input", calculateTotal);
-  document.getElementById("rushDelivery").addEventListener("change", calculateTotal);
-  
-  calculateTotal();
-  
+        const contactUrl = `contact.html?service=${encodeURIComponent(service.name)}&package=${encodeURIComponent(pkg.name)}&extras=${encodeURIComponent(extrasText)}&total=${encodeURIComponent("$" + totalPriceEl.textContent)}`;
+        window.location.href = contactUrl;
+      });
 
+      updatePackageInfo(); // inicial
+    });
+    
+});
 
-} // Fin de la función
-
-// Llamar la función cuando el DOM esté listo esto hace q se cargue la imagen
-document.addEventListener("DOMContentLoaded", calculatorPageInit);
-
-
-
-//aqui se genera el mensaje
 function contactPageInit() {
-  if (!document.getElementById("message")) return;
+  const messageInput = document.getElementById("message"); // tu textarea
+  if (!messageInput) return;
+
   const params = new URLSearchParams(window.location.search);
   const service = params.get("service") || "";
   const packageName = params.get("package") || "";
   const extras = params.get("extras") || "";
   const total = params.get("total") || "";
-  const details = params.get("details") || "";
-  const messageInput = document.getElementById("message");
 
-  if (service || packageName || extras || total || details) {
-    const prefillMessage = `Hello, I would like to book the following package:\n\nService: ${service}\nPackage: ${packageName}\nIncludes:\n${details}\n\nExtras: ${extras}\nTotal Price: ${total}\n\nPlease let me know the next steps.`;
+  if (service || packageName || extras || total) {
+    const prefillMessage = `Hello, I would like to book the following package:\n\nService: ${service}\nPackage: ${packageName}\nExtras: ${extras}\nTotal Price: ${total}\n\nPlease let me know the next steps.`;
     messageInput.value = prefillMessage;
   } else {
     messageInput.value = "";
   }
 }
 
-// Aquí afuera, le dices que la ejecute cuando la página esté lista
 document.addEventListener("DOMContentLoaded", contactPageInit);
 
