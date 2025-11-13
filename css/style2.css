@@ -101,7 +101,7 @@ a {
   transform-origin: left; /* importante para que crezca desde la izquierda */
 }
 
-.lnkMenu:hover::before {
+.lnkMenu:hover::before{
   transform: scaleX(1);
 }
  
@@ -396,14 +396,14 @@ h1 {
      
 
         .img_serv {
-          width: 100%;
+          width: 70%;
           height: auto;
           box-sizing: border-box; /* hace que el padding cuente dentro del ancho */
-          padding: 0 1rem; /* 1rem de espacio a los lados */
+           padding: 0 1rem; /* 1rem de espacio a los lados */
         }
         
         .img_serv img {
-          width: 100%;
+          width: 70%;
           height: auto;
           display: block;
           border-radius: 10px; /* opcional, mejora estética */
@@ -485,10 +485,44 @@ h1 {
   overflow-y: auto;
 }
 
+/*calculatorrr*/
+.calc{
+  transform: translateY(-20px);    
+  font-size: 10px;  
+    position: absolute;
+    left: 40px; /* antes era 12px */
+    top: 12px;
+    padding: 0 4px;
+    border-radius: 5px;
+    transition: 0.3s ease;
+    pointer-events: none;
+    text-transform: uppercase;
+    
+}
 
+
+.info-tooltip {
+  display: none;
+  color: gray;
+  font-size: 0.9rem;
+  margin-top: 5px;
+}
+
+.info-wrapper:hover .info-tooltip {
+  display: block;
+}
+
+.info-wrapper.active .info-tooltip {
+  display: block;
+}
 
 
 @media (max-width: 768px) {
+
+  section a{
+    margin-bottom: 5rem;
+  }
+
   .overlay-content {
     flex-direction: column !important; /* ya lo tienes, aseguramos que funcione */
     align-items: center; /* centra contenido horizontal */
