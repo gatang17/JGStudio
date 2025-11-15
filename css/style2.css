@@ -287,6 +287,23 @@ h1 {
 }
 
 
+/* MOBILE FIRST --------------------------------------------*/
+
+#menu_hamburguer {
+  visibility: hidden;
+}
+
+
+#foot_bar {
+  border-top: #ffffff8f solid;
+}
+
+
+/* ELEMENTOS BORROSOS POR DEFECTO */
+.borroso {
+  filter: none;
+}
+
       .menu-overlay {
         /* Gradiente de transparente arriba a negro abajo */
         padding-top: 10px;
@@ -549,4 +566,34 @@ h1 {
   gap: 15px;
   padding: 20px;
 }
+/* MOBILE FIRST --------------------------------------------*/
+
+#menu_hamburguer {
+  visibility: visible;
 }
+
+#navbarMenu {
+  visibility: hidden;
+}
+
+#div_menutop {
+  display: none;
+}
+
+#div_menubotom {
+  display: block;
+}
+
+#foot_bar {
+  border-top: #ffffff8f solid;
+}
+
+
+/* ELEMENTOS BORROSOS POR DEFECTO */
+.borroso {
+  filter: none;
+}
+
+}
+
+
