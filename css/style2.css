@@ -197,20 +197,24 @@ h1 {
       
       text-transform: uppercase;
     }  
-    .input-box:hover{
-      transform: scale(1.05);
-      transition: 0.3s ease;
-    }
-    /* Flotar cuando hay foco o cuando el contenedor tiene la clase .has-value */
-    .input-box input:focus + label,
-    .input-box textarea:focus + label,
-    .input-box select:focus + label,
-    .input-box.has-value label {
-      transform: translateY(-20px);
-    
-      font-size: 10px;
-    }
+  
+/* Flotar label al tener foco, checked o si el contenedor tiene clase .has-value */
+.input-box input:focus + label,
+.input-box textarea:focus + label,
+.input-box input:checked + label,
+.input-box select:focus + label {
+  transform: translateY(-20px);
+  font-size: 10px;
+  transition: 0.3s ease;
+}
 
+.input-box input:checked + label {
+  transform: translateY(-20px);
+  font-size: 10px;
+  transition: 0.3s ease;
+}
+
+    
     
 
     .popup {

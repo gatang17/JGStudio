@@ -106,7 +106,7 @@
           <form  class="mt-5">
 
             <!--package selector-->
-            <div class="mb-5 input-box info-wrapper">
+            <div class="mb-5 input-box info-wrapper has-value">
               <label for="packageSelect" class="form-label alig calc">Choose a Package</label>
               <select id="packageSelect" class="form-select" style="color: white; background-color:transparent ; border: 2px solid rgb(255, 255, 255); padding: 4px; border-radius: 5px;"></select>
 
@@ -125,25 +125,25 @@
         <!-- Extra 2: Outfit Changes -->
              <div class="mb-5 input-box info-wrapper" onclick="toggleInfo(this)">
               <input type="number" id="outfitChanges" name="outfitChanges" oninput="calculateTotal()">
-              <label for="name" class="form-label alig calc">  Rush Delivery (48 hours)</label>
+              <label for="name" class="form-label alig calc">Extra Outfit Changes  </label>
               <div class="info-tooltip">Each outfit change extends your session time and editing work.</div>
 </div>
-
-             <!-- Extra 3: Rush Delivery -->
-             <div class="mb-5 mt-5 input-box info-wrapper" onclick="toggleInfo(this)">
-              <input type="checkbox" id="rushDelivery" class="form-check-input " onchange="calculateTotal()"> 
-<label for="rushDelivery" class="form-label align calc">Extra Outfit Changes</label>
-
-              <div class="info-tooltip"> Your edited photos will be ready within 48 hours with priority processing.</div>
+ <!-- Extra 3: Rush Delivery -->
+<div class="d-flex align-items-start justify-content-start">
+ <div class="mb-5 mt-5 input-box info-wrapper d-flex">
+  <input type="checkbox" id="rushDelivery" class="form-check-input" style="color: white; background-color: black;" onchange="calculateTotal()"> 
+  <label for="rushDelivery" class="form-label align calc">Rush Delivery (48 hours)</label>
+  <div class="info-tooltip">Your edited photos will be ready within 48 hours with priority processing.</div>
+</div>
 </div>
 
-            <!-- Botón de envío -->
-            <div class="text-center">
-              <h4>Total: $<span id="totalPrice"></span></h4>
-              <button id="getPackageBtn" type="button" class="mb-3 btn text-center " >
-                Get This Package
-              </button>
-            </div>    
+ <!-- Botón de envío -->
+ <div class="text-center">
+  <h4>Total: $<span id="totalPrice"></span></h4>
+  <button id="getPackageBtn" type="button" class="mb-3 btn text-center " >
+    Get This Package
+  </button>
+</div> 
        
         
           </form>
