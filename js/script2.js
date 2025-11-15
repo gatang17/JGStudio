@@ -108,7 +108,30 @@ btnHamburguesa.addEventListener("click", () => {
   }
 });
 
-// Scroll efecto top
+//this should close the menu once is clicked
+const todosLosLinks = document.querySelectorAll("a");
+
+todosLosLinks.forEach(link => {
+  link.addEventListener("click", (e) => {
+
+    if (link.getAttribute("href") === "#") {
+      e.preventDefault();//Si el enlace es "#", NO recarga la página
+    }
+
+    //Close menú hamburguesa
+    menuAbierto = false;
+    menuDrop.style.visibility = "hidden";
+    document.body.style.overflow = '';
+
+    // off the blur
+    for (let elem of elementosBorrosos) {
+      elem.style.filter = "none";
+    }
+  });
+});
+
+
+// Scroll - top
 const menu_cny = document.getElementById('container_top');
 const footerStyle = document.getElementById('foot_bar');
 
