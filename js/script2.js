@@ -79,71 +79,116 @@ document.addEventListener('DOMContentLoaded', () => {
 
 //esto espara cargar los htmls MENU Y  para cerrar el menu hamburguersa
 
-// Botón hamburguesa y menú
-const btnHamburguesa = document.getElementById('menu_hamburguer');
-const menuDrop = document.getElementById('navbarMenu');
-const elementosBorrosos = document.getElementsByClassName('borroso');
+// --- VARIABLES INICIALES ---
+const divMenu = document.getElementById('div_menutop');       // menú top
+const divFoot = document.getElementById('div_menubotom');     // footer
+const footerStyle = document.getElementById('foot_bar');      // contenedor footer
+const btnHamburguesa = document.getElementById('menu_hamburguer'); // botón hamburguesa
+const elementosBorrosos = document.getElementsByClassName('borroso'); // elementos que se desenfocan
+const menuDrop = document.getElementById('navbarMenu');       // menú desplegable hamburguesa
+const menu_cny = document.getElementById('container_top')
 
-let menuAbierto = false;
+// Guardar HTML original
+const menuOriginalHTML = divMenu.innerHTML;
+const footerOriginalHTML = divFoot.innerHTML;
 
-// Toggle hamburguesa
-btnHamburguesa.addEventListener("click", () => {
-  menuAbierto = !menuAbierto;
+let menuAbierto = false; // estado del menú hamburguesa
+let ultimaPosicionScroll = 0; // posición anterior del scroll
 
-  if (menuAbierto) {
-    document.body.style.overflow = 'hidden';
-    menuDrop.style.visibility = "visible";
-
-    for (let elem of elementosBorrosos) {
-      elem.style.filter = "blur(5px) brightness(0.3)";
-    }
-
-  } else {
-    document.body.style.overflow = '';
-    menuDrop.style.visibility = "hidden";
-
-    for (let elem of elementosBorrosos) {
-      elem.style.filter = "none";
-    }
-  }
-});
-
-//this should close the menu once is clicked
+// Selecciona todos los enlaces <a>
+// Selecciona todos los enlaces <a>
 const todosLosLinks = document.querySelectorAll("a");
 
+// Recorrerlos y agregar evento
 todosLosLinks.forEach(link => {
-  link.addEventListener("click", (e) => {
-
-    if (link.getAttribute("href") === "#") {
-      e.preventDefault();//Si el enlace es "#", NO recarga la página
-    }
-
-    //Close menú hamburguesa
-    menuAbierto = false;
-    menuDrop.style.visibility = "hidden";
+  link.addEventListener("click", () => {
+    
     document.body.style.overflow = '';
+    menuDrop.style.visibility = "hidden";
+    for (let i = 0; i < elementosBorrosos.length; i++) {
+      elementosBorrosos[i].style.filter = "none";
 
-    // off the blur
-    for (let elem of elementosBorrosos) {
-      elem.style.filter = "none";
     }
+    menuAbierto = false;
   });
 });
 
 
-// Scroll - top
-const menu_cny = document.getElementById('container_top');
-const footerStyle = document.getElementById('foot_bar');
+// --- FUNCION PARA ACTUALIZAR UI SEGÚN TAMAÑO ---
+function actualizarUI() {
+  const ancho = window.innerWidth;
+  console.log(ancho);
+  
 
-window.addEventListener('scroll', () => {
-  if (window.scrollY === 0) {
-    menu_cny.style.backgroundColor = "transparent";
-    footerStyle.style.backgroundColor = "transparent";
+  if (ancho < 765) { // Móvil
+    divMenu.innerHTML = '';                         
+    divFoot.innerHTML = footerOriginalHTML;        
+    footerStyle.style.borderTop = "#ffffff8f solid";
+    btnHamburguesa.style.visibility = "visible";   
+    menuDrop.style.visibility = menuAbierto ? "visible" : "hidden";
+    // Agregar esto **una vez**, fuera de actualizarUI**
+
+
+  } else { // Tablet o Desktop
+    divMenu.innerHTML = menuOriginalHTML;          
+    divFoot.innerHTML = '';                         
+    footerStyle.style.border = "none";
+    btnHamburguesa.style.visibility = "hidden";    
+    menuDrop.style.visibility = "hidden";          
+    menuAbierto = false;                            
+    for (let i = 0; i < elementosBorrosos.length; i++) {
+      elementosBorrosos[i].style.filter = "none";
+    }
+  }
+}
+
+//--- TOGGLE DEL MENU HAMBURGUESA v2---
+
+btnHamburguesa.addEventListener("click", () => {
+  menuAbierto = !menuAbierto; // alterna primero
+
+  if (menuAbierto) {   
+    document.body.style.overflow = 'hidden';
+    menuDrop.style.visibility = "visible";
+    for (let i = 0; i < elementosBorrosos.length; i++) {
+      elementosBorrosos[i].style.filter = "blur(5px) brightness(0.3)";
+    }
+        // agrega clase overlay 
+    menuDrop.classList.add('menu-overlay');
+ 
+
   } else {
-    menu_cny.style.backgroundColor = "black";
-    footerStyle.style.backgroundColor = "black";
+    document.body.style.overflow = ''; // <- restaura al valor por defecto
+    menuDrop.style.visibility = "hidden";
+    for (let i = 0; i < elementosBorrosos.length; i++) {
+      elementosBorrosos[i].style.filter = "none";
+    }
+    // Quitar clase overlay 
+    menuDrop.classList.remove('menu-overlay');
   }
 });
+
+
+// --- EFECTO DE SCROLL EN EL TOP ---
+window.addEventListener('scroll', () => {
+  const posicionActual = window.scrollY;
+
+  // Si está en el tope
+  if (posicionActual === 0) {
+    menu_cny.style.backgroundColor = "transparent";
+ 
+    footerStyle.style.backgroundColor = "transparent";
+  } else {
+    // Si baja o sube (cualquier movimiento de scroll)
+    menu_cny.style.backgroundColor = "black";
+  
+    footerStyle.style.backgroundColor = "black";
+  }
+
+  // Actualiza la posición actual del scroll
+  ultimaPosicionScroll = posicionActual;
+});
+
 
 // --- EVENTOS PARA CARGA Y REDIMENSIÓN ---
 window.addEventListener('load', actualizarUI);

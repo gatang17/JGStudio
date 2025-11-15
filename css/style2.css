@@ -555,8 +555,7 @@ h1 {
     text-align: center;      /* texto centrado */
     padding: 1rem 0;         /* un poco de espacio arriba y abajo */
   }
-  
-  
+   
 
 /*gallery style*/
 
@@ -566,6 +565,7 @@ h1 {
   gap: 15px;
   padding: 20px;
 }
+
 /* MOBILE FIRST --------------------------------------------*/
 
 #menu_hamburguer {
