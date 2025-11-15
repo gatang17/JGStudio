@@ -200,7 +200,7 @@ window.addEventListener('resize', actualizarUI);
   Entonces el JavaScript se encarga de hacer manualmente lo que el CSS no puede detectar por sí solo.*/
 
 document.querySelectorAll('.input-box').forEach(box => {
-      const field = box.querySelector('input, textarea');
+      const field = box.querySelector('input');
     
       if (!field) return;
     
@@ -210,11 +210,16 @@ document.querySelectorAll('.input-box').forEach(box => {
         else box.classList.remove('has-value');
       };
     
+
+
       // Eventos que actualizan el estado
       field.addEventListener('input', update);
       // Ejecutar una vez en carga (por si hay value pre-llenado)
       update();
-    });
+    }); 
+
+    
+   /*dfnbsdvbfdsvdsmv****************/
   
     const textarea = document.getElementById('auto-textarea');
 
