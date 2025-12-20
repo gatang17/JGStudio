@@ -294,7 +294,16 @@ document.addEventListener("DOMContentLoaded", () => {
     "portraits.html": {
       folder: "img/photos/portrait/",
       images: Array.from({ length: 18 }, (_, i) => ({ name: `${i + 1}.jpg` }))
+    },
+    "fam_kids.html": {
+      folder: "img/photos/family_kids/",
+      images: Array.from({ length: 18 }, (_, i) => ({ name: `${i + 1}.jpg` }))
+    },
+    "product.html": {
+      folder: "img/photos/product/",
+      images: Array.from({ length: 18 }, (_, i) => ({ name: `${i + 1}.jpg` }))
     }
+
   };
 
   // Seleccionamos qué galería usar según la página
