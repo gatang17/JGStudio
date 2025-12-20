@@ -463,6 +463,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const previewImage = document.getElementById("previewImage");
   const packageNameEl = document.getElementById("packageName");
   const basePriceEl = document.getElementById("basePrice");
+  const p_info=  document.getElementById("p_infoPack");
 
   // inputs extras
   const extraPhotosInput = document.getElementById("extraPhotos");
@@ -473,13 +474,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // obtener servicio desde URL o por defecto "portrait"
   const urlParams = new URLSearchParams(window.location.search);
-  const serviceKey = urlParams.get("service") || "portrait";
+  const serviceKey = (urlParams.get("service") || "portrait").toLowerCase();
+
 
   fetch("data/services.json")
     .then(res => res.json())
     .then(services => {
       const service = services[serviceKey];
       if (!service) return;
+
 
       // llenar select con paquetes
       Object.keys(service.packages).forEach(key => {
@@ -498,10 +501,11 @@ document.addEventListener("DOMContentLoaded", () => {
         packageNameEl.textContent = pkg.name;
         basePriceEl.textContent = `$${pkg.price}`;
         previewImage.src = pkg.image;
+        p_info.textContent= pkg.description;
 
         // detalles de fotos y outfits
         let minPhotos = 0, minOutfits = 0;
-        if (pkg.name.toLowerCase().includes("portrait") || pkg.name.toLowerCase().includes("moments") || pkg.name.toLowerCase().includes("brand")) {
+        if (pkg.name.toLowerCase().includes("portrait") || pkg.name.toLowerCase().includes("family") || pkg.name.toLowerCase().includes("Corporate")) {
           minPhotos = 3;
           minOutfits = 1;
         }
