@@ -12,6 +12,30 @@ body{
 body::-webkit-scrollbar{
   display: none;
 }
+
+.dNote{
+  background-color: #000;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: right;
+}
+
+
+.dlink span {
+  display: inline-block;
+  animation: growAndColorL 0.8s ease-in-out infinite alternate;
+  
+}
+@keyframes growAndColorL {
+  0% { transform: translate(100%); color: #000; }
+  100% { transform: scalex(1); color: #ffffff; }
+}
+
+
+
+
+
 /******
 /* Preloader ocupa toda la pantalla */
 #preloader {
@@ -58,6 +82,8 @@ z-index: 9999;
     filter: brightness(0.2); /* gris oscuro sobre blanco */
   }
 }
+
+
 /************************/
 
 /* ******** text effects*/

@@ -31,6 +31,27 @@ window.addEventListener('load', () => {
 
 
 
+  // Esperar a que el DOM cargue
+  document.addEventListener("DOMContentLoaded", () => {
+    const container = document.getElementById("container_top");
+
+    // Aquí puedes poner cualquier código HTML que quieras insertar
+    const content = `
+        <div id="designernote" class="dNote">
+          <a href="designerNotes.html">
+            <h3 class="dlink"><span>NOTES</span></h3>
+
+          </a>
+        </div> 
+    `;
+
+    container.insertAdjacentHTML('afterbegin', content);//inserta encima en el banner
+
+  });
+
+
+
+
 //CARROUSEL container pero con el metodo crear elemento
 document.addEventListener('DOMContentLoaded', () => {
   const cont = document.getElementById('cont_background');
@@ -87,7 +108,8 @@ const btnHamburguesa = document.getElementById('menu_hamburguer'); // botón ham
 const elementosBorrosos = document.getElementsByClassName('borroso'); // elementos que se desenfocan
 const menuDrop = document.getElementById('navbarMenu');       // menú desplegable hamburguesa
 const menu_cny = document.getElementById('container_top')
-
+/* para notas*/ 
+const dnotes = document.getElementById('designernote')
 // Guardar HTML original
 const menuOriginalHTML = divMenu.innerHTML;
 const footerOriginalHTML = divFoot.innerHTML;
@@ -176,11 +198,13 @@ window.addEventListener('scroll', () => {
   // Si está en el tope
   if (posicionActual === 0) {
     menu_cny.style.backgroundColor = "transparent";
+    dnotes.style.backgroundColor = "black"
  
     footerStyle.style.backgroundColor = "transparent";
   } else {
     // Si baja o sube (cualquier movimiento de scroll)
     menu_cny.style.backgroundColor = "black";
+    dnotes.style.backgroundColor = "#ffffff8f"
   
     footerStyle.style.backgroundColor = "black";
   }
@@ -579,3 +603,100 @@ function contactPageInit() {
 
 document.addEventListener("DOMContentLoaded", contactPageInit);
 
+
+
+document.addEventListener("DOMContentLoaded", () => {
+
+  fetch("data/services.json")
+    .then(response => response.json())
+    .then(data => {
+      const container = document.getElementById('designer-notes');
+
+      // Title
+      const title = document.createElement('h1');
+      title.textContent = data.dnotes.title;
+      container.appendChild(title);
+
+      // Introduction
+      const intro = document.createElement('p');
+      intro.textContent = data.dnotes.introduction;
+      container.appendChild(intro);
+
+      // Goals
+      const goalsTitle = document.createElement('h3');
+      goalsTitle.textContent = 'Goals';
+      container.appendChild(goalsTitle);
+
+      const goalsList = document.createElement('ul');
+      data.dnotes.goals.forEach(goal => {
+        const li = document.createElement('li');
+        li.textContent = goal;
+        goalsList.appendChild(li);
+      });
+      container.appendChild(goalsList);
+
+      // Technology
+      const techTitle = document.createElement('h3');
+      techTitle.textContent = 'Technology';
+      container.appendChild(techTitle);
+
+      const techDesc = document.createElement('p');
+      techDesc.innerHTML = `<strong>Decision:</strong> ${data.dnotes.technology.tc_opc}<br><strong>Workflow:</strong> ${data.dnotes.technology.tc_dep}`;
+      container.appendChild(techDesc);
+
+      const techList = document.createElement('ul');
+      data.dnotes.technology.explanation.forEach(item => {
+        const li = document.createElement('li');
+        li.textContent = item;
+        techList.appendChild(li);
+      });
+      container.appendChild(techList);
+
+      // Code Explanation
+      const codeTitle = document.createElement('h3');
+      codeTitle.textContent = 'Code Explanation';
+      container.appendChild(codeTitle);
+
+      const codePara = document.createElement('p');
+      codePara.textContent = data.dnotes.codeExplanation;
+      container.appendChild(codePara);
+
+      // Cost Considerations
+      const costTitle = document.createElement('h3');
+      costTitle.textContent = 'Cost Considerations';
+      container.appendChild(costTitle);
+
+      const costList = document.createElement('ul');
+      data.dnotes.cost.forEach(item => {
+        const li = document.createElement('li');
+        li.textContent = item;
+        costList.appendChild(li);
+      });
+      container.appendChild(costList);
+
+      // User Experience
+      const uxTitle = document.createElement('h4');
+      uxTitle.textContent = 'User Experience';
+      container.appendChild(uxTitle);
+
+      const uxList = document.createElement('ul');
+      data.dnotes.userExperience.forEach(item => {
+        const li = document.createElement('li');
+        li.textContent = item;
+        uxList.appendChild(li);
+      });
+      container.appendChild(uxList);
+
+      // Conclusion
+      const conclTitle = document.createElement('h3');
+      conclTitle.textContent = 'Conclusion';
+      container.appendChild(conclTitle);
+
+      const conclPara = document.createElement('p');
+      conclPara.textContent = data.dnotes.conclusion;
+      container.appendChild(conclPara);
+
+    })
+    .catch(err => console.error('Error loading JSON:', err));
+
+});
