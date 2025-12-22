@@ -269,7 +269,7 @@ document.querySelectorAll('.input-box').forEach(box => {
   // Delegación de eventos: escuchar clicks en cualquier .link_log
   document.addEventListener('click', function(e){
     if(e.target.classList.contains('link_log')){
-      e.preventDefault();
+    //  e.preventDefault();
       togglePopup();
     }
 
@@ -281,7 +281,7 @@ document.querySelectorAll('.input-box').forEach(box => {
 
   // Cerrar popup al hacer clic en el botón
   btnSub.addEventListener('click', function(e){
-   
+    // e.preventDefault();
     togglePopup();
   });
 });
