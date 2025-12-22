@@ -30,24 +30,27 @@ window.addEventListener('load', () => {
 
 
 
+//
+document.addEventListener("DOMContentLoaded", () => {
+  const container = document.getElementById("container_top");
+  if (!container) return;
 
-  // Esperar a que el DOM cargue
-  document.addEventListener("DOMContentLoaded", () => {
-    const container = document.getElementById("container_top");
+  // Obtener el nombre del archivo actual
+  const currentPage = window.location.pathname.split("/").pop();
 
-    // Aquí puedes poner cualquier código HTML que quieras insertar
+  // Si NO estamos en designerNotes.html, insertamos el banner
+  if (currentPage !== "designerNotes.html") {
     const content = `
-        <div id="designernote" class="dNote">
-          <a href="designerNotes.html">
-            <h3 class="dlink"><span>NOTES</span></h3>
-
-          </a>
-        </div> 
+      <div id="designernote" class="dNote">
+        <a href="designerNotes.html">
+          <p class="dlink"><span>DESIGNER'S NOTES</span></p>
+        </a>
+      </div>
     `;
+    container.insertAdjacentHTML("afterbegin", content);
+  }
+});
 
-    container.insertAdjacentHTML('afterbegin', content);//inserta encima en el banner
-
-  });
 
 
 
@@ -109,7 +112,7 @@ const elementosBorrosos = document.getElementsByClassName('borroso'); // element
 const menuDrop = document.getElementById('navbarMenu');       // menú desplegable hamburguesa
 const menu_cny = document.getElementById('container_top')
 /* para notas*/ 
-const dnotes = document.getElementById('designernote')
+
 // Guardar HTML original
 const menuOriginalHTML = divMenu.innerHTML;
 const footerOriginalHTML = divFoot.innerHTML;
@@ -198,20 +201,18 @@ window.addEventListener('scroll', () => {
   // Si está en el tope
   if (posicionActual === 0) {
     menu_cny.style.backgroundColor = "transparent";
-    dnotes.style.backgroundColor = "black"
- 
     footerStyle.style.backgroundColor = "transparent";
   } else {
     // Si baja o sube (cualquier movimiento de scroll)
-    menu_cny.style.backgroundColor = "black";
-    dnotes.style.backgroundColor = "#ffffff8f"
-  
-    footerStyle.style.backgroundColor = "black";
+    menu_cny.style.backgroundColor = "black";   
+   footerStyle.style.backgroundColor = "black";
   }
 
   // Actualiza la posición actual del scroll
   ultimaPosicionScroll = posicionActual;
 });
+
+
 
 
 // --- EVENTOS PARA CARGA Y REDIMENSIÓN ---
@@ -280,7 +281,7 @@ document.querySelectorAll('.input-box').forEach(box => {
 
   // Cerrar popup al hacer clic en el botón
   btnSub.addEventListener('click', function(e){
-    e.preventDefault();
+   
     togglePopup();
   });
 });
@@ -386,99 +387,6 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 });
 
-/* old style
-document.addEventListener("DOMContentLoaded", () => {
-  const photographyImages = [
-    { name: "1.jpg" },
-    { name: "2.jpg" },
-    { name: "3.jpg" },
-    { name: "4.jpg" },
-    { name: "5.jpg" },
-    { name: "6.jpg" },
-    { name: "7.jpg" },
-    { name: "8.jpg" },
-    { name: "9.jpg" },
-    { name: "10.jpg"},
-    { name: "11.jpg"},
-    { name: "12.jpg"},
-    { name: "13.jpg"},
-    { name: "14.jpg"},
-    { name: "15.jpg"},
-    { name: "16.jpg"},
-    { name: "17.jpg"},
-    { name: "18.jpg"}
-  ];
-
-  // Mezclar el arreglo
-  for (let i = photographyImages.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [photographyImages[i], photographyImages[j]] = [photographyImages[j], photographyImages[i]];
-  }
-
-  const gallery = document.getElementById('gallery-grid');
-
-  photographyImages.forEach(photo => {
-    const img = document.createElement('img');
-    img.src = `img/photos/photography/${photo.name}`;
-    img.alt = "Photography";
-    img.style.width = '100%';
-    img.style.borderRadius = '2px';
-    img.style.cursor = 'pointer';
-    img.style.objectFit = 'cover';
-    img.style.height = '100%';
-
-    img.addEventListener('click', () => {
-      const overlay = document.getElementById('overlay');
-      const overlayImage = document.getElementById('overlay-image');
-      const overlayDescription = document.getElementById('overlay-description');
-
-      overlay.style.display = 'flex';
-      overlayImage.src = img.src;
-      overlayDescription.innerHTML = photo.description;
-    });  
-    
-    gallery.appendChild(img);
-  });
-});
-
-//CLICK
-document.addEventListener("DOMContentLoaded", () => {
-  const overlay = document.getElementById('overlay');
-  const overlayImage = document.getElementById('overlay-image');
-  const overlayDescription = document.getElementById('overlay-description');
-
-  // Abrir overlay (ejemplo al hacer click en una imagen)
-  document.querySelectorAll('#gallery-grid img').forEach(img => {
-    img.addEventListener('click', () => {
-      overlay.style.display = 'flex';
-      overlayImage.src = img.src;
-      overlayDescription.innerHTML = img.dataset.description || '';
-    });
-  });
-
-  // Cerrar overlay al hacer click en cualquier lugar del overlay
-  overlay.addEventListener('click', (e) => {
-    overlay.style.display = 'none';
-  });
-
-  // Evitar que se cierre si se hace click dentro de overlay-content
-  const overlayContent = document.getElementById('overlay-content');
-  overlayContent.addEventListener('click', (e) => {
-    e.stopPropagation(); // evita que el click burbujee hacia el overlay
-  });
-});
-
-
-//this is for contact form, mesage can grow acording the mesage length
-const tex = document.getElementById('message');
-
-tex.addEventListener('input', function () {
-  // Reset height para calcular correctamente
-  this.style.height = 'auto';
-  // Ajusta la altura al scrollHeight (altura real del contenido)
-  this.style.height = this.scrollHeight + 'px';
-});
-*/
 
 //CALCULADORAAA
 
@@ -699,4 +607,10 @@ document.addEventListener("DOMContentLoaded", () => {
     })
     .catch(err => console.error('Error loading JSON:', err));
 
+});
+
+//abre un sitio externo
+const btnLink = document.getElementById('btPotf');
+btnLink.addEventListener('click', () => {
+  window.open('https://gatang.vercel.app', '_blank');
 });
