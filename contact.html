@@ -94,40 +94,31 @@ We’ll get back to you shortly!
     </p>
    </div>
             
-  <form  action="https://formsubmit.co/jgyourstudio@gmail.com" method="POST" class="mt-5">
-     
-      <!-- Name -->
-    
-      <div class="mb-3 input-box has-value">
-        <input type="text" name="name" id="name" required>
-        <label for="name" class="form-label">Name</label>
-      </div>
-      
-      <!-- Email -->
-      <div class="mb-3 input-box has-value">       
-        <input type="email" name="email" id="email" required>
-        <label for="email" class="form-label">Email</label>
-      </div>
-      
-      <!-- Message -->
-      <div class="mb-3 input-box has-value">
-        
-        <textarea name="message" id="message" rows="5" required style="overflow:hidden;"></textarea>
-        <label for="email" class="form-label">message</label>
-
-      </div>
+   <form id="contactForm" method="POST" class="mt-5">
+    <!-- Name -->
+    <div class="mb-3 input-box has-value">
+      <input type="text" name="name" id="name" required>
+      <label for="name" class="form-label">Name</label>
+    </div>
   
-      <!-- Botón de envío -->
-      <div class="text-center">
-        <button type="submit" class="mb-3 btn text-center">Send Message</button>
-      </div>
+    <!-- Email -->
+    <div class="mb-3 input-box has-value">
+      <input type="email" name="email" id="email" required>
+      <label for="email" class="form-label">Email</label>
+    </div>
   
-      <!-- Opcionales (evita spam y redirecciones) -->
-      <input type="hidden" name="_next" value="thankyou.html">
-      <input type="hidden" name="_captcha" value="false">
-      <input type="hidden" name="_template" value="box">
+    <!-- Message -->
+    <div class="mb-3 input-box has-value">
+      <textarea name="message" id="message" rows="5" required style="overflow:hidden;"></textarea>
+      <label for="message" class="form-label">Message</label>
+    </div>
   
-    </form>
+    <!-- Submit -->
+    <div class="text-center">
+      <button type="submit" class="mb-3 btn text-center">Send Message</button>
+    </div>
+  </form>
+  
     </div>
 
 
@@ -142,6 +133,39 @@ We’ll get back to you shortly!
       </div>
     </div>
 
+<!-- Incluye jQuery (si no lo tienes ya) -->
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+<script>
+$(document).ready(function() {
+  $('#contactForm').on('submit', function(e) {
+    e.preventDefault(); // Evita el envío tradicional del formulario
+
+    // Recolecta los datos del formulario
+    const formData = {
+      name: $('#name').val(),
+      email: $('#email').val(),
+      message: $('#message').val()
+    };
+
+    $.ajax({
+      method: 'POST',
+      url: 'https://formsubmit.co/ajax/jgyourstudio@gmail.com', // tu correo
+      dataType: 'json',
+      accepts: 'application/json',
+      data: formData,
+      success: function(response) {
+        // Redirige a la página de agradecimiento
+        window.location.href = 'thankyou.html';
+      },
+      error: function(err) {
+        console.error('Error sending form:', err);
+        alert('There was an error sending the form. Please try again.');
+      }
+    });
+  });
+});
+</script>
 
              
 <!--FOOTER-->
