@@ -93,79 +93,116 @@
 We’ll get back to you shortly!
     </p>
    </div>
-            
-   <form id="contactForm" method="POST" class="mt-5">
-    <!-- Name -->
+           
+   <form method="POST" accept-charset="UTF-8" id="form">
+    
+       <!-- Email -->
     <div class="mb-3 input-box has-value">
+      <input type="email" name="email" id="email" required>
+      <label for="name" class="form-label">Email</label>
+    </div>
+ 
+     <!-- Name -->
+      <div class="mb-3 input-box has-value">
       <input type="text" name="name" id="name" required>
       <label for="name" class="form-label">Name</label>
     </div>
-  
-    <!-- Email -->
-    <div class="mb-3 input-box has-value">
-      <input type="email" name="email" id="email" required>
-      <label for="email" class="form-label">Email</label>
-    </div>
-  
+
     <!-- Message -->
-    <div class="mb-3 input-box has-value">
-      <textarea name="message" id="message" rows="5" required style="overflow:hidden;"></textarea>
-      <label for="message" class="form-label">Message</label>
-    </div>
-  
-    <!-- Submit -->
-    <div class="text-center">
-      <button type="submit" class="mb-3 btn text-center">Send Message</button>
-    </div>
-  </form>
-  
+    <div class="mb-3 input-box has-value">        
+      <textarea name="message" id="message"  required style="overflow:-moz-hidden-unscrollable;"></textarea>
+      <label for="message" class="form-label">message</label>
     </div>
 
-
-    
-    <div class="container popup" id="popup">
-      <div class="input-box">
-        <input type="text" id="code" required size="30">
-        <label for="nombre">Code</label>
-      </div>     
-      <div class="mb-3 mt-5 text-center ">
-        <button class="mb-3 btn text-center" id="btSub" onclick="checkCode()">start</button>
+    <!-- add hidden Honeypot input to prevent spams -->
+      <!-- Botón de envío -->
+      <div class="text-center">
+        <button type="submit" class="mb-3 btn text-center">Send Message</button>
       </div>
-    </div>
-
-<!-- Incluye jQuery (si no lo tienes ya) -->
-<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <input type="hidden" name="_gotcha" style="display:none !important">
+    <input type="hidden" name="_gotcha" style="display:none !important">
+ 
+</form>
 
 <script>
-$(document).ready(function() {
-  $('#contactForm').on('submit', function(e) {
-    e.preventDefault(); // Evita el envío tradicional del formulario
+   const form = document.getElementById("form");
+form.addEventListener("submit", formSubmit);
 
-    // Recolecta los datos del formulario
-    const formData = {
-      name: $('#name').val(),
-      email: $('#email').val(),
-      message: $('#message').val()
-    };
+function formSubmit(e) {
+    e.preventDefault(); // Evita la redirección
 
-    $.ajax({
-      method: 'POST',
-      url: 'https://formsubmit.co/ajax/jgyourstudio@gmail.com', // tu correo
-      dataType: 'json',
-      accepts: 'application/json',
-      data: formData,
-      success: function(response) {
-        // Redirige a la página de agradecimiento
-        window.location.href = 'thankyou.html';
-      },
-      error: function(err) {
-        console.error('Error sending form:', err);
-        alert('There was an error sending the form. Please try again.');
-      }
-    });
-  });
-});
+    const formData = new FormData(e.target);
+
+    fetch("https://getform.io/f/adrknmya", {
+        method: "POST",
+        body: formData,
+        headers: {
+            "Accept": "application/json",
+        },
+    })
+    .then(response => {
+        if (response.ok) {
+            // Mostrar un pop-up o mensaje dentro de la misma página
+            showThankYouMessage();
+            // Opcional: resetear el formulario
+            form.reset();
+        } else {
+            console.log("Error en el envío");
+        }
+    })
+    .catch(error => console.log(error));
+}
+
+function showThankYouMessage() {
+    const popup = document.createElement("div");
+    popup.style.position = "fixed";
+    popup.style.top = "50%";
+    popup.style.left = "50%";
+    popup.style.transform = "translate(-50%, -50%)";
+    popup.style.background = "#fff";
+    popup.style.padding = "20px";
+    popup.style.border = "2px solid #333";
+    popup.style.zIndex = "9999";
+    popup.innerText = "¡Gracias! Tu mensaje ha sido enviado.";
+
+    document.body.appendChild(popup);
+
+    // Ocultar el pop-up después de 3 segundos
+    setTimeout(() => {
+        popup.remove();
+    }, 3000);
+}
+
 </script>
+
+    </div>
+
+
+    <script>
+      // esto hace crecer el textbox automaticamente segun la cantidad de lineas
+    const textarea = document.getElementById("message");
+    
+    textarea.addEventListener("input", function() {
+        // Contar cuántas líneas hay en el textarea
+        const lines = textarea.value.split("\n").length;
+        // Ajustar el número de filas (mínimo 1)
+        textarea.rows = Math.max(lines, 1);
+    });
+    </script>
+    
+
+    
+<div class="container popup" id="popup">
+  <div class="input-box">
+    <input type="text" id="code" required size="30">
+    <label for="nombre">Code</label>
+  </div>  
+
+  <div class="mb-3 mt-5 text-center ">
+    <button class="mb-3 btn text-center" id="btSub" onclick="checkCode()">start</button>
+  </div>
+</div>
+
 
              
 <!--FOOTER-->
