@@ -286,9 +286,7 @@ function checkCode() {
   if(albums[code]){
    // window.location.href = albums[code]; // abre en la misma página
     window.open(albums[code], "_blank"); //nueva pesta;a
-  } else {
-    alert("Código incorrecto");
-  }
+  } 
 }
 
 
@@ -377,16 +375,13 @@ const service = sessionStorage.getItem("selectedService");
         
         otro_container.appendChild(img);
       });
-      alert(sessionStorage.getItem("selectedService"));
+     
 
 //Boton q va a calculadora
     const btn = document.getElementById("goCalculator");
     btn.addEventListener("click", () => {
      
-      if (!service) {
-        alert("No service selected");
-        return;
-      }
+      
       window.location.href = `./calculator.html?service=${service}`;
     });
 
@@ -567,7 +562,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const extrasText = extrasArr.length > 0 ? extrasArr.join(", ") : "None";
 
-        const contactUrl = `contact.html?service=${encodeURIComponent(packageNameEl.value)}&package=${encodeURIComponent(pkg.name)}&extras=${encodeURIComponent(extrasText)}&total=${encodeURIComponent("$" + totalPriceEl.textContent)}`;
+        const contactUrl = `contact.html?service=${encodeURIComponent(packageNameEl.value)}&package=${encodeURIComponent(pkg.name)}&include=${encodeURIComponent(pkg.description)}&extras=${encodeURIComponent(extrasText)}&total=${encodeURIComponent("$" + totalPriceEl.textContent)}`;
         window.location.href = contactUrl;
       });
     })
@@ -582,11 +577,12 @@ function contactPageInit() {
   const params = new URLSearchParams(window.location.search);
   const service = params.get("service") || "";
   const packageName = params.get("package") || "";
+  const packagedescr = params.get("include") || "";
   const extras = params.get("extras") || "";
   const total = params.get("total") || "";
 
   if (service || packageName || extras || total) {
-    const prefillMessage = `Hello, I would like to book the following package:\n\nService: ${service}\nPackage: ${packageName}\nExtras: ${extras}\nTotal Price: ${total}\n\nPlease let me know the next steps.`;
+    const prefillMessage = `Hello, I would like to book the following package:\n\nService: ${service}\nPackage: ${packageName}\nInclude: ${packagedescr}\nExtras: ${extras}\nTotal Price: ${total}\n\nPlease let me know the next steps.`;
   
     // Asignamos el texto al textarea
     const messageInput = document.getElementById("message");
