@@ -32,9 +32,9 @@
 
       "name": "Portrait Packages", "packages": { 
 
-         "basic": { "name": "Classic",  "price": 120, "image": "img/photos/portrait/14.jpg", "description":"Studio session with neutral background, 1 outfit change, 3 edited photos." },
-         "medium": { "name": "Essence", "price": 215, "image": "img/photos/portrait/2.jpg", "description":"2 backgrounds, 2 outfit changes, guided posing, 6 edited photos."},
-         "premium": { "name": "Fine Art", "price": 400, "image": "img/photos/portrait/3.jpg", "description":"Artistic lighting, advanced retouching, 3 styles, 10 final photos."}
+         "basic": { "name": "Classic",  "price": 120, "image": "img/photos/portrait/14.jpg", "description":"30-45 min session with neutral background, 1 outfit change, 3 edited photos." },
+         "medium": { "name": "Essence", "price": 215, "image": "img/photos/portrait/2.jpg", "description":"1 hours 2 backgrounds, 2 outfit changes, guided posing, 6 edited photos."},
+         "premium": { "name": "Fine Art", "price": 400, "image": "img/photos/portrait/3.jpg", "description":"2-3 hours Artistic lighting, advanced retouching, 3 styles, 10 final photos."}
 
       }
     },
@@ -43,9 +43,9 @@
 
       "name": "Family & Kids", "packages": { 
 
-         "basic": { "name": "Moments Mini",  "price": 150, "image": "img/photos/family_kids/6.jpg", "description":"Short session, 5 edited photos" },
-         "medium": { "name": "Love Story", "price": 250, "image": "img/photos/family_kids/10.jpg", "description":"Candid and posed shots, 8 edited photos."},
-         "premium": { "name": "Family Session", "price": 350, "image": "img/photos/family_kids/7.jpg", "description":"Extended session, multiple backgrounds, 12 edited photos + 8x10 print."}
+         "basic": { "name": "Moments Mini",  "price": 150, "image": "img/photos/family_kids/6.jpg", "description":"30 min Short session, 5 edited photos" },
+         "medium": { "name": "Love Story", "price": 250, "image": "img/photos/family_kids/10.jpg", "description":"1-1:30 hours Candid and posed shots, 8 edited photos."},
+         "premium": { "name": "Family Session", "price": 350, "image": "img/photos/family_kids/7.jpg", "description":" 2 hours Extended session, multiple backgrounds, 12 edited photos + 8x10 print."}
 
       }
     },
