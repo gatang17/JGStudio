@@ -29,7 +29,6 @@ window.addEventListener('load', () => {
 });
 
 
-
 //
 document.addEventListener("DOMContentLoaded", () => {
   const container = document.getElementById("container_top");
@@ -50,7 +49,6 @@ document.addEventListener("DOMContentLoaded", () => {
     container.insertAdjacentHTML("afterbegin", content);
   }
 });
-
 
 
 
@@ -138,7 +136,6 @@ todosLosLinks.forEach(link => {
   });
 });
 
-
 // --- FUNCION PARA ACTUALIZAR UI SEGÚN TAMAÑO ---
 function actualizarUI() {
   const ancho = window.innerWidth;
@@ -152,7 +149,6 @@ function actualizarUI() {
     btnHamburguesa.style.visibility = "visible";   
     menuDrop.style.visibility = menuAbierto ? "visible" : "hidden";
     // Agregar esto **una vez**, fuera de actualizarUI**
-
 
   } else { // Tablet o Desktop
     divMenu.innerHTML = menuOriginalHTML;          
@@ -193,7 +189,6 @@ btnHamburguesa.addEventListener("click", () => {
   }
 });
 
-
 // --- EFECTO DE SCROLL EN EL TOP ---
 window.addEventListener('scroll', () => {
   const posicionActual = window.scrollY;
@@ -212,13 +207,9 @@ window.addEventListener('scroll', () => {
   ultimaPosicionScroll = posicionActual;
 });
 
-
-
-
 // --- EVENTOS PARA CARGA Y REDIMENSIÓN ---
 window.addEventListener('load', actualizarUI);
 window.addEventListener('resize', actualizarUI);
-
 
 //AQUI SE ORGANIZA EL FORM PARA Q LO LABEL SUBAN
   /* Añade/quita la clase .has-value según el contenido del campo :valid no funciona igual para los <textarea> si no les pones required o placeholder.
@@ -236,7 +227,6 @@ document.querySelectorAll('.input-box').forEach(box => {
       };
     
 
-
       // Eventos que actualizan el estado
       field.addEventListener('input', update);
       // Ejecutar una vez en carga (por si hay value pre-llenado)
@@ -247,7 +237,6 @@ document.querySelectorAll('.input-box').forEach(box => {
    /*dfnbsdvbfdsvdsmv****************/
   
     const textarea = document.getElementById('auto-textarea');
-
 
 
     //FORMULARIOOOO
@@ -303,178 +292,274 @@ function checkCode() {
 }
 
 
-
-//GALERIAAAAAAAA
-
+//GALERIAAAAAAAA #111111
 document.addEventListener("DOMContentLoaded", () => {
-  // Detecta el nombre del archivo actual (por ejemplo: "galeria.html" o "portrait.html")
-  const currentPage = window.location.pathname.split("/").pop();
 
-  // Definimos dos posibles galerías
-  const galleries = {
-    "Gallery.html": {
-      folder: "img/photos/photography/",
-      images: Array.from({ length: 18 }, (_, i) => ({ name: `${i + 1}.jpg` }))
-    },
-    "portraits.html": {
-      folder: "img/photos/portrait/",
-      images: Array.from({ length: 18 }, (_, i) => ({ name: `${i + 1}.jpg` }))
-    },
-    "fam_kids.html": {
-      folder: "img/photos/family_kids/",
-      images: Array.from({ length: 18 }, (_, i) => ({ name: `${i + 1}.jpg` }))
-    },
-    "product.html": {
-      folder: "img/photos/product/",
-      images: Array.from({ length: 18 }, (_, i) => ({ name: `${i + 1}.jpg` }))
-    }
+// 1️ Leer servicio desde URL
+const params = new URLSearchParams(window.location.search);
+const serviceKey = params.get("service") || "photography";
 
-  };
+// Guardar en sessionStorage
 
-  // Seleccionamos qué galería usar según la página
-  const selectedGallery = galleries[currentPage] || galleries["Gallery.html"];
+sessionStorage.setItem("selectedService", serviceKey.toLowerCase());
+const service = sessionStorage.getItem("selectedService");
 
-  // Mezclamos las imágenes (algoritmo Fisher–Yates)
-  for (let i = selectedGallery.images.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [selectedGallery.images[i], selectedGallery.images[j]] = [selectedGallery.images[j], selectedGallery.images[i]];
-  }
-
-  // Insertamos imágenes en el grid
-  const gallery = document.getElementById("gallery-grid");
-  selectedGallery.images.forEach(photo => {
-    const img = document.createElement("img");
-    img.src = `${selectedGallery.folder}${photo.name}`;
-    img.alt = "Photography";
-    img.style.width = "100%";
-    img.style.borderRadius = "2px";
-    img.style.cursor = "pointer";
-    img.style.objectFit = "cover";
-    img.style.height = "100%";
-
-    img.addEventListener("click", () => {
-      const overlay = document.getElementById("overlay");
-      const overlayImage = document.getElementById("overlay-image");
-      const overlayDescription = document.getElementById("overlay-description");
-
-      overlay.style.display = "flex";
-      overlayImage.src = img.src;
-      overlayDescription.innerHTML = photo.description || "";
-    });
-
-    gallery.appendChild(img);
-  });
-
-  // --- Overlay interacciones ---
+  // 2️ Overlay
   const overlay = document.getElementById("overlay");
   const overlayContent = document.getElementById("overlay-content");
+  const overlayImage = document.getElementById("overlay-image");
+  const overlayDescription = document.getElementById("overlay-description");
 
   overlay.addEventListener("click", () => {
     overlay.style.display = "none";
   });
+  overlayContent.addEventListener("click", (e) => e.stopPropagation());
 
-  overlayContent.addEventListener("click", (e) => {
-    e.stopPropagation();
-  });
+  // 3️ Cargar JSON
+  fetch("data/services.json")
+    .then(res => res.json())
+    .then(data => {
 
-  // --- Textarea autoajustable (si existe) ---
-  const tex = document.getElementById("message");
-  if (tex) {
-    tex.addEventListener("input", function () {
-      this.style.height = "auto";
-      this.style.height = this.scrollHeight + "px";
+      const galleryData = data.galleries[serviceKey] || data.galleries.photography;
+      const container = document.getElementById("gallery-grid");
+      const otro_container = document.createElement("div");
+      container.innerHTML = ""; // limpiar por si acaso
+      //esto hace q el contenedor general sea flexible
+      container.style.display = "flex";
+      container.style.flexDirection = "column";   // vertical
+      container.style.justifyContent = "center";  // centra en el eje vertical
+      container.style.alignItems = "center";      // centra en el eje horizontal
+      container.style.paddingTop="5rem";
+ 
+      otro_container.className = "gallery-grid";
+
+      const title = document.createElement("h1");
+      title.textContent = galleryData.title;
+      title.style.setProperty("margin", "0rem 0 0rem", "important");
+      title.style.setProperty("text-align", "center", "important");
+
+      
+     container.appendChild(title);
+
+      if (galleryData.description) {
+        const desc = document.createElement("p");
+        desc.textContent = galleryData.description;
+        container.appendChild(desc);
+        
+      }
+      
+      container.appendChild(otro_container);
+
+      // 5️ Crear array de imágenes
+      const images = Array.from(
+        { length: galleryData.count || 18 },
+        (_, i) => `${galleryData.src}/${i + 1}.jpg`
+      );
+
+      // 6️ Mezclar (opcional)
+      for (let i = images.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [images[i], images[j]] = [images[j], images[i]];
+      }
+
+      // 7 Pintar imágenes
+      images.forEach(src => {
+        const img = document.createElement("img");
+        img.src = src;
+        img.alt = galleryData.title;
+      
+
+        img.addEventListener("click", () => {
+          overlay.style.display = "flex";
+          overlayImage.src = src;
+          overlayDescription.textContent = galleryData.description || "";
+        });
+        
+        otro_container.appendChild(img);
+      });
+      alert(sessionStorage.getItem("selectedService"));
+
+//Boton q va a calculadora
+    const btn = document.getElementById("goCalculator");
+    btn.addEventListener("click", () => {
+     
+      if (!service) {
+        alert("No service selected");
+        return;
+      }
+      window.location.href = `calculator.html?service=${service}`;
     });
-  }
-});
 
+    })
+    .catch(err => console.error("Error loading gallery:", err));
+
+
+});
 
 //CALCULADORAAA
 
 document.addEventListener("DOMContentLoaded", () => {
-  const packageSelect = document.getElementById("packageSelect");
+  const packageNameEl = document.getElementById("packageName"); // select de servicios
+  const packageSelect = document.getElementById("packageSelect"); // select de paquetes
   const previewImage = document.getElementById("previewImage");
-  const packageNameEl = document.getElementById("packageName");
   const basePriceEl = document.getElementById("basePrice");
-  const p_info=  document.getElementById("p_infoPack");
+  const p_info = document.getElementById("p_infoPack");
 
-  // inputs extras
   const extraPhotosInput = document.getElementById("extraPhotos");
   const outfitChangesInput = document.getElementById("outfitChanges");
   const rushDeliveryInput = document.getElementById("rushDelivery");
   const totalPriceEl = document.getElementById("totalPrice");
   const getPackageBtn = document.getElementById("getPackageBtn");
-
-  // obtener servicio desde URL o por defecto "portrait"
-  const urlParams = new URLSearchParams(window.location.search);
-  const serviceKey = (urlParams.get("service") || "portrait").toLowerCase();
-
+  previewImage.style.display = "none"; // ocultamos por defecto
+  
+ //const preSelectedServiceKey = sessionStorage.getItem("selectedService"); // siempre tiene valor
+//const selectedService = services[preSelectedServiceKey]; // NO usar fallback
 
   fetch("data/services.json")
     .then(res => res.json())
-    .then(services => {
-      const service = services[serviceKey];
-      if (!service) return;
+    .then(data => {
+      const services = data.services;
 
+      // Leer servicio desde URL
+      const urlParams = new URLSearchParams(window.location.search);
+      const preSelectedServiceKey = urlParams.get("service"); // "portrait", "fam_kids", etc.
 
-      // llenar select con paquetes
-      Object.keys(service.packages).forEach(key => {
-        const pkg = service.packages[key];
+      // Elegir servicio por defecto si no viene en URL
+      let selectedService = preSelectedServiceKey ? services[preSelectedServiceKey] : services.portrait;
+      // 1️ Revisar URL para ver si viene un servicio preseleccionado
+  
+       
+     
+
+      //packageNameEl.innerHTML = "";
+
+      if (!preSelectedServiceKey||preSelectedServiceKey == "photography") {
+        // Si no hay servicio en URL, agregar opción inicial
+        const defaultServiceOption = document.createElement("option");
+        defaultServiceOption.value = "";
+        defaultServiceOption.disabled = true;
+        defaultServiceOption.selected = true;
+        defaultServiceOption.textContent = "Please select a service";
+        packageNameEl.appendChild(defaultServiceOption);
+      } else {
+
+        //option.selected = true;
+        packageNameEl.disabled = true; // No editable
+      
+      }
+
+      // Llenar select con todos los servicios
+      Object.keys(services).forEach(key => {
+        const srv = services[key];
         const option = document.createElement("option");
         option.value = key;
-        option.textContent = pkg.name;
-        packageSelect.appendChild(option);
+        option.textContent = srv.name;    
+        packageNameEl.appendChild(option);
       });
 
-      // función para actualizar datos del paquete
-      function updatePackageInfo() {
-        const selectedKey = packageSelect.value;
-        const pkg = service.packages[selectedKey];
+      //let selectedService = preSelectedServiceKey ? services[preSelectedServiceKey] : null;
 
-        packageNameEl.textContent = pkg.name;
-        basePriceEl.textContent = `$${pkg.price}`;
-        previewImage.src = pkg.image;
-        p_info.textContent= pkg.description;
+      // 2️ Si no hay servicio preseleccionado, esperar selección del usuario
+      packageNameEl.addEventListener("change", () => {
+        const selectedKey = packageNameEl.value;
+        selectedService = services[selectedKey];
 
-        // detalles de fotos y outfits
-        let minPhotos = 0, minOutfits = 0;
-        if (pkg.name.toLowerCase().includes("portrait") || pkg.name.toLowerCase().includes("family") || pkg.name.toLowerCase().includes("Corporate")) {
-          minPhotos = 3;
-          minOutfits = 1;
-        }
+        // Limpiar select de paquetes
+        packageSelect.innerHTML = "";
+        const defaultPkgOption = document.createElement("option");
+        defaultPkgOption.value = "";
+        defaultPkgOption.disabled = true;
+        defaultPkgOption.selected = true;
+        defaultPkgOption.textContent = "Seleccione un paquete";
+        packageSelect.appendChild(defaultPkgOption);
 
-        extraPhotosInput.min = 0;
+        Object.keys(selectedService.packages).forEach(pkgKey => {
+          const pkg = selectedService.packages[pkgKey];
+          const option = document.createElement("option");
+          option.value = pkgKey;
+          option.textContent = pkg.name;
+          packageSelect.appendChild(option);
+        });
+
+        // Limpiar info hasta seleccionar paquete
+        previewImage.src = "";
+        basePriceEl.textContent = "";
+        p_info.textContent = "";
+        totalPriceEl.textContent = "";
         extraPhotosInput.value = 0;
-        outfitChangesInput.min = 0;
         outfitChangesInput.value = 0;
+        rushDeliveryInput.checked = false;
+      });
 
+      
+      // 3️ Si ya viene servicio por URL, llenar paquetes automáticamente
+      if (selectedService) {
+        // llenar select de paquetes
+        packageSelect.innerHTML = "";
+        const defaultPkgOption = document.createElement("option");
+        defaultPkgOption.value = "";
+        defaultPkgOption.disabled = true;
+        defaultPkgOption.selected = true;
+        defaultPkgOption.textContent = "Seleccione un paquete";
+        packageSelect.appendChild(defaultPkgOption);
+      
+        Object.keys(selectedService.packages).forEach(pkgKey => {
+          const pkg = selectedService.packages[pkgKey];
+          const option = document.createElement("option");
+          option.value = pkgKey;
+          option.textContent = pkg.name;
+          packageSelect.appendChild(option);
+        });
+      
+        // **Preseleccionar el primer paquete automáticamente**
+        const firstPkgKey = Object.keys(selectedService.packages)[0];
+        packageSelect.value = firstPkgKey;
+        updatePackageInfo(); // Esto actualizará la imagen, precio y descripción
+      } 
+      
+
+      // 4️ Funciones para actualizar info y calcular total
+      function updatePackageInfo() {
+        if (!selectedService || !packageSelect.value) {
+          previewImage.style.display = "none"; // Ocultar imagen si no hay paquete seleccionado
+          basePriceEl.textContent = "";
+          p_info.textContent = "";
+          totalPriceEl.textContent = "";
+          return;
+        }
+      
+        const pkg = selectedService.packages[packageSelect.value];
+        previewImage.src = pkg.image;
+        previewImage.style.display = "block"; // Mostrar imagen cuando hay paquete
+        basePriceEl.textContent = `$${pkg.price}`;
+        p_info.textContent = pkg.description;
+      
+        // Reiniciar extras
+        extraPhotosInput.value = 0;
+        outfitChangesInput.value = 0;
+        rushDeliveryInput.checked = false;
+      
         calculateTotal();
       }
 
-      // recalcular total
       function calculateTotal() {
-        const pkg = service.packages[packageSelect.value];
+        if (!selectedService || !packageSelect.value) return;
+        const pkg = selectedService.packages[packageSelect.value];
         let total = pkg.price;
-
-        const extraPhotos = parseInt(extraPhotosInput.value) || 0;
-        const outfitChanges = parseInt(outfitChangesInput.value) || 0;
-        const rush = rushDeliveryInput.checked;
-
-        // extra fotos: simple +5$ por cada
-        total += extraPhotos * 5;
-        total += outfitChanges * 5;
-        if (rush) total += 50;
-
-        totalPriceEl.textContent = (total * 1.06).toFixed(2); // con 6% impuesto
+        total += (parseInt(extraPhotosInput.value) || 0) * 5;
+        total += (parseInt(outfitChangesInput.value) || 0) * 5;
+        if (rushDeliveryInput.checked) total += 50;
+        totalPriceEl.textContent = (total * 1.06).toFixed(2);
       }
 
-      // eventos
       packageSelect.addEventListener("change", updatePackageInfo);
       extraPhotosInput.addEventListener("input", calculateTotal);
       outfitChangesInput.addEventListener("input", calculateTotal);
       rushDeliveryInput.addEventListener("change", calculateTotal);
 
       getPackageBtn.addEventListener("click", () => {
-        const pkg = service.packages[packageSelect.value];
+        if (!selectedService || !packageSelect.value) return;
+        const pkg = selectedService.packages[packageSelect.value];
         const extrasArr = [];
         if ((parseInt(extraPhotosInput.value) || 0) > 0) extrasArr.push(`${extraPhotosInput.value} additional photos`);
         if ((parseInt(outfitChangesInput.value) || 0) > 0) extrasArr.push(`${outfitChangesInput.value} outfit changes`);
@@ -482,15 +567,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const extrasText = extrasArr.length > 0 ? extrasArr.join(", ") : "None";
 
-        const contactUrl = `contact.html?service=${encodeURIComponent(service.name)}&package=${encodeURIComponent(pkg.name)}&extras=${encodeURIComponent(extrasText)}&total=${encodeURIComponent("$" + totalPriceEl.textContent)}`;
+        const contactUrl = `contact.html?service=${encodeURIComponent(packageNameEl.value)}&package=${encodeURIComponent(pkg.name)}&extras=${encodeURIComponent(extrasText)}&total=${encodeURIComponent("$" + totalPriceEl.textContent)}`;
         window.location.href = contactUrl;
       });
-
-      updatePackageInfo(); // inicial
-    });
-    
+    })
+    .catch(err => console.error("Error cargando JSON:", err));
 });
 
+//crea el mensage
 function contactPageInit() {
   const messageInput = document.getElementById("message"); // tu textarea
   if (!messageInput) return;
@@ -503,14 +587,21 @@ function contactPageInit() {
 
   if (service || packageName || extras || total) {
     const prefillMessage = `Hello, I would like to book the following package:\n\nService: ${service}\nPackage: ${packageName}\nExtras: ${extras}\nTotal Price: ${total}\n\nPlease let me know the next steps.`;
+  
+    // Asignamos el texto al textarea
+    const messageInput = document.getElementById("message");
     messageInput.value = prefillMessage;
-  } else {
+  
+    // --- Textarea autoajustable ---
+    messageInput.style.height = "auto"; // reinicia altura
+    messageInput.style.height = messageInput.scrollHeight + "px"; // ajusta al contenido
+  }
+   else {
     messageInput.value = "";
   }
 }
 
 document.addEventListener("DOMContentLoaded", contactPageInit);
-
 
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -614,3 +705,7 @@ const btnLink = document.getElementById('btPotf');
 btnLink.addEventListener('click', () => {
   window.open('https://gatang.vercel.app', '_blank');
 });
+
+
+
+

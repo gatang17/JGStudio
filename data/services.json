@@ -1,4 +1,33 @@
 {
+   
+      "galleries": {
+        "photography": {
+          "title": "General Photography",
+          "description": "Here is a description for this gallery.",
+          "src": "img/photos/photography",
+          "count": 18
+        },
+        "portrait": {
+          "title": "Portrait",
+          "description": "Here is a description for this gallery.",
+          "src": "img/photos/portrait",
+          "count": 18
+        },
+        "fam_kids": {
+          "title": "Family & Kids",
+          "description": "Here is a description for this gallery.",
+          "src": "img/photos/family_kids",
+          "count": 18
+        },
+        "product": {
+          "title": "Product",
+          "description": "Here is a description for this gallery.",
+          "src": "img/photos/product",
+          "count": 18
+        }
+      },
+
+  "services": {
     "portrait": {
 
       "name": "Portrait Packages", "packages": { 
@@ -30,7 +59,9 @@
            "premium": { "name": "Corporate Vision", "price": 500, "image": "img/photos/product/11.jpg", "description":"Full branding session: team portraits, products, details, 20 edited photos + web-ready versions."}
   
         }
+      }
       },
+    
 
 "dnotes": {
   "title": "Designer’s Notes",
