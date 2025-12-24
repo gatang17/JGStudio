@@ -29,30 +29,6 @@ window.addEventListener('load', () => {
 });
 
 
-//
-document.addEventListener("DOMContentLoaded", () => {
-  const container = document.getElementById("container_top");
-  if (!container) return;
-
-  // Obtener el nombre del archivo actual
-  const currentPage = window.location.pathname.split("/").pop();
-
-  // Si NO estamos en designerNotes.html, insertamos el banner
-  if (currentPage !== "designerNotes.html") {
-    const content = `
-      <div id="designernote" class="dNote">
-        <a href="designerNotes.html">
-          <p class="dlink"><span>DESIGNER'S NOTES</span></p>
-        </a>
-      </div>
-    `;
-    container.insertAdjacentHTML("afterbegin", content);
-  }
-});
-
-
-
-
 //CARROUSEL container pero con el metodo crear elemento
 document.addEventListener('DOMContentLoaded', () => {
   const cont = document.getElementById('cont_background');
@@ -598,8 +574,30 @@ function contactPageInit() {
 }
 
 document.addEventListener("DOMContentLoaded", contactPageInit);
+//DESIGNER NOTES
 
+/*
+document.addEventListener("DOMContentLoaded", () => {
+  const container = document.getElementById("container_top");
+  if (!container) return;
 
+  // Obtener el nombre del archivo actual
+  const currentPage = window.location.pathname.split("/").pop();
+
+  // Si NO estamos en designerNotes.html, insertamos el banner
+  if (currentPage !== "designerNotes.html") {
+    const content = `
+      <div id="designernote" class="dNote">
+        <a href="designerNotes.html">
+          <p class="dlink"><span>DESIGNER'S NOTES</span></p>
+        </a>
+      </div>
+    `;
+    container.insertAdjacentHTML("afterbegin", content);
+  }
+});*/
+
+/*
 document.addEventListener("DOMContentLoaded", () => {
 
   fetch("data/services.json")
@@ -694,7 +692,7 @@ document.addEventListener("DOMContentLoaded", () => {
     })
     .catch(err => console.error('Error loading JSON:', err));
 
-});
+}); */
 
 //abre un sitio externo
 const btnLink = document.getElementById('btPotf');
