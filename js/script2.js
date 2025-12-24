@@ -387,7 +387,7 @@ const service = sessionStorage.getItem("selectedService");
         alert("No service selected");
         return;
       }
-      window.location.href = `calculator.html?service=${service}`;
+      window.location.href = `./calculator.html?service=${service}`;
     });
 
     })
