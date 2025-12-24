@@ -30,7 +30,7 @@
   "services": {
     "portrait": {
 
-      "name": "Portrait Packages", "packages": { 
+      "name": "PORTRAIT PACKAGES", "packages": { 
 
          "basic": { "name": "Classic",  "price": 120, "image": "img/photos/portrait/14.jpg", "description":"30-45 min session with neutral background, 1 outfit change, 3 edited photos." },
          "medium": { "name": "Essence", "price": 215, "image": "img/photos/portrait/2.jpg", "description":"1 hours 2 backgrounds, 2 outfit changes, guided posing, 6 edited photos."},
@@ -41,7 +41,7 @@
 
     "fam_kids": {
 
-      "name": "Family & Kids", "packages": { 
+      "name": "FAMILY & KIDS", "packages": { 
 
          "basic": { "name": "Moments Mini",  "price": 150, "image": "img/photos/family_kids/6.jpg", "description":"30 min Short session, 5 edited photos" },
          "medium": { "name": "Love Story", "price": 250, "image": "img/photos/family_kids/10.jpg", "description":"1-1:30 hours Candid and posed shots, 8 edited photos."},
@@ -52,7 +52,7 @@
 
     "product": {
 
-        "name": "Corporate & Product Photography", "packages": { 
+        "name": "CORPORATE & PRODUCT", "packages": { 
   
            "basic": { "name": "Brand Starter",  "price": 150, "image": "img/photos/product/6.jpg", "description":"Headshots or 3 product shots, neutral background, basic editing." },
            "medium": { "name": "Business Focus", "price": 300, "image": "img/photos/product/5.jpg", "description":"Headshots + product or office photos, 10 edited photos."},

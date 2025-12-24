@@ -410,12 +410,14 @@ document.addEventListener("DOMContentLoaded", () => {
         defaultServiceOption.value = "";
         defaultServiceOption.disabled = true;
         defaultServiceOption.selected = true;
-        defaultServiceOption.textContent = "Please select a service";
+        defaultServiceOption.textContent = "PLEASE CLICK HERE TO SELECT A SERVICE";
+        
         packageNameEl.appendChild(defaultServiceOption);
       } else {
 
         //option.selected = true;
         packageNameEl.disabled = true; // No editable
+        packageNameEl.style.border="none";
       
       }
 
@@ -426,6 +428,7 @@ document.addEventListener("DOMContentLoaded", () => {
         option.value = key;
         option.textContent = srv.name;    
         packageNameEl.appendChild(option);
+        
       });
 
       //let selectedService = preSelectedServiceKey ? services[preSelectedServiceKey] : null;
@@ -441,7 +444,7 @@ document.addEventListener("DOMContentLoaded", () => {
         defaultPkgOption.value = "";
         defaultPkgOption.disabled = true;
         defaultPkgOption.selected = true;
-        defaultPkgOption.textContent = "Seleccione un paquete";
+        defaultPkgOption.textContent = "SELECT YOUR PACKAGE";
         packageSelect.appendChild(defaultPkgOption);
 
         Object.keys(selectedService.packages).forEach(pkgKey => {
@@ -488,7 +491,6 @@ document.addEventListener("DOMContentLoaded", () => {
         updatePackageInfo(); // Esto actualizará la imagen, precio y descripción
       } 
       
-
       // 4️ Funciones para actualizar info y calcular total
       function updatePackageInfo() {
         if (!selectedService || !packageSelect.value) {
