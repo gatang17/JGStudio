@@ -28,56 +28,14 @@ window.addEventListener('load', () => {
   }
 });
 
+//header injection
+document.addEventListener("DOMContentLoaded", () => {
+  fetch("header.html")
+    .then(res => res.text())
+    .then(html => {
+      document.getElementById("header").innerHTML = html;
 
-//CARROUSEL container pero con el metodo crear elemento
-document.addEventListener('DOMContentLoaded', () => {
-  const cont = document.getElementById('cont_background');
-
-  const images = [
-    "./img/photos/carousel/04.jpg",
-    "./img/photos/carousel/02.jpg",
-    "./img/photos/carousel/03.jpg",
-    "./img/photos/carousel/01.jpg",
-    "./img/photos/carousel/05.jpg"
-  ];
-
-  
-  // Crear contenedor
-
-  const divCarrusel = document.createElement('div');
-  divCarrusel.id = 'carr_ind';
-  cont.appendChild(divCarrusel);
-
-  // aqui esta el efecto fade!!!!!!
-  images.forEach((src, i) => {
-    const img = document.createElement('img');
-    img.src = src;
-    img.className = 'img_carr';
-    img.style.position = 'absolute';
-    img.style.filter= 'brightnes(0.1)'
-    img.style.top = '0';
-    img.style.left = '0';
-    img.style.width = '100%';
-    img.style.height = '100%';
-    img.style.objectFit = 'cover';
-    img.style.opacity = i === 0 ? '1' : '0';
-    img.style.transition = 'opacity 3s ease-in-out';
-    divCarrusel.appendChild(img);
-  });
-
-  let current = 0;
-  setInterval(() => {
-    const imgs = divCarrusel.querySelectorAll('.img_carr');
-    const next = (current + 1) % imgs.length;
-    imgs[current].style.opacity = '0.0';
-    imgs[next].style.opacity = '1';
-    current = next;
-  }, 5000);
-});
-
-//esto espara cargar los htmls MENU Y  para cerrar el menu hamburguersa
-
-// --- VARIABLES INICIALES ---
+      // --- VARIABLES INICIALES ---
 const divMenu = document.getElementById('div_menutop');       // menú top
 const divFoot = document.getElementById('div_menubotom');     // footer
 const footerStyle = document.getElementById('foot_bar');      // contenedor footer
@@ -186,6 +144,59 @@ window.addEventListener('scroll', () => {
 // --- EVENTOS PARA CARGA Y REDIMENSIÓN ---
 window.addEventListener('load', actualizarUI);
 window.addEventListener('resize', actualizarUI);
+    })
+    .catch(err => console.error("Header load error", err));
+});
+
+//CARROUSEL container pero con el metodo crear elemento
+document.addEventListener('DOMContentLoaded', () => {
+  const cont = document.getElementById('cont_background');
+
+  const images = [
+    "./img/photos/carousel/04.jpg",
+    "./img/photos/carousel/02.jpg",
+    "./img/photos/carousel/03.jpg",
+    "./img/photos/carousel/01.jpg",
+    "./img/photos/carousel/05.jpg"
+  ];
+
+  
+  // Crear contenedor
+
+  const divCarrusel = document.createElement('div');
+  divCarrusel.id = 'carr_ind';
+  cont.appendChild(divCarrusel);
+
+  // aqui esta el efecto fade!!!!!!
+  images.forEach((src, i) => {
+    const img = document.createElement('img');
+    img.src = src;
+    img.className = 'img_carr';
+    img.style.position = 'absolute';
+    img.style.filter= 'brightnes(0.1)'
+    img.style.top = '0';
+    img.style.left = '0';
+    img.style.width = '100%';
+    img.style.height = '100%';
+    img.style.objectFit = 'cover';
+    img.style.opacity = i === 0 ? '1' : '0';
+    img.style.transition = 'opacity 3s ease-in-out';
+    divCarrusel.appendChild(img);
+  });
+
+  let current = 0;
+  setInterval(() => {
+    const imgs = divCarrusel.querySelectorAll('.img_carr');
+    const next = (current + 1) % imgs.length;
+    imgs[current].style.opacity = '0.0';
+    imgs[next].style.opacity = '1';
+    current = next;
+  }, 5000);
+});
+
+//esto espara cargar los htmls MENU Y  para cerrar el menu hamburguersa
+
+
 
 //AQUI SE ORGANIZA EL FORM PARA Q LO LABEL SUBAN
   /* Añade/quita la clase .has-value según el contenido del campo :valid no funciona igual para los <textarea> si no les pones required o placeholder.
@@ -231,18 +242,7 @@ document.querySelectorAll('.input-box').forEach(box => {
     });
   }
 
-  // Delegación de eventos: escuchar clicks en cualquier .link_log
-  document.addEventListener('click', function(e){
-    if(e.target.classList.contains('link_log')){
-    //  e.preventDefault();
-      togglePopup();
-    }
 
-    // Cerrar si se hace click fuera del popup
-    /*if(popup.style.display === 'block' && !popup.contains(e.target) && !e.target.classList.contains('link_log')){
-      togglePopup();
-    }*/
-  });
 
   // Cerrar popup al hacer clic en el botón
   btnSub.addEventListener('click', function(e){
@@ -279,21 +279,20 @@ sessionStorage.setItem("selectedService", serviceKey.toLowerCase());
 const service = sessionStorage.getItem("selectedService");
 
   // 2️ Overlay
+  
   const overlay = document.getElementById("overlay");
-  const overlayContent = document.getElementById("overlay-content");
+  //const overlayContent = document.getElementById("overlay-content");
   const overlayImage = document.getElementById("overlay-image");
-  const overlayDescription = document.getElementById("overlay-description");
-
-  overlay.addEventListener("click", () => {
-    overlay.style.display = "none";
-  });
-  overlayContent.addEventListener("click", (e) => e.stopPropagation());
+  //const overlayDescription = document.getElementById("overlay-description");
 
   // 3️ Cargar JSON
   fetch("data/services.json")
     .then(res => res.json())
     .then(data => {
+      const overlay = document.getElementById("overlay");
 
+
+      
       const galleryData = data.galleries[serviceKey] || data.galleries.photography;
       const container = document.getElementById("gallery-grid");
       const otro_container = document.createElement("div");
@@ -341,15 +340,35 @@ const service = sessionStorage.getItem("selectedService");
         const img = document.createElement("img");
         img.src = src;
         img.alt = galleryData.title;
-      
-
-        img.addEventListener("click", () => {
-          overlay.style.display = "flex";
-          overlayImage.src = src;
-          overlayDescription.textContent = galleryData.description || "";
-        });
         
         otro_container.appendChild(img);
+
+        img.addEventListener("click", () => {
+          const overlay = document.createElement("div");
+          overlay.style.position = "fixed";
+          overlay.style.inset = "0";
+          overlay.style.background = "rgba(0,0,0,0.85)";
+          overlay.style.display = "flex";
+          overlay.style.justifyContent = "center";
+          overlay.style.alignItems = "center";
+          overlay.style.zIndex = "999999";
+        
+          const imgBig = document.createElement("img");
+          imgBig.src = src;
+          imgBig.style.maxWidth = "80vw";
+          imgBig.style.maxHeight = "80vh";
+          imgBig.style.objectFit = "contain";
+        
+          overlay.appendChild(imgBig);
+          document.body.appendChild(overlay);
+        
+          overlay.addEventListener("click", () => {
+            overlay.remove();
+          });
+        });
+     
+   
+        
       });
      
 
