@@ -15,6 +15,7 @@ body {
   height: 90%;
 }
 
+
 h1{
   font-family: 'Playfair Display', serif;
     font-size: clamp(2rem, 3vw, 4rem);
@@ -43,6 +44,12 @@ h3{
 }
 
 h4{
+  font-size: clamp(2rem, 1vw, 3rem);
+  color: #053c56; 
+  text-transform: uppercase;
+}
+h6{
+  
   font-size: clamp(2rem, 1vw, 3rem);
   color: #053c56; 
   text-transform: uppercase;
