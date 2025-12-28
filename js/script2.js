@@ -308,7 +308,7 @@ const service = sessionStorage.getItem("selectedService");
 
       const title = document.createElement("h1");
       title.textContent = galleryData.title;
-      title.style.setProperty("margin", "0rem 0 0rem", "important");
+      title.style.setProperty("margin", "-2.5rem 0 0rem", "important");
       title.style.setProperty("text-align", "center", "important");
 
       
@@ -317,6 +317,8 @@ const service = sessionStorage.getItem("selectedService");
       if (galleryData.description) {
         const desc = document.createElement("p");
         desc.textContent = galleryData.description;
+        desc.style.marginTop="2.5rem";
+        desc.style.marginBottom="2.5rem";
         container.appendChild(desc);
         
       }

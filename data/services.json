@@ -5,25 +5,25 @@
       "galleries": {
         "photography": {
           "title": "General Photography",
-          "description": "Here is a description for this gallery.",
+          "description": "Our work is like a cosmopolitan city, home to traditional, artistic, and abstract photography. Not everything needs meaning; it needs to leave an impression.",
           "src": "img/photos/photography",
           "count": 18
         },
         "portrait": {
           "title": "Portrait",
-          "description": "Here is a description for this gallery.",
+          "description": "Portraits reveal the real person, their emotions, their soul. They preserve the greatest masterpiece of all.",
           "src": "img/photos/portrait",
           "count": 18
         },
         "fam_kids": {
           "title": "Family & Kids",
-          "description": "Here is a description for this gallery.",
+          "description": "Welcome to this family gallery, preserving childhood, love, and the joy of being together.",
           "src": "img/photos/family_kids",
           "count": 18
         },
         "product": {
           "title": "Product",
-          "description": "Here is a description for this gallery.",
+          "description": "Products are interpreted through light, detail, and handmade photographic craft.",
           "src": "img/photos/product",
           "count": 18
         }
