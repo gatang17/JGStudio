@@ -460,12 +460,19 @@ body{
    
   
   /*gallery style*/
+  #gallery {
+    position: relative; /* NO absolute ni fixed */
+    overflow: visible;  /* que no esconda hijos */
+    padding-bottom: 4rem; /* deja espacio para botón y footer */
+  }
+  
+  #gallery{min-height: 100vh;}
   
   .gallery-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 15px;
-    padding: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 10px;
+     
   }
   
   
@@ -569,66 +576,36 @@ body{
 
   
   @media (max-width: 768px) {
+      section a{     margin-bottom: 5rem;    }
   
-    section a{
-      margin-bottom: 5rem;
+    .overlay-content {      flex-direction: column !important; /* ya lo tienes, aseguramos que funcione */
+      align-items: center; /* centra contenido horizontal */      gap: 1rem; /* espacio entre imagen y descripción */    }
+  
+    .overlay-content img {      width: 100% !important;  /* ocupa todo el ancho del contenedor */      height: auto !important; /* mantiene proporción */
+       }
+  
+    .description-box {  width: 100% !important;  /* ocupa todo el ancho */      text-align: center;      /* texto centrado */      padding: 1rem 0;    /* un poco de espacio arriba y abajo */
     }
-  
-    .overlay-content {
-      flex-direction: column !important; /* ya lo tienes, aseguramos que funcione */
-      align-items: center; /* centra contenido horizontal */
-      gap: 1rem; /* espacio entre imagen y descripción */
-    }
-  
-    .overlay-content img {
-      width: 100% !important;  /* ocupa todo el ancho del contenedor */
-      height: auto !important; /* mantiene proporción */
-   
-    }
-  
-    .description-box {
-      width: 100% !important;  /* ocupa todo el ancho */
-      text-align: center;      /* texto centrado */
-      padding: 1rem 0;         /* un poco de espacio arriba y abajo */
-    }
-     
-  
+       
   /*gallery style*/
   
-  .gallery-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-    gap: 15px;
-    padding: 20px;
-  }
+  .gallery-grid {    display: grid;    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));   gap: 15px;    padding: 20px;  }
   
   /* MOBILE FIRST --------------------------------------------*/
   
-  #menu_hamburguer {
-    visibility: visible;
-  }
+  #menu_hamburguer {    visibility: visible;  }
   
-  #navbarMenu {
-    visibility: hidden;
-  }
+  #navbarMenu {   visibility: hidden;  }
   
-  #div_menutop {
-    display: none;
-  }
+  #div_menutop {    display: none;  }
   
-  #div_menubotom {
-    display: block;
-  }
+  #div_menubotom {    display: block;  }
   
-  #foot_bar {
-    border-top: #ffffff8f solid;
-  }
+  #foot_bar {    border-top: #ffffff8f solid;  }
   
   
   /* ELEMENTOS BORROSOS POR DEFECTO */
-  .borroso {
-    filter: none;
-  }
+  .borroso {    filter: none;  }
   
   }
   

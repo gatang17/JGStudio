@@ -302,13 +302,14 @@ const service = sessionStorage.getItem("selectedService");
       container.style.flexDirection = "column";   // vertical
       container.style.justifyContent = "center";  // centra en el eje vertical
       container.style.alignItems = "center";      // centra en el eje horizontal
-      container.style.paddingTop="5rem";
+      container.style.paddingTop="12rem";
+      container.style.paddingBottom="4rem";
  
       otro_container.className = "gallery-grid";
 
       const title = document.createElement("h1");
       title.textContent = galleryData.title;
-      title.style.setProperty("margin", "5rem 0 0rem", "important");
+      title.style.setProperty("margin", "0rem 0 0rem", "important");
       title.style.setProperty("text-align", "center", "important");
 
       
