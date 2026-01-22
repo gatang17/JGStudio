@@ -308,7 +308,7 @@ const service = sessionStorage.getItem("selectedService");
 
       const title = document.createElement("h1");
       title.textContent = galleryData.title;
-      title.style.setProperty("margin", "-2.5rem 0 0rem", "important");
+      title.style.setProperty("margin", "5rem 0 0rem", "important");
       title.style.setProperty("text-align", "center", "important");
 
       
@@ -318,6 +318,7 @@ const service = sessionStorage.getItem("selectedService");
         const desc = document.createElement("p");
         desc.textContent = galleryData.description;
         desc.style.marginTop="2.5rem";
+        desc.style.maxWidth= "700px"; 
         desc.style.marginBottom="2.5rem";
         container.appendChild(desc);
         
@@ -337,41 +338,101 @@ const service = sessionStorage.getItem("selectedService");
         [images[i], images[j]] = [images[j], images[i]];
       }
 
-      // 7 Pintar imágenes
-      images.forEach(src => {
-        const img = document.createElement("img");
-        img.src = src;
-        img.alt = galleryData.title;
-        
-        otro_container.appendChild(img);
+      //ESTO ES PARA EMPEZAR LAS ARROWS GUARDO EL
+      // Variables globales
+let currentIndex = 0;
+let imagesList = [];
 
-        img.addEventListener("click", () => {
-          const overlay = document.createElement("div");
-          overlay.style.position = "fixed";
-          overlay.style.inset = "0";
-          overlay.style.background = "rgba(0,0,0,0.85)";
-          overlay.style.display = "flex";
-          overlay.style.justifyContent = "center";
-          overlay.style.alignItems = "center";
-          overlay.style.zIndex = "999999";
-        
-          const imgBig = document.createElement("img");
-          imgBig.src = src;
-          imgBig.style.maxWidth = "80vw";
-          imgBig.style.maxHeight = "80vh";
-          imgBig.style.objectFit = "contain";
-        
-          overlay.appendChild(imgBig);
-          document.body.appendChild(overlay);
-        
-          overlay.addEventListener("click", () => {
-            overlay.remove();
-          });
-        });
-     
-   
-        
+// Pintar imágenes
+images.forEach((src, index) => {
+  const img = document.createElement("img");
+  img.src = src;
+  img.alt = galleryData.title;
+  otro_container.appendChild(img);
+
+  imagesList.push(src); // guardamos todas las imágenes
+
+  img.addEventListener("click", () => {
+
+    currentIndex = index;
+
+    // Crear overlay UNA sola vez
+    let overlay = document.getElementById("popupOverlay");
+    let imgBig;
+
+    if (!overlay) {
+      overlay = document.createElement("div");
+      overlay.id = "popupOverlay";
+      overlay.style.position = "fixed";
+      overlay.style.inset = "0";
+      overlay.style.background = "rgba(0,0,0,0.85)";
+      overlay.style.display = "flex";
+      overlay.style.justifyContent = "center";
+      overlay.style.alignItems = "center";
+      overlay.style.zIndex = "999999";
+
+      imgBig = document.createElement("img");
+      imgBig.id = "popupImage";
+      imgBig.style.maxWidth = "80vw";
+      imgBig.style.maxHeight = "80vh";
+      imgBig.style.objectFit = "contain";
+
+      // Flechas
+      const prev = document.createElement("i");
+      prev.className = "fa-solid fa-chevron-left";
+      const next = document.createElement("i");
+      next.className = "fa-solid fa-chevron-right";
+      [prev, next].forEach(icon => {
+        icon.style.color = "white";
+        icon.style.fontSize = "2rem";
+        icon.style.cursor = "pointer";
+        icon.style.position = "absolute";
+        icon.style.top = "50%";
+        icon.style.filter = "drop-shadow(2px 2px 4px rgba(0,0,0,0.7))";
+        icon.style.transform = "translateY(-50%)";
       });
+      prev.style.left = "2rem";
+      next.style.right = "2rem";
+
+      // Flechas eventos
+      prev.addEventListener("click", e => { e.stopPropagation(); showPrev(); });
+      next.addEventListener("click", e => { e.stopPropagation(); showNext(); });
+
+      overlay.append(imgBig, prev, next);
+      document.body.appendChild(overlay);
+
+      // Click fuera cierra
+      overlay.addEventListener("click", e => {
+        if (e.target === overlay) overlay.style.display = "none";
+      });
+
+      // Teclado
+      document.addEventListener("keydown", e => {
+        if (overlay.style.display !== "flex") return;
+        if (e.key === "ArrowRight") showNext();
+        if (e.key === "ArrowLeft") showPrev();
+        if (e.key === "Escape") overlay.style.display = "none";
+      });
+
+      // Funciones navegación
+      function showNext() {
+        currentIndex = (currentIndex + 1) % imagesList.length;
+        imgBig.src = imagesList[currentIndex];
+      }
+      function showPrev() {
+        currentIndex = (currentIndex - 1 + imagesList.length) % imagesList.length;
+        imgBig.src = imagesList[currentIndex];
+      }
+    } else {
+      imgBig = document.getElementById("popupImage");
+    }
+
+    // Abrir overlay
+    imgBig.src = src;
+    overlay.style.display = "flex";
+  });
+});
+
      
 
 //Boton q va a calculadora
