@@ -233,20 +233,9 @@ body{
         .content {position: relative; padding: 2rem 5rem; }
         
                   
-        .content2{         
-                 
-          position: relative;
-         
-          height: 100%;
-          padding-top: 1rem;
-          padding-bottom: 2rem;
-        }
-       
-  
-
-  
-          :target {
-    scroll-margin-top: 100px; /* ajusta este valor según la altura de tu menú */
+     
+        
+        :target { scroll-margin-top: 100px; /* ajusta este valor según la altura de tu menú */
   }
   
   .thankyou-container{
@@ -261,36 +250,6 @@ body{
   
    
   
-  /*gallery style*/
-  #gallery {
-    position: relative; /* NO absolute ni fixed */
-    overflow: visible;  /* que no esconda hijos */
-    padding-bottom: 4rem; /* deja espacio para botón y footer */
-  }
-  
-  #gallery{min-height: 100vh;}
-  
-  .gallery-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 10px;
-     
-  }
-  
-  
-  .gallery-grid img {
-    width: 100%;
-    height: auto; /* para que mantenga proporción */
-    border-radius: 10px;
-    object-fit: cover;
-    aspect-ratio: 1 / 1;
-    transition: transform 0.3s ease;
-    cursor: pointer;
-  }
-  
-  .gallery-grid img:hover {
-    transform: scale(1.05);
-  }
   
   .overlay {
     position: fixed;
@@ -322,14 +281,10 @@ body{
     object-fit: contain;
   }
   
-  .description-box {
-    max-width: 300px;
-    overflow-y: auto;
-  }
+  .description-box {max-width: 300px; overflow-y: auto;  }
   
   /*calculatorrr*/
-  .calc{  transform: translateY(-20px);    
-      position: absolute; left: 40px; /* antes era 12px */  top: -10px;}
+  .calc{  transform: translateY(-20px); position: absolute; left: 40px; /* antes era 12px */  top: -10px;}
   
   
   .info-tooltip { display: none;  color: gray;  font-size: 0.9rem;    margin-top: 5px;  }
@@ -337,8 +292,14 @@ body{
   .info-wrapper:hover .info-tooltip { display: block; }
   
   .info-wrapper.active .info-tooltip {  display: block; }
-  
+  #contact, #gallery , #sect_sev, #calculator { max-width: 1700px; padding: 4rem 10rem }
 
+  /*gallery style*/
+  #gallery { position: relative; /* NO absolute ni fixed */ overflow: visible;  /* que no esconda hijos */ padding: 4rem 10rem /* deja espacio para botón y footer */  }
+  #gallery{min-height: 100vh;}
+  .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px; }
+  .gallery-grid img {  width: 100%; height: auto; /* para que mantenga proporción */  border-radius: 10px;  object-fit: cover; aspect-ratio: 1 / 1;  transition: transform 0.3s ease; cursor: pointer; }
+  .gallery-grid img:hover { transform: scale(1.05);  }
   
 
 /* SECTION SERVICES */
@@ -357,40 +318,28 @@ body{
   .img_serv { max-width: 220px;  height: auto; }}
 
 @media (max-width: 768px) {.img_serv { max-width: 180px; height: auto;  }}
+@media (max-width: 768px) {
+  #contact, #gallery , #sect_sev, #calculator{ min-width: 1500; padding: 4rem 2rem }
 
-  
-
-
-  
-  @media (max-width: 768px) {
-      section a{     margin-bottom: 5rem;    }
-  
-    .overlay-content {      flex-direction: column !important; /* ya lo tienes, aseguramos que funcione */
-      align-items: center; /* centra contenido horizontal */      gap: 1rem; /* espacio entre imagen y descripción */    }
-  
-    .overlay-content img {      width: 100% !important;  /* ocupa todo el ancho del contenedor */      height: auto !important; /* mantiene proporción */
-       }
-  
-    .description-box {  width: 100% !important;  /* ocupa todo el ancho */      text-align: center;      /* texto centrado */      padding: 1rem 0;    /* un poco de espacio arriba y abajo */
-    }
+  section a{ margin-bottom: 5rem;  }
+  .overlay-content { flex-direction: column !important; align-items: center;  gap: 1rem; }
+  .overlay-content img {  width: 100% !important;  height: auto !important; }
+  .description-box {  width: 100% !important;  text-align: center;   padding: 1rem 0;  }
+  /*Calculador*/
+  #previewImage{ max-height: 250px;}
+  #p_infoPack{position: absolute; top:55%; left: 52%; max-width: 150px; text-align: left; text-shadow:1px 2px 3px #000000;}
+  #packageName{text-align: center;}
        
-  /*gallery style*/
-  
-  .gallery-grid {    display: grid;    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));   gap: 15px;    padding: 20px;  }
+  /*gallery style*/  
+  .gallery-grid { display: grid;  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));   gap: 15px;   }
   
   /* MOBILE FIRST --------------------------------------------*/
   
-  #menu_hamburguer {    visibility: visible;  }
-  
-  #navbarMenu {   visibility: hidden;  }
-  
-  #div_menutop {    display: none;  }
-  
-  #div_menubotom {    display: block;  }
-  
-  #foot_bar {    border-top: #ffffff8f solid;  }
-  
-  
+  #menu_hamburguer {    visibility: visible;  }  
+  #navbarMenu {   visibility: hidden;  }  
+  #div_menutop {    display: none;  }  
+  #div_menubotom {    display: block;  }  
+  #foot_bar {    border-top: #ffffff8f solid;  }    
   /* ELEMENTOS BORROSOS POR DEFECTO */
   .borroso {    filter: none;  }
   
