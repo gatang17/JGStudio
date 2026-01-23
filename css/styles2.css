@@ -9,80 +9,33 @@ body{
     background-color: #000000!important;
     
   }
-  #header{
-    z-index: 100000;
-  }
-  body::-webkit-scrollbar{
-    display: none;
-  }
+  #header{ z-index: 100000;  }
+  body::-webkit-scrollbar{ display: none;  }
   
-  .dNote{
-    background-color: #000;
-    height: 40px;
-    display: flex;
-    align-items: center;
-    justify-content: right;
-  }
-  
-  
-  .dlink span {
-    display: inline-block;
-    animation: growAndColorL 0.8s ease-in-out infinite alternate;
+  .dNote{ background-color: #000; height: 40px; display: flex; align-items: center;  justify-content: right; }
     
-  }
-  @keyframes growAndColorL {
-    0% { transform: translate(100%); color: #000; }
-    100% { transform: scalex(1); color: #ffffff; }
-  }
-  
-  
-  
-  
+  .dlink span {  display: inline-block;  animation: growAndColorL 0.8s ease-in-out infinite alternate; }
+
+  @keyframes growAndColorL {    0% { transform: translate(100%); color: #000; }   100% { transform: scalex(1); color: #ffffff; }  }
   
   /******
   /* Preloader ocupa toda la pantalla */
-  #preloader {
-    display: none; /* por defecto oculto */
-  }
+  #preloader {    display: none; /* por defecto oculto */  }
   
-  #preloader {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: #ffffff; /* fondo blanco */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 9999;
-  }
+  #preloader {  position: fixed;  top: 0;  left: 0;  width: 100%;  height: 100%;  background-color: #ffffff; /* fondo blanco */  display: flex;  justify-content: center;align-items: center;  z-index: 9999;  }
   
   /* Contenedor interno para centrar y separar logo y texto */
-  #preloader-content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 20px; /* espacio entre logo y texto */
-  }
+  #preloader-content {    display: flex;    flex-direction: column;    align-items: center;    gap: 20px; /* espacio entre logo y texto */ }
   
   /* Logo animado */
-  #preloader-logo {
-    width: 150px;
-    transform-origin: center bottom; /* crecer hacia arriba */
-    animation: growAndColor 2s ease-in-out infinite alternate;
-    filter: brightness(0); /* negro al inicio */
-  }
+  #preloader-logo {    width: 150px;    transform-origin: center bottom; /* crecer hacia arriba */    animation: growAndColor 2s ease-in-out infinite alternate;    filter: brightness(0); /* negro al inicio */  }
   
   /* Animación del logo */
   @keyframes growAndColor {
-    0% {
-      transform: scale(1);
-      filter: brightness(0); /* negro */
+    0% { transform: scale(1); filter: brightness(0); /* negro */
     }
     100% {
-      transform: scale(1.5);
-      filter: brightness(0.2); /* gris oscuro sobre blanco */
+      transform: scale(1.5);filter: brightness(0.2); /* gris oscuro sobre blanco */
     }
   }
   
@@ -90,49 +43,20 @@ body{
   /************************/
   
   /* ******** text effects*/
-  a {
-    text-decoration: none ;
-    color:#ffffff8f !important;/* cambia a blanco */
-    text-transform: uppercase;
-    margin-inline: 1rem;
-    font-family: "Nunito", sans-serif;
-    letter-spacing: 0.05em!important;
-    transition: color 0.3s, transform 0.3s; /* solo cambia color y movimiento */
-   }
+  a {    text-decoration: none ;    color:#ffffff8f !important;/* cambia a blanco */    text-transform: uppercase;    margin-inline: 1rem;    font-family: "Nunito", sans-serif;    letter-spacing: 0.05em!important;    transition: color 0.3s, transform 0.3s; /* solo cambia color y movimiento */   }
   
    .lnkMenu {
-    position: relative; /* necesario para ::before */
-    text-decoration: none;
-    color: #f9f9f9e1 !important;
-    text-transform: uppercase;
-    margin-inline: 1rem;
-    font-family: "Nunito", sans-serif;
-    letter-spacing: 0.05em !important;
-    transition: color 0.3s, transform 0.3s;
+    position: relative; /* necesario para ::before */    text-decoration: none;    color: #f9f9f9e1 !important;    text-transform: uppercase;    margin-inline: 1rem;    font-family: "Nunito", sans-serif;    letter-spacing: 0.05em !important;    transition: color 0.3s, transform 0.3s;
   }
   
-  .lnkMenu:hover {
-    transform: scale(1.1);
-    color: #fff; /* opcional: cambia color al hacer hover */
+  .lnkMenu:hover {   transform: scale(1.1);    color: #fff; /* opcional: cambia color al hacer hover */
   }
   
-  .lnkMenu::before {
-    content: "";
-    position: absolute;
-    width: 100%;
-    height: 2px;
-    background: #fff;
-    border-radius: 5px;
-    transform: scaleX(0);
-    transition: transform 0.5s ease; /* mejor solo animar transform */
-    bottom: 0;
-    left: 0;
-    transform-origin: left; /* importante para que crezca desde la izquierda */
+  .lnkMenu::before {   content: "";    position: absolute;    width: 100%;    height: 2px;    background: #fff;    border-radius: 5px;    transform: scaleX(0);
+    transition: transform 0s ease; /* mejor solo animar transform */    bottom: 0;    left: 0;    transform-origin: left; /* importante para que crezca desde la izquierda */
   }
   
-  .lnkMenu:hover::before{
-    transform: scaleX(1);
-  }
+  .lnkMenu:hover::before{    transform: scaleX(1);  }
    
   h1 {
     font-family: "Oswald", sans-serif;
@@ -146,157 +70,35 @@ body{
     justify-content: center;
   
   }
-  
-    h2{
-     font-family: "Fira Sans Condensed", sans-serif;
-     font-weight: 100;
-     font-style: italic;
-     font-size: clamp(2rem, 6vw, 4rem);
-    }
-  
-   h3:hover{
-     letter-spacing: 0.2em;
-   }
-  
-   h3{
-     font-family: "Fira Sans Condensed", sans-serif;
-     font-weight: 600;
-     font-style: normal;
-     color:#ffffff8f!important;
-     position: relative;
-     display: flex;
-     justify-content: center;
-     align-items: center;
-     cursor: pointer;
-     overflow: hidden;
-     font-size: clamp(1.5rem, 4.5vw, 3rem);
-     text-transform: uppercase;
-     letter-spacing: 0.05em;       
-     transition: letter-spacing 0.5s, color 0.5s, background 0.5s;
-     margin: clamp(3rem, 5vw, 8rem)!important;
-   }
-  
-   h4 {
-    font-size: clamp(1.2rem, 3.5vw, 2.5rem);
-  }
-  
-   p{
-    font-family: "Nunito", sans-serif;
-    font-size: clamp(1rem, 2.5vw, 1.5rem); /* más legible en móviles */
-    font-style: normal;
-    color: #f9f9f9e1!important;
-   }
-      /*FORM STYLE*/
-        form{
-          margin-top: 20px;
-          color: #ffffff8f;
-          width: 100%;
-        }
-      .input-box {
-        position: relative;
-        display: inline-block;
-        width: 100%;
-      }
-    
-      textarea, input{
-      overflow: hidden;
-      resize: none;
-      margin-bottom: 2rem;
-      width: 100%;
-      padding: 12px 10px;
-      font-size: 2rem;
-      line-height: 20px;      /* mismo que el input */
-      border: none;           /* Quita todos los bordes */
-    border-bottom: 2px solid #ffffff8f;; /* Solo línea inferior */
-    outline: none;  
-      background: none;
-      vertical-align: top;  
-      resize: none;
-      color:#ffffff8f!important;
-      }    
+  #title{ font-size: clamp(2rem, 5vw, 4rem);   font-family: "alumni-sans-pinstripe-regular" ;   margin-bottom:10rem ;}
+  h2{ font-family: "Fira Sans Condensed", sans-serif; font-weight: 100; font-style: italic;   font-size: clamp(2rem, 6vw, 4rem);  }
+  h3{ font-family: "Fira Sans Condensed", sans-serif;  font-weight: 600; font-style: normal; color:#ffffff8f!important; position: relative; display: flex; justify-content: center; align-items: center; cursor: pointer; overflow: hidden;
+     font-size: clamp(1.5rem, 4.5vw, 3rem); text-transform: uppercase; letter-spacing: 0.05em; transition: letter-spacing 0.5s, color 0.5s, background 0.5s; margin: clamp(3rem, 5vw, 8rem)!important;}
+   h4 { font-size: clamp(1.2rem, 3.5vw, 2.5rem); }
+   p{ font-family: "Nunito", sans-serif; font-size: clamp(1rem, 2.5vw, 1.5rem); /* más legible en móviles */ font-style: normal; color: #f9f9f9e1!important; }
+   /*FORM STYLE*/
+      form{ margin-top: 20px; color: #ffffff8f; width: 100%; }
+      .input-box { position: relative; display: inline-block; width: 100%; }
+      textarea, input{ overflow: hidden; resize: none; margin-bottom: 2rem; width: 100%; padding: 12px 10px; font-size: 2rem; line-height: 20px; /* mismo que el input */ border: none;  /* Quita todos los bordes */
+      border-bottom: 2px solid #ffffff8f;; /* Solo línea inferior */ outline: none; background: none;vertical-align: top; resize: none;color:#ffffff8f!important; }
       /* Label inicial */
-      label {
-        position: absolute;
-        left: 12px;
-        top: 12px;
-        padding: 0 4px;
-        font-size: 16px;
-        border-radius: 5px;
-        transition: 0.3s ease;
-        pointer-events: none;
-        color: #ffffff4d; 
-        text-transform: uppercase;
-      }  
-    
-  /* Flotar label al tener foco, checked o si el contenedor tiene clase .has-value */
-  .input-box input:focus + label,
-  .input-box textarea:focus + label,
-  .input-box input:checked + label,
-  .input-box.has-value label,
-  .input-box select:focus + label {
-    transform: translateY(-20px);
-    font-size: 10px;
-    transition: 0.3s ease;
-  }
-  
-  .input-box input:checked + label,
-  .input-box textarea:not(:empty) + label {
-    transform: translateY(-20px);
-    font-size: 10px;
-    transition: 0.3s ease;
-  }
-  
+      label { position: absolute; left: 12px; top: 12px; padding: 0 4px; font-size: 16px; border-radius: 5px; transition: 0.3s ease; pointer-events: none; color: #ffffff4d; text-transform: uppercase; }
+      /* Flotar label al tener foco, checked o si el contenedor tiene clase .has-value */
+      .input-box input:focus + label, .input-box textarea:focus + label,
+      .input-box input:checked + label, .input-box.has-value label,
+      .input-box select:focus + label { transform: translateY(-20px); font-size: 10px; transition: 0.3s ease; }
       
+      .input-box input:checked + label, .input-box textarea:not(:empty) + label { transform: translateY(-20px); font-size: 10px; transition: 0.3s ease; }
+      .popup { display: none; position: fixed; top: 30%; left: 4%; z-index: 100 !important; padding: 10px;}
       
-  
-      .popup {
-    display: none;
-    position: fixed;
-    top: 30%;
-    left: 4%;
-   z-index: 100 !important;
-    padding: 10px;
-   
-   
-  }
-  /*FOOTER*/
-          #container_top, #foot_bar {
-          transition: background-color 0.4s ease;
-        }
-        
+      /*FOOTER*/
+      #container_top, #foot_bar {transition: background-color 0s ease; }
+      footer { position: fixed; bottom: 0;  /* lo fija al borde inferior de la pantalla */left: 0;width: 100%;  /* ocupa todo el ancho */ padding-top: 10px; background-color: transparent; /* usa transparent, no "none" */z-index: 1000; /* asegura que quede por encima de otros elementos */ padding-bottom: 10px;}
+      .container_top{ position: fixed; top: 0;  /* lo fija al borde inferior de la pantalla */ left: 0; width: 100%; /* ocupa todo el ancho */background-color: transparent; /* usa transparent, no "none" */ z-index: 1000; padding-bottom: 15px;    /* asegura que quede por encima de otros elementos */ }
       
-        footer {
-          position: fixed;
-          bottom: 0;         /* lo fija al borde inferior de la pantalla */
-          left: 0;
-          width: 100%;       /* ocupa todo el ancho */
-          padding-top: 10px;
-          background-color: transparent; /* usa transparent, no "none" */
-          z-index: 1000;     /* asegura que quede por encima de otros elementos */
-          padding-bottom: 10px;
-        }
-  
-        .container_top{
-          position: fixed;
-          top: 0;         /* lo fija al borde inferior de la pantalla */
-          left: 0;
-          width: 100%;       /* ocupa todo el ancho */
-          background-color: transparent; /* usa transparent, no "none" */
-          z-index: 1000; 
-          padding-bottom: 15px;    /* asegura que quede por encima de otros elementos */
-        }    
-  
-        .imgLogo_v2 {
-          max-height: 50px;
-        }
-        .logo-principal {
-          text-align: center;
-          margin-top: 1rem;
-          z-index: 1100;  /* encima del menú si quieres */
-          position: relative;
-        }
-        
-        .boton-principal {
+      .imgLogo_v2 { max-height: 100px; filter: invert(1);  }
+      .logo-principal { text-align: center;  margin-top: 1rem; z-index: 1100;  /* encima del menú si quieres */ position: relative;   }
+      .boton-principal {
           display: flex;
           justify-content: center;
           margin-top: 1rem;
@@ -526,30 +328,15 @@ body{
   }
   
   /*calculatorrr*/
-  .calc{
-      transform: translateY(-20px);    
-      position: absolute;
-      left: 40px; /* antes era 12px */
-      top: -10px;
-      
-  
-  }
+  .calc{  transform: translateY(-20px);    
+      position: absolute; left: 40px; /* antes era 12px */  top: -10px;}
   
   
-  .info-tooltip {
-    display: none;
-    color: gray;
-    font-size: 0.9rem;
-    margin-top: 5px;
-  }
+  .info-tooltip { display: none;  color: gray;  font-size: 0.9rem;    margin-top: 5px;  }
   
-  .info-wrapper:hover .info-tooltip {
-    display: block;
-  }
+  .info-wrapper:hover .info-tooltip { display: block; }
   
-  .info-wrapper.active .info-tooltip {
-    display: block;
-  }
+  .info-wrapper.active .info-tooltip {  display: block; }
   
 
   
