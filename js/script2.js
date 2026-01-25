@@ -614,7 +614,23 @@ document.addEventListener("DOMContentLoaded", () => {
       rushDeliveryInput.addEventListener("change", calculateTotal);
 
       getPackageBtn.addEventListener("click", () => {
-        if (!selectedService || !packageSelect.value) return;
+        if (!selectedService || !packageSelect.value) {
+              // Mostrar mensaje al usuario
+              const messageBox = document.getElementById("packageMessage");
+              messageBox.style.display = "block";
+      
+              // Opcional: ocultar después de 3 segundos
+               // Ocultar automáticamente después de 3 segundos
+        setTimeout(() => {
+          messageBox.classList.remove("show");
+          messageBox.classList.add("hide");
+          setTimeout(() => {
+              messageBox.style.display = "none";
+          }, 400); // coincide con la transición
+      }, 3000);
+      
+              return; // Salir de la función para que no siga
+          }
         const pkg = selectedService.packages[packageSelect.value];
         const extrasArr = [];
         if ((parseInt(extraPhotosInput.value) || 0) > 0) extrasArr.push(`${extraPhotosInput.value} additional photos`);

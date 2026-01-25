@@ -61,7 +61,7 @@
       <!-- Extra 1: Additional Photos -->    
                           
                 <div class="mb-5 input-box info-wrapper" onclick="toggleInfo(this)">
-                             <input type="number" id="extraPhotos" name="extraPhotos"  oninput="calculateTotal()">
+                             <input  type="number" id="extraPhotos" name="extraPhotos"  oninput="calculateTotal()">
                              <label for="name" class="form-label alig calc">Additional Photos</label>
                   <div class="info-tooltip">Includes high-resolution files with full printing rights.</div>
                </div>
@@ -97,7 +97,9 @@
     </div>   
         
     </div>
-  
+    <div id="packageMessage" class="message-box" style="display:none;">
+      Please select a service and a package before proceeding.
+  </div>
                
   <!--FOOTER-->
   <footer class="d-flex justify-content-center w-100" id="foot_bar">
