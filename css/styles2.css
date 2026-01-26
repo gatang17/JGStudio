@@ -78,7 +78,7 @@ footer { position: fixed; bottom: 0;  /* lo fija al borde inferior de la pantall
 .bottom-content {  display: flex;flex-direction: column;  align-items: center; /* centra horizontalmente */  margin-top: 10vh; /* margen desde abajo de la pantalla */   }
 /*BUTTON STYLE*/
 .btn {border: #ffffff8f  solid!important;  position: relative;display: flex; justify-content: center; align-items: center; border-radius: 10px; cursor: pointer; overflow: hidden; font-size: 1rem; text-transform: uppercase;letter-spacing: 0.05em;color: #f9f9f9e1!important;           /* color de texto original */
-        background: transparent;  /* fondo original */ transition: letter-spacing 0.5s, color 0.5s, background 0.5s; } 
+        background: transparent;  /* fondo original */ transition: letter-spacing 0.5s, color 0.5s, background 0.5s;text-shadow: 2px 3px 6px rgba(0, 0, 0, 0.529); } 
 .btn:hover {letter-spacing: 0.2em; color: #f9f9f9e1; transition: all 0.3s ease-in-out;  }       
 /*CARRUSEL DE FONDO*/
 #carr_ind { position: fixed; /* carrusel como fondo */   top: 0; left: 0; width: 100%; height: 100vh; z-index: 0; /* fondo */ }

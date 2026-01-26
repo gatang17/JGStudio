@@ -1,0 +1,24 @@
+{
+  "name": "jg_studio",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gatang17/JGStudio.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/gatang17/JGStudio/issues"
+  },
+  "homepage": "https://github.com/gatang17/JGStudio#readme",
+  "dependencies": {
+    "nodemailer": "^7.0.12"
+  }
+}

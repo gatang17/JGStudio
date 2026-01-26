@@ -38,7 +38,7 @@ We’ll get back to you shortly!
     </p>
    </div>
             
-   <form action="https://formsubmit.co/jgyourstudio@gmail.com" method="POST">
+   <form id="contactForm">
   
    
       <!-- Name -->
@@ -104,7 +104,38 @@ We’ll get back to you shortly!
   </footer>
   <!--ovelay Blured-->
   
+  <script>
+    const form = document.getElementById('contactForm');
+    
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault(); // evita recargar la página
+    
+      const data = {
+        name: document.getElementById('name').value,
+        email: document.getElementById('email').value,
+        message: document.getElementById('message').value
+      };
+    
+      try {
+        const res = await fetch('/api/sendEmail', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data)
+        });
+    
+        const result = await res.json();
+        alert(result.message);
+        window.location.href = "thankyou.html";ror
+        form.reset(); // limpia el formulario
+      } catch (err) {
+        console.error(err);
+        alert('Error al enviar el mensaje.');
+      }
+    });
 
+
+    </script>
+    
 <script src="js/script2.js"></script>
 
 
