@@ -1,31 +1,27 @@
-import nodemailer from "nodemailer";
+import sgMail from '@sendgrid/mail';
+
+sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
 export default async function handler(req, res) {
-  if (req.method !== "POST") {
-    return res.status(405).json({ message: "Only POST requests allowed" });
+  if (req.method !== 'POST') {
+    return res.status(405).json({ message: 'Method not allowed' });
   }
 
   const { name, email, message } = req.body;
 
-  let transporter = nodemailer.createTransport({
-    service: "Gmail",
-    auth: {
-      user: process.env.EMAIL_USER,
-      pass: process.env.EMAIL_PASS,
-    },
-  });
-
   try {
-    await transporter.sendMail({
-      from: process.env.EMAIL_USER,
-      to: process.env.EMAIL_USER, // recibes los correos en tu mismo email
-      subject: `New message from ${name}`,
-      text: `Name: ${name}\nEmail: ${email}\nMessage: ${message}`,
-    });
+    const msg = {
+      to: process.env.SENDGRID_FROM_EMAIL,  // tu correo
+      from: process.env.SENDGRID_FROM_EMAIL, // desde tu correo también
+      subject: `Correo de prueba de ${name}`,
+      text: `Mensaje de ${email}: ${message}`,
+    };
 
-    res.status(200).json({ message: "Correo enviado!" });
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ message: "Error al enviar el correo", error });
+    await sgMail.send(msg);
+
+    res.status(200).json({ message: 'Correo enviado correctamente ✅' });
+  } catch (err) {
+    console.error('Error enviando correo:', err);
+    res.status(500).json({ message: 'Error enviando correo' });
   }
 }
