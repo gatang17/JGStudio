@@ -11,8 +11,8 @@ export default async function handler(req, res) {
 
   try {
     const msg = {
-      to: process.env.SENDGRID_FROM_EMAIL,  // tu correo
-      from: process.env.SENDGRID_FROM_EMAIL, // desde tu correo también
+      to: process.env.SENDGRID_FROM_EMAIL,    // tu correo verificado
+      from: process.env.SENDGRID_FROM_EMAIL,  // tu correo verificado
       subject: `Correo de prueba de ${name}`,
       text: `Mensaje de ${email}: ${message}`,
     };
@@ -21,7 +21,10 @@ export default async function handler(req, res) {
 
     res.status(200).json({ message: 'Correo enviado correctamente ✅' });
   } catch (err) {
-    console.error('Error enviando correo:', err);
-    res.status(500).json({ message: 'Error enviando correo' });
+    console.error('Error enviando correo:', err.response ? err.response.body : err);
+    res.status(500).json({ 
+      message: 'Error enviando correo', 
+      error: err.response ? err.response.body : err.message 
+    });
   }
 }
