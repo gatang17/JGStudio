@@ -1,173 +1,150 @@
-
-:target { scroll-margin-top: 120px; }/* ajusta este valor según la altura de tu menú */
+:target {scroll-margin-top: 120px; }/* ajusta este valor según la altura de tu menú */
 body{ color:#f9f9f9e1!important; overflow: auto; scroll-behavior: smooth;  scrollbar-width: none;    justify-content: center;
   align-items: center;    padding: auto;    background-color: #000000!important; }
+body::-webkit-scrollbar{ display: none;  }
 
-  body::-webkit-scrollbar{ display: none;  }
-  #header{ z-index: 100000;  }
-  
-  .dNote{ background-color: #000; height: 40px; display: flex; align-items: center;  justify-content: right; }
-    
-  .dlink span {  display: inline-block;  animation: growAndColorL 0.8s ease-in-out infinite alternate; }
+#header{ z-index: 100000; }
 
-  @keyframes growAndColorL {    0% { transform: translate(100%); color: #000; }   100% { transform: scalex(1); color: #ffffff; }  }
+.dNote{ background-color: #000; height: 40px; display: flex; align-items: center;  justify-content: right; }    
+.dlink span { animation: growAndColorL 0.8s ease-in-out infinite alternate;  display: inline-block;  }
+@keyframes growAndColorL {    0% { transform: translate(100%); color: #000; }   100% { transform: scalex(1); color: #ffffff; }  }
   
-  /******
-  /* Preloader ocupa toda la pantalla */
-  #preloader {    display: none; /* por defecto oculto */  }
-  
-  #preloader {  position: fixed;  top: 0;  left: 0;  width: 100%;  height: 100%;  background-color: #ffffff; /* fondo blanco */  display: flex;  justify-content: center;align-items: center;  z-index: 9999;  }
-  
+/*===================================PRELOADER LOGO*/
+#preloader {    display: none; /* por defecto oculto */  }  
+#preloader {  position: fixed;  top: 0;  left: 0;  width: 100%;  height: 100%;  background-color: #ffffff; /* fondo blanco */  display: flex;  justify-content: center;align-items: center;  z-index: 9999;  }  
   /* Contenedor interno para centrar y separar logo y texto */
-  #preloader-content {    display: flex;    flex-direction: column;    align-items: center;    gap: 20px; /* espacio entre logo y texto */ }
-  
+#preloader-content {    display: flex;    flex-direction: column;    align-items: center;    gap: 20px; /* espacio entre logo y texto */ }  
   /* Logo animado */
-  #preloader-logo {    width: 150px;    transform-origin: center bottom; /* crecer hacia arriba */    animation: growAndColor 2s ease-in-out infinite alternate;    filter: brightness(0); /* negro al inicio */  }
-  
-  /* Animación del logo */
-  @keyframes growAndColor {
-    0% { transform: scale(1); filter: brightness(0); /* negro */
-    }
-    100% {
-      transform: scale(1.5);filter: brightness(0.2); /* gris oscuro sobre blanco */
-    }
-  }
+#preloader-logo {   animation: growAndColor 2s ease-in-out infinite alternate;   width: 150px; transform-origin: center bottom; /* crecer hacia arriba */  filter: brightness(0); /* negro al inicio */  }
+@keyframes growAndColor {  0% { transform: scale(1); filter: brightness(0); /* negro */    }
+    100% {  transform: scale(1.5);filter: brightness(0.2); /* gris oscuro sobre blanco */    }  }
 
-  
-  
-  /**********LINKS**************/  
-  /* Links */
-  .lnkMenu { text-decoration: none; display: flex; flex-direction: column; align-items: center; }
-  a {    text-decoration: none ;    color:#ffffff8f !important;/* cambia a blanco */    text-transform: uppercase;    margin-inline: 1rem;    font-family: "Nunito", sans-serif;    letter-spacing: 0.05em!important;    transition: color 0.3s, transform 0.3s; /* solo cambia color y movimiento */   }
-  .lnkMenu {
+/*===================================LINKS**************/  
+.lnkMenu { text-decoration: none; display: flex; flex-direction: column; align-items: center; }
+a {    text-decoration: none ;    color:#ffffff8f !important;/* cambia a blanco */    text-transform: uppercase;    margin-inline: 1rem;    font-family: "Nunito", sans-serif;    letter-spacing: 0.05em!important;    transition: color 0.3s, transform 0.3s; /* solo cambia color y movimiento */   }
+.lnkMenu {
     position: relative; /* necesario para ::before */    text-decoration: none;    color: #f9f9f9e1 !important;    text-transform: uppercase;    margin-inline: 1rem;    font-family: "Nunito", sans-serif;    letter-spacing: 0.05em !important;    transition: color 0.3s, transform 0.3s;
   }
-  .lnkMenu:hover {   transform: scale(1.1);    color: #fff; /* opcional: cambia color al hacer hover */
+.lnkMenu:hover {   transform: scale(1.1);    color: #fff; /* opcional: cambia color al hacer hover */
   }
-  .lnkMenu::before {   content: "";    position: absolute;    width: 100%;    height: 2px;    background: #fff;    border-radius: 5px;    transform: scaleX(0);
+.lnkMenu::before {   content: "";    position: absolute;    width: 100%;    height: 2px;    background: #fff;    border-radius: 5px;    transform: scaleX(0);
     transition: transform 0s ease; /* mejor solo animar transform */    bottom: 0;    left: 0;    transform-origin: left; /* importante para que crezca desde la izquierda */
   }  
-  .lnkMenu:hover::before{    transform: scaleX(1);  }
+.lnkMenu:hover::before{    transform: scaleX(1);  }
 
-  /* ****TEXTOS*/   
-  h1 { font-family: "Oswald", sans-serif; font-weight: 400;  font-size: clamp(3rem, 15vw, 12rem); /* mínimo 3rem, escala con 15% del viewport, máximo 12rem */ font-style: normal; text-transform: uppercase; margin: clamp(3rem, 5vw, 8rem)!important; justify-content: center; }
-  #title{ font-size: clamp(2rem, 5vw, 4rem);   font-family: "alumni-sans-pinstripe-regular" ;   margin-bottom:10rem ;}
-  h2{ font-family: "Fira Sans Condensed", sans-serif; font-weight: 100; font-style: italic;   font-size: clamp(2rem, 6vw, 4rem);  }
-  h3{ font-family: "Fira Sans Condensed", sans-serif;  font-weight: 600; font-style: normal; color:#ffffff8f!important; position: relative; display: flex; justify-content: center; align-items: center; cursor: pointer; overflow: hidden;
+/*=====================================ELEMENTOS BORROSOS POR DEFECTO */
+.borroso { filter: none; }
+#contact, #gallery , #sect_sev, #calculator { max-width: 1700px; padding: 4rem 10rem }
+
+/* ====================================TEXTOS*/   
+h1 { font-family: "Oswald", sans-serif; font-weight: 400;  font-size: clamp(3rem, 15vw, 12rem); /* mínimo 3rem, escala con 15% del viewport, máximo 12rem */ font-style: normal; text-transform: uppercase; margin: clamp(3rem, 5vw, 8rem)!important; justify-content: center; }
+.hero::after { content: "";  position: absolute;  inset: 0;
+  background: linear-gradient( to top,  rgba(0,0,0,0) 40%,  rgba(0,0,0,0.55) 100% );
+}
+#title{ font-size: clamp(2rem, 5vw, 4rem);   font-family: "alumni-sans-pinstripe-regular" ;   margin-bottom:10rem ; text-shadow: 2px 3px 6px rgba(0, 0, 0, 0.529); color: #fff;}
+h2{ font-family: "Fira Sans Condensed", sans-serif; font-weight: 100; font-style: italic;   font-size: clamp(2rem, 6vw, 4rem);  }
+h3{ font-family: "Fira Sans Condensed", sans-serif;  font-weight: 600; font-style: normal; color:#ffffff8f!important; position: relative; display: flex; justify-content: center; align-items: center; cursor: pointer; overflow: hidden;
      font-size: clamp(1.5rem, 4.5vw, 3rem); text-transform: uppercase; letter-spacing: 0.05em; transition: letter-spacing 0.5s, color 0.5s, background 0.5s; margin: clamp(3rem, 5vw, 8rem)!important;}
-   h4 { font-size: clamp(1.2rem, 3.5vw, 2.5rem); }
-   p{ font-family: "Nunito", sans-serif; font-size: clamp(0.8rem, 2.5vw, 1.5rem); /* más legible en móviles */ font-style: normal; color: #f9f9f9e1!important; }
+h4 { font-size: clamp(1.2rem, 3.5vw, 2.5rem); }
+p{ font-family: "Nunito", sans-serif; font-size: clamp(0.8rem, 2.5vw, 1.5rem); /* más legible en móviles */ font-style: normal; color: #f9f9f9e1!important; }
    
-      /*FORM STYLE*/
-      form{ margin-top: 20px; color: #ffffff8f; width: 100%; }
-      .input-box { position: relative; display: inline-block; width: 100%; }
-      textarea, input{ overflow: hidden; resize: none; margin-bottom: 2rem; width: 100%; padding: 12px 10px; font-size: 2rem; line-height: 20px; /* mismo que el input */ border: none;  /* Quita todos los bordes */
+/*======================================FORM STYLE*/
+form{ margin-top: 20px; color: #ffffff8f; width: 100%; }
+.input-box { position: relative; display: inline-block; width: 100%; }
+textarea, input{ overflow: hidden; resize: none; margin-bottom: 2rem; width: 100%; padding: 12px 10px; font-size: 2rem; line-height: 20px; /* mismo que el input */ border: none;  /* Quita todos los bordes */
       border-bottom: 2px solid #ffffff8f;; /* Solo línea inferior */ outline: none; background: none;vertical-align: top; resize: none;color:#ffffff8f!important; }
       /* Label inicial */
-      label { position: absolute; left: 12px; top: 12px; padding: 0 4px; font-size: 16px; border-radius: 5px; transition: 0.3s ease; pointer-events: none; color: #ffffff4d; text-transform: uppercase; }
+label { position: absolute; left: 12px; top: 12px; padding: 0 4px; font-size: 16px; border-radius: 5px; transition: 0.3s ease; pointer-events: none; color: #ffffff4d; text-transform: uppercase; }
       /* Flotar label al tener foco, checked o si el contenedor tiene clase .has-value */
-      .input-box input:focus + label, .input-box textarea:focus + label,
-      .input-box input:checked + label, .input-box.has-value label,
-      .input-box select:focus + label { transform: translateY(-20px); font-size: 10px; transition: 0.3s ease; }
+.input-box input:focus + label, .input-box textarea:focus + label,
+.input-box input:checked + label, .input-box.has-value label,
+.input-box select:focus + label { transform: translateY(-20px); font-size: 10px; transition: 0.3s ease; }
       
-      .input-box input:checked + label, .input-box textarea:not(:empty) + label { transform: translateY(-20px); font-size: 10px; transition: 0.3s ease; }
-      .popup { display: none; position: fixed; top: 30%; left: 4%; z-index: 100 !important; padding: 10px;}
+.input-box input:checked + label, .input-box textarea:not(:empty) + label { transform: translateY(-20px); font-size: 10px; transition: 0.3s ease; }
+.popup { display: none; position: fixed; top: 30%; left: 4%; z-index: 100 !important; padding: 10px;}
 
-      .thankyou-container{ border: 1px solid transparent; /* el borde no se ve */      box-shadow: 0 4px 10px rgba(74, 74, 74, 0.5); /* sombra visible */  border-radius: 15px;   margin: 2rem;   padding: 1rem;}
+.thankyou-container{ border: 1px solid transparent; /* el borde no se ve */      box-shadow: 0 4px 10px rgba(74, 74, 74, 0.5); /* sombra visible */  border-radius: 15px;   margin: 2rem;   padding: 1rem;}
       
-      /*FOOTER*/
-      #container_top, #foot_bar {transition: background-color 0s ease; }
-      footer { position: fixed; bottom: 0;  /* lo fija al borde inferior de la pantalla */left: 0;width: 100%;  /* ocupa todo el ancho */ padding-top: 10px; background-color: transparent; /* usa transparent, no "none" */z-index: 1000; /* asegura que quede por encima de otros elementos */ padding-bottom: 10px;}
-      .container_top{ position: fixed; top: 0;  /* lo fija al borde inferior de la pantalla */ left: 0; width: 100%; /* ocupa todo el ancho */background-color: transparent; /* usa transparent, no "none" */ z-index: 1000; padding-bottom: 15px;    /* asegura que quede por encima de otros elementos */ }
-      #foot_bar { border-top: #ffffff8f solid; }
-      .imgLogo_v2 { max-height: 100px; filter: invert(1);  }
-      .logo-principal { text-align: center;  margin-top: 1rem; z-index: 1100;  /* encima del menú si quieres */ position: relative;   }
-      .boton-principal {    display: flex;     justify-content: center;   margin-top: 1rem;        z-index: 1100;      position: relative;    }
+/*=========================================FOOTER*/
+#container_top, #foot_bar {transition: background-color 0s ease; }
+footer { position: fixed; bottom: 0;  /* lo fija al borde inferior de la pantalla */left: 0;width: 100%;  /* ocupa todo el ancho */ padding-top: 10px; background-color: transparent; /* usa transparent, no "none" */z-index: 1000; /* asegura que quede por encima de otros elementos */ padding-bottom: 10px;}
+.container_top{ position: fixed; top: 0;  /* lo fija al borde inferior de la pantalla */ left: 0; width: 100%; /* ocupa todo el ancho */background-color: transparent; /* usa transparent, no "none" */ z-index: 1000; padding-bottom: 15px;    /* asegura que quede por encima de otros elementos */ }
+#foot_bar { border-top: #ffffff8f solid; }
+.imgLogo_v2 { max-height: 100px; filter: invert(1);  }
+.logo-principal { text-align: center;  margin-top: 1rem; z-index: 1100;  /* encima del menú si quieres */ position: relative;   }
+.boton-principal {    display: flex;     justify-content: center;   margin-top: 1rem;        z-index: 1100;      position: relative;    }
         
-  /* MOBILE  --------------------------------------------*/      
-  /*******MENU HAMBURGUER*******/
-  #navbarMenu { position: fixed; /* siempre visible en la ventana */ top: 0; left: 0;  width: 100vw;  height: 100vh;  display: flex;   flex-direction: column;    justify-content: center;  /* centra vertical */
-    align-items: center;      /* centra horizontal */   background: rgba(0,0,0,0.5);   backdrop-filter: blur(8px);   z-index: 1000;        /* encima de logo y botón */  visibility: hidden;  }
-  #menu_hamburguer {  visibility: hidden;  }  
-       /* Gradiente de transparente arriba a negro abajo */
-  .menu-overlay { padding-top: 10px;  background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.7) 100%);  backdrop-filter: blur(8px);  }
-  
-
-  
-  
-  /* ELEMENTOS BORROSOS POR DEFECTO */
-  .borroso { filter: none; }
-  #contact, #gallery , #sect_sev, #calculator { max-width: 1700px; padding: 4rem 10rem }
-
-  /*Este contenido es de index*/
-  .bottom-content {  display: flex;flex-direction: column;  align-items: center; /* centra horizontalmente */  margin-top: 10vh; /* margen desde abajo de la pantalla */   }
-  /*BUTTON STYLE*/
-  .btn {border: #ffffff8f  solid!important;  position: relative;display: flex; justify-content: center; align-items: center; border-radius: 10px; cursor: pointer; overflow: hidden; font-size: 1rem; text-transform: uppercase;letter-spacing: 0.05em;color: #f9f9f9e1!important;           /* color de texto original */
+/*=========================================INDEX*/
+.bottom-content {  display: flex;flex-direction: column;  align-items: center; /* centra horizontalmente */  margin-top: 10vh; /* margen desde abajo de la pantalla */   }
+/*BUTTON STYLE*/
+.btn {border: #ffffff8f  solid!important;  position: relative;display: flex; justify-content: center; align-items: center; border-radius: 10px; cursor: pointer; overflow: hidden; font-size: 1rem; text-transform: uppercase;letter-spacing: 0.05em;color: #f9f9f9e1!important;           /* color de texto original */
         background: transparent;  /* fondo original */ transition: letter-spacing 0.5s, color 0.5s, background 0.5s; } 
-  .btn:hover {letter-spacing: 0.2em; color: #f9f9f9e1; transition: all 0.3s ease-in-out;  }       
-  /*CARRUSEL DE FONDO*/
-  #carr_ind { position: fixed; /* carrusel como fondo */   top: 0; left: 0; width: 100%; height: 100vh; z-index: 0; /* fondo */ }
-  /* Ajuste de imágenes para que llenen todo */
-  .carousel-inner { width: 100%; height: 100%; }
-  .img_carr { width: 100%; height: 100vh; object-fit: cover; object-position: center center; /* ✅ centra la imagen */  filter: brightness(0.5); /* 1 = normal, <1 = más oscuro */ }
-  .section_v1 { position: relative; /* cualquier contenido encima */z-index: 10; min-height: 100vh; /* ocupa toda la pantalla visible */ background-repeat: no-repeat;
+.btn:hover {letter-spacing: 0.2em; color: #f9f9f9e1; transition: all 0.3s ease-in-out;  }       
+/*CARRUSEL DE FONDO*/
+#carr_ind { position: fixed; /* carrusel como fondo */   top: 0; left: 0; width: 100%; height: 100vh; z-index: 0; /* fondo */ }
+/* Ajuste de imágenes para que llenen todo */
+.carousel-inner { width: 100%; height: 100%; }
+.img_carr { width: 100%; height: 100vh; object-fit: cover; object-position: center center; /* centra la imagen */ /* filter: brightness(0.5); /* 1 = normal, <1 = más oscuro */ }
+.section_v1 { position: relative; /* cualquier contenido encima */z-index: 10; min-height: 100vh; /* ocupa toda la pantalla visible */ background-repeat: no-repeat;
           background-size: cover; background-blend-mode: darken; display: flex; flex-direction: column;justify-content: space-evenly; /* separa el contenido: evently */ }
-  .content {position: relative; padding: 2rem 5rem; }
-          
-          
-  
-   
-  
-  
-  .overlay { position: fixed; top: 0;  left: 0;  width: 100%;   height: 100%;  background-color: rgba(0,0,0,0.8);    display: flex;    justify-content: center;    align-items: center;    z-index: 9999; padding: 20px;
-  }
-  .overlay-content {    display: flex;    flex-direction: row;    max-width: 100%;    max-height: auto;    gap: 20px;    padding: 20px; }
-  .overlay-content img {   max-height: 80vh;   max-width: 70vw;   object-fit: contain; }
-  .description-box {max-width: 300px; overflow-y: auto;  }
-  
-  /*calculatorrr*/
-  .calc{  transform: translateY(-20px); position: absolute; left: 40px; /* antes era 12px */  top: -10px;}
-  #p_infoPack, #bp{margin-left: 2rem; text-align: left; }
-  #packageName{text-align: left;}
-  
-  
-  .info-tooltip { display: none;  color: gray;  font-size: 0.9rem;    margin-top: 5px;  }  
-  .info-wrapper:hover .info-tooltip { display: block; }  
-  .info-wrapper.active .info-tooltip {  display: block; }
+.content {position: relative; padding: 2rem 5rem; }
 
-  
-
-  /*gallery style*/
-  #gallery { position: relative; /* NO absolute ni fixed */ overflow: visible;  /* que no esconda hijos */ padding: 4rem 10rem /* deja espacio para botón y footer */  }
-  #gallery{min-height: 100vh;}
-  .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px; }
-  .gallery-grid img {  width: 100%; height: auto; /* para que mantenga proporción */  border-radius: 10px;  object-fit: cover; aspect-ratio: 1 / 1;  transition: transform 0.3s ease; cursor: pointer; }
-  .gallery-grid img:hover { transform: scale(1.05);  }
-  #previewImage{max-width:350px;}
-  
-
-/* SECTION SERVICES */
+/*=======================================SECTION SERVICES */
 #seccionServices {background-color: #000000; min-height: 100vh; /* siempre cubre la pantalla completa */  width: 100vw; z-index: 1; }   
 #sect_sev { max-width: 1000px; margin: 0 auto; text-align: center;}
 
 /* Desktop */
 @media (min-width: 768px) {  #sect_sev {display: flex;    justify-content: center;    gap: 10px; /* 👈 EXACTO lo que querías */  }}
-
-
-
 /* Images */
 .img_serv { width: 300px; height: auto; border-radius: 10px;}
-@media (max-width: 1024px) {
-  .img_serv { max-width: 220px;  height: auto; }}
+@media (max-width: 1024px) { .img_serv { max-width: 220px;  height: auto; }}
+   
+ /* 
+.overlay { position: fixed; top: 0;  left: 0;  width: 100%;   height: 100%;  background-color: rgba(0,0,0,0.8);    display: flex;    justify-content: center;    align-items: center;    z-index: 9999; padding: 20px;
+  }
+.overlay-content {    display: flex;    flex-direction: row;    max-width: 100%;    max-height: auto;    gap: 20px;    padding: 20px; }
+.overlay-content img {   max-height: 80vh;   max-width: 70vw;   object-fit: contain; }
+.description-box {max-width: 300px; overflow-y: auto;  }*/
+  
+/*calculatorrr*/
+.calc{  transform: translateY(-20px); position: absolute; left: 40px; /* antes era 12px */  top: -10px;}
+#p_infoPack, #bp{margin-left: 2rem; text-align: left; }
+#packageName{text-align: left;}
+   /* Quitar los spinners de inputs number */
+input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer-spin-button {   -webkit-appearance: none;  margin: 0; }
+input[type=number] {  -moz-appearance: textfield; /* Firefox */}
+/* Estilo del mensaje de alerta en calculadora*/
+.message-box {  padding: 12px 18px;  position: absolute;  z-index: 20000; top: 50%; left: 50%;  background-color: #fbfbfb; /* amarillo suave tipo advertencia */  color: #050505;
+  border: 1px solid #faf9f5;  border-radius: 5px;  margin-top: 10px;  font-family: sans-serif;  box-shadow: 0 2px 5px rgba(0,0,0,0.1); transform: translate(-50%, -50%); /* centra el div realmente */}
 
-@media (max-width: 768px) {.img_serv { max-width: 180px; height: auto;  }}
+.info-tooltip { display: none;  color: gray;  font-size: 0.9rem;    margin-top: 5px;  }  
+.info-wrapper:hover .info-tooltip { display: block; }  
+.info-wrapper.active .info-tooltip {  display: block; }
+
+/*gallery style*/
+#gallery { position: relative; /* NO absolute ni fixed */ overflow: visible;  /* que no esconda hijos */ padding: 4rem 10rem /* deja espacio para botón y footer */  }
+#gallery{min-height: 100vh;}
+.gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px; }
+.gallery-grid img {  width: 100%; height: auto; /* para que mantenga proporción */  border-radius: 10px;  object-fit: cover; aspect-ratio: 1 / 1;  transition: transform 0.3s ease; cursor: pointer; }
+.gallery-grid img:hover { transform: scale(1.05);  }
+#previewImage{max-width:350px;}
+
+/*========================================MOBILE**/      
+/*MENU HAMBURGUER*******/
+#navbarMenu { position: fixed; /* siempre visible en la ventana */ top: 0; left: 0;  width: 100vw;  height: 100vh;  display: flex;   flex-direction: column;    justify-content: center;  /* centra vertical */
+  align-items: center;      /* centra horizontal */   background: rgba(0,0,0,0.5);   backdrop-filter: blur(8px);   z-index: 1000;        /* encima de logo y botón */  visibility: hidden;  }
+#menu_hamburguer {  visibility: hidden;  }  
+/* Gradiente de transparente arriba a negro abajo */
+.menu-overlay { padding-top: 10px;  background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.7) 100%);  backdrop-filter: blur(8px);  }
+
 @media (max-width: 768px) {
   #contact, #gallery , #sect_sev, #calculator{ min-width: 1500; padding: 4rem 2rem }
+  .img_serv { max-width: 180px; height: auto;  }
 
-  section a{ margin-bottom: 5rem;  }
+  /*section a{ margin-bottom: 5rem;  }
   .overlay-content { flex-direction: column !important; align-items: center;  gap: 1rem; }
   .overlay-content img {  width: 100% !important;  height: auto !important; }
-  .description-box {  width: 100% !important;  text-align: center;   padding: 1rem 0;  }
+  .description-box {  width: 100% !important;  text-align: center;   padding: 1rem 0;  }*/
   
   /*Calculador*/
   #previewImage{max-width:130px;}
@@ -175,37 +152,13 @@ body{ color:#f9f9f9e1!important; overflow: auto; scroll-behavior: smooth;  scrol
   /*gallery style*/  
   .gallery-grid { display: grid;  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));   gap: 15px;   }
   
-  /* MOBILE FIRST --------------------------------------------*/
-  
+  /* MOBILE*/  
   #menu_hamburguer {    visibility: visible;  }  
   #navbarMenu {   visibility: hidden;  }  
   #div_menutop {    display: none;  }  
   #div_menubotom {    display: block;  }  
   #foot_bar {    border-top: #ffffff8f solid;  }    
   /* ELEMENTOS BORROSOS POR DEFECTO */
-  .borroso {    filter: none;  }
-
-  
+  .borroso { filter: none;  }  
   
   }
-  
-  
- /* Quitar los spinners de inputs number */
-input[type=number]::-webkit-inner-spin-button, 
-input[type=number]::-webkit-outer-spin-button { 
-  -webkit-appearance: none;
-  margin: 0; 
-}
-
-input[type=number] {
-  -moz-appearance: textfield; /* Firefox */
-}
-/* Estilo del mensaje */
-.message-box {  padding: 12px 18px;
-  position: absolute;
-  z-index: 20000;
-  top: 50%; left: 50%;  background-color: #fbfbfb; /* amarillo suave tipo advertencia */  color: #050505;
-  border: 1px solid #faf9f5;  border-radius: 5px;  margin-top: 10px;  font-family: sans-serif;  box-shadow: 0 2px 5px rgba(0,0,0,0.1); transform: translate(-50%, -50%); /* centra el div realmente */}
-
-
-  

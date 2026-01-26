@@ -151,18 +151,14 @@ window.addEventListener('resize', actualizarUI);
 //CARROUSEL container pero con el metodo crear elemento
 document.addEventListener('DOMContentLoaded', () => {
   const cont = document.getElementById('cont_background');
-
   const images = [
     "./img/photos/carousel/04.jpg",
     "./img/photos/carousel/02.jpg",
     "./img/photos/carousel/03.jpg",
     "./img/photos/carousel/01.jpg",
     "./img/photos/carousel/05.jpg"
-  ];
-
-  
+  ];  
   // Crear contenedor
-
   const divCarrusel = document.createElement('div');
   divCarrusel.id = 'carr_ind';
   cont.appendChild(divCarrusel);
@@ -195,8 +191,6 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 //esto espara cargar los htmls MENU Y  para cerrar el menu hamburguersa
-
-
 
 //AQUI SE ORGANIZA EL FORM PARA Q LO LABEL SUBAN
   /* Añade/quita la clase .has-value según el contenido del campo :valid no funciona igual para los <textarea> si no les pones required o placeholder.
@@ -251,22 +245,7 @@ document.querySelectorAll('.input-box').forEach(box => {
   });
 });
 
-//galeria enGOOOOOOGLE
-const albums = {
-  "UgGQLB482cNuCAG37": "https://photos.app.goo.gl/UgGQLB482cNuCAG37"
-  // puedes agregar más códigos aquí
-};
-
-function checkCode() {
-  const code = document.getElementById('code').value.trim();
-  if(albums[code]){
-   // window.location.href = albums[code]; // abre en la misma página
-    window.open(albums[code], "_blank"); //nueva pesta;a
-  } 
-}
-
-
-//GALERIAAAAAAAA #111111
+//GALERIAAAAAAAA 
 document.addEventListener("DOMContentLoaded", () => {
 
 // 1️ Leer servicio desde URL
@@ -274,12 +253,10 @@ const params = new URLSearchParams(window.location.search);
 const serviceKey = params.get("service") || "photography";
 
 // Guardar en sessionStorage
-
 sessionStorage.setItem("selectedService", serviceKey.toLowerCase());
 const service = sessionStorage.getItem("selectedService");
 
-  // 2️ Overlay
-  
+  // 2️ Overlay  
   const overlay = document.getElementById("overlay");
   //const overlayContent = document.getElementById("overlay-content");
   const overlayImage = document.getElementById("overlay-image");
