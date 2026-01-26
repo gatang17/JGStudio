@@ -71,7 +71,7 @@ We’ll get back to you shortly!
         };
       
         try {
-          const res = await fetch('/api/sendEmail', {
+          const res = await fetch('api/sendEmail.js', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(data)
