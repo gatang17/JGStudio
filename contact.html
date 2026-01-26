@@ -24,65 +24,72 @@
 
 <body style="height: 100%;">
 
-<!--Menu-->
- 
+<!--Menu--> 
   <div id="header"></div>
    
-  <div class="container" style="margin-top: 12rem;" id="contact">
-
-  <h1 class="text-center mt-5 mb-5">Contact</h1>
-   <div>
+  <div class="container" style="margin-top: 12rem;" id="contact"> <h1 class="text-center mt-5 mb-5">Contact</h1>  <div>
     <p class="mb-5 text-center">
       For questions, service requests, or feedback, please fill out the form below.
 We’ll get back to you shortly!
     </p>
-   </div>
-            
+  <!--========================================================================================================================-->
    <form id="contactForm">  
-    <!-- Name -->
-    <div class="mb-3 input-box has-value">
-      <input type="text" name="name" id="name" required>
-      <label for="name" class="form-label">Name</label>
-    </div>
-    
-    <!-- Email -->
-    <div class="mb-3 input-box has-value">       
-      <input type="email" name="email" id="email" required>
-      <label for="email" class="form-label">Email</label>
-    </div>
-    
-    <!-- Message -->
-    <div class="mb-3 input-box has-value">   
-      <textarea name="message" id="message" rows="5" required style="overflow:hidden;"></textarea>
-      <label for="email" class="form-label">message</label>
-    </div>
+      <!-- Name -->    
+      <div class="mb-3 input-box has-value">
+        <input type="text" name="name" id="name" required>
+        <label for="name" class="form-label">Name</label>
+      </div>
+      
+      <!-- Email -->
+      <div class="mb-3 input-box has-value">       
+        <input type="email" name="email" id="email" required>
+        <label for="email" class="form-label">Email</label>
+      </div>
+      
+      <!-- Message -->
+      <div class="mb-3 input-box has-value">
+        <textarea name="message" id="message" rows="5" required style="overflow:hidden;"></textarea>
+        <label for="email" class="form-label">message</label>
+      </div>
   
-    <!-- Botón de envío -->
-    <div class="text-center">
-      <button type="submit" class="mb-3 btn text-center">Send Message</button>
+      <!-- Botón de envío -->
+      <div class="text-center">
+        <button type="submit" class="mb-3 btn text-center">Send Message</button>
+      </div>       
+    </form>
     </div>
-  </form>
-  
-    </div>
-
-
-    
-<div class="container popup" id="popup">
-<form action="" >
-  <div class="input-box">
-    <input type="number" id="nombre" required size="30">
-    <label for="nombre">Code</label>
-  </div>
- 
-
+    <script>
+      const form = document.getElementById('contactForm');
+      
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault(); // evita recargar la página
+      
+        const data = {
+          name: document.getElementById('name').value,
+          email: document.getElementById('email').value,
+          message: document.getElementById('message').value
+        };
+      
+        try {
+          const res = await fetch('/api/sendEmail', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data)
+          });
+      
+          const result = await res.json();
+          alert(result.message);
+          window.location.href = "thankyou.html";ror
+          form.reset(); // limpia el formulario
+        } catch (err) {
+          console.error(err);
+          alert('Error al enviar el mensaje.');
+        }
+      }); 
+      </script>
 </form>
-<div class="mb-3 text-center ">
-  <button class="mb-3 btn text-center" id="btSub">start</button>
-</div>
 
-</div> 
-
-
+<!--========================================================================================================================-->
              
 <!--FOOTER-->
   <footer class="d-flex justify-content-center w-100" id="foot_bar">
@@ -92,41 +99,7 @@ We’ll get back to you shortly!
        <a href="https://twitter.com" target="_blank"><i class="fab fa-twitter"></i></a>
     </div>
   </footer>
-  <!--ovelay Blured-->
-  
-  <script>
-    const form = document.getElementById('contactForm');
-    
-    form.addEventListener('submit', async (e) => {
-      e.preventDefault(); // evita recargar la página
-    
-      const data = {
-        name: document.getElementById('name').value,
-        email: document.getElementById('email').value,
-        message: document.getElementById('message').value
-      };
-    
-      try {
-        const res = await fetch('/api/sendEmail', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(data)
-        });
-    
-        const result = await res.json();
-        alert(result.message);
-        window.location.href = "thankyou.html";ror
-        form.reset(); // limpia el formulario
-      } catch (err) {
-        console.error(err);
-        alert('Error al enviar el mensaje.');
-      }
-    });
-
-
-    </script>
-    
-<script src="js/script2.js"></script>
+  <script src="js/script2.js"></script>
 
 
       
