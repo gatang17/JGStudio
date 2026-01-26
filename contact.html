@@ -38,41 +38,31 @@ We’ll get back to you shortly!
     </p>
    </div>
             
-   <form id="contactForm">
-  
-   
-      <!-- Name -->
+   <form id="contactForm">  
+    <!-- Name -->
+    <div class="mb-3 input-box has-value">
+      <input type="text" name="name" id="name" required>
+      <label for="name" class="form-label">Name</label>
+    </div>
     
-      <div class="mb-3 input-box has-value">
-        <input type="text" name="name" id="name" required>
-        <label for="name" class="form-label">Name</label>
-      </div>
-      
-      <!-- Email -->
-      <div class="mb-3 input-box has-value">       
-        <input type="email" name="email" id="email" required>
-        <label for="email" class="form-label">Email</label>
-      </div>
-      
-      <!-- Message -->
-      <div class="mb-3 input-box has-value">
-        
-        <textarea name="message" id="message" rows="5" required style="overflow:hidden;"></textarea>
-        <label for="email" class="form-label">message</label>
-
-      </div>
+    <!-- Email -->
+    <div class="mb-3 input-box has-value">       
+      <input type="email" name="email" id="email" required>
+      <label for="email" class="form-label">Email</label>
+    </div>
+    
+    <!-- Message -->
+    <div class="mb-3 input-box has-value">   
+      <textarea name="message" id="message" rows="5" required style="overflow:hidden;"></textarea>
+      <label for="email" class="form-label">message</label>
+    </div>
   
-      <!-- Botón de envío -->
-      <div class="text-center">
-        <button type="submit" class="mb-3 btn text-center">Send Message</button>
-      </div>
+    <!-- Botón de envío -->
+    <div class="text-center">
+      <button type="submit" class="mb-3 btn text-center">Send Message</button>
+    </div>
+  </form>
   
-      <!-- Opcionales (evita spam y redirecciones) -->
-      <input type="hidden" name="_next" value="https://jgstudio.vercel.app/thankyou.html">
-      <input type="hidden" name="_captcha" value="false">
-      <input type="hidden" name="_template" value="table">
-  
-    </form>
     </div>
 
 
