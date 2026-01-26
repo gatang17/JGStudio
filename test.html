@@ -23,11 +23,13 @@ document.getElementById('btnTest').addEventListener('click', async () => {
   });
 
   let result;
-  try {
-    result = await res.json(); // intenta leer JSON
-  } catch {
-    result = { message: await res.text() }; // si no es JSON, toma el texto
-  }
+try {
+  result = await res.json();
+} catch {
+  result = { message: await res.text() };
+}
+alert(result.message);
+
 
   console.log("Respuesta del servidor:", result);
   alert(result.message);
