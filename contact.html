@@ -91,7 +91,7 @@ We’ll get back to you shortly!
     document.getElementById("contact-form").addEventListener("submit", async (e) => {
       e.preventDefault();
     
-      const res = await fetch("./api/contact", {
+      const res = await fetch("app/contact/route.js", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
