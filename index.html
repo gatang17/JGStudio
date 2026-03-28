@@ -1,32 +1,21 @@
 <!DOCTYPE html>
 <html>
 <head>
-
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
   
   <title>J&G Photography</title>
-
-
-
   <link rel="stylesheet" href="css/styles2.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
-        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
-        crossorigin="anonymous">
-                
-        <!--fontaweson for links-->
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-...tuhash..."  crossorigin="anonymous"  referrerpolicy="no-referrer" />
-
-        <!--googleFonts-->
-        <link rel="preconnect" href="https://fonts.googleapis.com"> <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Alumni+Sans+Pinstripe:ital@0;1&display=swap" rel="stylesheet">
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Fira+Sans+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Oswald:wght@200..700&display=swap" rel="stylesheet">
+  <!--Boostrap for links-->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <!--fontaweson for links-->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-...tuhash..."  crossorigin="anonymous"  referrerpolicy="no-referrer" />
+  <!-- At the Head ->  AOS CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
 
 </head>
 
-<body style="height: 100vh;">
+<body >
   
   <!-- Preloader -->
   <div id="preloader">
@@ -38,11 +27,11 @@
   <div id="cont_background" class="container hero"></div>
   <!--MENU-->
 
-  <div id="header"></div>
+  <div id="header" ></div>
 
   
 
-  <section class="section_v1 container" id="init">
+  <section class="section_v1" id="init" data-aos="fade-up" data-aos-duration="800">
     
     <!-- Botón y título abajo -->
     <div class="bottom-content borroso main_content " >
@@ -50,41 +39,35 @@
       <a href="index.html#seccionServices"><img src="img/logoBW.png" class="imgLogo_v2 mt-3 "></a> 
       </div> 
       <h2 id="title"> Every image is handmade with intention, care, and lasting quality.</h2>
-      <a href="calculator.html" class="btn mybtn mb-3">
+      <a href="calculator.html" class="hvr-grow  btn mybtn mb-3">
         View Packages & Pricing
       </a>     
     </div>
-    
-          
-  
-                      
-    
   </section>
 
   <!--Services-->
 
-  <div class="content container-fluid  borroso" id="seccionServices">
+  <div class="content container-fluid  borroso" id="seccionServices" data-aos="fade-up" data-aos-duration="800">
   
-    <div class="px-5 text-center" style="max-width: 800px; margin: 0 auto;">
+  
+    <div class="px-5 text-center cont_index">
       <h1>Explore Our Services</h1>
       <p class="mb-2">
-        At J&amp;G Photography, we blend creativity and precision to offer services that highlight your personal brand and visual storytelling.
+        At JG Photography, we blend creativity and precision to offer services that highlight your personal brand and visual storytelling.
         Whether you're looking to enhance your online presence or preserve meaningful moments through artistic portraiture, our current offerings are tailored to meet your needs:
       </p>
-    </div>
-    
+    </div> 
 
-    
-    <section id="sect_sev" class="text-center">
-      <a href="./gallery.html?service=portrait" class="lnkMenu">
+    <section id="sect_sev" class="text-center cont_index" data-aos="fade-up" data-aos-duration="800">
+       <a href="./gallery.html?service=portrait" class="lnkMenu hvr-grow ">
         <img src="img/services/01.jpg" class="img_serv mb-1" alt="portraits">
         <p>Portraits</p>
       </a>    
-      <a href="./gallery.html?service=fam_kids" class="lnkMenu">
+      <a href="./gallery.html?service=fam_kids" class="lnkMenu hvr-grow ">
         <img src="img/services/02.jpg" class="img_serv mb-1" alt="family & kids">
         <p>family & kids</p>
       </a>    
-      <a href="./gallery.html?service=product" class="lnkMenu">
+      <a href="./gallery.html?service=product" class="lnkMenu hvr-grow ">
         <img src="img/services/03.jpg" class="img_serv mb-1" alt="corporate">
         <p>corporate</p>
       </a>
@@ -92,8 +75,8 @@
     
 <!--About Us-->
 
-  <div class="row align-items-center justify-content-center" id="secabout"> 
-    <div class="px-5 text-center" style="max-width: 800px; margin: 0 auto;">
+  <div class="align-items-center justify-content-center" id="secabout" data-aos="fade-up" data-aos-duration="800"> 
+    <div class="px-5 text-center cont_index" >
 
       <h1 class="text-center">About Us</h1>
       <p class="text-center">We are a passionate team dedicated to capturing moments that feel like a dream. With the right experience and equipment, we focus on bringing out the sharpness, color, and emotion in every image. For over 10 years, we’ve specialized in family photography, helping our clients preserve memories that last a lifetime.
@@ -120,8 +103,16 @@
     </div>
   </footer>
 
-  <!-- Bootstrap Bundle JS (Popper incluido) -->
+<!-- Bootstrap Bundle JS (Popper incluido) -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<!-- AOS JS -->
+<script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+<script>
+  AOS.init({
+    duration: 800, // duración por defecto en ms
+    once: true     // animar solo una vez al hacer scroll
+  });
+</script>
 <script src="js/script2.js"></script>
 
 </body>

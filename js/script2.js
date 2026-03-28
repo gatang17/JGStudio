@@ -129,14 +129,14 @@ window.addEventListener('scroll', () => {
 
   // Si está en el tope
   if (posicionActual === 0) {
-    menu_cny.style.backgroundColor = "transparent";
-    menu_cny.style.color= "var(--color-texto-dbg)"; 
-    footerStyle.style.backgroundColor = "transparent";
+  menu_cny.style.backgroundColor = "transparent";
+  menu_cny.style.color= "var(--color-texto-dbg)"; 
+  footerStyle.style.backgroundColor = "transparent";
   } else {
     // Si baja o sube (cualquier movimiento de scroll)
-    menu_cny.style.backgroundColor = "var(--color-fondo)";  
-     menu_cny.style.color= "var( --invert_color)"; 
-   footerStyle.style.backgroundColor = "var(--color-fondo)";
+  menu_cny.style.backgroundColor = "var(--color-fondo)";  
+  menu_cny.style.color= "var( --invert_color)";
+  footerStyle.style.backgroundColor = "var(--color-fondo)";
   }
 
   // Actualiza la posición actual del scroll
@@ -281,7 +281,6 @@ const service = sessionStorage.getItem("selectedService");
       container.style.flexDirection = "column";   // vertical
       container.style.justifyContent = "center";  // centra en el eje vertical
       container.style.alignItems = "center";      // centra en el eje horizontal
-      container.style.paddingTop="12rem";
       container.style.paddingBottom="4rem";
  
       otro_container.className = "gallery-grid";
@@ -485,7 +484,7 @@ document.addEventListener("DOMContentLoaded", () => {
             </div>
 
             <h4 class="totalp d-none">Total: $<span class="totalPrice ">${pkg.basePrice}</span></h4>
-            <a class="getPackageBtn btn d-none">Get This Package</a>
+            <a class="getPackageBtn hvr-grow  btn d-none">Get This Package</a>
 
           </div>
         `;
@@ -509,6 +508,9 @@ document.addEventListener("DOMContentLoaded", () => {
            c.classList.remove("card_silver");
            c.querySelector(".totalp").classList.add("d-none");
           c.querySelector(".getPackageBtn").classList.add("d-none");
+          c.querySelectorAll("li, p, h1, h2, h3, span").forEach(el => {
+            el.style.color = "var(--color-texto)";
+          });
         });
 
         card.classList.add("active");
@@ -516,6 +518,9 @@ document.addEventListener("DOMContentLoaded", () => {
         card.querySelector(".totalp").classList.remove("d-none");
         card.querySelector(".getPackageBtn").classList.remove("d-none");
         selectedCard = card;
+        card.querySelectorAll("li, p, h1, h2, h3, span").forEach(el => {
+          el.style.color = "var(--color-texto-dbg)";
+        });
     //here i get the package name
       const packageName = card.querySelector(".packageName").textContent.trim().toLowerCase();
 

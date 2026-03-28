@@ -1,27 +1,45 @@
 :root {
-  --color-fondo1: #c9c0b3; /* rosa viejo amarillado */
-    --invert_color: #0c0c0c; /* rosa viejo amarillado */
-  --color-fondo: #ebdecf; /* rosa viejo amarillado */
-  --color-texto-dbg: #faf4e7; /* blanco hueso */
-  --color-texto: #42423d; /* blanco hueso */
-  --color-texto-sec: #42423d; /* para secundarios o sombras */
+  /* Colores */
+  --color-fondo1: #c9c0b3;
+  --invert_color: #0c0c0c;
+  --color-fondo: #ebdecf;
+  --color-texto-dbg: #faf4e7;
+  --color-texto: #42423d;
+  --color-texto-sec: #42423d;
   --color-borde: #2c282a;
-  --color-bonton-a: #faf4e7;
+  --color-boton-a: #faf4e7;
   --color-gold-a: rgb(190, 133, 15);
   --color-silver-a: rgb(144, 141, 141);
   --color-bronce-a: rgb(192, 110, 59);
+
+  /* Tipografía */
+  --title_font: 'Cinzel Decorative', serif;  /* solo h1 y h2 */
+  --body_font: 'Oswald', sans-serif;         /* resto del texto */
 }
+/* Títulos */
+h1, h2 {
+  font-family: var(--title_font);
+  color: var(--color-texto);
+}
+
+/* Resto del texto */
+body, p, li, span, a, button {
+  font-family: var(--body_font);
+  color: var(--color-texto);
+}
+
 button:hover,
 a:hover,
 .card:hover{
   cursor: pointer;
 }
 
+
 :target {
-  scroll-margin-top: 120px;
+  scroll-margin-top: 50px;
 } /* ajusta este valor según la altura de tu menú */
 body {
-  color: var(--color-texto) !important;
+  color: var(--color-texto);
   overflow: auto;
   scroll-behavior: smooth;
   scrollbar-width: none;
@@ -37,27 +55,15 @@ body::-webkit-scrollbar {
 #header {
   z-index: 100000;
 }
-
+#init{
+  padding:0 5rem;
+}
 .dNote {
    background-color: var(--color-fondo) ;
   height: 40px;
   display: flex;
   align-items: center;
   justify-content: right;
-}
-.dlink span {
-  animation: growAndColorL 0.8s ease-in-out infinite alternate;
-  display: inline-block;
-}
-@keyframes growAndColorL {
-  0% {
-    transform: translate(100%);
-    color: #000;
-  }
-  100% {
-    transform: scalex(1);
-    color: var(--color-texto);
-  }
 }
 
 /*===================================PRELOADER LOGO*/
@@ -102,37 +108,25 @@ body::-webkit-scrollbar {
 }
 
 /*===================================LINKS**************/
+
 .lnkMenu {
-  text-decoration: none;
+  position: relative; /* necesario para ::before */
+  text-transform: uppercase;
   display: flex;
   flex-direction: column;
   align-items: center;
+  letter-spacing: 0.05em;
+  margin-inline: 1rem;
+  color: var(--color-texto-dbg);
+  mix-blend-mode: difference;
 }
+
 a {
-  text-decoration: none;
-  color: var(--color-texto) f8f !important; /* cambia a blanco */
-  text-transform: uppercase;
-  margin-inline: 1rem;
-  font-family: "Nunito", sans-serif;
-  letter-spacing: 0.05em !important;
-  transition: color 0.3s, transform 0.3s; /* solo cambia color y movimiento */
+  text-decoration: none!important;   
 }
-.lnkMenu {
-  position: relative; /* necesario para ::before */
-  text-decoration: none;
 
-  text-transform: uppercase;
-  margin-inline: 1rem;
-  font-family: "Nunito", sans-serif;
-  letter-spacing: 0.05em !important;
-  transition: color 0.3s, transform 0.3s;
-}
-.lnkMenu:hover {
-  transform: scale(1.1);
-  color: var(--color-texto); /* opcional: cambia color al hacer hover */
 
-}
-.lnkMenu::before {
+/*  .lnkMenu::before {
   content: "";
   position: absolute;
   width: 100%;
@@ -140,14 +134,14 @@ a {
   background: #fff;
   border-radius: 5px;
   transform: scaleX(0);
-  transition: transform 0s ease; /* mejor solo animar transform */
+  transition: transform 0s ease; 
   bottom: 0;
   left: 0;
-  transform-origin: left; /* importante para que crezca desde la izquierda */
+  transform-origin: left;
 }
 .lnkMenu:hover::before {
   transform: scaleX(1);
-}
+} */
 
 /*=====================================ELEMENTOS BORROSOS POR DEFECTO */
 .borroso {
@@ -160,14 +154,13 @@ a {
   max-width: 1700px;
   justify-items: center;
   align-items: center;
-    margin-top: 10rem;
-    margin-bottom: 5rem;
+  margin-top: 10rem;
+  margin-bottom: 5rem;
 
 }
 
 /* ====================================TEXTOS*/
 h1 {
-  font-family: "Oswald", sans-serif;
   font-weight: 400;
   font-size: clamp(
     3rem,
@@ -194,18 +187,15 @@ h1 {
 }
 #title {
   font-size: clamp(2rem, 5vw, 4rem);
-  font-family: "alumni-sans-pinstripe-regular";
   text-shadow: 2px 3px 6px rgba(0, 0, 0, 0.529);
   color: var(--color-texto-dbg);
 }
 h2 {
-  font-family: "Fira Sans Condensed", sans-serif;
   font-weight: 100;
   font-style: italic;
   font-size: clamp(2rem, 6vw, 4rem);
 }
 h3 {
-  font-family: "Fira Sans Condensed", sans-serif;
   font-weight: 600;
   font-style: normal;
   color: var(--color-texto) f8f !important;
@@ -224,7 +214,6 @@ h4 {
   font-size: clamp(1.2rem, 3.5vw, 2.5rem);
 }
 p {
-  font-family: "Nunito", sans-serif;
   font-size: clamp(0.8rem, 2.5vw, 1.5rem); /* más legible en móviles */
   font-style: normal;
 }
@@ -309,6 +298,10 @@ form label {
 #foot_bar {
   transition: background-color 0s ease;
 }
+#foot_bar {
+  visibility: hidden;
+  border-top: #ffffff8f solid;
+}
 footer {
   position: fixed;
   bottom: 0; /* lo fija al borde inferior de la pantalla */
@@ -363,13 +356,10 @@ footer {
   text-transform: uppercase;
   letter-spacing: 0.05em; /* color de texto original */
   transition: letter-spacing 0.5s, color 0.5s, background 0.5s;
-  background: var(--color-bonton-a)!important;
+  background: var(--color-boton-a)!important;
   margin: 0;
 }
-.mybtn:hover {
-  letter-spacing: 0.2em;
-  transition: all 0.3s ease-in-out;
-}
+
 /*CARRUSEL DE FONDO*/
 #carr_ind {
   position: fixed; /* carrusel como fondo */
@@ -401,21 +391,18 @@ footer {
   flex-direction: column;
   justify-content: flex-end; /* separa el contenido: evently */
 }
-.content {
-  position: relative;
-  padding: 2rem 5rem;
-}
-
 /*=======================================SECTION SERVICES */
 #seccionServices {
-   background-color: var(--color-fondo);
+ background-color: var(--color-fondo);
   min-height: 100vh; /* siempre cubre la pantalla completa */
   width: 100vw;
   z-index: 1;
+  padding: 5rem;
+}
+.cont_index{
+  max-width: 800px; margin: 0 auto;
 }
 #sect_sev {
-  max-width: 1000px;
-  margin: 0 auto;
   text-align: center;
 }
 
@@ -500,12 +487,18 @@ input[type="number"] {
 .info-wrapper.active .info-tooltip {
   display: block;
 }
+.decrease, .increase {
+  border-radius: 5px!important;
+  border: 1px solid var(--color-texto-dbg)!important;
+  color: var(--color-texto-dbg)!important;
+  background-color: transparent!important;  
+}
 
 /*gallery style*/
 #gallery {
   position: relative; /* NO absolute ni fixed */
   overflow: visible; /* que no esconda hijos */
-  padding: 4rem 10rem; /* deja espacio para botón y footer */
+  padding: 0rem 10rem; /* deja espacio para botón y footer */
 }
 #gallery {
   min-height: 100vh;
@@ -514,6 +507,7 @@ input[type="number"] {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 10px;
+  padding-top: 0!important;
 }
 .gallery-grid img {
   width: 100%;
@@ -582,12 +576,15 @@ input[type="number"] {
   }
   .card.active{
    color: var(--color-texto-dbg)!important ;
-     cursor: default;
+   cursor: default;
+   }
+   .card.active p,li{
+
+   }
+  .card_gold{
+      background-color:var(--color-gold-a)!important ;      
   }
-    .card_gold{
-      background-color:var(--color-gold-a)!important ;
- 
-  }
+
     .card_silver{
      background-color:var(--color-silver-a)!important ;
   }
@@ -595,7 +592,7 @@ input[type="number"] {
      background-color:var(--color-bronce-a)!important ;
   }
     .card.active .btn{
-      background-color: var(--color-bonton-a)!important ;
+      background-color: var(--color-boton-a)!important ;
       color: var(--color-borde)!important;
     }
 .features-list{
@@ -706,6 +703,9 @@ input[type="number"] {
   }
 
   /* MOBILE*/
+  .lnkMenu {
+    color: var(--color-texto-dbg);
+  }
   #menu_hamburguer {
     visibility: visible;
   }
@@ -719,6 +719,7 @@ input[type="number"] {
     display: block;
   }
   #foot_bar {
+    visibility: visible;
     border-top: #ffffff8f solid;
   }
   /* ELEMENTOS BORROSOS POR DEFECTO */
