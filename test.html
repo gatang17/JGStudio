@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Test SendEmail</title>
+  </head>
+  <body>
+    <button id="btnTest">Enviar Test Email</button>
+<section class="parent">
+  <div class="child-1">cbfggh</div>  <div class="child-2">hjhjk</div>  <div class="child-3">ghhj</div>
+</section>
+<style>
+  .parent{ display: flex; gap: 5px; }
+  div{ background-color: blue;}
+  .child-1:active, .child-2:hover, .child-3:hover{flex-grow: 1; }
+</style>
+<script>
+document.getElementById('btnTest').addEventListener('click', async () => {
+  const testData = {
+    name: "Gretel Test",
+    email: "test@example.com",
+    message: "Este es un correo de prueba desde la función serverless."
+  };
+
+  try {
+    const res = await fetch("api/sendEmail", {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(testData)
+    });
+
+    // Solo intentamos leer la respuesta **una vez**
+    let result;
+    try {
+      result = await res.json();
+    } catch {
+      // Si falla, lo leemos como texto plano
+      result = { message: await res.text() };
+    }
+
+    console.log("Respuesta del servidor:", result);
+    alert(result.message);
+
+  } catch (err) {
+    console.error("Error en fetch:", err);
+    alert("Error en el envío de prueba. Revisa los logs de Vercel.");
+  }
+});
+
+</script>
+
+<script>
+  window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
+</script>
+<script defer src="/_vercel/insights/script.js"></script>
+
+  </body>
+</html>
