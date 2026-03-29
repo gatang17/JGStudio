@@ -302,13 +302,14 @@ form label {
 /*=========================================FOOTER*/
 .findus{
   background-color: var(--color-fondo1);
+  padding: 24px;
 }
-.img-thumbnail {
-  background-color: transparent !important;
-  border: none; /* opcional */
+.img-fluid{
+   border: none; /* opcional */
   padding: 0;   /* opcional */
   filter: opacity(0.25);
-  mix-blend-mode: color-burn;
+  max-height: 50vh;
+  mix-blend-mode: multiply;
 }
 
 
