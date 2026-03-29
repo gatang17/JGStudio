@@ -32,6 +32,7 @@ button:hover,
 a:hover,
 .card:hover{
   cursor: pointer;
+ 
 }
 
 
@@ -96,6 +97,7 @@ body::-webkit-scrollbar {
   transform-origin: center bottom; /* crecer hacia arriba */
   filter: brightness(0); /* negro al inicio */
 }
+
 @keyframes growAndColor {
   0% {
     transform: scale(1);
@@ -117,9 +119,12 @@ body::-webkit-scrollbar {
   align-items: center;
   letter-spacing: 0.05em;
   margin-inline: 1rem;
-  color: var(--color-texto-dbg);
-  mix-blend-mode: difference;
-}
+  color: var(--color-texto-dbg);  
+  --bs-btn-color: var(--color-texto-dbg)!important;
+  mix-blend-mode: difference!important;
+ }
+
+
 
 a {
   text-decoration: none!important;   
@@ -150,6 +155,7 @@ a {
 #contact,
 #gallery,
 #sect_sev,
+#findus,
 #calculator {
   max-width: 1700px;
   justify-items: center;
@@ -294,11 +300,18 @@ form label {
 }
 
 /*=========================================FOOTER*/
+
+.img-thumbnail {
+  background-color: transparent !important;
+  border: none; /* opcional */
+  padding: 0;   /* opcional */
+}
+
 #container_top,
 #foot_bar {
   transition: background-color 0s ease;
 }
-#foot_bar {
+#div_menubotom {
   visibility: hidden;
   border-top: #ffffff8f solid;
 }
@@ -308,7 +321,7 @@ footer {
   left: 0;
   width: 100%; /* ocupa todo el ancho */
   padding-top: 10px;
-   background-color:transparent; /* usa transparent, no "none" */
+  background-color:transparent; /* usa transparent, no "none" */
   z-index: 1000; /* asegura que quede por encima de otros elementos */
   padding-bottom: 10px;
 }
@@ -343,6 +356,7 @@ footer {
     margin-bottom: 5rem;
     max-width:clamp(300px, 70vw, 600px) ;
 }
+
 /*BUTTON STYLE*/
 .mybtn{
   position: relative;

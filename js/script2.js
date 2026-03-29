@@ -36,6 +36,7 @@ document.addEventListener("DOMContentLoaded", () => {
       document.getElementById("header").innerHTML = html;
 
       // --- VARIABLES INICIALES ---
+const btnHbg= document.getElementById('btn_H');       // menú top     
 const divMenu = document.getElementById('div_menutop');       // menú top
 const divFoot = document.getElementById('div_menubotom');     // footer
 const footerStyle = document.getElementById('foot_bar');      // contenedor footer
@@ -49,6 +50,9 @@ const menu_cny = document.getElementById('container_top')
 const menuOriginalHTML = divMenu.innerHTML;
 const footerOriginalHTML = divFoot.innerHTML;
  menu_cny.style.color= "var(--color-texto-dbg)"; 
+ // Assuming btnHbg is your element
+btnHbg.style.removeProperty('--bs-btn-color');
+
 let menuAbierto = false; // estado del menú hamburguesa
 let ultimaPosicionScroll = 0; // posición anterior del scroll
 
