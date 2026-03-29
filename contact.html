@@ -58,13 +58,15 @@ We’ll get back to you shortly!
   
     </form>
     </div>
+
 <!--FOOTER-->
-<footer class="d-flex justify-content-center w-100" id="foot_bar">
+<footer id="foot_bar" class="gap-2">
   <div id="div_menubotom">
     <a href="https://www.facebook.com/profile.php?id=61559554461199" class="hvr-grow lnkMenu" target="_blank"><i class="fab fa-facebook-f"></i></a>
     <a href="https://www.instagram.com/jlprezc/" class="hvr-grow lnkMenu" target="_blank"><i class="fab fa-instagram"></i></a>
     <a href="https://twitter.com" class="hvr-grow lnkMenu" target="_blank"><i class="fab fa-twitter"></i></a>
-    </div>
+  </div>
+ <a class="lnkMenu" href="https://gatangdesigns.io/"> <p style="font-size: 0.5rem;" id="copyright"></p></a>
 </footer>
 
 <!-- Bootstrap Bundle JS (Popper incluido) -->
@@ -72,12 +74,28 @@ We’ll get back to you shortly!
 <!-- AOS JS -->
 <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
 <script>
-AOS.init({
-  duration: 800, // duración por defecto en ms
-  once: true     // animar solo una vez al hacer scroll
-});
+  AOS.init({
+    duration: 800, // duración por defecto en ms
+    once: true     // animar solo una vez al hacer scroll
+  });
+</script>
+<script>
+  // Obtener el footer
+  const footer = document.getElementById('copyright');
+
+  // Año actual
+  const year = new Date().getFullYear();
+
+  // Poner texto
+  footer.textContent = `© ${year} GATANG desings. All rigths reseved.`;
 </script>
 <script src="js/script2.js"></script>
+<!--Vercel Analytics-->
+<script>
+
+    window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
+  </script>
+  <script defer src="/_vercel/insights/script.js"></script>
 
 </body>
 </html>

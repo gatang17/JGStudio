@@ -37,7 +37,7 @@ a:hover,
 
 
 :target {
-  scroll-margin-top: 50px;
+  scroll-margin-top: 95px;
 } /* ajusta este valor según la altura de tu menú */
 body {
   color: var(--color-texto);
@@ -334,8 +334,7 @@ form label {
   visibility: hidden; 
 }
 #copyright{
-  filter: brightness(1);
-  mix-blend-mode: color-burn;
+  filter: invert(1);
 }
 footer {
   position: fixed;
