@@ -300,20 +300,42 @@ form label {
 }
 
 /*=========================================FOOTER*/
-
+.findus{
+  background-color: var(--color-fondo1);
+}
 .img-thumbnail {
   background-color: transparent !important;
   border: none; /* opcional */
   padding: 0;   /* opcional */
+  filter: opacity(0.25);
+  mix-blend-mode: color-burn;
 }
+
 
 #container_top,
 #foot_bar {
   transition: background-color 0s ease;
 }
-#div_menubotom {
-  visibility: hidden;
+/* Footer centrado */
+#foot_bar {
   border-top: #ffffff8f solid;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* centra horizontalmente todos los hijos */
+  justify-content: center;
+  text-align: center;  /* centra el texto dentro de <p> */
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+#div_menubotom a {
+  margin: 0 10px; /* separa los iconos */
+}
+#div_menubotom {
+  visibility: hidden; 
+}
+#copyright{
+  filter: brightness(1);
+  mix-blend-mode: color-burn;
 }
 footer {
   position: fixed;
@@ -353,7 +375,7 @@ footer {
     display: flex;
     flex-direction: column;
     align-items: self-start;
-    margin-bottom: 5rem;
+    padding-bottom: 10rem;
     max-width:clamp(300px, 70vw, 600px) ;
 }
 
@@ -397,7 +419,7 @@ footer {
 .section_v1 {
   position: relative; /* cualquier contenido encima */
   z-index: 10;
-  min-height: 100vh; /* ocupa toda la pantalla visible */
+  height: 100vh; /* ocupa toda la pantalla visible */
   background-repeat: no-repeat;
   background-size: cover;
   background-blend-mode: darken;
@@ -731,10 +753,7 @@ input[type="number"] {
   }
   #div_menubotom {
     display: block;
-  }
-  #foot_bar {
-    visibility: visible;
-    border-top: #ffffff8f solid;
+   visibility: visible;
   }
   /* ELEMENTOS BORROSOS POR DEFECTO */
   .borroso {
