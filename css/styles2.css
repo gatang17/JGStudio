@@ -120,13 +120,15 @@ body::-webkit-scrollbar {
   margin-inline: 1rem;
   color: var(--color-texto-dbg);  
   --bs-btn-color: var(--color-texto-dbg)!important;
-  filter: drop-shadow(2px 2px 4px var(--color-borde));
+mix-blend-mode: difference;
  }
-
-
+ #div_menutop .lnkMenu {
+  filter: drop-shadow(1px 1px 5px var(--color-borde));
+ }
 
 a {
   text-decoration: none!important;   
+ 
 }
 
 
