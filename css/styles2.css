@@ -1,6 +1,6 @@
 :root {
   /* Colores */
-  --color-fondo1: #c9c0b3;
+  --color-fondo1: #dad3c8;
   --invert_color: #0c0c0c;
   --color-fondo: #ebdecf;
   --color-texto-dbg: #faf4e7;
@@ -11,6 +11,9 @@
   --color-gold-a: rgb(190, 133, 15);
   --color-silver-a: rgb(144, 141, 141);
   --color-bronce-a: rgb(192, 110, 59);
+  --gradient-top-bottom: linear-gradient(to bottom, rgba(87, 73, 60, 0.496), rgba(89, 73, 58, 0));
+  --gradient-top-top: linear-gradient(to top, rgba(87, 73, 60, 0.496), rgba(89, 73, 58, 0));
+
 
   /* Tipografía */
   --title_font: 'Cinzel Decorative', serif;  /* solo h1 y h2 */
@@ -40,14 +43,13 @@ a:hover,
   scroll-margin-top: 95px;
 } /* ajusta este valor según la altura de tu menú */
 body {
-  color: var(--color-texto);
   overflow: auto;
   scroll-behavior: smooth;
   scrollbar-width: none;
   justify-content: center;
   align-items: center;
-  padding: auto;
-    background-color: var(--color-fondo1) !important;
+   width: 100vw;
+  background-color: var(--color-fondo) !important;
 }
 body::-webkit-scrollbar {
   display: none;
@@ -55,17 +57,13 @@ body::-webkit-scrollbar {
 
 #header {
   z-index: 100000;
+  
 }
+
 #init{
   padding:0 5rem;
 }
-.dNote {
-   background-color: var(--color-fondo) ;
-  height: 40px;
-  display: flex;
-  align-items: center;
-  justify-content: right;
-}
+
 
 /*===================================PRELOADER LOGO*/
 #preloader {
@@ -77,7 +75,7 @@ body::-webkit-scrollbar {
   left: 0;
   width: 100%;
   height: 100%;
-   background-color: var(--color-fondo); /* fondo blanco */
+  background-color: var(--color-fondo); /* fondo blanco */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -116,12 +114,13 @@ body::-webkit-scrollbar {
   text-transform: uppercase;
   display: flex;
   flex-direction: column;
+  text-wrap: nowrap;
   align-items: center;
   letter-spacing: 0.05em;
   margin-inline: 1rem;
   color: var(--color-texto-dbg);  
   --bs-btn-color: var(--color-texto-dbg)!important;
-  mix-blend-mode: difference!important;
+  filter: drop-shadow(2px 2px 4px var(--color-borde));
  }
 
 
@@ -178,6 +177,7 @@ h1 {
  
   justify-content: center;
 }
+
 .hero::after {
   content: "";
   position: absolute;
@@ -222,6 +222,15 @@ h4 {
 p {
   font-size: clamp(0.8rem, 2.5vw, 1.5rem); /* más legible en móviles */
   font-style: normal;
+}
+/*======================================About*/
+.wrapper{
+  background-color: var(--color-fondo1);
+  width: 100%;
+  min-height: 50vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 /*======================================FORM STYLE*/
@@ -276,6 +285,7 @@ form label {
   transition: 0.3s ease;
 }
 
+
 .input-box input:checked + label,
 .input-box textarea:not(:empty) + label {
   transform: translateY(-20px);
@@ -300,15 +310,12 @@ form label {
 }
 
 /*=========================================FOOTER*/
-.findus{
-  background-color: var(--color-fondo1);
-  padding: 24px;
-}
+
 .img-fluid{
    border: none; /* opcional */
   padding: 0;   /* opcional */
   filter: opacity(0.25);
-  max-height: 50vh;
+  max-height: 800px;
   mix-blend-mode: multiply;
 }
 
@@ -319,8 +326,7 @@ form label {
 }
 /* Footer centrado */
 #foot_bar {
-  border-top: #ffffff8f solid;
-  display: flex;
+   display: flex;
   flex-direction: column;
   align-items: center; /* centra horizontalmente todos los hijos */
   justify-content: center;
@@ -334,9 +340,7 @@ form label {
 #div_menubotom {
   visibility: hidden; 
 }
-#copyright{
-  filter: invert(1);
-}
+
 footer {
   position: fixed;
   bottom: 0; /* lo fija al borde inferior de la pantalla */
@@ -371,6 +375,9 @@ footer {
 }
 
 /*=========================================INDEX*/
+#cont_background{
+  width: 100%;
+}
 .bottom-content {
     display: flex;
     flex-direction: column;
@@ -429,12 +436,18 @@ footer {
 }
 /*=======================================SECTION SERVICES */
 #seccionServices {
- background-color: var(--color-fondo);
   min-height: 100vh; /* siempre cubre la pantalla completa */
   width: 100vw;
   z-index: 1;
-  padding: 5rem;
+  padding: 5rem 0;
+  position: relative;          /* para que el overlay no afecte otros elementos */
+  background:#ebdecf91 ; /* fondo semitransparente */
+  backdrop-filter: blur(24px);  /* desenfoque del carrusel que está detrás */
+
+  z-index: 5;   
 }
+
+
 .cont_index{
   max-width: 800px; margin: 0 auto;
 }
@@ -501,9 +514,9 @@ input[type="number"] {
   z-index: 20000;
   top: 50%;
   left: 50%;
-   background-color:  #fbfbfb; /* amarillo suave tipo advertencia */
+  background-color: var(--color-fondo1);
   color:var(--color-texto);
-  border: 1px solid #faf9f5;
+  border: 1px solid var(--color-texto-dbg);
   border-radius: 5px;
   margin-top: 10px;
   font-family: sans-serif;
@@ -565,12 +578,25 @@ input[type="number"] {
   min-width: 100%;
   align-items: center;
   justify-content: center;
-  min-height: 30vh;
-  background-image: url('../img/photos/photography/10.jpg');
+  min-height: 40vh;
+  background-image: url('/img/photos/family_kids/10.jpg');
   background-size: cover;
   background-repeat: no-repeat;
-  background-position: center;
+  background-position: center;  
+  position: relative; /* necesario para que ::after se posicione sobre él */
 }
+
+#previewImage::after {
+  content: '';                        /* obligatorio para que aparezca */
+  position: absolute;                  /* posicionamos encima */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--gradient-top-top); /* tu gradiente */
+  pointer-events: none;                /* no bloquea clicks */
+}
+
 .mini-card {
   display: flex;
   align-items: center;

@@ -50,6 +50,8 @@ const menu_cny = document.getElementById('container_top')
 const menuOriginalHTML = divMenu.innerHTML;
 const footerOriginalHTML = divFoot.innerHTML;
  menu_cny.style.color= "var(--color-texto-dbg)"; 
+ menu_cny.style.background = "var(--gradient-top-bottom)"; 
+ 
  // Assuming btnHbg is your element
 btnHbg.style.removeProperty('--bs-btn-color');
 
@@ -154,7 +156,7 @@ window.addEventListener('resize', actualizarUI);
     .catch(err => console.error("Header load error", err));
 });
 
-//CARROUSEL container pero con el metodo crear elemento
+//========================================CARROUSEL container pero con el metodo crear elemento
 document.addEventListener('DOMContentLoaded', () => {
   const cont = document.getElementById('cont_background');
   const images = [
@@ -194,6 +196,8 @@ document.addEventListener('DOMContentLoaded', () => {
     imgs[next].style.opacity = '1';
     current = next;
   }, 5000);
+
+  
 });
 
 //esto espara cargar los htmls MENU Y  para cerrar el menu hamburguersa
@@ -201,26 +205,19 @@ document.addEventListener('DOMContentLoaded', () => {
 //AQUI SE ORGANIZA EL FORM PARA Q LO LABEL SUBAN
   /* Añade/quita la clase .has-value según el contenido del campo :valid no funciona igual para los <textarea> si no les pones required o placeholder.
   Entonces el JavaScript se encarga de hacer manualmente lo que el CSS no puede detectar por sí solo.*/
-
-document.querySelectorAll('.input-box').forEach(box => {
-      const field = box.querySelector('input');
-    
-      if (!field) return;
-    
-      const update = () => {
-        // Si tiene contenido (no solo espacios) o si el field está en foco, marca como has-value
-        if (field.value.trim() !== '') box.classList.add('has-value');
-        else box.classList.remove('has-value');
-      };
-    
-
-      // Eventos que actualizan el estado
-      field.addEventListener('input', update);
-      // Ejecutar una vez en carga (por si hay value pre-llenado)
-      update();
-    }); 
-
-    
+  document.querySelectorAll('.input-box').forEach(box => {
+    const field = box.querySelector('input, textarea'); // <-- agrega textarea
+    if (!field) return;
+  
+    const update = () => {
+      if (field.value.trim() !== '') box.classList.add('has-value');
+      else box.classList.remove('has-value');
+    };
+  
+    field.addEventListener('input', update);
+    // Ejecutar una vez en carga por si hay value pre-llenado
+    update();
+  });    
    /*dfnbsdvbfdsvdsmv****************/
   
     const textarea = document.getElementById('auto-textarea');

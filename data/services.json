@@ -26,41 +26,7 @@
     }
   },
 
-  
-  "dnotes": {
-    "title": "Designer’s Notes",
-    "introduction": "In this section, I share the design and development decisions made for the photography studio website. I explain how each element contributes to the client experience and the overall efficiency of the project.",
-    "goals": [
-      "Present the services and galleries clearly, based on the client’s request to make it easy for visitors to understand what they offer.",
-      "Allow clients to estimate the cost of their projects transparently, following the client’s requirement for price clarity and transparency.",
-      "Create an elegant, trustworthy, and clean design, reflecting the professional image the client wanted for their studio.",
-      "Include a logo animation and highlight the three main services, as requested by the client to emphasize their core offerings."
-    ],
-    "technology": {
-      "tc_opc": "The site was built with HTML, CSS, and JavaScript to have full control over the design, animations, and pricing calculator, avoiding the limitations and recurring costs of CMSs like WordPress or Webflow.",
-      "tc_dep": "The code is managed in GitHub for version control and backup, and deployed on Vercel to make the site live with traffic metrics, performance tracking, and easy updates. This workflow reflects a professional pipeline: development → repository → deployment.",
-      "explanation": [
-        "HTML: builds the structure of the site.",
-        "CSS: styles the site and creates the look you see.",
-        "JavaScript: adds interactivity, like the pricing calculator and animations.",
-        "GitHub: keeps track of changes and stores the code safely.",
-        "Vercel: hosts the site online and provides analytics."
-      ]
-    },
-    "codeExplanation": "The site uses a single JSON file to store all data such as services, packages, prices, and designer notes. This allows us to avoid duplicating the same information in multiple pages or scripts. By centralizing the data, updates or changes can be made in one place, making maintenance much easier. Without this approach, we would have to search through multiple HTML or JavaScript files to make edits, which is more error-prone and time-consuming.",
-    "cost": [
-      "Only the domain and hosting are needed, no plugins or subscriptions.",
-      "Over time, this solution is more affordable and sustainable than using a CMS."
-    ],
-    "userExperience": [
-      "Pricing calculator is custom-made for the studio’s services.",
-      "Animations and galleries are designed to inspire trust.",
-      "Lightweight and fast design improves user experience."
-    ],
-    "conclusion": "This solution allows the studio to have a professional, reliable, and efficient website, reflecting its style and giving clients useful tools, while keeping a modern and controlled development workflow."
-  },
-
-  "packages": [
+    "packages": [
     {
       "name": "Essential",
       "tagline": "A quick, polished portrait session",
