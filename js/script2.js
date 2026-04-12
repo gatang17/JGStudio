@@ -27,135 +27,137 @@ window.addEventListener('load', () => {
     preloader.style.display = 'none';
   }
 });
-
-//header injection
 document.addEventListener("DOMContentLoaded", () => {
   fetch("header.html")
     .then(res => res.text())
     .then(html => {
       document.getElementById("header").innerHTML = html;
 
-      // --- VARIABLES INICIALES ---
-const btnHbg= document.getElementById('btn_H');       // menú top     
-const divMenu = document.getElementById('div_menutop');       // menú top
-const divFoot = document.getElementById('div_menubotom');     // footer
-const footerStyle = document.getElementById('foot_bar');      // contenedor footer
-const btnHamburguesa = document.getElementById('menu_hamburguer'); // botón hamburguesa
-const elementosBorrosos = document.getElementsByClassName('borroso'); // elementos que se desenfocan
-const menuDrop = document.getElementById('navbarMenu');       // menú desplegable hamburguesa
-const menu_cny = document.getElementById('container_top')
-/* para notas*/ 
+      // --- VARIABLES ---
+      const btnHbg = document.getElementById('btn_H');
+      const divMenu = document.getElementById('div_menutop');
+      const divFoot = document.getElementById('div_menubotom');
+      const footerStyle = document.getElementById('foot_bar');
+      const btnHamburguesa = document.getElementById('menu_hamburguer');
+      const elementosBorrosos = document.getElementsByClassName('borroso');
+      const menuDrop = document.getElementById('navbarMenu');
+      const menu_cny = document.getElementById('container_top');
 
-// Guardar HTML original
-const menuOriginalHTML = divMenu.innerHTML;
-const footerOriginalHTML = divFoot.innerHTML;
- menu_cny.style.color= "var(--color-texto-dbg)"; 
- menu_cny.style.background = "var(--gradient-top-bottom)"; 
- 
- // Assuming btnHbg is your element
-btnHbg.style.removeProperty('--bs-btn-color');
+      const esHome = window.location.pathname.includes("index") || window.location.pathname === "/";
 
-let menuAbierto = false; // estado del menú hamburguesa
-let ultimaPosicionScroll = 0; // posición anterior del scroll
+      // Guardar HTML original
+      const menuOriginalHTML = divMenu.innerHTML;
+      const footerOriginalHTML = divFoot.innerHTML;
 
-// Selecciona todos los enlaces <a>
-// Selecciona todos los enlaces <a>
-const todosLosLinks = document.querySelectorAll("a");
+      btnHbg.style.removeProperty('--bs-btn-color');
 
-// Recorrerlos y agregar evento
-todosLosLinks.forEach(link => {
-  link.addEventListener("click", () => {
-    
-    document.body.style.overflow = '';
-    menuDrop.style.visibility = "hidden";
-    for (let i = 0; i < elementosBorrosos.length; i++) {
-      elementosBorrosos[i].style.filter = "none";
+      let menuAbierto = false;
 
-    }
-    menuAbierto = false;
-  });
-});
+      // -------------------------
+      // 🔥 FUNCIÓN CENTRAL (LA CLAVE)
+      // -------------------------
+      function aplicarEstiloHeader() {
+        const posicionActual = window.scrollY;
 
-// --- FUNCION PARA ACTUALIZAR UI SEGÚN TAMAÑO ---
-function actualizarUI() {
-  const ancho = window.innerWidth;
-  console.log(ancho);
-  
+        if (esHome && posicionActual === 0) {
+          // HOME ARRIBA
+          menu_cny.style.backgroundColor = "transparent";
+          menu_cny.style.color = "white"; // 🔥 fuerza blanco real
+          footerStyle.style.backgroundColor = "transparent";
+        } else {
+          // RESTO
+          menu_cny.style.backgroundColor = "var(--color-fondo)";
+          menu_cny.style.color = "var(--color-texto)";
+          footerStyle.style.backgroundColor = "var(--color-fondo)";
+        }
+      }
 
-  if (ancho < 765) { // Móvil
-    divMenu.innerHTML = '';                         
-    divFoot.innerHTML = footerOriginalHTML;        
-    footerStyle.style.borderTop = "var(--color-texto-dbg) solid";
-    btnHamburguesa.style.visibility = "visible";   
-    menuDrop.style.visibility = menuAbierto ? "visible" : "hidden";
-    // Agregar esto **una vez**, fuera de actualizarUI**
+      // -------------------------
+      // LINKS (cerrar menú)
+      // -------------------------
+      document.querySelectorAll("a").forEach(link => {
+        link.addEventListener("click", () => {
+          document.body.style.overflow = '';
+          menuDrop.style.visibility = "hidden";
 
-  } else { // Tablet o Desktop
-    divMenu.innerHTML = menuOriginalHTML;          
-    divFoot.innerHTML = '';                         
-    footerStyle.style.border = "none";
-    btnHamburguesa.style.visibility = "hidden";    
-    menuDrop.style.visibility = "hidden";          
-    menuAbierto = false;                            
-    for (let i = 0; i < elementosBorrosos.length; i++) {
-      elementosBorrosos[i].style.filter = "none";
-    }
-  }
-}
+          for (let el of elementosBorrosos) {
+            el.style.filter = "none";
+          }
 
-//--- TOGGLE DEL MENU HAMBURGUESA v2---
+          menuAbierto = false;
+        });
+      });
 
-btnHamburguesa.addEventListener("click", () => {
-  menuAbierto = !menuAbierto; // alterna primero
+      // -------------------------
+      // RESPONSIVE
+      // -------------------------
+      function actualizarUI() {
+        const ancho = window.innerWidth;
 
-  if (menuAbierto) {   
-    document.body.style.overflow = 'hidden';
-    menuDrop.style.visibility = "visible";
-    for (let i = 0; i < elementosBorrosos.length; i++) {
-      elementosBorrosos[i].style.filter = "blur(5px) brightness(0.3)";
-    }
-        // agrega clase overlay 
-    menuDrop.classList.add('menu-overlay');
- 
+        if (ancho < 765) {
+          divMenu.innerHTML = '';
+          divFoot.innerHTML = footerOriginalHTML;
+          footerStyle.style.borderTop = "var(--color-texto-dbg) solid";
+          btnHamburguesa.style.visibility = "visible";
+          menuDrop.style.visibility = menuAbierto ? "visible" : "hidden";
+        } else {
+          divMenu.innerHTML = menuOriginalHTML;
+          divFoot.innerHTML = '';
+          footerStyle.style.border = "none";
+          btnHamburguesa.style.visibility = "hidden";
+          menuDrop.style.visibility = "hidden";
+          menuAbierto = false;
 
-  } else {
-    document.body.style.overflow = ''; // <- restaura al valor por defecto
-    menuDrop.style.visibility = "hidden";
-    for (let i = 0; i < elementosBorrosos.length; i++) {
-      elementosBorrosos[i].style.filter = "none";
-    }
-    // Quitar clase overlay 
-    menuDrop.classList.remove('menu-overlay');
-  }
-});
+          for (let el of elementosBorrosos) {
+            el.style.filter = "none";
+          }
+        }
+      }
 
-// --- EFECTO DE SCROLL EN EL TOP ---
-window.addEventListener('scroll', () => {
-  const posicionActual = window.scrollY;
+      // -------------------------
+      // HAMBURGUESA
+      // -------------------------
+      btnHamburguesa.addEventListener("click", () => {
+        menuAbierto = !menuAbierto;
 
-  // Si está en el tope
-  if (posicionActual === 0) {
-  menu_cny.style.backgroundColor = "transparent";
-  menu_cny.style.color= "var(--color-texto-dbg)"; 
-  footerStyle.style.backgroundColor = "transparent";
-  } else {
-    // Si baja o sube (cualquier movimiento de scroll)
-  menu_cny.style.backgroundColor = "var(--color-fondo)";  
-  menu_cny.style.color= "var( --invert_color)";
-  footerStyle.style.backgroundColor = "var(--color-fondo)";
-  }
+        if (menuAbierto) {
+          document.body.style.overflow = 'hidden';
+          menuDrop.style.visibility = "visible";
 
-  // Actualiza la posición actual del scroll
-  ultimaPosicionScroll = posicionActual;
-});
+          for (let el of elementosBorrosos) {
+            el.style.filter = "blur(5px) brightness(0.3)";
+          }
 
-// --- EVENTOS PARA CARGA Y REDIMENSIÓN ---
-window.addEventListener('load', actualizarUI);
-window.addEventListener('resize', actualizarUI);
+          menuDrop.classList.add('menu-overlay');
+
+        } else {
+          document.body.style.overflow = '';
+          menuDrop.style.visibility = "hidden";
+
+          for (let el of elementosBorrosos) {
+            el.style.filter = "none";
+          }
+
+          menuDrop.classList.remove('menu-overlay');
+        }
+      });
+
+      // -------------------------
+      // EVENTOS
+      // -------------------------
+      window.addEventListener('scroll', aplicarEstiloHeader);
+      window.addEventListener('resize', actualizarUI);
+      window.addEventListener('load', () => {
+        actualizarUI();
+        aplicarEstiloHeader(); // 🔥 IMPORTANTE
+      });
+
+      // 🔥 aplicar al inicio también
+      aplicarEstiloHeader();
+
     })
     .catch(err => console.error("Header load error", err));
 });
-
 //========================================CARROUSEL container pero con el metodo crear elemento
 document.addEventListener('DOMContentLoaded', () => {
   const cont = document.getElementById('cont_background');

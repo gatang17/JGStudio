@@ -108,7 +108,9 @@ body::-webkit-scrollbar {
 }
 
 /*===================================LINKS**************/
-
+#btn_H{
+font-size: 2rem;
+}
 .lnkMenu {
   position: relative; /* necesario para ::before */
   text-transform: uppercase;
@@ -118,12 +120,9 @@ body::-webkit-scrollbar {
   align-items: center;
   letter-spacing: 0.05em;
   margin-inline: 1rem;
-  color: var(--color-texto-dbg);  
-  --bs-btn-color: var(--color-texto-dbg)!important;
-mix-blend-mode: difference;
- }
- #div_menutop .lnkMenu {
-  filter: drop-shadow(1px 1px 5px var(--color-borde));
+ text-decoration: none;
+ color: inherit;
+
  }
 
 a {
