@@ -753,11 +753,12 @@ input[type="number"] {
     height: auto;
   }
 
-  /*section a{ margin-bottom: 5rem;  }
-  .overlay-content { flex-direction: column !important; align-items: center;  gap: 1rem; }
-  .overlay-content img {  width: 100% !important;  height: auto !important; }
-  .description-box {  width: 100% !important;  text-align: center;   padding: 1rem 0;  }*/
-
+  #gallery, #contact {
+   padding: 0 2rem;
+  }
+  .wrapper {
+    flex-direction: column;
+  }
  /*gallery style*/
   .gallery-grid {
     display: grid;

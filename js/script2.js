@@ -35,6 +35,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       // --- VARIABLES ---
       const btnHbg = document.getElementById('btn_H');
+      const copyright= document.getElementById('copyright');
       const divMenu = document.getElementById('div_menutop');
       const divFoot = document.getElementById('div_menubotom');
       const footerStyle = document.getElementById('foot_bar');
@@ -54,23 +55,41 @@ document.addEventListener("DOMContentLoaded", () => {
       let menuAbierto = false;
 
       // -------------------------
-      // 🔥 FUNCIÓN CENTRAL (LA CLAVE)
+      // FUNCIÓN CENTRAL (LA CLAVE)
       // -------------------------
       function aplicarEstiloHeader() {
+
+        const iconosFooter = footerStyle.querySelectorAll("i, svg, a");      
         const posicionActual = window.scrollY;
 
-        if (esHome && posicionActual === 0) {
+          if (esHome && posicionActual === 0) {
           // HOME ARRIBA
+          iconosFooter.forEach(el => {
+            el.style.color = "white";
+            el.style.fill = "white";
+          });
           menu_cny.style.backgroundColor = "transparent";
-          menu_cny.style.color = "white"; // 🔥 fuerza blanco real
+          menu_cny.style.color = "white";     
+          copyright.style.color = "white";
+          btnHbg.style.color = "white";
           footerStyle.style.backgroundColor = "transparent";
         } else {
           // RESTO
           menu_cny.style.backgroundColor = "var(--color-fondo)";
           menu_cny.style.color = "var(--color-texto)";
           footerStyle.style.backgroundColor = "var(--color-fondo)";
+          btnHbg.style.color = "var(--color-borde)";
+          copyright.style.color = "grey";
+          iconosFooter.forEach(el => {
+            el.style.color = "var(--color-texto)";
+            el.style.fill = "var(--color-texto)";
+            });
         }
-      }
+   
+       
+        }
+
+      
 
       // -------------------------
       // LINKS (cerrar menú)
@@ -152,7 +171,7 @@ document.addEventListener("DOMContentLoaded", () => {
         aplicarEstiloHeader(); // 🔥 IMPORTANTE
       });
 
-      // 🔥 aplicar al inicio también
+      // aplicar al inicio también
       aplicarEstiloHeader();
 
     })
