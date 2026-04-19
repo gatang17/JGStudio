@@ -136,6 +136,7 @@ p {
   font-size: 1rem;
   letter-spacing: 0.3em;
   color: var(--color-texto-dbg);
+  text-shadow: 2px 3px 6px rgba(0, 0, 0, 0.529);
 }
 
 #title {
@@ -291,7 +292,7 @@ footer {
 
 .imgLogo_v2 {
   max-height: 100px;
-  filter: invert(1);
+  filter: invert(1) drop-shadow(2px 2px 2px black);
 }
 
 .img-fluid {
@@ -338,24 +339,6 @@ footer {
 .section_v1 {
   position: relative;
   z-index: 1;
-}
-
-.section_v1::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-
-  background: linear-gradient(
-    to right,
-    rgba(107, 63, 42, 0.4) 60%,
-    rgba(107, 63, 42, 0) 100%
-  );
-}
-
-.bottom-content {
-  position: relative;
-  z-index: 2;
 }
 
 .bottom-content {
