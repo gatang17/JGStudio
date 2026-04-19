@@ -34,9 +34,8 @@
   --title_font: 'Cinzel Decorative', serif;
   --body_font: 'Oswald', sans-serif;
 }
-/* =========================
-   BASE / RESET
-========================= */
+
+/* ========================= BASE / RESET ========================= */
 h1,
 h2 {
   font-family: var(--title_font);
@@ -88,9 +87,7 @@ body::-webkit-scrollbar {
   filter: none;
 }
 
-/* =========================
-   TYPOGRAPHY SCALE
-========================= */
+/* ========================= TYPOGRAPHY SCALE ========================= */
 h1 {
   font-weight: 400;
   font-size: clamp(3rem, 15vw, 12rem);
@@ -145,9 +142,7 @@ p {
   color: var(--color-texto-dbg);
 }
 
-/* =========================
-   SHARED SECTION CONTAINERS
-========================= */
+/* ========================= SHARED SECTION CONTAINERS ========================= */
 #contact,
 #gallery,
 #sect_sev,
@@ -168,9 +163,7 @@ p {
   margin-bottom: 10rem;
   padding-bottom: 8rem;
 }
-/* =========================
-   PRELOADER
-========================= */
+/* ========================= PRELOADER ========================= */
 #preloader {
   display: none;
   position: fixed;
@@ -209,9 +202,7 @@ p {
   }
 }
 
-/* =========================
-   LINKS / NAV
-========================= */
+/* ========================= LINKS / NAV ========================= */
 
 #btn_H {
   font-size: 2rem;
@@ -236,9 +227,7 @@ p {
   text-decoration: none;
 }
 
-/* =========================
-   TOP BAR / FOOTER
-========================= */
+/* ========================= TOP BAR / FOOTER ========================= */
 #container_top,
 #foot_bar {
   transition: background-color 0s ease;
@@ -304,9 +293,7 @@ footer {
   mix-blend-mode: multiply;
 }
 
-/* =========================
-   HERO / HOME
-========================= */
+/* ========================= HERO / HOME ========================= */
 #init {
   padding: 0 5rem;
 }
@@ -350,9 +337,7 @@ footer {
   max-width: clamp(300px, 70vw, 600px);
 }
 
-/* =========================
-   BUTTONS
-========================= */
+/* ========================= BUTTONS ========================= */
 .mybtn {
   position: relative;
   display: flex;
@@ -395,9 +380,7 @@ footer {
   object-position: center center;
 }
 
-/* =========================
-   FEATURED SESSION
-========================= */
+/* ========================= FEATURED SESSION ========================= */
 .featured_session {
   width: 100%;
   padding: 6rem 3rem;
@@ -475,9 +458,7 @@ footer {
   line-height: 1.7;
 }
 
-/* =========================
-   SERVICES SECTION
-========================= */
+/* ========================= SERVICES SECTION ========================= */
 #seccionServices {
   min-height: 100vh;
   width: 100vw;
@@ -517,9 +498,7 @@ footer {
   }
 }
 
-/* =========================
-   ABOUT SECTION
-========================= */
+/* ========================= ABOUT SECTION ========================= */
 .wrapper {
   background-color: var(--color-fondo1);
   width: 100%;
@@ -529,9 +508,7 @@ footer {
   justify-content: center;
 }
 
-/* =========================
-   CONTACT SECTION
-========================= */
+/* ========================= CONTACT SECTION ========================= */
 #contact {
   background: transparent;
 }
@@ -596,9 +573,7 @@ footer {
   margin-top: 1rem;
 }
 
-/* =========================
-   FORM ELEMENTS
-========================= */
+/* ========================= FORM ELEMENTS ========================= */
 form {
   color: var(--color-texto);
   width: 100%;
@@ -655,15 +630,8 @@ form label {
   font-size: 10px;
 }
 
-/* =========================
-   FIND US
-========================= */
 
-/* no extra styles needed for now */
-
-/* =========================
-   POPUP / THANK YOU
-========================= */
+/* ========================= POPUP / THANK YOU ========================= */
 .popup {
   display: none;
   position: fixed;
@@ -681,9 +649,7 @@ form label {
   padding: 1rem;
 }
 
-/* =========================
-   GALLERY
-========================= */
+/* ========================= GALLERY ========================= */
 #gallery {
   position: relative;
   overflow: visible;
@@ -712,9 +678,7 @@ form label {
   transform: scale(1.05);
 }
 
-/* =========================
-   CALCULATOR HERO
-========================= */
+/* ========================= CALCULATOR HERO ========================= */
 #previewImage {
   display: flex;
   min-width: 100%;
@@ -736,9 +700,7 @@ form label {
   pointer-events: none;
 }
 
-/* =========================
-   CALCULATOR CARDS
-========================= */
+/* ========================= CALCULATOR CARDS ========================= */
 .calc {
   transform: translateY(-20px);
   position: absolute;
@@ -911,9 +873,7 @@ input[type="number"] {
   text-align: center;
 }
 
-/* =========================
-   MOBILE MENU
-========================= */
+/* ========================= MOBILE MENU ========================= */
 #navbarMenu {
   position: fixed;
   top: 0;
@@ -944,9 +904,7 @@ input[type="number"] {
   backdrop-filter: blur(8px);
 }
 
-/* =========================
-   RESPONSIVE
-========================= */
+/* ========================= RESPONSIVE ========================= */
 @media (min-width: 768px) {
   #card_container {
     flex-direction: row;
