@@ -23,7 +23,15 @@
       "description": "Products are interpreted through light, detail, and handmade photographic craft.",
       "src": "img/photos/product",
       "count": 18
-    }
+    },
+ "featured": {
+  "title": "Moments We Love",
+  "description": "A closer look at one of our favorite sessions, captured with warmth, care, and intention.",
+  "src": "img/photos/featured",
+  "count": 12
+
+}
+
   },
 
     "packages": [

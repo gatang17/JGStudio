@@ -6,155 +6,198 @@
   
   <title>J&G Photography</title>
   <link rel="stylesheet" href="css/styles2.css">
-  <!--Boostrap for links-->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-  <!--fontaweson for links-->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-...tuhash..."  crossorigin="anonymous"  referrerpolicy="no-referrer" />
-  <!-- At the Head ->  AOS CSS -->
-  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
 
+  <!-- Bootstrap -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <!-- AOS -->
+  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
 </head>
 
 <body id="home">
-  
+
   <!-- Preloader -->
   <div id="preloader">
     <div id="preloader-content">
       <img src="img/logoBW.png" alt="Logo" id="preloader-logo">
-      </div>
-  </div><!-- Preloader -->
+    </div>
+  </div>
 
+  <!-- Background Hero -->
   <div id="cont_background" class="container hero"></div>
-  <!--MENU-->
 
-  <div id="header" ></div>
+  <!-- Header injected -->
+  <div id="header"></div>
 
-  
-
-  <section class="section_v1" id="init" data-aos="fade-up" data-aos-duration="800">
+<!-- HERO -->
+<section class="section_v1" id="init" data-aos="fade-up" data-aos-duration="800">
+  <div class="bottom-content borroso main_content">
     
-    <!-- Botón y título abajo -->
-    <div class="bottom-content borroso main_content " >
-      <div class="text-center ">
-      <a href="index.html#seccionServices"><img src="img/logoBW.png" class="imgLogo_v2 mt-3 "></a> 
-      </div> 
-      <h2 id="title"> Every image is handmade with intention, care, and lasting quality.</h2>
-      <a href="calculator.html" class="hvr-grow  btn mybtn mb-3">
-        View Packages & Pricing
-      </a>     
+    <div class="text-center">
+      <a href="index.html#seccionServices">
+        <img src="img/logoBW.png" class="imgLogo_v2 mt-3" alt="J&G Photography Logo">
+      </a>
+    </div>
+
+    <!-- 🔥 NOMBRE DEL ESTUDIO -->
+    <p class="studio-name text-center">J&G Studio</p>
+
+    <h2 id="title">
+      Every image is handmade with intention, care, and lasting quality.
+    </h2>
+
+    <a href="calculator.html" class="hvr-grow btn mybtn mb-3">
+      View Packages & Pricing
+    </a>
+
+  </div>
+</section>
+
+  <!-- FEATURED SESSION -->
+  <section id="featuredSession" class="featured_session borroso" >
+    <div class="featured_session_inner">
+
+      <div class="featured_media_wrap" data-aos="fade-up" data-aos-duration="800">
+        <a id="featuredLinkImage" href="gallery.html?service=featured" class="featured_media_link">
+          <div class="featured_media" id="featuredMedia"></div>
+        </a>
+      </div>
+
+      <div class="featured_copy">
+         <h1 id="featuredTitle">Moments We Love</h1>
+        <p id="featuredDescription">
+          A closer look at one of our favorite sessions, captured with warmth, care, and intention.
+        </p>
+        <a id="featuredBtn" href="gallery.html?service=featured" class="hvr-grow btn mybtn mb-3">
+          View Full Session
+        </a>
+      </div>
+
     </div>
   </section>
 
-  <!--Services-->
-  <main class="borroso" id="seccionServices" data-aos="fade-up" data-aos-duration="800">
-  
-  
+  <!-- SERVICES + ABOUT + FIND US -->
+  <main class="borroso" id="seccionServices">
+
+    <!-- Services intro -->
     <div class="text-center cont_index">
       <h1>Explore Our Services</h1>
       <p class="m-3">
-        At J&G Photography, we blend creativity and precision to offer services that highlight your personal brand and visual storytelling.
+        At JG Photography, we blend creativity and precision to offer services that highlight your personal brand and visual storytelling.
         Whether you're looking to enhance your online presence or preserve meaningful moments through artistic portraiture, our current offerings are tailored to meet your needs:
       </p>
-    </div> 
+    </div>
 
+    <!-- Services -->
     <section id="sect_sev" class="container-fluid align-items-center justify-content-center cont_index" data-aos="fade-up" data-aos-duration="800">
-       <a href="./gallery.html?service=portrait" class="lnkMenu hvr-grow ">
-        <img src="img/services/01.jpg" class="img_serv mb-1" alt="portraits">
+      <a href="./gallery.html?service=portrait" class="lnkMenu hvr-grow">
+        <img src="img/services/01.jpg" class="img_serv mb-1" alt="Portraits">
         <p>Portraits</p>
-      </a>    
-      <a href="./gallery.html?service=fam_kids" class="lnkMenu hvr-grow ">
-        <img src="img/services/02.jpg" class="img_serv mb-1" alt="family & kids">
-        <p>family & kids</p>
-      </a>    
-      <a href="./gallery.html?service=product" class="lnkMenu hvr-grow ">
-        <img src="img/services/03.jpg" class="img_serv mb-1" alt="corporate">
-        <p>corporate</p>
+      </a>
+
+      <a href="./gallery.html?service=fam_kids" class="lnkMenu hvr-grow">
+        <img src="img/services/02.jpg" class="img_serv mb-1" alt="Family & Kids">
+        <p>Family & Kids</p>
+      </a>
+
+      <a href="./gallery.html?service=product" class="lnkMenu hvr-grow">
+        <img src="img/services/03.jpg" class="img_serv mb-1" alt="Corporate">
+        <p>Corporate</p>
       </a>
     </section>
-    
-<!--About Us-->
-<div class="wrapper">
-  <section class="container-fluid align-items-center justify-content-center cont_index" id="secabout" data-aos="fade-up" data-aos-duration="800"> 
-    <div class="text-center m-2" >
-      <h1 >About Us</h1>
-      <p >We are a passionate team dedicated to capturing moments that feel like a dream. With the right experience and equipment, we focus on bringing out the sharpness, color, and emotion in every image. For over 10 years, we’ve specialized in family photography, helping our clients preserve memories that last a lifetime.
-        Our approach combines creativity and technical skill, ensuring each photo is personalized and full of feeling. Beyond photography, we bring complementary design and visual communication skills, so every project reflects not only quality but also care and style.</p>
-   
-      </div>
-  </section>
-</div>
 
-      <div id="findus" class="container text-center py-5">
+    <!-- About -->
+    <div class="wrapper">
+      <section class="container-fluid align-items-center justify-content-center cont_index" id="secabout" data-aos="fade-up" data-aos-duration="800">
+        <div class="text-center m-2">
+          <h1>About Us</h1>
+          <p>
+            We are a passionate team dedicated to capturing moments that feel like a dream. With the right experience and equipment, we focus on bringing out the sharpness, color, and emotion in every image. For over 10 years, we’ve specialized in family photography, helping our clients preserve memories that last a lifetime.
+            Our approach combines creativity and technical skill, ensuring each photo is personalized and full of feeling. Beyond photography, we bring complementary design and visual communication skills, so every project reflects not only quality but also care and style.
+          </p>
+        </div>
+      </section>
+    </div>
 
-        <!-- Logo -->
-        <a href="#"><img src="/img/logoColor.png" alt="Studio Logo" 
-             class="mx-auto mb-4" style="width: 110px; height: 110px; object-fit: contain;"></a>
-                  
-        <!-- Title -->
-        <h1 class="text-center">Find Us</h1>
-      
-        <!-- GRID -->
-        <div class="row justify-content-center g-4" style="max-width: 700px; margin: auto;">
-      
-          <!-- Address -->
-          <div class="col-12 col-md-4 d-flex flex-column align-items-center">
-            <i class="fa-solid fa-location-dot mb-2"></i>
-            <a href="https://maps.app.goo.gl/jbnxKH4bJop5arPH8" target="_blank" class="hvr-grow my-3"><p class="small text-muted">
+    <!-- Find Us -->
+    <div id="findus" class="container text-center py-5">
+
+      <a href="#">
+        <img src="/img/logoColor.png" alt="Studio Logo"
+             class="mx-auto mb-4"
+             style="width: 110px; height: 110px; object-fit: contain;">
+      </a>
+
+      <h1 class="text-center">Find Us</h1>
+
+      <div class="row justify-content-center g-4" style="max-width: 700px; margin: auto;">
+
+        <div class="col-12 col-md-4 d-flex flex-column align-items-center">
+          <i class="fa-solid fa-location-dot mb-2"></i>
+          <a href="https://maps.app.goo.gl/jbnxKH4bJop5arPH8" target="_blank" class="hvr-grow my-3">
+            <p class="small text-muted">
               7402 Tangelo Dr.<br>
               Louisville, KY 40228
-            </p></a>
-          </div>
-      
-          <!-- Phone -->
-          <div class="col-12 col-md-4 d-flex flex-column align-items-center">
-            <i class="fa-solid fa-phone mb-2"></i>
-            <p class="small text-muted">502 345-7226</p>
-          </div>
-      
-          <!-- Email -->
-          <div class="col-12 col-md-4 d-flex flex-column align-items-center">
-            <i class="fa-solid fa-envelope mb-2"></i>
-            <a href="contact.html">
-            <p class="small text-muted">jgyourstudio@gmail.com</p></a>
-          </div>      
-        </div>           
+            </p>
+          </a>
+        </div>
+
+        <div class="col-12 col-md-4 d-flex flex-column align-items-center">
+          <i class="fa-solid fa-phone mb-2"></i>
+          <p class="small text-muted">502 345-7226</p>
+        </div>
+
+        <div class="col-12 col-md-4 d-flex flex-column align-items-center">
+          <i class="fa-solid fa-envelope mb-2"></i>
+          <a href="contact.html">
+            <p class="small text-muted">jgyourstudio@gmail.com</p>
+          </a>
+        </div>
+
       </div>
-    </main>
+    </div>
 
-<!--FOOTER-->
-<footer id="foot_bar" class="gap-2">
-  <div id="div_menubotom">
-    <a href="https://www.facebook.com/people/JG-Photography" class="hvr-grow lnkMenu" target="_blank"><i class="fab fa-facebook-f"></i></a>
-    <a href="https://www.instagram.com/jlprezc/" class="hvr-grow lnkMenu" target="_blank"><i class="fab fa-instagram"></i></a>
-    <a href="tel:+15023458298" class="hvr-grow lnkMenu"> <i class="fas fa-phone"></i> </a>
-  </div>
- <a class="lnkMenu" href="https://gatangdesigns.io/" target="_blank"> <p style="font-size: 0.5rem;" id="copyright"></p></a>
-</footer>
+  </main>
 
-<!-- Bootstrap Bundle JS (Popper incluido) -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-<!-- AOS JS -->
-<script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
-<script>
-  AOS.init({
-    duration: 800, // duración por defecto en ms
-    once: true     // animar solo una vez al hacer scroll
-  });
-</script>
-<script>
-  // Obtener el footer
-  const footer = document.getElementById('copyright');
+  <!-- Footer -->
+  <footer id="foot_bar" class="gap-2">
+    <div id="div_menubotom">
+      <a href="https://www.facebook.com/people/JG-Photography" class="hvr-grow lnkMenu" target="_blank"><i class="fab fa-facebook-f"></i></a>
+      <a href="https://www.instagram.com/jlprezc/" class="hvr-grow lnkMenu" target="_blank"><i class="fab fa-instagram"></i></a>
+      <a href="tel:+15023458298" class="hvr-grow lnkMenu"><i class="fas fa-phone"></i></a>
+    </div>
+    <a class="lnkMenu" href="https://gatangdesigns.io/" target="_blank">
+      <p style="font-size: 0.5rem;" id="copyright"></p>
+    </a>
+  </footer>
 
-  // Año actual
-  const year = new Date().getFullYear();
+  <!-- Bootstrap Bundle -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
-  // Poner texto
-  footer.textContent = `© ${year} GATANG designs. All rigths reseved.`;
-</script>
-<script src="js/script2.js"></script>
-<!--Vercel Analytics-->
-<script>
+  <!-- AOS -->
+  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+  <script>
+    AOS.init({
+      duration: 800,
+      once: true
+    });
+  </script>
 
+  <!-- Footer year -->
+  <script>
+    const footer = document.getElementById('copyright');
+    const year = new Date().getFullYear();
+    footer.textContent = `© ${year} GATANG designs. All rigths reseved.`;
+  </script>
+
+  <!-- Main JS -->
+  <script src="js/script2.js"></script>
+
+  <!-- Vercel Analytics -->
+  <script>
     window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
   </script>
   <script defer src="/_vercel/insights/script.js"></script>
