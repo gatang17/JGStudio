@@ -943,10 +943,9 @@ form label {
 /* checkbox rush */
 .rushDelivery {
   appearance: none;
-  width: 18px;
-  height: 18px;
+  width: 24px;
+  height: auto;
   margin: 0;
-
   border: 1.5px solid rgba(92, 67, 51, 0.45);
   border-radius: 4px;
   background: transparent;
@@ -963,9 +962,9 @@ form label {
   content: "";
   position: absolute;
   top: 2px;
-  left: 5px;
+  left: 10px;
   width: 5px;
-  height: 9px;
+  height: 20px;
   border: solid var(--color-fondo);
   border-width: 0 2px 2px 0;
   transform: rotate(45deg);
