@@ -435,26 +435,24 @@ document.addEventListener("DOMContentLoaded", () => {
 // =============================
 // CALCULATOR
 // =============================
+
 document.addEventListener("DOMContentLoaded", () => {
   const card_container = document.getElementById("card_container");
   if (!card_container) return;
 
   let selectedCard = null;
+  let services = {};
 
   fetch("data/services.json")
     .then(res => res.json())
     .then(data => {
-      const services = data.packages;
+      services = data.packages;
 
       Object.keys(services).forEach(key => {
         const pkg = services[key];
 
-        const featuresList = pkg.features
-          .map(f => `<li><i class="fa-solid fa-check"></i> ${f}</li>`)
-          .join("");
-
         card_container.innerHTML += `
-          <div class="text-center card">
+          <div class="text-center package-card card" data-package="${key}">
             <h1 class="packageName">${pkg.name}</h1>
             <p class="packageSelect">${pkg.tagline}</p>
 
@@ -465,49 +463,19 @@ document.addEventListener("DOMContentLoaded", () => {
                 <i class="fa-solid fa-camera"></i>
                 ${pkg.base.photos} Photos
               </span>
+
               <span class="mini-card">
                 <i class="fa-solid fa-clock"></i>
                 ${pkg.base.duration}
               </span>
+
               <span class="mini-card">
                 <i class="fa-solid fa-shirt"></i>
                 ${pkg.base.outfitChanges} Outfit${pkg.base.outfitChanges > 1 ? "s" : ""}
               </span>
             </div>
 
-            <ul class="features-list">
-              ${featuresList}
-            </ul>
-
-            <div class="extras">
-              <p>ADD-ONS</p>
-
-              <div class="extra-control">
-                <label>Additional Photos</label>
-                <div class="counter">
-                  <button type="button" class="decrease">-</button>
-                  <span class="count">0</span>
-                  <button type="button" class="increase">+</button>
-                </div>
-              </div>
-
-              <div class="extra-control outfits">
-                <label>Extra Outfit Changes</label>
-                <div class="counter">
-                  <button type="button" class="decrease">-</button>
-                  <span class="count">0</span>
-                  <button type="button" class="increase">+</button>
-                </div>
-              </div>
-
-              <div class="extra-control">
-                <label>Rush Delivery</label>
-                <input type="checkbox" class="rushDelivery">
-              </div>
-            </div>
-
-            <h4 class="totalp d-none">Total: $<span class="totalPrice">${pkg.basePrice}</span></h4>
-            <a class="getPackageBtn hvr-grow btn d-none">Get This Package</a>
+            <div class="package-details"></div>
           </div>
         `;
       });
@@ -516,111 +484,193 @@ document.addEventListener("DOMContentLoaded", () => {
     })
     .catch(err => console.error("Calculator load error:", err));
 
+  function createDetails(pkg) {
+    const featuresList = pkg.features
+      .map(f => `<li><i class="fa-solid fa-check"></i> ${f}</li>`)
+      .join("");
+
+    return `
+      <ul class="features-list">
+        ${featuresList}
+      </ul>
+
+      <div class="extras show">
+        <p>ADD-ONS</p>
+
+        <div class="extra-control">
+          <label>Additional Photos</label>
+          <div class="counter">
+            <button type="button" class="decrease">-</button>
+            <span class="count">0</span>
+            <button type="button" class="increase">+</button>
+          </div>
+        </div>
+
+        <div class="extra-control outfits">
+          <label>Extra Outfit Changes</label>
+          <div class="counter">
+            <button type="button" class="decrease">-</button>
+            <span class="count">0</span>
+            <button type="button" class="increase">+</button>
+          </div>
+        </div>
+
+        <div class="extra-control">
+          <label>Rush Delivery</label>
+          <input type="checkbox" class="rushDelivery">
+        </div>
+      </div>
+
+      <h4 class="totalp">Total: $<span class="totalPrice">${pkg.basePrice.toFixed(2)}</span></h4>
+      <a class="getPackageBtn hvr-grow btn">Get This Package</a>
+    `;
+  }
+
+  function closeCard(card) {
+    card.classList.remove("active", "card_bronce", "card_gold", "card_silver");
+
+    card.querySelectorAll("li, p, h1, h2, h3, h4, span, label").forEach(el => {
+      el.style.color = "var(--color-texto)";
+    });
+
+    const details = card.querySelector(".package-details");
+    if (details) details.innerHTML = "";
+  }
+
+  function closeAllCards() {
+    document.querySelectorAll(".package-card").forEach(card => {
+      closeCard(card);
+    });
+  }
+
+  function applyPackageColor(card) {
+    const packageName = card.querySelector(".packageName").textContent.trim().toLowerCase();
+
+    if (packageName === "essential") {
+      card.classList.add("card_bronce");
+    } else if (packageName === "prestige") {
+      card.classList.add("card_gold");
+    } else if (packageName === "signature") {
+      card.classList.add("card_silver");
+    }
+  }
+
+  function openCard(card) {
+    const key = card.dataset.package;
+    const pkg = services[key];
+
+    if (!pkg) return;
+
+    card.classList.add("active");
+    card.querySelector(".package-details").innerHTML = createDetails(pkg);
+
+    applyPackageColor(card);
+
+    card.querySelectorAll("li, p, h1, h2, h3, h4, span, label").forEach(el => {
+      /* el.style.color = "var(--color-texto-dbg)"; */
+    });
+
+    selectedCard = card;
+    calculateTotal(card);
+  }
+
   function attachEvents() {
-    document.querySelectorAll(".card").forEach(card => {
-      card.addEventListener("click", () => {
-        document.querySelectorAll(".card").forEach(c => {
-          c.classList.remove("active");
-          c.querySelector(".extras").classList.remove("show");
-          c.classList.remove("card_bronce", "card_gold", "card_silver");
-          c.querySelector(".totalp").classList.add("d-none");
-          c.querySelector(".getPackageBtn").classList.add("d-none");
+    document.querySelectorAll(".package-card").forEach(card => {
+      card.addEventListener("click", e => {
+        const clickedInsideControl = e.target.closest(
+          ".extras, .extra-control, .counter, .increase, .decrease, .rushDelivery, .getPackageBtn"
+        );
 
-          c.querySelectorAll("li, p, h1, h2, h3, span").forEach(el => {
-            el.style.color = "var(--color-texto)";
-          });
-        });
+        if (clickedInsideControl) return;
 
-        card.classList.add("active");
-        card.querySelector(".extras").classList.add("show");
-        card.querySelector(".totalp").classList.remove("d-none");
-        card.querySelector(".getPackageBtn").classList.remove("d-none");
-        selectedCard = card;
+        const isAlreadyActive = card.classList.contains("active");
 
-        card.querySelectorAll("li, p, h1, h2, h3, span").forEach(el => {
-          el.style.color = "var(--color-texto-dbg)";
-        });
+        closeAllCards();
 
-        const packageName = card.querySelector(".packageName").textContent.trim().toLowerCase();
-
-        if (packageName === "essential") {
-          card.querySelector(".outfits").classList.add("d-none");
-          card.classList.add("card_bronce");
-        } else if (packageName === "prestige") {
-          card.classList.add("card_gold");
-        } else if (packageName === "signature") {
-          card.classList.add("card_silver");
+        if (isAlreadyActive) {
+          selectedCard = null;
+          return;
         }
 
-        calculateTotal(card);
+        openCard(card);
       });
     });
 
     document.addEventListener("click", e => {
-      const card = e.target.closest(".card");
-      if (!card) return;
+      const card = e.target.closest(".package-card");
+      if (!card || !card.classList.contains("active")) return;
 
-      const countEl = e.target.parentElement?.querySelector(".count");
-      if (!countEl) return;
+      if (e.target.classList.contains("increase") || e.target.classList.contains("decrease")) {
+        e.stopPropagation();
 
-      let val = parseInt(countEl.textContent);
+        const countEl = e.target.parentElement.querySelector(".count");
+        let val = parseInt(countEl.textContent);
 
-      if (e.target.classList.contains("increase")) val++;
-      if (e.target.classList.contains("decrease") && val > 0) val--;
+        if (e.target.classList.contains("increase")) val++;
+        if (e.target.classList.contains("decrease") && val > 0) val--;
 
-      countEl.textContent = val;
-      calculateTotal(card);
+        countEl.textContent = val;
+        calculateTotal(card);
+      }
+
+      if (e.target.classList.contains("getPackageBtn")) {
+        e.stopPropagation();
+        goToContact(card);
+      }
     });
 
     document.addEventListener("change", e => {
       if (!e.target.classList.contains("rushDelivery")) return;
-      const card = e.target.closest(".card");
+
+      e.stopPropagation();
+
+      const card = e.target.closest(".package-card");
+      if (!card) return;
+
       calculateTotal(card);
-    });
-
-    document.querySelectorAll(".getPackageBtn").forEach(btn => {
-      btn.addEventListener("click", () => {
-        const card = btn.closest(".card");
-        if (!card) return;
-
-        const name = card.querySelector(".packageName").textContent;
-        const tagline = card.querySelector(".packageSelect").textContent;
-        const total = card.querySelector(".totalPrice").textContent;
-
-        const counts = card.querySelectorAll(".extra-control .count");
-        const extraPhotos = parseInt(counts[0].textContent) || 0;
-        const outfits = parseInt(counts[1].textContent) || 0;
-        const rush = card.querySelector(".rushDelivery").checked;
-
-        let extrasArr = [];
-        if (extraPhotos > 0) extrasArr.push(`${extraPhotos} additional photos`);
-        if (outfits > 0) extrasArr.push(`${outfits} outfit changes`);
-        if (rush) extrasArr.push("rush delivery");
-
-        const extrasText = extrasArr.length ? extrasArr.join(", ") : "No extras";
-
-        const contactUrl = `contact.html?service=${encodeURIComponent(name)}&package=${encodeURIComponent(tagline)}&extras=${encodeURIComponent(extrasText)}&total=${encodeURIComponent("$" + total)}`;
-        window.location.href = contactUrl;
-      });
     });
   }
 
   function calculateTotal(card) {
     const basePrice = parseFloat(card.querySelector(".basePrice").textContent);
     const counts = card.querySelectorAll(".extra-control .count");
-    const extraPhotos = parseInt(counts[0].textContent) || 0;
-    const outfits = parseInt(counts[1].textContent) || 0;
-    const rush = card.querySelector(".rushDelivery").checked;
+
+    const extraPhotos = parseInt(counts[0]?.textContent) || 0;
+    const outfits = parseInt(counts[1]?.textContent) || 0;
+    const rush = card.querySelector(".rushDelivery")?.checked || false;
 
     let total = basePrice;
     total += extraPhotos * 15;
     total += outfits * 30;
+
     if (rush) total += 70;
 
     card.querySelector(".totalPrice").textContent = total.toFixed(2);
   }
-});
 
+  function goToContact(card) {
+    const name = card.querySelector(".packageName").textContent;
+    const tagline = card.querySelector(".packageSelect").textContent;
+    const total = card.querySelector(".totalPrice").textContent;
+
+    const counts = card.querySelectorAll(".extra-control .count");
+    const extraPhotos = parseInt(counts[0]?.textContent) || 0;
+    const outfits = parseInt(counts[1]?.textContent) || 0;
+    const rush = card.querySelector(".rushDelivery")?.checked || false;
+
+    let extrasArr = [];
+
+    if (extraPhotos > 0) extrasArr.push(`${extraPhotos} additional photos`);
+    if (outfits > 0) extrasArr.push(`${outfits} outfit changes`);
+    if (rush) extrasArr.push("rush delivery");
+
+    const extrasText = extrasArr.length ? extrasArr.join(", ") : "No extras";
+
+    const contactUrl = `contact.html?service=${encodeURIComponent(name)}&package=${encodeURIComponent(tagline)}&extras=${encodeURIComponent(extrasText)}&total=${encodeURIComponent("$" + total)}`;
+
+    window.location.href = contactUrl;
+  }
+});
 // =============================
 // CONTACT PAGE PREFILL
 // =============================

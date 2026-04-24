@@ -37,7 +37,7 @@
     "packages": [
     {
       "name": "Essential",
-      "tagline": "A quick, polished portrait session",
+      "tagline": "A polished portrait session",
       "basePrice": 150.00,
       "base": { "photos": 5, "duration": "30 min", "outfitChanges": 1 },
       "features": [

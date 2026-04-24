@@ -699,156 +699,215 @@ form label {
   background: var(--gradient-top-top);
   pointer-events: none;
 }
-
 /* ========================= CALCULATOR CARDS ========================= */
-.calc {
-  transform: translateY(-20px);
-  position: absolute;
-  left: 40px;
-  top: -10px;
+
+#card_container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start; /* permite que solo crezca la activa */
+  gap: 24px;
+  width: 100%;
 }
 
-#p_infoPack,
-#bp,
-#packageName {
-  text-align: left;
+/* cards cerradas: mismo tamaño */
+#card_container .package-card {
+  width: min(100%, 360px);
+  max-width: 360px;
+  flex: 0 0 360px;
+  min-height: 430px;
+
+  background-color: var(--color-fondo) !important;
+  padding: 1.5rem;
+  margin-top: 24px;
+  box-sizing: border-box;
+
+  border: 1px solid rgba(92, 67, 51, 0.22);
+  border-radius: 10px;
+  transition: box-shadow 0.3s ease, transform 0.3s ease, border 0.3s ease;
 }
 
-#p_infoPack,
-#bp {
-  margin-left: 2rem;
+/* solo la activa crece */
+#card_container .package-card.active {
+  height: auto;
+  cursor: default;
+  transform: translateY(-4px);
+}
+#card_container .package-card {
+  width: 100%;
+  max-width: 600px;
 }
 
-input[type="number"]::-webkit-inner-spin-button,
-input[type="number"]::-webkit-outer-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
-}
 
-input[type="number"] {
-  -moz-appearance: textfield;
-}
-
-.message-box {
-  padding: 12px 18px;
-  position: absolute;
-  z-index: 20000;
-  top: 50%;
-  left: 50%;
-  background-color: var(--color-fondo1);
+.package-card.active {
   color: var(--color-texto);
-  border: 1px solid var(--color-texto-dbg);
-  border-radius: 5px;
-  margin-top: 10px;
-  font-family: sans-serif;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  transform: translate(-50%, -50%);
+ 
 }
 
-.info-tooltip {
-  display: none;
-  color: gray;
-  font-size: 0.9rem;
-  margin-top: 5px;
+/* título sigue fuerte */
+.package-card.active .packageName {
+  color: var(--color-texto);
 }
 
-.info-wrapper:hover .info-tooltip,
-.info-wrapper.active .info-tooltip {
-  display: block;
+/* texto secundario más suave */
+.package-card.active p,
+.package-card.active li,
+.package-card.active label {
+  color: var(--color-texto-sec);
 }
 
-.decrease,
-.increase {
-  border-radius: 5px !important;
-  border: 1px solid var(--color-texto-dbg) !important;
-  color: var(--color-texto-dbg) !important;
-  background-color: transparent !important;
+/* precio con más presencia */
+.package-card.active h2 {
+  color: var(--color-texto);
+  opacity: 0.9;
 }
 
+/* mini cards */
+.package-card.active .mini-card {
+  border-color: rgba(92, 67, 51, 0.4);
+  color: var(--color-texto);
+}
+
+/* iconos */
+.package-card.active i {
+  opacity: 0.8;
+}
+
+/* colores de package */
+.card_gold.active {
+  border: 1px solid rgba(200, 155, 109, 0.5);
+  box-shadow:
+    0 0 0 1px rgba(200, 155, 109, 0.2),
+    0 10px 30px rgba(200, 155, 109, 0.25);
+}
+
+.card_silver.active {
+  border: 1px solid rgba(168, 154, 143, 0.5);
+  box-shadow:
+    0 0 0 1px rgba(168, 154, 143, 0.2),
+    0 10px 30px rgba(168, 154, 143, 0.25);
+}
+
+.card_bronce.active {
+  border: 1px solid rgba(122, 74, 50, 0.5);
+  box-shadow:
+    0 0 0 1px rgba(122, 74, 50, 0.2),
+    0 10px 30px rgba(122, 74, 50, 0.25);
+}
+
+.package-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 3px;
+  width: 100%;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+.card_gold {
+  background-color: rgba(200, 155, 109, 0.18) !important;
+}
+
+.card_silver {
+  background-color: rgba(168, 154, 143, 0.18) !important;
+}
+
+.card_bronce {
+  background-color: rgba(122, 74, 50, 0.18) !important;
+}
+
+.card_gold.active {
+  background: linear-gradient(
+    to bottom,
+    rgba(200, 155, 109, 0.25),
+    rgba(200, 155, 109, 0.12)
+  );
+}
+
+.card_silver.active {
+  background: linear-gradient(
+    to bottom,
+    rgba(168, 154, 143, 0.25),
+    rgba(168, 154, 143, 0.12)
+  );
+}
+
+.card_bronce.active {
+  background: linear-gradient(
+    to bottom,
+    rgba(122, 74, 50, 0.25),
+    rgba(122, 74, 50, 0.12)
+  );
+}
+
+.card_gold::before {
+  background: linear-gradient(to right, transparent, #C89B6D, transparent);
+}
+
+.card_silver::before {
+  background: linear-gradient(to right, transparent, #A89A8F, transparent);
+}
+
+.card_bronce::before {
+  background: linear-gradient(to right, transparent, #7A4A32, transparent);
+}
+
+.package-card.active::before {
+  opacity: 1;
+}
+/* mini cards */
 .mini-card {
   display: flex;
   align-items: center;
   justify-content: center;
   width: 100px;
-  height: 50px;
-  border: 2px solid var(--color-fondo1);
+  min-height: 50px;
+  border: 2px solid rgba(92, 67, 51, 0.35);
   border-radius: 5px;
   padding: 4px;
   font-size: 0.8rem;
   gap: 4px;
-  background-color: transparent;
+  background-color: rgba(255, 255, 255, 0.08);
 }
 
-#card_container {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
 
-#card_container .card {
-  flex: 1 1 300px;
-}
-
-.card {
-  background-color: var(--color-fondo) !important;
-  width: 400px;
-  padding: 1rem;
-  margin-top: 24px;
-  max-height: fit-content;
-}
-
-.card.active {
-  color: var(--color-texto-dbg) !important;
-  cursor: default;
-}
-
-.card_gold {
-  background-color: var(--color-gold-a) !important;
-}
-
-.card_silver {
-  background-color: var(--color-silver-a) !important;
-}
-
-.card_bronce {
-  background-color: var(--color-bronce-a) !important;
-}
-
-.card.active .btn {
-  background-color: var(--color-boton-a) !important;
-  color: var(--color-borde) !important;
+/* detalles que se crean con JS */
+.package-details {
+  margin-top: 1rem;
 }
 
 .features-list {
   text-align: left;
   list-style: none !important;
+  padding-left: 0;
+  margin: 1.5rem 0;
+}
+
+.features-list li {
+  margin-bottom: 0.5rem;
 }
 
 .extras {
-  display: none;
-  transition: all 0.3s ease;
-  margin-top: 2rem;
-}
-
-.extras.show {
   display: block;
+  margin-top: 2rem;
 }
 
 .extra-control {
   display: flex;
-  flex-direction: row;
   align-items: center;
   justify-content: space-between;
+  gap: 1rem;
+
   margin-bottom: 1rem;
-  border: solid #42423d46;
+  border: 1px solid rgba(92, 67, 51, 0.28);
   border-radius: 5px;
-  padding: 0 15px;
+  padding: 0.8rem 1rem;
 }
 
 .extra-control label {
-  margin: 15px;
+  margin: 0;
   text-align: left;
-  max-width: 100px;
+  max-width: 130px;
 }
 
 .counter {
@@ -857,20 +916,94 @@ input[type="number"] {
   gap: 0.5rem;
 }
 
-.counter button {
-  width: 25px;
-  height: 25px;
+.counter button,
+.decrease,
+.increase {
+  width: 28px;
+  height: 28px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
   font-weight: bold;
   font-size: 1rem;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  background-color: #f0f0f0;
+  border-radius: 5px !important;
+  border: 1px solid rgba(92, 67, 51, 0.35) !important;
+  color: inherit !important;
+  background-color: rgba(255, 255, 255, 0.12) !important;
   cursor: pointer;
 }
 
 .counter .count {
-  min-width: 20px;
+  min-width: 22px;
   text-align: center;
+}
+
+/* checkbox rush */
+.rushDelivery {
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  margin: 0;
+
+  border: 1.5px solid rgba(92, 67, 51, 0.45);
+  border-radius: 4px;
+  background: transparent;
+  cursor: pointer;
+  position: relative;
+}
+
+.rushDelivery:checked {
+  background-color: var(--color-texto);
+  border-color: var(--color-texto);
+}
+
+.rushDelivery:checked::after {
+  content: "";
+  position: absolute;
+  top: 2px;
+  left: 5px;
+  width: 5px;
+  height: 9px;
+  border: solid var(--color-fondo);
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+
+/* botón */
+.getPackageBtn {
+  margin-top: 1rem;
+  background-color: var(--color-boton-a) !important;
+  color: var(--color-borde) !important;
+  border: none !important;
+}
+
+@media (max-width: 1024px) {
+  #card_container {
+    flex-direction: column;
+    align-items: stretch; /* importante */
+  }
+
+  #card_container .package-card {
+    width: 100%;
+    max-width: 100%;   /* 👈 esto es lo que te falta */
+    flex: 0 0 auto;    /* 👈 elimina el 360px fijo */
+  }
+}
+
+/* mobile */
+@media (max-width: 768px) {
+  #card_container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  #card_container .package-card {
+    flex: 0 1 auto;
+    width: min(100%, 360px);
+    min-height: auto;
+  }
 }
 
 /* ========================= MOBILE MENU ========================= */
@@ -905,14 +1038,6 @@ input[type="number"] {
 }
 
 /* ========================= RESPONSIVE ========================= */
-@media (min-width: 768px) {
-  #card_container {
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-}
-
 @media (max-width: 992px) {
   .featured_session {
     padding: 4rem 2rem;
