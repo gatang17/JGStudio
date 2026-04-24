@@ -690,6 +690,7 @@ form label {
   background-repeat: no-repeat;
   background-position: center;
   position: relative;
+  margin: 0 0 2rem;
 }
 
 #previewImage::after {
@@ -698,6 +699,11 @@ form label {
   inset: 0;
   background: var(--gradient-top-top);
   pointer-events: none;
+}
+
+#previewImage .title{
+  position: absolute;
+  z-index: 9999;
 }
 /* ========================= CALCULATOR CARDS ========================= */
 
@@ -713,7 +719,7 @@ form label {
 #card_container .package-card {
   width: min(100%, 360px);
   max-width: 360px;
-  flex: 0 0 360px;
+  flex: 0 0 460px;
   min-height: 430px;
 
   background-color: var(--color-fondo) !important;
@@ -721,7 +727,7 @@ form label {
   margin-top: 24px;
   box-sizing: border-box;
 
-  border: 1px solid rgba(92, 67, 51, 0.22);
+  border: 3px solid rgba(92, 67, 51, 0.22);
   border-radius: 10px;
   transition: box-shadow 0.3s ease, transform 0.3s ease, border 0.3s ease;
 }
