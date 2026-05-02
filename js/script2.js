@@ -1,28 +1,23 @@
 // =============================
 // PRELOADER
 // =============================
-window.addEventListener('load', () => {
-  const preloader = document.getElementById('preloader');
-  const mostrado = sessionStorage.getItem('preloaderShown');
-
+function hidePreloader() {
+  const preloader = document.getElementById("preloader");
   if (!preloader) return;
 
-  if (!mostrado && window.location.pathname.endsWith("index.html")) {
-    sessionStorage.setItem('preloaderShown', 'true');
-    preloader.style.display = 'flex';
-    preloader.style.opacity = '1';
+  preloader.classList.add("hide");
 
-    setTimeout(() => {
-      preloader.style.transition = 'opacity 0.5s ease';
-      preloader.style.opacity = '0';
+  setTimeout(() => {
+    preloader.style.display = "none";
+  }, 500);
+}
 
-      setTimeout(() => {
-        preloader.style.display = 'none';
-      }, 500);
-    }, 3000);
-  } else {
-    preloader.style.display = 'none';
-  }
+window.addEventListener('load', () => {
+  const preloader = document.getElementById('preloader');
+  if (!preloader) return;
+
+  preloader.style.display = 'flex';
+  preloader.style.opacity = '1';
 });
 
 // =============================
@@ -161,14 +156,15 @@ document.addEventListener("DOMContentLoaded", () => {
     })
     .catch(err => console.error("Header load error", err));
 });
-
 // =============================
 // HERO BACKGROUND CAROUSEL
 // =============================
-document.addEventListener('DOMContentLoaded', () => {
-  const cont = document.getElementById('cont_background');
+document.addEventListener("DOMContentLoaded", () => {
+  // Busca el contenedor donde va el carrusel de fondo
+  const cont = document.getElementById("cont_background");
   if (!cont) return;
 
+  // Lista de imágenes del carrusel
   const images = [
     "./img/photos/carousel/04.jpg",
     "./img/photos/carousel/02.jpg",
@@ -177,35 +173,124 @@ document.addEventListener('DOMContentLoaded', () => {
     "./img/photos/carousel/05.jpg"
   ];
 
-  const divCarrusel = document.createElement('div');
-  divCarrusel.id = 'carr_ind';
+  // Crea el div interno donde se ponen las imágenes
+  const divCarrusel = document.createElement("div");
+  divCarrusel.id = "carr_ind";
   cont.appendChild(divCarrusel);
 
-  images.forEach((src, i) => {
-    const img = document.createElement('img');
-    img.src = src;
-    img.className = 'img_carr';
-    img.style.position = 'absolute';
-    img.style.top = '0';
-    img.style.left = '0';
-    img.style.width = '100%';
-    img.style.height = '100%';
-    img.style.objectFit = 'cover';
-    img.style.opacity = i === 0 ? '1' : '0';
-    img.style.transition = 'opacity 3s ease-in-out';
-    divCarrusel.appendChild(img);
-  });
-
+  // Imagen actual y próxima imagen
   let current = 0;
-  setInterval(() => {
-    const imgs = divCarrusel.querySelectorAll('.img_carr');
-    const next = (current + 1) % imgs.length;
-    imgs[current].style.opacity = '0';
-    imgs[next].style.opacity = '1';
-    current = next;
-  }, 5000);
-});
+  let nextIndex = 1;
 
+  // Guarda las imágenes ya creadas
+  const slides = [];
+
+  // Movimientos por imagen:
+  // 1 derecha a izquierda
+  // 2 izquierda a derecha
+  // 3 arriba hacia abajo
+  // 4 abajo hacia arriba
+  // 5 zoom in
+  const motions = [
+    { start: "start-right", move: "move-left" },
+    { start: "start-left", move: "move-right" },
+    { start: "start-top", move: "move-down" },
+    { start: "start-bottom", move: "move-up" },
+    { start: "start-zoom", move: "move-zoom" }
+  ];
+
+  // Crea una imagen del carrusel
+  function createSlide(src, visible = false, index = 0) {
+    const motion = motions[index % motions.length];
+
+    const img = document.createElement("img");
+
+    // Clase base + posición inicial del movimiento
+    img.className = `img_carr ${motion.start}`;
+
+    // Guardamos cuál movimiento debe hacer esta imagen
+    img.dataset.move = motion.move;
+
+    img.src = src;
+    img.loading = visible ? "eager" : "lazy";
+    img.decoding = "async";
+
+    img.style.position = "absolute";
+    img.style.top = "0";
+    img.style.left = "0";
+    img.style.width = "100%";
+    img.style.height = "100%";
+    img.style.objectFit = "cover";
+    img.style.opacity = visible ? "1" : "0";
+
+    divCarrusel.appendChild(img);
+
+    return img;
+  }
+
+  // Activa el movimiento de una imagen
+  function startMotion(slide) {
+    if (!slide) return;
+
+    // pequeño delay para que el navegador registre primero la posición inicial
+    setTimeout(() => {
+      slide.classList.add(slide.dataset.move);
+    }, 80);
+  }
+
+  // Carga una imagen si todavía no existe
+  function loadSlide(index) {
+    if (slides[index]) return slides[index];
+
+    slides[index] = createSlide(images[index], false, index);
+    return slides[index];
+  }
+
+  // Cambia a la próxima imagen
+  function showNextSlide() {
+    const next = nextIndex;
+
+    loadSlide(next);
+
+    // Fade out de la imagen actual
+    slides[current].style.opacity = "0";
+
+    // Fade in de la próxima imagen
+    slides[next].style.opacity = "1";
+
+    // Empieza el movimiento de la próxima imagen
+    startMotion(slides[next]);
+
+    // Actualiza índices
+    current = next;
+    nextIndex = (current + 1) % images.length;
+
+    // Precarga la próxima imagen
+    loadSlide(nextIndex);
+  }
+
+  // Primera imagen
+  slides[0] = createSlide(images[0], true, 0);
+
+  // Cuando carga la primera, empieza movimiento y quita preloader
+  slides[0].onload = () => {
+    startMotion(slides[0]);
+    hidePreloader();
+  };
+
+  // Si la imagen ya estaba en cache, asegúrate de iniciar todo
+  if (slides[0].complete) {
+    startMotion(slides[0]);
+    hidePreloader();
+  }
+
+  // Precarga segunda imagen
+  slides[1] = createSlide(images[1], false, 1);
+
+  // Cambia cada 7 segundos.
+  // El movimiento en CSS dura más, así sale antes de llegar al final.
+  setInterval(showNextSlide, 7000);
+});
 // =============================
 // FEATURED SESSION
 // =============================
@@ -283,394 +368,455 @@ document.addEventListener('DOMContentLoaded', function () {
 // GALLERY
 // =============================
 document.addEventListener("DOMContentLoaded", () => {
-  const galleryContainer = document.getElementById("gallery-grid");
+  const galleryContainer =
+    document.getElementById("gallery-grid") ||
+    document.getElementById("gallery");
+
   if (!galleryContainer) return;
 
   const params = new URLSearchParams(window.location.search);
   const serviceKey = params.get("service") || "photography";
 
-  sessionStorage.setItem("selectedService", serviceKey.toLowerCase());
-
   fetch("data/services.json")
     .then(res => res.json())
     .then(data => {
-      const galleryData = data.galleries[serviceKey] || data.galleries.photography;
-      const container = document.getElementById("gallery-grid");
-      if (!container) return;
+      const galleryData = data.galleries?.[serviceKey] || data.galleries?.photography;
 
-      container.innerHTML = "";
-      container.style.display = "flex";
-      container.style.flexDirection = "column";
-      container.style.justifyContent = "center";
-      container.style.alignItems = "center";
-      container.style.paddingBottom = "4rem";
-
-      const innerGrid = document.createElement("div");
-      innerGrid.className = "gallery-grid";
-
-      const title = document.createElement("h1");
-      title.textContent = galleryData.title;
-      title.style.setProperty("margin", "0rem 0 0rem", "important");
-      title.style.setProperty("text-align", "center", "important");
-      container.appendChild(title);
-
-      if (galleryData.description) {
-        const desc = document.createElement("p");
-        desc.textContent = galleryData.description;
-        desc.style.marginTop = "2.5rem";
-        desc.style.maxWidth = "700px";
-        desc.style.marginBottom = "2.5rem";
-        container.appendChild(desc);
+      if (!galleryData) {
+        console.error("Gallery not found:", serviceKey);
+        galleryContainer.innerHTML = "<p>Gallery not found.</p>";
+        return;
       }
 
-      container.appendChild(innerGrid);
-
       const images = Array.from(
-        { length: galleryData.count || 18 },
+        { length: galleryData.count || 12 },
         (_, i) => `${galleryData.src}/${i + 1}.jpg`
       );
 
-      for (let i = images.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [images[i], images[j]] = [images[j], images[i]];
-      }
+      const heroImage = galleryData.hero || images[0];
 
-      let currentIndex = 0;
-      let imagesList = [];
+      galleryContainer.innerHTML = `
+        <section class="gallery-hero" style="background-image: url('${heroImage}')">
+          <div class="gallery-hero-content">
+            <span class="section-kicker">JG Photography</span>
+            <h1>${galleryData.title}</h1>
+            <p>${galleryData.description}</p>
+            <a href="calculator.html?service=${serviceKey}" class="btn mybtn">Build Your Package</a>
+          </div>
+        </section>
+
+        <section class="gallery-intro">
+          <p>${galleryData.description}</p>
+        </section>
+
+        <section class="gallery-masonry" id="galleryMasonry"></section>
+
+        <section class="gallery-cta">
+          <span class="section-kicker">Ready when you are</span>
+          <h2>Shape a ${galleryData.title} session around your story.</h2>
+          <a href="calculator.html?service=${serviceKey}" class="btn mybtn">Customize a Package</a>
+        </section>
+      `;
+
+      const masonry = document.getElementById("galleryMasonry");
 
       images.forEach((src, index) => {
-        const img = document.createElement("img");
-        img.src = src;
-        img.alt = galleryData.title;
-        innerGrid.appendChild(img);
+        const item = document.createElement("button");
+        item.className = `gallery-item item-${index + 1}`;
+        item.type = "button";
 
-        imagesList.push(src);
+        item.innerHTML = `
+          <img src="${src}" alt="${galleryData.title}" loading="lazy">
+        `;
 
-        img.addEventListener("click", () => {
-          currentIndex = index;
+        item.querySelector("img").onerror = () => {
+          console.warn("Image not found:", src);
+          item.remove();
+        };
 
-          let overlay = document.getElementById("popupOverlay");
-          let imgBig;
-
-          if (!overlay) {
-            overlay = document.createElement("div");
-            overlay.id = "popupOverlay";
-            overlay.style.position = "fixed";
-            overlay.style.inset = "0";
-            overlay.style.background = "rgba(0,0,0,0.85)";
-            overlay.style.display = "flex";
-            overlay.style.justifyContent = "center";
-            overlay.style.alignItems = "center";
-            overlay.style.zIndex = "999999";
-
-            imgBig = document.createElement("img");
-            imgBig.id = "popupImage";
-            imgBig.style.maxWidth = "80vw";
-            imgBig.style.maxHeight = "80vh";
-            imgBig.style.objectFit = "contain";
-
-            const prev = document.createElement("i");
-            prev.className = "fa-solid fa-chevron-left";
-            const next = document.createElement("i");
-            next.className = "fa-solid fa-chevron-right";
-
-            [prev, next].forEach(icon => {
-              icon.style.color = "white";
-              icon.style.fontSize = "2rem";
-              icon.style.cursor = "pointer";
-              icon.style.position = "absolute";
-              icon.style.top = "50%";
-              icon.style.filter = "drop-shadow(2px 2px 4px rgba(0,0,0,0.7))";
-              icon.style.transform = "translateY(-50%)";
-            });
-
-            prev.style.left = "2rem";
-            next.style.right = "2rem";
-
-            prev.addEventListener("click", e => {
-              e.stopPropagation();
-              showPrev();
-            });
-
-            next.addEventListener("click", e => {
-              e.stopPropagation();
-              showNext();
-            });
-
-            overlay.append(imgBig, prev, next);
-            document.body.appendChild(overlay);
-
-            overlay.addEventListener("click", e => {
-              if (e.target === overlay) overlay.style.display = "none";
-            });
-
-            document.addEventListener("keydown", e => {
-              if (overlay.style.display !== "flex") return;
-              if (e.key === "ArrowRight") showNext();
-              if (e.key === "ArrowLeft") showPrev();
-              if (e.key === "Escape") overlay.style.display = "none";
-            });
-
-            function showNext() {
-              currentIndex = (currentIndex + 1) % imagesList.length;
-              imgBig.src = imagesList[currentIndex];
-            }
-
-            function showPrev() {
-              currentIndex = (currentIndex - 1 + imagesList.length) % imagesList.length;
-              imgBig.src = imagesList[currentIndex];
-            }
-          } else {
-            imgBig = document.getElementById("popupImage");
-          }
-
-          imgBig.src = src;
-          overlay.style.display = "flex";
+        item.addEventListener("click", () => {
+          openGalleryOverlay(images, index);
         });
+
+        masonry.appendChild(item);
       });
     })
     .catch(err => console.error("Gallery load error:", err));
 });
 
+function openGalleryOverlay(images, startIndex) {
+  let currentIndex = startIndex;
+
+  let overlay = document.getElementById("popupOverlay");
+  let imgBig = document.getElementById("popupImage");
+
+  if (!overlay) {
+    overlay = document.createElement("div");
+    overlay.id = "popupOverlay";
+
+    imgBig = document.createElement("img");
+    imgBig.id = "popupImage";
+
+    const closeBtn = document.createElement("button");
+    closeBtn.className = "gallery-close";
+    closeBtn.innerHTML = "&times;";
+
+    const prev = document.createElement("button");
+    prev.className = "gallery-arrow gallery-prev";
+    prev.innerHTML = "&#10094;";
+
+    const next = document.createElement("button");
+    next.className = "gallery-arrow gallery-next";
+    next.innerHTML = "&#10095;";
+
+    overlay.append(imgBig, closeBtn, prev, next);
+    document.body.appendChild(overlay);
+
+    closeBtn.addEventListener("click", e => {
+      e.stopPropagation();
+      overlay.style.display = "none";
+    });
+
+    overlay.addEventListener("click", e => {
+      if (e.target === overlay) overlay.style.display = "none";
+    });
+
+    prev.addEventListener("click", e => {
+      e.stopPropagation();
+      currentIndex = (currentIndex - 1 + images.length) % images.length;
+      imgBig.src = images[currentIndex];
+    });
+
+    next.addEventListener("click", e => {
+      e.stopPropagation();
+      currentIndex = (currentIndex + 1) % images.length;
+      imgBig.src = images[currentIndex];
+    });
+  }
+
+  imgBig.src = images[currentIndex];
+  overlay.style.display = "flex";
+}
+
+
+// =============================
+// CONTACT SECTION INJECTION
+// =============================
+document.addEventListener("DOMContentLoaded", () => {
+  const contactInject = document.getElementById("contactInject");
+  if (!contactInject) return;
+
+  fetch("contact-section.html")
+    .then(res => res.text())
+    .then(html => {
+      contactInject.innerHTML = html;
+      contactPageInit();
+    })
+    .catch(err => console.error("Contact section load error:", err));
+});
+
+
 // =============================
 // CALCULATOR
 // =============================
-
 document.addEventListener("DOMContentLoaded", () => {
-  const card_container = document.getElementById("card_container");
-  if (!card_container) return;
+  const cardContainer = document.getElementById("card_container");
+  if (!cardContainer) return;
 
-  let selectedCard = null;
-  let services = {};
+  let packages = [];
+
+  const params = new URLSearchParams(window.location.search);
+  const serviceKey = params.get("service") || "families";
+
+  const serviceTypeMap = {
+    families: "family",
+    newborn: "portrait",
+    milestones: "portrait",
+    portrait: "portrait",
+    photography: "portrait",
+    featured: "family"
+  };
+
+  const currentType = serviceTypeMap[serviceKey] || "portrait";
 
   fetch("data/services.json")
     .then(res => res.json())
     .then(data => {
-      services = data.packages;
+      const galleryData = data.galleries?.[serviceKey] || data.galleries?.photography;
 
-      Object.keys(services).forEach(key => {
-        const pkg = services[key];
+      const previewTitle = document.querySelector("#previewImage .title");
+      const previewImage = document.getElementById("previewImage");
 
-        card_container.innerHTML += `
-          <div class="text-center package-card card" data-package="${key}">
-            <h1 class="packageName">${pkg.name}</h1>
-            <p class="packageSelect">${pkg.tagline}</p>
-
-            <h2>$<span class="basePrice">${pkg.basePrice.toFixed(2)}</span></h2>
-
-            <div class="d-flex gap-3 justify-content-center py-5">
-              <span class="mini-card">
-                <i class="fa-solid fa-camera"></i>
-                ${pkg.base.photos} Photos
-              </span>
-
-              <span class="mini-card">
-                <i class="fa-solid fa-clock"></i>
-                ${pkg.base.duration}
-              </span>
-
-              <span class="mini-card">
-                <i class="fa-solid fa-shirt"></i>
-                ${pkg.base.outfitChanges} Outfit${pkg.base.outfitChanges > 1 ? "s" : ""}
-              </span>
-            </div>
-
-            <div class="package-details"></div>
-          </div>
+      if (previewTitle && galleryData) {
+        previewTitle.innerHTML = `
+          <span class="calculator-kicker">Customize Your Package</span>
+          ${galleryData.title}
         `;
-      });
+      }
 
-      attachEvents();
+      if (previewImage && galleryData) {
+        const heroImage = galleryData.hero || `${galleryData.src}/1.jpg`;
+        previewImage.style.setProperty(
+          "background-image",
+          `url("${heroImage}")`,
+          "important"
+        );
+      }
+
+      packages = data.packages.filter(pkg => pkg.type === currentType);
+
+      if (!packages.length) {
+        cardContainer.innerHTML = `<p>No packages found for ${currentType}.</p>`;
+        return;
+      }
+
+      renderPackages(packages);
     })
     .catch(err => console.error("Calculator load error:", err));
 
-  function createDetails(pkg) {
-    const featuresList = pkg.features
-      .map(f => `<li><i class="fa-solid fa-check"></i> ${f}</li>`)
-      .join("");
+  function renderPackages(packageList) {
+    cardContainer.innerHTML = "";
 
-    return `
-      <ul class="features-list">
-        ${featuresList}
-      </ul>
+    packageList.forEach((pkg, index) => {
+      const isSpecial = index === 1;
 
-      <div class="extras show">
-        <p>ADD-ONS</p>
+      cardContainer.innerHTML += `
+        <article class="package-card ${isSpecial ? "package-special" : ""}" data-id="${pkg.id}">
+          ${isSpecial ? `<span class="package-badge">Most Loved</span>` : ""}
 
-        <div class="extra-control">
-          <label>Additional Photos</label>
-          <div class="counter">
-            <button type="button" class="decrease">-</button>
-            <span class="count">0</span>
-            <button type="button" class="increase">+</button>
-          </div>
-        </div>
+          <h2>${pkg.name}</h2>
+          <p class="package-blurb">${pkg.includes[0]}</p>
 
-        <div class="extra-control outfits">
-          <label>Extra Outfit Changes</label>
-          <div class="counter">
-            <button type="button" class="decrease">-</button>
-            <span class="count">0</span>
-            <button type="button" class="increase">+</button>
-          </div>
-        </div>
+          <h3>$${pkg.basePrice}</h3>
 
-        <div class="extra-control">
-          <label>Rush Delivery</label>
-          <input type="checkbox" class="rushDelivery">
-        </div>
-      </div>
+          <ul class="package-includes">
+            ${pkg.includes.map(item => `
+              <li><i class="fa-solid fa-check"></i> ${item}</li>
+            `).join("")}
+          </ul>
 
-      <h4 class="totalp">Total: $<span class="totalPrice">${pkg.basePrice.toFixed(2)}</span></h4>
-      <a class="getPackageBtn hvr-grow btn">Get This Package</a>
-    `;
-  }
+          <div class="package-details"></div>
 
-  function closeCard(card) {
-    card.classList.remove("active", "card_bronce", "card_gold", "card_silver");
-
-    card.querySelectorAll("li, p, h1, h2, h3, h4, span, label").forEach(el => {
-      el.style.color = "var(--color-texto)";
+          <button type="button" class="selectPackageBtn">
+            Get This Package
+          </button>
+        </article>
+      `;
     });
 
-    const details = card.querySelector(".package-details");
-    if (details) details.innerHTML = "";
+    attachPackageEvents();
   }
 
-  function closeAllCards() {
-    document.querySelectorAll(".package-card").forEach(card => {
-      closeCard(card);
-    });
-  }
-
-  function applyPackageColor(card) {
-    const packageName = card.querySelector(".packageName").textContent.trim().toLowerCase();
-
-    if (packageName === "essential") {
-      card.classList.add("card_bronce");
-    } else if (packageName === "prestige") {
-      card.classList.add("card_gold");
-    } else if (packageName === "signature") {
-      card.classList.add("card_silver");
-    }
-  }
-
-  function openCard(card) {
-    const key = card.dataset.package;
-    const pkg = services[key];
-
-    if (!pkg) return;
-
-    card.classList.add("active");
-    card.querySelector(".package-details").innerHTML = createDetails(pkg);
-
-    applyPackageColor(card);
-
-    card.querySelectorAll("li, p, h1, h2, h3, h4, span, label").forEach(el => {
-      /* el.style.color = "var(--color-texto-dbg)"; */
-    });
-
-    selectedCard = card;
-    calculateTotal(card);
-  }
-
-  function attachEvents() {
+  function attachPackageEvents() {
     document.querySelectorAll(".package-card").forEach(card => {
       card.addEventListener("click", e => {
-        const clickedInsideControl = e.target.closest(
-          ".extras, .extra-control, .counter, .increase, .decrease, .rushDelivery, .getPackageBtn"
-        );
+        if (
+          e.target.closest(".package-details") ||
+          e.target.closest(".selectPackageBtn")
+        ) return;
 
-        if (clickedInsideControl) return;
+        const wasActive = card.classList.contains("active");
 
-        const isAlreadyActive = card.classList.contains("active");
+        closeAllPackages();
 
-        closeAllCards();
+        if (wasActive) return;
 
-        if (isAlreadyActive) {
-          selectedCard = null;
-          return;
-        }
-
-        openCard(card);
+        openPackage(card);
       });
     });
 
     document.addEventListener("click", e => {
-      const card = e.target.closest(".package-card");
-      if (!card || !card.classList.contains("active")) return;
+      const counter = e.target.closest(".option-counter");
+      const counterBtn = e.target.closest("button");
 
-      if (e.target.classList.contains("increase") || e.target.classList.contains("decrease")) {
+      if (
+        counter &&
+        counterBtn &&
+        (counterBtn.classList.contains("increase") ||
+         counterBtn.classList.contains("decrease"))
+      ) {
         e.stopPropagation();
 
-        const countEl = e.target.parentElement.querySelector(".count");
-        let val = parseInt(countEl.textContent);
+        const card = e.target.closest(".package-card");
+        const countEl = counter.querySelector(".count");
 
-        if (e.target.classList.contains("increase")) val++;
-        if (e.target.classList.contains("decrease") && val > 0) val--;
+        let count = parseInt(countEl.textContent);
+        const max = parseInt(counter.dataset.max);
 
-        countEl.textContent = val;
+        if (counterBtn.classList.contains("increase") && count < max) count++;
+        if (counterBtn.classList.contains("decrease") && count > 0) count--;
+
+        countEl.textContent = count;
         calculateTotal(card);
+        return;
       }
 
-      if (e.target.classList.contains("getPackageBtn")) {
-        e.stopPropagation();
-        goToContact(card);
-      }
-    });
-
-    document.addEventListener("change", e => {
-      if (!e.target.classList.contains("rushDelivery")) return;
+      const btn = e.target.closest(".selectPackageBtn");
+      if (!btn) return;
 
       e.stopPropagation();
 
-      const card = e.target.closest(".package-card");
-      if (!card) return;
+      const card = btn.closest(".package-card");
 
+      if (!card.classList.contains("active")) {
+        closeAllPackages();
+        openPackage(card);
+      }
+
+      updateContactMessage(card);
+      document.getElementById("contactSection")?.scrollIntoView({ behavior: "smooth" });
+    });
+
+    document.addEventListener("change", e => {
+      if (!e.target.classList.contains("package-option")) return;
+
+      const card = e.target.closest(".package-card");
       calculateTotal(card);
     });
   }
 
-  function calculateTotal(card) {
-    const basePrice = parseFloat(card.querySelector(".basePrice").textContent);
-    const counts = card.querySelectorAll(".extra-control .count");
+  function openPackage(card) {
+    const pkg = getPackageByCard(card);
+    if (!pkg) return;
 
-    const extraPhotos = parseInt(counts[0]?.textContent) || 0;
-    const outfits = parseInt(counts[1]?.textContent) || 0;
-    const rush = card.querySelector(".rushDelivery")?.checked || false;
+    card.classList.add("active");
 
-    let total = basePrice;
-    total += extraPhotos * 15;
-    total += outfits * 30;
+    card.querySelector(".package-details").innerHTML = `
+      <p class="customize-label">Customize</p>
 
-    if (rush) total += 70;
+      <div class="package-options">
+        ${pkg.options.map(option => createOptionHTML(option, pkg)).join("")}
+      </div>
 
-    card.querySelector(".totalPrice").textContent = total.toFixed(2);
+      <h4 class="package-total">
+        Total: $<span class="totalPrice">${pkg.basePrice}</span>
+      </h4>
+    `;
+
+    calculateTotal(card);
   }
 
-  function goToContact(card) {
-    const name = card.querySelector(".packageName").textContent;
-    const tagline = card.querySelector(".packageSelect").textContent;
-    const total = card.querySelector(".totalPrice").textContent;
+  function createOptionHTML(option, pkg) {
+    if (option.control === "counter") {
+      const max = option.id === "extra-photo"
+        ? Math.max(0, pkg.limits.maxPhotos - pkg.limits.basePhotos)
+        : option.max || 1;
 
-    const counts = card.querySelectorAll(".extra-control .count");
-    const extraPhotos = parseInt(counts[0]?.textContent) || 0;
-    const outfits = parseInt(counts[1]?.textContent) || 0;
-    const rush = card.querySelector(".rushDelivery")?.checked || false;
+      return `
+        <div class="package-option-row">
+          <span>${option.label}</span>
 
-    let extrasArr = [];
+          <div 
+            class="option-counter" 
+            data-label="${option.label}" 
+            data-price="${option.price}" 
+            data-max="${max}"
+          >
+            <button type="button" class="decrease">
+              <i class="fa-solid fa-minus"></i>
+            </button>
+            <span class="count">0</span>
+            <button type="button" class="increase">
+              <i class="fa-solid fa-plus"></i>
+            </button>
+          </div>
 
-    if (extraPhotos > 0) extrasArr.push(`${extraPhotos} additional photos`);
-    if (outfits > 0) extrasArr.push(`${outfits} outfit changes`);
-    if (rush) extrasArr.push("rush delivery");
+          <strong>+$${option.price}</strong>
+        </div>
+      `;
+    }
 
-    const extrasText = extrasArr.length ? extrasArr.join(", ") : "No extras";
+    return `
+      <label class="package-option-row">
+        <span>
+          <input 
+            type="checkbox" 
+            class="package-option" 
+            data-label="${option.label}" 
+            data-price="${option.price}"
+          >
+          ${option.label}
+        </span>
+        <strong>+$${option.price}</strong>
+      </label>
+    `;
+  }
 
-    const contactUrl = `contact.html?service=${encodeURIComponent(name)}&package=${encodeURIComponent(tagline)}&extras=${encodeURIComponent(extrasText)}&total=${encodeURIComponent("$" + total)}`;
+  function closeAllPackages() {
+    document.querySelectorAll(".package-card").forEach(card => {
+      card.classList.remove("active");
 
-    window.location.href = contactUrl;
+      const details = card.querySelector(".package-details");
+      if (details) details.innerHTML = "";
+    });
+  }
+
+  function getPackageByCard(card) {
+    const id = card.dataset.id;
+    return packages.find(pkg => pkg.id === id);
+  }
+
+  function calculateTotal(card) {
+    const pkg = getPackageByCard(card);
+    if (!pkg) return;
+
+    let total = pkg.basePrice;
+
+    card.querySelectorAll(".package-option:checked").forEach(option => {
+      total += Number(option.dataset.price);
+    });
+
+    card.querySelectorAll(".option-counter").forEach(counter => {
+      const count = parseInt(counter.querySelector(".count").textContent);
+      const price = Number(counter.dataset.price);
+      total += count * price;
+    });
+
+    const totalEl = card.querySelector(".totalPrice");
+    if (totalEl) totalEl.textContent = total;
+  }
+
+  function updateContactMessage(card) {
+    const pkg = getPackageByCard(card);
+    const messageInput = document.getElementById("message");
+
+    if (!pkg || !messageInput) return;
+
+    const selectedOptions = [];
+
+    card.querySelectorAll(".package-option:checked").forEach(option => {
+      selectedOptions.push(`${option.dataset.label} (+$${option.dataset.price})`);
+    });
+
+    card.querySelectorAll(".option-counter").forEach(counter => {
+      const count = parseInt(counter.querySelector(".count").textContent);
+
+      if (count > 0) {
+        selectedOptions.push(
+          `${count} ${counter.dataset.label}(s) (+$${Number(counter.dataset.price) * count})`
+        );
+      }
+    });
+
+    const total = card.querySelector(".totalPrice")?.textContent || pkg.basePrice;
+
+    messageInput.value =
+`Hello, I would like to book the following package:
+
+Service: ${serviceKey}
+Package: ${pkg.name}
+Base Price: $${pkg.basePrice}
+Extras: ${selectedOptions.length ? selectedOptions.join(", ") : "No extras"}
+Total Price: $${total}
+
+Please let me know the next steps.`;
+
+    messageInput.style.height = "auto";
+    messageInput.style.height = messageInput.scrollHeight + "px";
   }
 });
+
+
 // =============================
 // CONTACT PAGE PREFILL
 // =============================
@@ -683,14 +829,22 @@ function contactPageInit() {
   if (!messageInput) return;
 
   const params = new URLSearchParams(window.location.search);
-  const service = params.get("service") || "";
   const packageName = params.get("package") || "";
   const extras = params.get("extras") || "";
   const total = params.get("total") || "";
 
-  if (service || packageName || extras || total) {
-    const prefillMessage = `Hello, I would like to book the following package:\n\nService: ${service}\nPackage: ${packageName}\nExtras: ${extras}\nTotal Price: ${total}\n\nPlease let me know the next steps.`;
-    messageInput.value = prefillMessage;
+  if (packageName || extras || total) {
+    const service = params.get("service") || "";
+
+    messageInput.value =
+`Hello, I would like to book the following package:
+
+Service: ${service}
+Package: ${packageName}
+Extras: ${extras}
+Total Price: ${total}
+
+Please let me know the next steps.`;
 
     messageInput.style.height = "auto";
     messageInput.style.height = messageInput.scrollHeight + "px";

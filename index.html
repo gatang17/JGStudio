@@ -27,13 +27,13 @@
   </div>
 
   <!-- Background Hero -->
-  <div id="cont_background" class="container hero"></div>
+  <div id="cont_background" class="container hero" ></div>
 
   <!-- Header injected -->
   <div id="header"></div>
 
 <!-- HERO -->
-<section class="section_v1" id="init" data-aos="fade-up" data-aos-duration="800">
+<section class="section_v1" id="init" data-aos="fade-in" data-aos-duration="800">
   <div class="bottom-content borroso main_content">
     
     <div class="text-center">
@@ -60,7 +60,7 @@
   <section id="featuredSession" class="featured_session borroso" >
     <div class="featured_session_inner">
 
-      <div class="featured_media_wrap" data-aos="fade-up" data-aos-duration="800">
+      <div class="featured_media_wrap" data-aos="slide-up" data-aos-duration="800">
         <a id="featuredLinkImage" href="gallery.html?service=featured" class="featured_media_link">
           <div class="featured_media" id="featuredMedia"></div>
         </a>
@@ -79,88 +79,132 @@
     </div>
   </section>
 
-  <!-- SERVICES + ABOUT + FIND US -->
-  <main class="borroso" id="seccionServices">
+<!-- SERVICES + ABOUT + FIND US -->
+<main class="borroso" id="seccionServices">
 
-    <!-- Services intro -->
-    <div class="text-center cont_index">
-      <h1>Explore Our Services</h1>
-      <p class="m-3">
-        At JG Photography, we blend creativity and precision to offer services that highlight your personal brand and visual storytelling.
-        Whether you're looking to enhance your online presence or preserve meaningful moments through artistic portraiture, our current offerings are tailored to meet your needs:
+  <!-- SERVICES EDITORIAL BLOCK -->
+  <section class="services-editorial">
+
+    <div class="services-intro">
+      <span class="section-kicker">Services</span>
+      <h1>
+        Three ways we tell <em>your</em> story.
+      </h1>
+      <p>
+        From timeless portraits to meaningful family sessions and polished brand imagery,
+        each service is designed with care, warmth, and visual intention.
       </p>
     </div>
+    <div id="sect_sev" class="services-grid" data-aos="fade-up" data-aos-duration="900">
 
-    <!-- Services -->
-    <section id="sect_sev" class="container-fluid align-items-center justify-content-center cont_index" data-aos="fade-up" data-aos-duration="800">
-      <a href="./gallery.html?service=portrait" class="lnkMenu hvr-grow">
-        <img src="img/services/01.jpg" class="img_serv mb-1" alt="Portraits">
-        <p>Portraits</p>
+      <!-- FAMILIES -->
+      <a href="./gallery.html?service=families" class="service-card service-card-large">
+        <img src="img/photos/family_kids/1.jpg" class="img_serv" alt="Family Stories">
+        <div class="service-card-text">
+          <span>Family Session</span>
+          <h2>Family Stories</h2>
+          <p>The everyday, made timeless.</p>
+          <small>View Gallery →</small>
+        </div>
       </a>
-
-      <a href="./gallery.html?service=fam_kids" class="lnkMenu hvr-grow">
-        <img src="img/services/02.jpg" class="img_serv mb-1" alt="Family & Kids">
-        <p>Family & Kids</p>
+    
+      <!-- NEWBORN -->
+      <a href="./gallery.html?service=newborn" class="service-card">
+        <img src="img/photos/newborn/1.jpg" class="img_serv" alt="First Light">
+        <div class="service-card-text">
+          <span>Newborn Session</span>
+          <h2>First Light</h2>
+          <p>Soft, slow, and tender.</p>
+          <small>View Gallery →</small>
+        </div>
       </a>
-
-      <a href="./gallery.html?service=product" class="lnkMenu hvr-grow">
-        <img src="img/services/03.jpg" class="img_serv mb-1" alt="Corporate">
-        <p>Corporate</p>
+    
+      <!-- MILESTONES -->
+      <a href="./gallery.html?service=milestones" class="service-card">
+        <img src="img/photos/milestones/6.jpg" class="img_serv" alt="Little Ones">
+        <div class="service-card-text">
+          <span>Milestone Session</span>
+          <h2>Little Ones</h2>
+          <p>Every stage, beautifully captured.</p>
+          <small>View Gallery →</small>
+        </div>
       </a>
-    </section>
+    
+      <!-- EVENTS -->
+      <a href="./gallery.html?service=portrait" class="service-card">
+        <img src="img/photos/portrait/1.jpg" class="img_serv" alt="General portraits">
+        <div class="service-card-text">
+          <span>Portraits</span>
+          <h2>General portraits</h2>
+          <p>An image forever.</p>
+          <small>View Gallery →</small>
+        </div>
+      </a>
+    
+    </div>
+  </section>
 
-    <!-- About -->
-    <div class="wrapper">
-      <section class="container-fluid align-items-center justify-content-center cont_index" id="secabout" data-aos="fade-up" data-aos-duration="800">
-        <div class="text-center m-2">
-          <h1>About Us</h1>
+  <!-- ABOUT BAND -->
+  <section class="about-band">
+    <div class="about-inner" data-aos="fade-up" data-aos-duration="900">
+      <span class="section-kicker">About Us</span>
+      <h1>
+        We create images with care, warmth, and intention.
+      </h1>
+      <p>
+        We are a passionate team dedicated to capturing moments that feel honest and timeless.
+        With experience, creativity, and attention to detail, we focus on preserving emotion,
+        color, and connection in every image.
+      </p>
+    </div>
+  </section>
+
+  <!-- QUOTE SECTION -->
+  <section class="quote-section">
+    <p>
+      “A photograph is the closest thing we have to keeping a moment alive.”
+    </p>
+  </section>
+
+  <!-- FIND US -->
+  <section id="findus" class="findus-section">
+
+    <div class="findus-brand">
+      <a href="index.html">
+        <img src="img/logoColor.png" class="mt-3" alt="J&G Photography Logo">
+      </a>
+      <h1>Find Us</h1>
+    </div>
+
+    <div class="findus-grid">
+
+      <div>
+        <i class="fa-solid fa-location-dot"></i>
+        <a href="https://maps.app.goo.gl/jbnxKH4bJop5arPH8" target="_blank">
           <p>
-            We are a passionate team dedicated to capturing moments that feel like a dream. With the right experience and equipment, we focus on bringing out the sharpness, color, and emotion in every image. For over 10 years, we’ve specialized in family photography, helping our clients preserve memories that last a lifetime.
-            Our approach combines creativity and technical skill, ensuring each photo is personalized and full of feeling. Beyond photography, we bring complementary design and visual communication skills, so every project reflects not only quality but also care and style.
+            7402 Tangelo Dr.<br>
+            Louisville, KY 40228
           </p>
-        </div>
-      </section>
-    </div>
-
-    <!-- Find Us -->
-    <div id="findus" class="container text-center py-5">
-
-      <a href="#">
-        <img src="/img/logoColor.png" alt="Studio Logo"
-             class="mx-auto mb-4"
-             style="width: 110px; height: 110px; object-fit: contain;">
-      </a>
-
-      <h1 class="text-center">Find Us</h1>
-
-      <div class="row justify-content-center g-4" style="max-width: 700px; margin: auto;">
-
-        <div class="col-12 col-md-4 d-flex flex-column align-items-center">
-          <i class="fa-solid fa-location-dot mb-2"></i>
-          <a href="https://maps.app.goo.gl/jbnxKH4bJop5arPH8" target="_blank" class="hvr-grow my-3">
-            <p class="small text-muted">
-              7402 Tangelo Dr.<br>
-              Louisville, KY 40228
-            </p>
-          </a>
-        </div>
-
-        <div class="col-12 col-md-4 d-flex flex-column align-items-center">
-          <i class="fa-solid fa-phone mb-2"></i>
-          <p class="small text-muted">502 345-7226</p>
-        </div>
-
-        <div class="col-12 col-md-4 d-flex flex-column align-items-center">
-          <i class="fa-solid fa-envelope mb-2"></i>
-          <a href="contact.html">
-            <p class="small text-muted">jgyourstudio@gmail.com</p>
-          </a>
-        </div>
-
+        </a>
       </div>
+
+      <div>
+        <i class="fa-solid fa-phone"></i>
+        <p>502 345-7226</p>
+      </div>
+
+      <div>
+        <i class="fa-solid fa-envelope"></i>
+        <a href="contact.html">
+          <p>jgyourstudio@gmail.com</p>
+        </a>
+      </div>
+
     </div>
 
-  </main>
+  </section>
+
+</main>
 
   <!-- Footer -->
   <footer id="foot_bar" class="gap-2">

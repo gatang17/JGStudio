@@ -1,0 +1,44 @@
+<section class="contact-section" id="contactSection">
+    <div class="contact-heading">
+      <span class="section-kicker">Send your inquiry</span>
+      <h1>A few details and we’ll be in touch.</h1>
+      <p>Pick a package above, then complete the form here.</p>
+    </div>
+  
+    <form class="contact-form" action="https://formsubmit.co/jgyourstudio@gmail.com" method="POST">
+      <div class="form-row">
+        <div class="input-box has-value">
+          <input type="text" name="name" id="name" required>
+          <label for="name">Name</label>
+        </div>
+  
+        <div class="input-box has-value">
+          <input type="email" name="email" id="email" required>
+          <label for="email">Email</label>
+        </div>
+      </div>
+  
+      <div class="form-row">
+        <div class="input-box has-value">
+          <input type="tel" name="phone" id="phone">
+          <label for="phone">Phone optional</label>
+        </div>
+  
+        <div class="input-box has-value">
+          <input type="date" name="preferred_date" id="preferred_date">
+          <label for="preferred_date">Preferred Date</label>
+        </div>
+      </div>
+  
+      <div class="input-box has-value full">
+        <textarea name="message" id="message" rows="7" required></textarea>
+        <label for="message">Your Message</label>
+      </div>
+  
+      <button type="submit" class="btn hvr-grow mybtn">Send Message</button>
+  
+      <input type="hidden" name="_next" value="https://jgstudio.vercel.app/thankyou.html">
+      <input type="hidden" name="_captcha" value="false">
+      <input type="hidden" name="_template" value="table">
+    </form>
+  </section>

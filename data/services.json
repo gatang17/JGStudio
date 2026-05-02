@@ -1,90 +1,197 @@
 {
   "galleries": {
-    "photography": {
-      "title": "General Photography",
-      "description": "Our work is like a cosmopolitan city, home to traditional, artistic, and abstract photography. Not everything needs meaning; it needs to leave an impression.",
-      "src": "img/photos/photography",
-      "count": 18
-    },
-    "portrait": {
-      "title": "Portrait",
-      "description": "Portraits reveal the real person, their emotions, their soul. They preserve the greatest masterpiece of all.",
-      "src": "img/photos/portrait",
-      "count": 18
-    },
-    "fam_kids": {
-      "title": "Family & Kids",
-      "description": "Welcome to this family gallery, preserving childhood, love, and the joy of being together.",
-      "src": "img/photos/family_kids",
-      "count": 18
-    },
-    "product": {
-      "title": "Product",
-      "description": "Products are interpreted through light, detail, and handmade photographic craft.",
-      "src": "img/photos/product",
-      "count": 18
-    },
- "featured": {
-  "title": "Moments We Love",
-  "description": "A closer look at one of our favorite sessions, captured with warmth, care, and intention.",
-  "src": "img/photos/featured",
-  "count": 12
-
-}
-
+  "photography": {
+  "title": "General Photography",
+  "description": "Our work is like a cosmopolitan city, home to traditional, artistic, and abstract photography. Not everything needs meaning; it needs to leave an impression.",
+  "src": "img/photos/photography",
+  "hero": "img/photos/photography/1.jpg",
+  "count": 18
   },
-
-    "packages": [
-    {
-      "name": "Essential",
-      "tagline": "A polished portrait session",
-      "basePrice": 150.00,
-      "base": { "photos": 5, "duration": "30 min", "outfitChanges": 1 },
-      "features": [
-        "Professional editing & retouching",
-        "Online gallery for 30 days",
-        "Print-ready high-res downloads"
-      ],
-      "addOns": [
-        { "id": "e1", "label": "Extra photos", "pricePerUnit": 10, "unit": "photo", "icon": "<Image className='h-4 w-4' />" },
-        { "id": "e2", "label": "Extra outfit change", "pricePerUnit": 40, "unit": "each", "icon": "<Shirt className='h-4 w-4' />" }
-      ]
+  
+  
+  "families": {
+    "title": "Family Stories",
+    "description": "A relaxed session crafted around your family's natural rhythm, capturing connection, warmth, and genuine moments.",
+    "src": "img/photos/family_kids",
+    "hero": "img/photos/family_kids/2.jpg",
+    "count": 11
+  },
+  
+  "newborn": {
+    "title": "First Light",
+    "description": "Soft, slow, and tender sessions designed to preserve the earliest days of your baby with calm and care.",
+    "src": "img/photos/newborn",
+    "hero": "img/photos/newborn/1.jpg",
+    "count": 18
+  },
+  
+  "milestones": {
+    "title": "Little Ones",
+    "description": "From maternity to birthdays, we capture every stage with light, movement, and emotion.",
+    "src": "img/photos/milestones",
+    "hero": "img/photos/milestones/1.jpg",
+    "count": 7
+  },
+  
+  "portrait": {
+    "title": "Portrait",
+    "description": "A refined portrait experience focused on expression, light, and storytelling.",
+    "src": "img/photos/portrait",
+    "hero": "img/photos/portrait/1.jpg",
+    "count": 18
+  },
+  
+  "featured": {
+    "title": "Moments We Love",
+    "description": "A closer look at one of our favorite sessions, captured with warmth, care, and intention.",
+    "src": "img/photos/featured",
+    "hero": "img/photos/featured/1.jpg",
+    "count": 12
+  }
+  
+  
+  },
+  
+  "packages": [
+  
+  
+  {
+    "id": "portrait-essential",
+    "name": "Essential",
+    "type": "portrait",
+    "basePrice": 180,
+    "includes": [
+      "30-minute session",
+      "6 edited digital photos",
+      "1 outfit",
+      "Online gallery for 30 days"
+    ],
+    "limits": {
+      "basePhotos": 6,
+      "maxPhotos": 15,
+      "maxOutfits": 1
     },
-    {
-      "name": "Signature",
-      "tagline": "Our most loved package",
-      "basePrice": 290.00,
-      "featured": true,
-      "base": { "photos": 12, "duration": "60 min", "outfitChanges": 2 },
- "features": [
-  "Professional photo editing & retouching",
-  "Creative direction & mood board planning",
-  "Guided posing throughout the session",
-  "High-resolution images with full printing rights"
-],
-      "addOns": [
-        { "id": "e1", "label": "Extra photos", "pricePerUnit": 10, "unit": "photo", "icon": "<Image className='h-4 w-4' />" },
-        { "id": "e2", "label": "Extra outfit change", "pricePerUnit": 40, "unit": "each", "icon": "<Shirt className='h-4 w-4' />" },
-        { "id": "s3", "label": "Rush delivery (48h)", "pricePerUnit": 150, "unit": "flat", "icon": "<Sparkles className='h-4 w-4' />" }
-      ]
+    "options": [
+      { "id": "extra-photo", "label": "Additional photo", "price": 18, "control": "counter" },
+      { "id": "rush", "label": "Rush delivery", "price": 70, "control": "checkbox" }
+    ]
+  },
+  
+  {
+    "id": "portrait-signature",
+    "name": "Signature",
+    "type": "portrait",
+    "basePrice": 320,
+    "includes": [
+      "60-minute session",
+      "12 edited digital photos",
+      "2 outfits",
+      "Creative direction & posing guidance"
+    ],
+    "limits": {
+      "basePhotos": 12,
+      "maxPhotos": 25,
+      "maxOutfits": 2
     },
-    {
-      "name": "Prestige",
-      "tagline": "The editorial experience",
-      "basePrice": 600,
-      "base": { "photos": 20, "duration": "2 hrs", "outfitChanges": 4 },
-  "features": [
-  "Professional high-end retouching",
-  "Personalized creative direction & styling consultation",
-  "Premium 20-page 10x10 photobook",
-  "Framed 16x24 fine art print",
-  "High-resolution images with full printing rights"
-],
-      "addOns": [
-        { "id": "e1", "label": "Extra photos", "pricePerUnit": 10, "unit": "photo", "icon": "<Image className='h-4 w-4' />" },
-        { "id": "e2", "label": "Extra outfit change", "pricePerUnit": 40, "unit": "each", "icon": "<Shirt className='h-4 w-4' />" },
-        { "id": "p3", "label": "Additional person", "pricePerUnit": 100, "unit": "person", "icon": "<Users className='h-4 w-4' />" }
-      ]
-    }
+    "options": [
+      { "id": "extra-photo", "label": "Additional photo", "price": 15, "control": "counter" },
+      { "id": "extra-outfit", "label": "Extra outfit change", "price": 30, "control": "checkbox" },
+      { "id": "rush", "label": "Rush delivery", "price": 70, "control": "checkbox" }
+    ]
+  },
+  
+  {
+    "id": "portrait-prestige",
+    "name": "Prestige",
+    "type": "portrait",
+    "basePrice": 580,
+    "includes": [
+      "90-minute session",
+      "20 edited digital photos",
+      "Up to 3 outfits",
+      "Premium retouching",
+      "10x10 photobook"
+    ],
+    "limits": {
+      "basePhotos": 20,
+      "maxPhotos": 40,
+      "maxOutfits": 3
+    },
+    "options": [
+      { "id": "extra-photo", "label": "Additional photo", "price": 15, "control": "counter" },
+      { "id": "extra-outfit", "label": "Extra outfit change", "price": 25, "control": "checkbox" },
+      { "id": "rush", "label": "Rush delivery", "price": 60, "control": "checkbox" }
+    ]
+  },
+  
+  {
+    "id": "family-essential",
+    "name": "Essential",
+    "type": "family",
+    "basePrice": 220,
+    "includes": [
+      "45-minute family session",
+      "8 edited digital photos",
+      "Up to 4 people",
+      "Online gallery for 30 days"
+    ],
+    "limits": {
+      "basePhotos": 8,
+      "maxPhotos": 15
+    },
+    "options": [
+      { "id": "extra-photo", "label": "Additional photo", "price": 18, "control": "counter" },
+      { "id": "extra-person", "label": "Additional person", "price": 25, "control": "checkbox" },
+      { "id": "rush", "label": "Rush delivery", "price": 80, "control": "checkbox" }
+    ]
+  },
+  
+  {
+    "id": "family-signature",
+    "name": "Signature",
+    "type": "family",
+    "basePrice": 380,
+    "includes": [
+      "75-minute family session",
+      "18 edited digital photos",
+      "Up to 6 people",
+      "Posing guidance and candid moments"
+    ],
+    "limits": {
+      "basePhotos": 18,
+      "maxPhotos": 30
+    },
+    "options": [
+      { "id": "extra-photo", "label": "Additional photo", "price": 18, "control": "counter" },
+      { "id": "extra-person", "label": "Additional person", "price": 25, "control": "checkbox" },
+      { "id": "rush", "label": "Rush delivery", "price": 80, "control": "checkbox" }
+    ]
+  },
+  
+  {
+    "id": "family-prestige",
+    "name": "Prestige",
+    "type": "family",
+    "basePrice": 750,
+    "includes": [
+      "2-hour family session",
+      "35 edited digital photos",
+      "Up to 8 people",
+      "Premium 10x10 family photobook",
+      "Framed 16x24 fine art print"
+    ],
+    "limits": {
+      "basePhotos": 35,
+      "maxPhotos": 60
+    },
+    "options": [
+      { "id": "extra-photo", "label": "Additional photo", "price": 18, "control": "counter" },
+      { "id": "extra-person", "label": "Additional person", "price": 25, "control": "checkbox" },
+      { "id": "rush", "label": "Rush delivery", "price": 80, "control": "checkbox" }
+    ]
+  }
+  
+  
   ]
-}
+  }
+  
