@@ -497,6 +497,16 @@ function openGalleryOverlay(images, startIndex) {
   let overlay = document.getElementById("popupOverlay");
   let imgBig = document.getElementById("popupImage");
 
+  function showNext() {
+    currentIndex = (currentIndex + 1) % images.length;
+    imgBig.src = images[currentIndex];
+  }
+
+  function showPrev() {
+    currentIndex = (currentIndex - 1 + images.length) % images.length;
+    imgBig.src = images[currentIndex];
+  }
+
   if (!overlay) {
     overlay = document.createElement("div");
     overlay.id = "popupOverlay";
@@ -530,21 +540,35 @@ function openGalleryOverlay(images, startIndex) {
 
     prev.addEventListener("click", e => {
       e.stopPropagation();
-      currentIndex = (currentIndex - 1 + images.length) % images.length;
-      imgBig.src = images[currentIndex];
+      showPrev();
     });
 
     next.addEventListener("click", e => {
       e.stopPropagation();
-      currentIndex = (currentIndex + 1) % images.length;
-      imgBig.src = images[currentIndex];
+      showNext();
+    });
+
+    document.addEventListener("keydown", e => {
+      if (overlay.style.display !== "flex") return;
+
+      if (e.key === "Escape") {
+        overlay.style.display = "none";
+      }
+
+      if (e.key === "ArrowRight") {
+        showNext();
+      }
+
+      if (e.key === "ArrowLeft") {
+        showPrev();
+      }
     });
   }
 
+  imgBig = document.getElementById("popupImage");
   imgBig.src = images[currentIndex];
   overlay.style.display = "flex";
 }
-
 
 // =============================
 // CONTACT SECTION INJECTION
