@@ -249,23 +249,29 @@ document.addEventListener("DOMContentLoaded", () => {
   // Cambia a la próxima imagen
   function showNextSlide() {
     const next = nextIndex;
-
+  
     loadSlide(next);
-
-    // Fade out de la imagen actual
+  
+    // esconder la actual
     slides[current].style.opacity = "0";
-
-    // Fade in de la próxima imagen
+  
+    // resetear la próxima mientras está invisible
+    slides[next].classList.remove(slides[next].dataset.move);
+  
+    // fuerza al navegador a registrar el reset
+    void slides[next].offsetWidth;
+  
+    // mostrar la próxima
     slides[next].style.opacity = "1";
-
-    // Empieza el movimiento de la próxima imagen
-    startMotion(slides[next]);
-
-    // Actualiza índices
+  
+    // empezar su movimiento
+    setTimeout(() => {
+      slides[next].classList.add(slides[next].dataset.move);
+    }, 80);
+  
     current = next;
     nextIndex = (current + 1) % images.length;
-
-    // Precarga la próxima imagen
+  
     loadSlide(nextIndex);
   }
 
