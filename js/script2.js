@@ -252,21 +252,29 @@ document.addEventListener("DOMContentLoaded", () => {
   
     loadSlide(next);
   
-    // esconder la actual
-    slides[current].style.opacity = "0";
+    const currentSlide = slides[current];
+    const nextSlide = slides[next];
   
-    // resetear la próxima mientras está invisible
-    slides[next].classList.remove(slides[next].dataset.move);
+    // 1. Esconde la actual
+    currentSlide.style.opacity = "0";
   
-    // fuerza al navegador a registrar el reset
-    void slides[next].offsetWidth;
+    // 2. Resetea la próxima SIN animación mientras está invisible
+    nextSlide.style.transition = "none";
+    nextSlide.style.opacity = "0";
+    nextSlide.classList.remove(nextSlide.dataset.move);
   
-    // mostrar la próxima
-    slides[next].style.opacity = "1";
+    // 3. Obliga al navegador a aplicar el reset
+    void nextSlide.offsetWidth;
   
-    // empezar su movimiento
+    // 4. Reactiva la transición
+    nextSlide.style.transition = "opacity 3s ease-in-out, transform 14s linear";
+  
+    // 5. Muestra la próxima
+    nextSlide.style.opacity = "1";
+  
+    // 6. Empieza el movimiento
     setTimeout(() => {
-      slides[next].classList.add(slides[next].dataset.move);
+      nextSlide.classList.add(nextSlide.dataset.move);
     }, 80);
   
     current = next;
