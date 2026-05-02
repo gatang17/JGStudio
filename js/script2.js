@@ -303,7 +303,40 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Cambia cada 7 segundos.
   // El movimiento en CSS dura más, así sale antes de llegar al final.
-  setInterval(showNextSlide, 7000);
+  let carouselTimer;
+
+function startCarouselTimer() {
+  clearInterval(carouselTimer);
+  carouselTimer = setInterval(showNextSlide, 7000);
+}
+
+function restartCurrentMotion() {
+  const slide = slides[current];
+  if (!slide) return;
+
+  slide.style.transition = "none";
+  slide.classList.remove(slide.dataset.move);
+
+  void slide.offsetWidth;
+
+  slide.style.transition = "opacity 3s ease-in-out, transform 14s linear";
+
+  setTimeout(() => {
+    slide.classList.add(slide.dataset.move);
+  }, 80);
+}
+
+window.addEventListener("hashchange", () => {
+  restartCurrentMotion();
+  startCarouselTimer();
+});
+
+window.addEventListener("pageshow", () => {
+  restartCurrentMotion();
+  startCarouselTimer();
+});
+
+startCarouselTimer();
 });
 // =============================
 // FEATURED SESSION
