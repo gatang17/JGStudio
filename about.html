@@ -172,35 +172,49 @@
 }
 
 .about-hero {
-  min-height: 75vh;
-  padding: 10rem 2rem 6rem;
+  background-image: url("img/photos/family_kids/4.jpg");
+  min-height: 82vh;
+  background-size: cover;
+  background-position: top;
+  position: relative;
   display: flex;
   align-items: flex-end;
+  padding: 8rem 12vw;
+  overflow: hidden;
+}
 
-  background:
-    linear-gradient(to top, rgb(219, 202, 183), rgba(58, 42, 32, 0)),
-    url("img/photos/family_kids/4.jpg");
-
-  background-size: cover;
-  background-position: center;
+.about-hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(30, 20, 15, 0.78),
+    rgba(30, 20, 15, 0.18)
+  );
+  z-index: 1;
 }
 
 .about-hero-inner {
-  width: min(1100px, 100%);
-  margin: 0 auto;
+  position: relative;
+  z-index: 2;
 }
 
+.about-hero h1,
+.about-hero p,
+.about-hero  {
+  color: var(--color-texto-dbg);
+}
 .about-hero h1 {
-  max-width: 850px;
-  font-size: clamp(3rem, 8vw, 7rem);
-  line-height: 0.9;
+
+  font-size: clamp(3rem, 7vw, 6rem);
+  line-height: 0.95;
 }
 
 .about-hero p {
-  max-width: 600px;
-  margin-top: 1.5rem;
-  color: var(--color-texto-sec);
+
   line-height: 1.7;
+  max-width: 520px;
 }
 
 .about-story {
