@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
+  <title>About | J&G Photography</title>
+
+  <link rel="stylesheet" href="css/styles2.css">
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+</head>
+
+<body>
+
+  <div id="header"></div>
+
+  <main class="about-page borroso">
+
+    <!-- HERO -->
+    <section class="about-hero">
+      <div class="about-hero-inner">
+        <span class="section-kicker">About Us</span>
+        <h1>Photography that feels personal, natural, and honest.</h1>
+        <p>
+          We are a small photography team focused on capturing meaningful moments with care,
+          patience, and intention.
+        </p>
+      </div>
+    </section>
+
+    <!-- MAIN STORY -->
+    <section class="about-story">
+      <div class="about-story-inner">
+
+        <div class="about-large-text">
+          <h2>We don’t work from a traditional studio.</h2>
+        </div>
+
+        <div class="about-copy">
+          <p>
+            Instead, we meet you where your story happens: at home, outdoors, or in a place
+            that feels natural to you.
+          </p>
+
+          <p>
+            Our goal is to make the experience feel relaxed and human. We guide when needed,
+            give space when the moment calls for it, and focus on creating images that feel
+            real instead of forced.
+          </p>
+
+          <p>
+            Whether it is a family session, a portrait, a newborn moment, or a milestone,
+            we approach every session with respect for your time, your comfort, and your story.
+          </p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- VALUES -->
+    <section class="about-values">
+
+      <div class="about-value-card">
+        <span>01</span>
+        <h3>Comfort first</h3>
+        <p>
+          We know not everyone feels natural in front of a camera. That is why we focus on creating
+          a calm experience before chasing the perfect pose.
+        </p>
+      </div>
+
+      <div class="about-value-card">
+        <span>02</span>
+        <h3>Real moments</h3>
+        <p>
+          The best photographs often happen in between directions — a laugh, a look, a quiet detail.
+          We pay attention to those moments.
+        </p>
+      </div>
+
+      <div class="about-value-card">
+        <span>03</span>
+        <h3>Thoughtful editing</h3>
+        <p>
+          Every final image is selected and edited with care, keeping the emotion of the moment
+          while giving the photo a polished finish.
+        </p>
+      </div>
+
+    </section>
+
+    <!-- PROCESS -->
+    <section class="about-process">
+      <span class="section-kicker">What to expect</span>
+      <h2>A simple, guided experience.</h2>
+
+      <div class="process-list">
+        <div>
+          <strong>Before</strong>
+          <p>We talk about the type of session, location, timing, and what matters most to you.</p>
+        </div>
+
+        <div>
+          <strong>During</strong>
+          <p>We guide you naturally, but we also leave room for spontaneous moments.</p>
+        </div>
+
+        <div>
+          <strong>After</strong>
+          <p>You receive a carefully edited gallery with images ready to download, share, or print.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="about-final-cta">
+      <h2>Ready to plan your session?</h2>
+      <p>
+        Explore our services or build a package that fits the kind of story you want to preserve.
+      </p>
+
+      <div class="about-cta-buttons">
+        <a href="index.html#seccionServices" class="btn mybtn">View Services</a>
+        <a href="calculator.html" class="btn mybtn">Customize Package</a>
+      </div>
+    </section>
+
+  </main>
+
+  <footer id="foot_bar" class="gap-2">
+    <div id="div_menubotom">
+      <a href="https://www.facebook.com/people/JG-Photography" class="hvr-grow lnkMenu" target="_blank"><i class="fab fa-facebook-f"></i></a>
+      <a href="https://www.instagram.com/jlprezc/" class="hvr-grow lnkMenu" target="_blank"><i class="fab fa-instagram"></i></a>
+      <a href="tel:+15023458298" class="hvr-grow lnkMenu"><i class="fas fa-phone"></i></a>
+    </div>
+
+    <a class="lnkMenu" href="https://gatangdesigns.io/" target="_blank">
+      <p style="font-size: 0.5rem;" id="copyright"></p>
+    </a>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+  <script>
+    AOS.init({
+      duration: 800,
+      once: true
+    });
+  </script>
+
+  <script>
+    const footer = document.getElementById('copyright');
+    const year = new Date().getFullYear();
+    footer.textContent = `© ${year} GATANG designs. All rights reserved.`;
+  </script>
+
+  <script src="js/script2.js"></script>
+
+</body>
+</html>
+
+<style>
+    /* ========================= ABOUT PAGE ========================= */
+
+.about-page {
+  background: var(--color-fondo);
+  color: var(--color-texto);
+}
+
+.about-hero {
+  min-height: 75vh;
+  padding: 10rem 2rem 6rem;
+  display: flex;
+  align-items: flex-end;
+
+  background:
+    linear-gradient(to top, rgb(219, 202, 183), rgba(58, 42, 32, 0)),
+    url("img/photos/family_kids/4.jpg");
+
+  background-size: cover;
+  background-position: center;
+}
+
+.about-hero-inner {
+  width: min(1100px, 100%);
+  margin: 0 auto;
+}
+
+.about-hero h1 {
+  max-width: 850px;
+  font-size: clamp(3rem, 8vw, 7rem);
+  line-height: 0.9;
+}
+
+.about-hero p {
+  max-width: 600px;
+  margin-top: 1.5rem;
+  color: var(--color-texto-sec);
+  line-height: 1.7;
+}
+
+.about-story {
+  padding: 7rem 2rem;
+}
+
+.about-story-inner {
+  width: min(1100px, 100%);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
+  gap: 4rem;
+  align-items: start;
+}
+
+.about-large-text h2 {
+  font-size: clamp(2.8rem, 6vw, 5.5rem);
+  line-height: 0.95;
+}
+
+.about-copy p {
+  color: var(--color-texto-sec);
+  line-height: 1.85;
+  margin-bottom: 1.5rem;
+}
+
+.about-values {
+  width: min(1100px, 100%);
+  margin: 0 auto;
+  padding: 0 2rem 7rem;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+
+.about-value-card {
+  padding: 2rem;
+  background: rgba(250, 244, 236, 0.45);
+  border: 1px solid rgba(92, 67, 51, 0.16);
+  border-radius: 18px;
+}
+
+.about-value-card span {
+  color: var(--color-bronce-a);
+  letter-spacing: 0.18em;
+}
+
+.about-value-card h3 {
+  justify-content: flex-start;
+  margin: 1rem 0;
+  font-size: 1.4rem;
+}
+
+.about-value-card p {
+  color: var(--color-texto-sec);
+  line-height: 1.7;
+}
+
+.about-process {
+  padding: 7rem 2rem;
+  background: #2d1d15;
+  text-align: center;
+}
+
+.about-process h2 {
+  color: var(--color-texto-dbg);
+  font-size: clamp(2.8rem, 6vw, 5rem);
+}
+
+.process-list {
+  width: min(1000px, 100%);
+  margin: 3rem auto 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+
+.process-list div {
+  border-top: 1px solid rgba(250, 244, 236, 0.25);
+  padding-top: 1rem;
+  text-align: left;
+}
+
+.process-list strong {
+  color: var(--color-gold-a);
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+}
+
+.process-list p {
+  color: rgba(250, 244, 236, 0.78);
+  line-height: 1.7;
+  margin-top: 0.7rem;
+}
+
+.about-final-cta {
+  padding: 7rem 2rem 9rem;
+  text-align: center;
+}
+
+.about-final-cta h2 {
+  font-size: clamp(2.8rem, 6vw, 5rem);
+}
+
+.about-final-cta p {
+  max-width: 620px;
+  margin: 1rem auto 2rem;
+  color: var(--color-texto-sec);
+}
+
+.about-cta-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 900px) {
+  .about-story-inner,
+  .about-values,
+  .process-list {
+    grid-template-columns: 1fr;
+  }
+
+  .about-hero {
+    min-height: 65vh;
+    padding-top: 8rem;
+  }
+}
+</style>

@@ -1711,3 +1711,18 @@ form label {
     font-size: clamp(2.5rem, 13vw, 4rem);
   }
 }
+
+/* ========================= MOBILE MENU LINK COLOR FIX ========================= */
+
+#navbarMenu .lnkMenu,
+#navbarMenu .lnkMenu:link,
+#navbarMenu .lnkMenu:visited,
+#navbarMenu .lnkMenu:hover,
+#navbarMenu .lnkMenu:active,
+#navbarMenu .lnkMenu:focus {
+  color: var(--color-texto-dbg) !important;
+}
+
+#navbarMenu .lnkMenu * {
+  color: var(--color-texto-dbg) !important;
+}
