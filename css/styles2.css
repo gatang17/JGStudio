@@ -1334,7 +1334,6 @@ form label {
   }
 }
 
-/* ========================= CALCULATOR CARDS ========================= */
 /* ========================= CALCULATOR PAGE ========================= */
 
 #calculator {
@@ -1421,6 +1420,31 @@ form label {
 .package-includes i {
   color: var(--color-gold-a);
   margin-right: 0.4rem;
+}
+
+.package-open-label {
+  display: inline-block;
+  margin: 0.5rem 0 1rem;
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  opacity: 0.75;
+  cursor: pointer;
+ 
+}
+
+.package-select {
+  width: 100%;
+  margin-top: 0.7rem;
+  padding: 0.8rem;
+  border: 1px solid rgba(0,0,0,0.15);
+  background: transparent;
+  font: inherit;
+  color: inherit;
+}
+
+.package-card.active .package-open-label {
+  display: none;
 }
 
 .customize-label {
