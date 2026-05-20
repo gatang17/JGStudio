@@ -340,7 +340,7 @@ document.addEventListener("DOMContentLoaded", () => {
             <span class="section-kicker">JG Photography</span>
             <h1>${galleryData.title}</h1>
             <p>${galleryData.description}</p>
-            <a href="calculator.html?service=${serviceKey}" class="btn mybtn">Build Your Package</a>
+            <a href="calculator.html?service=${serviceKey}" class="btn mybtn">View Packages for This Session</a>
           </div>
         </section>
 
