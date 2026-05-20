@@ -65,6 +65,12 @@
       "price": 30,
       "control": "checkbox"
     },
+    "extra-setup": {
+      "id": "extra-setup",
+      "label": "Extra prop/setup change",
+      "price": 30,
+      "control": "checkbox"
+    },
     "extra-person": {
       "id": "extra-person",
       "label": "Additional person",
@@ -84,6 +90,7 @@
   ],
 
   "packages": [
+
     {
       "id": "portrait-essential",
       "name": "Essential",
@@ -147,6 +154,7 @@
       "photoPrice": 12,
       "options": ["session-style", "extra-photo", "rush"]
     },
+
     {
       "id": "family-essential",
       "name": "Essential",
@@ -208,6 +216,133 @@
       "studioUpcharge": 90,
       "photoPrice": 12,
       "options": ["session-style", "extra-photo", "extra-person", "rush"]
+    },
+
+    {
+      "id": "newborn-essential",
+      "name": "Essential",
+      "type": "newborn",
+      "basePrice": 275,
+      "blurb": "A gentle 45-minute session capturing your newborn's earliest days.",
+      "galleryDays": 30,
+      "includes": [
+        "45-minute newborn session",
+        "12 high-resolution edited digital images",
+        "1 outfit or wrap",
+        "Studio session",
+        "Gentle posing guidance",
+        "Online gallery for 30 days"
+      ],
+      "limits": { "basePhotos": 12, "maxPhotos": 18, "maxOutfits": 1 },
+      "studioUpcharge": 0,
+      "photoPrice": 15,
+      "options": ["extra-photo", "rush"]
+    },
+    {
+      "id": "newborn-signature",
+      "name": "Signature",
+      "type": "newborn",
+      "basePrice": 425,
+      "blurb": "75 minutes of soft, intentional images with 2 setups and 25 edited images.",
+      "galleryDays": 30,
+      "includes": [
+        "75-minute newborn session",
+        "25 high-resolution edited digital images",
+        "Up to 2 outfit or prop setups",
+        "Studio session",
+        "Gentle posing & creative direction",
+        "Online gallery for 30 days"
+      ],
+      "limits": { "basePhotos": 25, "maxPhotos": 35, "maxOutfits": 2 },
+      "studioUpcharge": 0,
+      "photoPrice": 12,
+      "options": ["extra-photo", "extra-setup", "rush"]
+    },
+    {
+      "id": "newborn-prestige",
+      "name": "Prestige",
+      "type": "newborn",
+      "basePrice": 650,
+      "blurb": "90 minutes, unlimited setups, premium retouching, and a $75 print credit.",
+      "galleryDays": 60,
+      "includes": [
+        "90-minute newborn session",
+        "40 high-resolution edited digital images",
+        "Unlimited outfit and prop setups",
+        "Studio session",
+        "Gentle posing & creative direction",
+        "Premium retouching",
+        "$75 print credit"
+      ],
+      "limits": { "basePhotos": 40, "maxPhotos": 55 },
+      "studioUpcharge": 0,
+      "photoPrice": 12,
+      "options": ["extra-photo", "rush"]
+    },
+
+    {
+      "id": "milestone-essential",
+      "name": "Essential",
+      "type": "milestone",
+      "basePrice": 225,
+      "blurb": "A 30-minute milestone session with 10 edited images and 1 setup.",
+      "galleryDays": 30,
+      "includes": [
+        "30-minute milestone session",
+        "10 high-resolution edited digital images",
+        "1 prop or theme setup",
+        "On-location or studio session",
+        "Travel within 20 miles included",
+        "Online gallery for 30 days"
+      ],
+      "limits": { "basePhotos": 10, "maxPhotos": 15 },
+      "studioUpcharge": 40,
+      "photoPrice": 15,
+      "options": ["session-style", "extra-photo", "rush"]
+    },
+    {
+      "id": "milestone-signature",
+      "name": "Signature",
+      "type": "milestone",
+      "basePrice": 375,
+      "blurb": "A 60-minute session with posing guidance, 25 images, and 2 setups.",
+      "galleryDays": 30,
+      "includes": [
+        "60-minute milestone session",
+        "25 high-resolution edited digital images",
+        "Up to 2 prop or theme setups",
+        "On-location or studio session",
+        "Travel within 20 miles included",
+        "Posing guidance",
+        "Online gallery for 30 days"
+      ],
+      "limits": { "basePhotos": 25, "maxPhotos": 38 },
+      "studioUpcharge": 55,
+      "photoPrice": 12,
+      "options": ["session-style", "extra-photo", "extra-setup", "rush"]
+    },
+    {
+      "id": "milestone-prestige",
+      "name": "Prestige",
+      "type": "milestone",
+      "basePrice": 575,
+      "blurb": "90 minutes, 40 images, 3 setups, premium retouching, and a $75 print credit.",
+      "galleryDays": 60,
+      "includes": [
+        "90-minute milestone session",
+        "40 high-resolution edited digital images",
+        "Up to 3 prop or theme setups",
+        "On-location or studio session",
+        "Travel within 20 miles included",
+        "Posing guidance & creative direction",
+        "Premium retouching",
+        "$75 print credit"
+      ],
+      "limits": { "basePhotos": 40, "maxPhotos": 58 },
+      "studioUpcharge": 70,
+      "photoPrice": 12,
+      "options": ["session-style", "extra-photo", "rush"]
     }
+
   ]
 }

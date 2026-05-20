@@ -464,8 +464,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const serviceTypeMap = {
     families:    "family",
-    newborn:     "portrait",
-    milestones:  "portrait",
+    newborn:     "newborn",
+    milestones:  "milestone",
     portrait:    "portrait",
     photography: "portrait",
     featured:    "family"
