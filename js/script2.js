@@ -559,7 +559,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
           <p class="package-blurb">${pkg.blurb}</p>
 
-          <h3>$${pkg.basePrice}</h3>
+          <h2>$${pkg.basePrice}</h2>
 
           <ul class="package-includes">
             ${pkg.includes.map(item => `<li><i class="fa-solid fa-check"></i> ${item}</li>`).join("")}
@@ -651,7 +651,7 @@ document.addEventListener("DOMContentLoaded", () => {
         ${resolvedOptions.map(option => createOptionHTML(option, pkg)).join("")}
       </div>
       <h4 class="package-total">
-        Total: $<span class="totalPrice">${pkg.basePrice}</span>
+        Total: $ <span class="totalPrice">${pkg.basePrice}</span>
       </h4>
     `;
 

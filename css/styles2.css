@@ -1359,7 +1359,10 @@ form label {
   box-shadow: 0 18px 40px rgba(58, 42, 32, 0.08);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
-
+.package-total,.totalPrice {
+  font-size: 2rem!important;
+  color: var(--color-borde);
+}
 .package-card.active {
   transform: translateY(-6px);
   box-shadow: 0 24px 55px rgba(58, 42, 32, 0.18);

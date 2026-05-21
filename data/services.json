@@ -50,7 +50,7 @@
       "label": "Session Style",
       "control": "select",
       "choices": [
-        { "value": "on-location", "label": "On-Location Session", "price": 0 },
+        { "value": "on-location", "label": "Outdoors (Your chosen location)", "price": 0 },
         { "value": "studio",      "label": "Studio Session",       "price": 0 }
       ]
     },
@@ -102,7 +102,7 @@
         "30-minute portrait session",
         "10 high-resolution edited digital images",
         "1 outfit choice",
-        "On-location session",
+        "Outdoors (Your chosen location)",
         "Travel within 20 miles included",
         "Online gallery for 30 days"
       ],
@@ -122,7 +122,7 @@
         "60-minute portrait session",
         "25 high-resolution edited digital images",
         "Up to 3 outfit changes",
-        "On-location session",
+        "Outdoors (Your chosen location)",
         "Travel within 20 miles included",
         "Creative direction & posing guidance",
         "Online gallery for 30 days"
@@ -143,7 +143,7 @@
         "90-minute portrait session",
         "40 high-resolution edited digital images",
         "Up to 5 outfit changes",
-        "On-location session",
+        "Outdoors (Your chosen location)",
         "Travel within 20 miles included",
         "Creative direction & posing guidance",
         "Premium retouching",
@@ -166,7 +166,7 @@
         "45-minute family session",
         "12 high-resolution edited digital images",
         "Up to 5 immediate family members",
-        "On-location session",
+        "Outdoors (Your chosen location)",
         "Travel within 20 miles included",
         "Online gallery for 30 days"
       ],
@@ -186,7 +186,7 @@
         "75-minute family session",
         "30 high-resolution edited digital images",
         "Up to 6 family members",
-        "On-location session",
+        "Outdoors (Your chosen location)",
         "Travel within 20 miles included",
         "Posing guidance and candid moments",
         "Online gallery for 30 days"
@@ -200,14 +200,14 @@
       "id": "family-prestige",
       "name": "Prestige",
       "type": "family",
-      "basePrice": 795,
+      "basePrice": 675,
       "blurb": "A 2-hour session with a photobook and fine art print.",
       "galleryDays": 90,
       "includes": [
         "2-hour family session",
         "50 high-resolution edited digital images",
         "Up to 10 family members",
-        "On-location session",
+        "Outdoors (Your chosen location)",
         "Travel within 20 miles included",
         "Premium 10x10 family photobook",
         "Framed 16x24 fine art print"
@@ -222,7 +222,7 @@
       "id": "newborn-essential",
       "name": "Essential",
       "type": "newborn",
-      "basePrice": 275,
+      "basePrice": 325,
       "blurb": "A gentle 45-minute session capturing your newborn's earliest days.",
       "galleryDays": 30,
       "includes": [
@@ -242,7 +242,7 @@
       "id": "newborn-signature",
       "name": "Signature",
       "type": "newborn",
-      "basePrice": 425,
+      "basePrice": 495,
       "blurb": "75 minutes of soft, intentional images with 2 setups and 25 edited images.",
       "galleryDays": 30,
       "includes": [
@@ -262,7 +262,7 @@
       "id": "newborn-prestige",
       "name": "Prestige",
       "type": "newborn",
-      "basePrice": 650,
+      "basePrice": 725,
       "blurb": "90 minutes, unlimited setups, premium retouching, and a $75 print credit.",
       "galleryDays": 60,
       "includes": [
@@ -284,14 +284,14 @@
       "id": "milestone-essential",
       "name": "Essential",
       "type": "milestone",
-      "basePrice": 225,
+      "basePrice": 205,
       "blurb": "A 30-minute milestone session with 10 edited images and 1 setup.",
       "galleryDays": 30,
       "includes": [
         "30-minute milestone session",
         "10 high-resolution edited digital images",
         "1 prop or theme setup",
-        "On-location or studio session",
+        "Outdoors (Your chosen location)",
         "Travel within 20 miles included",
         "Online gallery for 30 days"
       ],
@@ -304,14 +304,14 @@
       "id": "milestone-signature",
       "name": "Signature",
       "type": "milestone",
-      "basePrice": 375,
+      "basePrice": 340,
       "blurb": "A 60-minute session with posing guidance, 25 images, and 2 setups.",
       "galleryDays": 30,
       "includes": [
         "60-minute milestone session",
         "25 high-resolution edited digital images",
         "Up to 2 prop or theme setups",
-        "On-location or studio session",
+        "Outdoors (Your chosen location)",
         "Travel within 20 miles included",
         "Posing guidance",
         "Online gallery for 30 days"
@@ -332,7 +332,7 @@
         "90-minute milestone session",
         "40 high-resolution edited digital images",
         "Up to 3 prop or theme setups",
-        "On-location or studio session",
+        "Outdoors (Your chosen location)",
         "Travel within 20 miles included",
         "Posing guidance & creative direction",
         "Premium retouching",
