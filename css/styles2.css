@@ -98,6 +98,8 @@ h1 {
   text-transform: uppercase;
 }
 
+
+
 h2 {
   font-weight: 100;
   font-style: italic;
@@ -622,6 +624,8 @@ section {
   letter-spacing: 0.22em;
   font-size: 0.8rem;
 }
+
+
 
 .services-intro h1 {
   max-width: 620px;

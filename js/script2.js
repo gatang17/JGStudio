@@ -331,7 +331,7 @@ document.addEventListener("DOMContentLoaded", () => {
         return;
       }
 
-      const images    = Array.from({ length: galleryData.count || 12 }, (_, i) => `${galleryData.src}/${i + 1}.jpg`);
+      const images    = Array.from({ length: galleryData.count || 12 }, (_, i) => `${galleryData.src}/${i + 2}.jpg`);
       const heroImage = galleryData.hero || images[0];
 
       galleryContainer.innerHTML = `
@@ -352,7 +352,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
         <section class="gallery-cta">
           <span class="section-kicker">Ready when you are</span>
-          <h2>Shape a ${galleryData.title} session around your story.</h2>
+          <h2> THE FIRST CHAPTER STARTS HERE.
+</h2>
           <a href="calculator.html?service=${serviceKey}" class="btn mybtn">Customize a Package</a>
         </section>
       `;
