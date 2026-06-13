@@ -357,23 +357,118 @@ document.addEventListener("DOMContentLoaded", () => {
           <a href="calculator.html?service=${serviceKey}" class="btn mybtn">Customize a Package</a>
         </section>
       `;
+    const masonry = document.getElementById("galleryMasonry");
 
-      const masonry = document.getElementById("galleryMasonry");
+function loadImageInfo(src, index) {
+  return new Promise(resolve => {
+    const img = new Image();
+    img.src = src;
 
-      images.forEach((src, index) => {
-        const item     = document.createElement("button");
-        item.className = `gallery-item item-${index + 1}`;
-        item.type      = "button";
-        item.innerHTML = `<img src="${src}" alt="${galleryData.title}" loading="lazy">`;
-
-        item.querySelector("img").onerror = () => {
-          console.warn("Image not found:", src);
-          item.remove();
-        };
-
-        item.addEventListener("click", () => { openGalleryOverlay(images, index); });
-        masonry.appendChild(item);
+    img.onload = () => {
+      const ratio = img.naturalWidth / img.naturalHeight;
+      resolve({
+        src,
+        index,
+        type: ratio > 1.15 ? "horizontal" : "vertical"
       });
+    };
+
+    img.onerror = () => {
+      console.warn("Image not found:", src);
+      resolve(null);
+    };
+  });
+}
+
+Promise.all(images.map((src, index) => loadImageInfo(src, index)))
+  .then(results => {
+    const validImages = results.filter(Boolean);
+
+    const horizontals = validImages.filter(img => img.type === "horizontal");
+    const verticals = validImages.filter(img => img.type === "vertical");
+
+    renderEditorialGallery(horizontals, verticals);
+  });
+
+function createGalleryItem(image) {
+  const item = document.createElement("button");
+  item.className = `gallery-item ${image.type}`;
+  item.type = "button";
+
+  item.innerHTML = `
+    <img src="${image.src}" alt="${galleryData.title}" loading="lazy">
+  `;
+
+  item.addEventListener("click", () => {
+    openGalleryOverlay(images, image.index);
+  });
+
+  return item;
+}
+
+function renderEditorialGallery(horizontals, verticals) {
+  masonry.innerHTML = "";
+
+  while (horizontals.length || verticals.length) {
+    // BLOQUE 1: horizontal grande + vertical al lado
+    if (horizontals.length && verticals.length) {
+      const row = document.createElement("div");
+      row.className = "gallery-row row-hv";
+
+      row.appendChild(createGalleryItem(horizontals.shift()));
+      row.appendChild(createGalleryItem(verticals.shift()));
+
+      masonry.appendChild(row);
+    }
+
+    // BLOQUE 2: tres horizontales
+    if (horizontals.length >= 3) {
+      const row = document.createElement("div");
+      row.className = "gallery-row row-3h";
+
+      row.appendChild(createGalleryItem(horizontals.shift()));
+      row.appendChild(createGalleryItem(horizontals.shift()));
+      row.appendChild(createGalleryItem(horizontals.shift()));
+
+      masonry.appendChild(row);
+    }
+
+    // BLOQUE 3: vertical + horizontal grande
+    if (verticals.length && horizontals.length) {
+      const row = document.createElement("div");
+      row.className = "gallery-row row-vh";
+
+      row.appendChild(createGalleryItem(verticals.shift()));
+      row.appendChild(createGalleryItem(horizontals.shift()));
+
+      masonry.appendChild(row);
+    }
+
+    // Si solo quedan horizontales
+    if (!verticals.length && horizontals.length) {
+      const row = document.createElement("div");
+      row.className = "gallery-row row-3h";
+
+      for (let i = 0; i < 3 && horizontals.length; i++) {
+        row.appendChild(createGalleryItem(horizontals.shift()));
+      }
+
+      masonry.appendChild(row);
+    }
+
+    // Si solo quedan verticales
+    if (!horizontals.length && verticals.length) {
+      const row = document.createElement("div");
+      row.className = "gallery-row row-verticals";
+
+      for (let i = 0; i < 3 && verticals.length; i++) {
+        row.appendChild(createGalleryItem(verticals.shift()));
+      }
+
+      masonry.appendChild(row);
+    }
+  }
+}
     })
     .catch(err => console.error("Gallery load error:", err));
 });
