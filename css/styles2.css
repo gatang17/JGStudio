@@ -220,6 +220,36 @@ p {
   text-decoration: none;
 }
 
+/* Barra de menú de escritorio: social | links | contacto, en tercios iguales */
+#div_menutop {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+/* en escritorio no existe como caja propia: sus hijos son columnas directas de #div_menutop */
+.menu-links-wrap {
+  display: contents;
+}
+
+.site-menu-social,
+.site-menu-links,
+.site-menu-contact {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  flex: 1 1 0;
+}
+
+/* logo y copyright son exclusivos del overlay móvil */
+#menu-logo,
+#menu-copyright {
+  display: none;
+}
+
 /* ========================= TOP BAR / FOOTER ========================= */
 
 #container_top,
@@ -233,7 +263,7 @@ p {
   left: 0;
   width: 100%;
   background-color: transparent;
-  z-index: 1000;
+  z-index: 1002; /* por encima del footer (1000): si no, el overlay móvil de #div_menutop no lo tapa */
   padding-bottom: 15px;
 }
 
@@ -281,22 +311,6 @@ footer {
 
 /* ========================= MOBILE MENU ========================= */
 
-#navbarMenu {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  background: rgba(0, 0, 0, 0.5);
-  backdrop-filter: blur(8px);
-  z-index: 1000;
-  visibility: hidden;
-}
-
 #menu_hamburguer {
   visibility: hidden;
 }
@@ -320,12 +334,68 @@ footer {
     visibility: visible;
   }
 
-  #navbarMenu {
+  /* #div_menutop se convierte de barra horizontal a overlay de pantalla completa,
+     con 3 cajas reales en grid: logo (arriba) / menú (centro, ocupa todo lo que sobra) / copyright (abajo).
+     Con grid + 1fr en la fila del medio, el tamaño del logo o el copyright ya no desbalancea el centrado. */
+  #div_menutop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    justify-items: center;
+    padding: 2.5rem 1rem;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(8px);
+    z-index: 1001; /* por encima del footer real (z-index 1000), que si no se ve encima del overlay */
     visibility: hidden;
   }
 
-  #div_menutop {
-    display: none;
+  #div_menutop.menu-open {
+    visibility: visible;
+  }
+
+  #menu-logo {
+    display: block;
+    max-height: 64px;
+    width: auto;
+    filter: invert(1) drop-shadow(1px 1px 2px black);
+  }
+
+  #menu-copyright {
+    display: block;
+    margin: 0;
+    font-size: 0.7rem;
+    letter-spacing: 0.05em;
+    color: var(--color-texto-dbg);
+  }
+
+  /* fila central: ocupa el 1fr completo y centra sus links de verdad dentro de ese espacio */
+  .menu-links-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    gap: 1.5rem;
+  }
+
+  /* cada grupo (redes, links, contacto) pasa a columna, sin estirarse a 1/3 de pantalla */
+  .site-menu-social,
+  .site-menu-links,
+  .site-menu-contact {
+    flex: none;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  /* área de toque cómoda para un dedo (mínimo ~44px recomendado) */
+  #div_menutop .lnkMenu {
+    padding: 0.6rem 1.2rem;
+    min-height: 44px;
+    justify-content: center;
   }
 
   #div_menubotom {

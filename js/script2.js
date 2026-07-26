@@ -32,23 +32,24 @@ document.addEventListener("DOMContentLoaded", () => {
 
       header.innerHTML = html;
 
+      const menuCopyright = document.getElementById('menu-copyright');
+      if (menuCopyright) {
+        menuCopyright.textContent = `© ${new Date().getFullYear()} GATANG designs. All rights reserved.`;
+      }
+
       const btnHbg = document.getElementById('btn_H');
       const copyright = document.getElementById('copyright');
-      const divMenu = document.getElementById('div_menutop');
-      const divFoot = document.getElementById('div_menubotom');
+      const menuDrop = document.getElementById('div_menutop');
       const footerStyle = document.getElementById('foot_bar');
       const btnHamburguesa = document.getElementById('menu_hamburguer');
       const elementosBorrosos = document.getElementsByClassName('borroso');
-      const menuDrop = document.getElementById('navbarMenu');
       const menu_cny = document.getElementById('container_top');
 
-      if (!btnHbg || !divMenu || !divFoot || !footerStyle || !btnHamburguesa || !menuDrop || !menu_cny) {
+      if (!btnHbg || !footerStyle || !btnHamburguesa || !menuDrop || !menu_cny) {
         return;
       }
 
       const esHome = window.location.pathname.includes("index") || window.location.pathname === "/";
-      const menuOriginalHTML = divMenu.innerHTML;
-      const footerOriginalHTML = divFoot.innerHTML;
 
       btnHbg.style.removeProperty('--bs-btn-color');
 
@@ -81,57 +82,40 @@ document.addEventListener("DOMContentLoaded", () => {
         }
       }
 
-      document.querySelectorAll("a").forEach(link => {
-        link.addEventListener("click", () => {
-          document.body.style.overflow = '';
-          menuDrop.style.visibility = "hidden";
-          for (let el of elementosBorrosos) el.style.filter = "none";
-          menuAbierto = false;
-        });
-      });
-
-      function actualizarUI() {
-        const ancho = window.innerWidth;
-
-        if (ancho < 765) {
-          divMenu.innerHTML = '';
-          divFoot.innerHTML = footerOriginalHTML;
-          footerStyle.style.borderTop = "var(--color-texto-dbg) solid";
-          btnHamburguesa.style.visibility = "visible";
-          menuDrop.style.visibility = menuAbierto ? "visible" : "hidden";
-        } else {
-          divMenu.innerHTML = menuOriginalHTML;
-          divFoot.innerHTML = '';
-          footerStyle.style.border = "none";
-          btnHamburguesa.style.visibility = "hidden";
-          menuDrop.style.visibility = "hidden";
-          menuAbierto = false;
-          for (let el of elementosBorrosos) el.style.filter = "none";
-        }
+      function cerrarMenu() {
+        document.body.style.overflow = '';
+        menuDrop.classList.remove('menu-open', 'menu-overlay');
+        btnHbg.setAttribute('aria-expanded', 'false');
+        for (let el of elementosBorrosos) el.style.filter = "none";
+        menuAbierto = false;
       }
+
+      document.querySelectorAll("a").forEach(link => {
+        link.addEventListener("click", cerrarMenu);
+      });
 
       btnHamburguesa.addEventListener("click", () => {
         menuAbierto = !menuAbierto;
 
         if (menuAbierto) {
           document.body.style.overflow = 'hidden';
-          menuDrop.style.visibility = "visible";
+          menuDrop.classList.add('menu-open', 'menu-overlay');
+          btnHbg.setAttribute('aria-expanded', 'true');
           for (let el of elementosBorrosos) el.style.filter = "blur(5px) brightness(0.3)";
-          menuDrop.classList.add('menu-overlay');
         } else {
-          document.body.style.overflow = '';
-          menuDrop.style.visibility = "hidden";
-          for (let el of elementosBorrosos) el.style.filter = "none";
-          menuDrop.classList.remove('menu-overlay');
+          cerrarMenu();
         }
       });
 
-      window.addEventListener('scroll', aplicarEstiloHeader);
-      window.addEventListener('resize', actualizarUI);
-      window.addEventListener('load', () => {
-        actualizarUI();
-        aplicarEstiloHeader();
+      // El menú y el pie pasan de barra horizontal a overlay de pantalla
+      // completa solo con CSS (@media en styles2.css); si la pantalla crece
+      // más allá del breakpoint mientras el overlay está abierto, se cierra.
+      window.addEventListener('resize', () => {
+        if (menuAbierto && window.innerWidth > 768) cerrarMenu();
       });
+
+      window.addEventListener('scroll', aplicarEstiloHeader);
+      window.addEventListener('load', aplicarEstiloHeader);
 
       aplicarEstiloHeader();
     })

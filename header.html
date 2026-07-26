@@ -1,64 +1,52 @@
 
-    
-    <head>
-      <!-- effect library Hover.css-->
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hover.css/2.3.1/css/hover-min.css">
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/magic/1.1.0/magic.min.css">
 
-      <!--googleFonts-->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fira+Sans+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Oswald:wght@200..700&display=swap" rel="stylesheet">
-    
-    </head>
-    <div class="container-fluid" id="menu_container">
-        <div class="container_top" id="container_top">       
-          <!-- menu hamburguesa-->
-          <div id="menu_hamburguer" class="d-flex justify-content-center mt-3 boton-principal lnkMenu">
-            <button class="btn lnkMenu hvr-grow" type="button" id="btn_H">
-              <i class="fas fa-bars"></i>
-            </button>    
+<head>
+  <!-- effect library Hover.css-->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hover.css/2.3.1/css/hover-min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/magic/1.1.0/magic.min.css">
+
+</head>
+<div class="container-fluid" id="menu_container">
+    <div class="container_top" id="container_top">
+      <!-- menu hamburguesa (solo visible en móvil, abre/cierra #div_menutop) -->
+      <div id="menu_hamburguer" class="d-flex justify-content-center mt-3 boton-principal lnkMenu">
+        <button class="btn lnkMenu hvr-grow" type="button" id="btn_H" aria-expanded="false">
+          <i class="fas fa-bars"></i>
+        </button>
+      </div>
+
+      <!-- menu único: en escritorio es la barra horizontal, en móvil se convierte en overlay (ver CSS) -->
+      <!-- ojo: sin utilidades de Bootstrap (gap-2, justify-content-*, etc.) porque llevan !important
+           y pisaban el espaciado que necesitamos para el overlay móvil -->
+      <nav class="text-center" id="div_menutop">
+
+        <!-- logo pequeño: solo se ve en el overlay móvil, para que la parte de arriba no quede vacía -->
+        <img src="img/logoBW.png" alt="J&G Photography" id="menu-logo">
+
+        <!-- en escritorio estos 3 grupos son columnas de la barra; en móvil se agrupan y centran juntos -->
+        <div class="menu-links-wrap">
+          <!-- Columna izquierda icon Redes-->
+          <div class="site-menu-social">
+            <a href="https://facebook.com/jgyourstudio" class="hvr-grow lnkMenu" target="_blank"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://www.instagram.com/jlprezc/" class="hvr-grow lnkMenu" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="tel:+15023458298" class="hvr-grow lnkMenu"> <i class="fas fa-phone"></i> </a>
           </div>
-          <div class="d-flex flex-column align-items-center justify-content-center gap-5" id="navbarMenu">
-            <a href="index.html#home" class="lnkMenu hvr-grow">HOME</a>
-            <a href="index.html#seccionServices" class="lnkMenu hvr-grow">Services</a>
-            <a href="index.html#secabout" target="" class="hvr-grow lnkMenu" id="link_log">About Us</a>
-            <a href="contact.html" class="hvr-grow lnkMenu" >Contact</a>   
+
+          <!-- Columna del medio menu-->
+          <div class="site-menu-links" id="div_menu">
+            <a href="index.html#home" class="hvr-grow lnkMenu">HOME</a>
+            <a href="index.html#seccionServices" class="hvr-grow lnkMenu">Services</a>
+            <a href="index.html#secabout" class="hvr-grow lnkMenu" id="link_log">About Us</a>
           </div>
-    
-    
-    <!-- menu web display-->
-          <div class="row justify-content-between align-items-center text-center borroso " id="div_menutop">          
-           
-            <!-- Columna izquierda icon Redes-->
-            <div class="col-md-4 d-flex justify-content-center">
-              <div class="d-flex gap-2" id="">
-    
-                <a href="https://facebook.com/jgyourstudio" class="hvr-grow lnkMenu" target="_blank"><i class="fab fa-facebook-f"></i></a>
-                <a href="https://www.instagram.com/jlprezc/" class="hvr-grow lnkMenu" target="_blank"><i class="fab fa-instagram"></i></a>
-                <a href="tel:+15023458298" class="hvr-grow lnkMenu"> <i class="fas fa-phone"></i> </a>
-                
-              </div>
-            </div>
-      
-            <!-- Columna del medio menu-->
-            <div class="col-md-4 d-flex justify-content-center" id="div_menu">
-              <div class="d-flex gap-2 ">
-                <a href="index.html#home" class="hvr-grow lnkMenu">HOME</a>
-                <a href="index.html#seccionServices" class="hvr-grow lnkMenu">Services</a>
-                <a href="index.html#secabout" class="hvr-grow lnkMenu" id="link_log2">About Us</a>
-                
-              </div>
-            </div>
-      
-            <!-- Columna derecha login-->
-            <div class="col-md-4 d-flex justify-content-center " id="div_login">
-              <div class="d-flex gap-2">
-           
-                <a href="contact.html" class="hvr-grow lnkMenu">Contact</a>
-                                   
-              </div>
-            </div>
+
+          <!-- Columna derecha login-->
+          <div class="site-menu-contact" id="div_login">
+            <a href="contact.html" class="hvr-grow lnkMenu">Contact</a>
           </div>
-        </div>      
+        </div>
+
+        <!-- copyright pequeño: solo se ve en el overlay móvil (tapa el del footer real) -->
+        <p id="menu-copyright"></p>
+      </nav>
     </div>
+</div>
