@@ -220,40 +220,9 @@ p {
   text-decoration: none;
 }
 
-/* Barra de menú de escritorio: social | links | contacto, en tercios iguales */
-#div_menutop {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-}
-
-/* en escritorio no existe como caja propia: sus hijos son columnas directas de #div_menutop */
-.menu-links-wrap {
-  display: contents;
-}
-
-.site-menu-social,
-.site-menu-links,
-.site-menu-contact {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-  flex: 1 1 0;
-}
-
-/* logo y copyright son exclusivos del overlay móvil */
-#menu-logo,
-#menu-copyright {
-  display: none;
-}
-
 /* ========================= TOP BAR / FOOTER ========================= */
 
-#container_top,
-#foot_bar {
+#container_top {
   transition: background-color 0s ease;
 }
 
@@ -263,7 +232,7 @@ p {
   left: 0;
   width: 100%;
   background-color: transparent;
-  z-index: 1002; /* por encima del footer (1000): si no, el overlay móvil de #div_menutop no lo tapa */
+  z-index: 1000;
   padding-bottom: 15px;
 }
 
@@ -287,6 +256,7 @@ footer {
 }
 
 #foot_bar {
+  transition: background-color 0s ease;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -311,6 +281,22 @@ footer {
 
 /* ========================= MOBILE MENU ========================= */
 
+#navbarMenu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(8px);
+  z-index: 1000;
+  visibility: hidden;
+}
+
 #menu_hamburguer {
   visibility: hidden;
 }
@@ -334,68 +320,12 @@ footer {
     visibility: visible;
   }
 
-  /* #div_menutop se convierte de barra horizontal a overlay de pantalla completa,
-     con 3 cajas reales en grid: logo (arriba) / menú (centro, ocupa todo lo que sobra) / copyright (abajo).
-     Con grid + 1fr en la fila del medio, el tamaño del logo o el copyright ya no desbalancea el centrado. */
-  #div_menutop {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    display: grid;
-    grid-template-rows: auto 1fr auto;
-    justify-items: center;
-    padding: 2.5rem 1rem;
-    background: rgba(0, 0, 0, 0.5);
-    backdrop-filter: blur(8px);
-    z-index: 1001; /* por encima del footer real (z-index 1000), que si no se ve encima del overlay */
+  #navbarMenu {
     visibility: hidden;
   }
 
-  #div_menutop.menu-open {
-    visibility: visible;
-  }
-
-  #menu-logo {
-    display: block;
-    max-height: 64px;
-    width: auto;
-    filter: invert(1) drop-shadow(1px 1px 2px black);
-  }
-
-  #menu-copyright {
-    display: block;
-    margin: 0;
-    font-size: 0.7rem;
-    letter-spacing: 0.05em;
-    color: var(--color-texto-dbg);
-  }
-
-  /* fila central: ocupa el 1fr completo y centra sus links de verdad dentro de ese espacio */
-  .menu-links-wrap {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100%;
-    gap: 1.5rem;
-  }
-
-  /* cada grupo (redes, links, contacto) pasa a columna, sin estirarse a 1/3 de pantalla */
-  .site-menu-social,
-  .site-menu-links,
-  .site-menu-contact {
-    flex: none;
-    flex-direction: column;
-    gap: 1.5rem;
-  }
-
-  /* área de toque cómoda para un dedo (mínimo ~44px recomendado) */
-  #div_menutop .lnkMenu {
-    padding: 0.6rem 1.2rem;
-    min-height: 44px;
-    justify-content: center;
+  #div_menutop {
+    display: none;
   }
 
   #div_menubotom {
@@ -545,8 +475,7 @@ section {
 
 
 /* ========================= FEATURED SESSION ========================= */
-.featured_section,
-.about-band {
+.featured_section {
   min-height: clamp(350px, 50vh, 520px);
 }
 
@@ -561,6 +490,11 @@ section {
 
 .featured_media {
   filter: contrast(1.05) brightness(0.95);
+  width: 100%;
+  height: 320px; /* ðŸ‘ˆ clave */
+  border-radius: 3px;
+  background-size: cover;
+  background-position: center;
 }
 
 .featured_text h2 {
@@ -569,14 +503,6 @@ section {
 
 .featured_media_wrap {
   width: 100%;
-}
-
-.featured_media {
-  width: 100%;
-  height: 320px; /* 👈 clave */
-  border-radius: 3px;
-  background-size: cover;
-  background-position: center;
 }
 
 .featured_session_inner {  
@@ -665,7 +591,7 @@ section {
   margin: 0 auto;
 }
 .overlay-section {
-  background: rgba(0,0,0,0.45); /* más oscuro */
+  background: rgba(0,0,0,0.45); /* mÃ¡s oscuro */
 }
 
 #seccionServices {
@@ -1396,11 +1322,11 @@ form label {
 /* ========================= CALCULATOR HERO ========================= */
 
 #calculator {
-  max-width: 1700px;
+  max-width: 1200px;
   justify-items: center;
   align-items: start;
-  margin-top: 10rem;
-  margin-bottom: 10rem;
+  margin-top: 8rem;
+  margin-bottom: 8rem;
   padding-bottom: 8rem;
 }
 
@@ -1409,6 +1335,8 @@ form label {
   flex-direction: column;
   gap: 0.5rem;
   line-height: 1;
+  position: absolute;
+  z-index: 2;
 }
 
 .calculator-kicker {
@@ -1441,11 +1369,6 @@ form label {
   pointer-events: none;
 }
 
-#previewImage .title {
-  position: absolute;
-  z-index: 2;
-}
-
 @media (max-width: 768px) {
   #calculator {
     margin-top: 6rem;
@@ -1454,12 +1377,6 @@ form label {
 }
 
 /* ========================= CALCULATOR PAGE ========================= */
-
-#calculator {
-  max-width: 1200px;
-  margin-top: 8rem;
-  margin-bottom: 8rem;
-}
 
 #card_container {
   display: grid;
@@ -1485,18 +1402,6 @@ form label {
 .package-card.active {
   transform: translateY(-6px);
   box-shadow: 0 24px 55px rgba(58, 42, 32, 0.18);
-}
-
-.package-special {
-  background: #2f1f18;
-  color: var(--color-texto-dbg);
-}
-
-.package-special h2,
-.package-special h3,
-.package-special p,
-.package-special li {
-  color: var(--color-texto-dbg);
 }
 
 .package-badge {
@@ -1602,13 +1507,6 @@ form label {
 }
 .selectPackageBtn {
   display: none;
-}
-
-.package-card.active .selectPackageBtn {
-  display: block;
-}
-
-.selectPackageBtn {
   width: 100%;
   margin-top: 2rem;
   border: none;
@@ -1621,6 +1519,10 @@ form label {
   font-size: 0.75rem;
 }
 
+.package-card.active .selectPackageBtn {
+  display: block;
+}
+
 .package-special .selectPackageBtn {
   background: var(--color-gold-a);
   color: var();
@@ -1629,12 +1531,20 @@ form label {
 /* ========================= CONTACT INLINE FIX ========================= */
 
 .contact-section {
-  max-width: 980px;
+  width: min(100%, 980px);
   margin: 6rem auto 0;
   padding: 4rem 1.5rem 6rem;
 }
 
+.contact-heading,
+.contact-form {
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .contact-heading {
+  max-width: 900px;
   margin-bottom: 3rem;
 }
 
@@ -1651,7 +1561,11 @@ form label {
 }
 
 .contact-form {
-  max-width: 850px;
+  max-width: 900px;
+}
+
+.contact-form .full {
+  grid-column: 1 / -1;
 }
 
 .form-row {
@@ -1667,12 +1581,18 @@ form label {
 .contact-form input,
 .contact-form textarea {
   font-size: 1.1rem;
-  padding: 1rem 0.5rem;
+  padding: 1rem;
   margin-bottom: 0;
+  border: 1px solid rgba(58, 42, 32, 0.18);
 }
 
 .contact-form textarea {
   min-height: 180px;
+}
+
+.contact-form textarea::placeholder {
+  color: rgba(58, 42, 32, 0.45);
+  letter-spacing: 0.08em;
 }
 
 .contact-form label {
@@ -1693,6 +1613,7 @@ form label {
 /* ========================= FIX TEXT COLOR DARK CARD ========================= */
 
 .package-special {
+  background: #2f1f18;
   color: #f5efe6; /* color crema elegante */
 }
 
@@ -1724,55 +1645,6 @@ form label {
 /* TOTAL */
 .package-special .package-total {
   color: #ffffff !important;
-}
-
-.contact-section {
-  width: min(100%, 980px);
-  margin: 6rem auto 0;
-  padding: 4rem 1.5rem 6rem;
-}
-
-.contact-heading,
-.contact-form {
-  width: 100%;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.contact-heading {
-  max-width: 900px;
-  margin-bottom: 3rem;
-}
-
-.contact-form {
-  max-width: 900px;
-}
-
-.form-row {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 2rem;
-}
-
-.contact-form .full {
-  grid-column: 1 / -1;
-}
-
-.contact-form input,
-.contact-form textarea {
-  border: 1px solid rgba(58, 42, 32, 0.18);
-  padding: 1rem;
-}
-
-.contact-form textarea::placeholder {
-  color: rgba(58, 42, 32, 0.45);
-  letter-spacing: 0.08em;
-}
-
-@media (max-width: 768px) {
-  .form-row {
-    grid-template-columns: 1fr;
-  }
 }
 
 /* ========================= MOBILE FIXES ========================= */
@@ -1872,5 +1744,3 @@ form label {
 #navbarMenu .lnkMenu * {
   color: var(--color-texto-dbg) !important;
 }
-
-
